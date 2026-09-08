@@ -65,25 +65,32 @@ a{color:var(--accent-deep)}
   position:sticky;top:0;z-index:60;background:var(--panel);
   border-bottom:1px solid var(--line);
 }
-.topbar-in{max-width:1220px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
-.brand{display:flex;align-items:baseline;gap:10px;margin-right:auto}
+.topbar-in{max-width:1220px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:14px;flex-wrap:nowrap}
+nav.rail{flex:1 1 auto;min-width:0}
+@media (max-width:860px){
+  .topbar-in{flex-wrap:wrap;gap:8px 12px}
+  .brand .sub{display:none}
+  nav.rail{order:3;flex-basis:100%}
+}
+.brand{display:flex;align-items:baseline;gap:10px;flex:none;white-space:nowrap}
 .brand .mark{
   font-family:"IBM Plex Mono",monospace;font-size:.66rem;font-weight:600;letter-spacing:.13em;
   color:var(--accent-deep);border:1px solid var(--accent);padding:3px 6px;border-radius:2px;text-transform:uppercase;
 }
 .brand h1{font-size:1.12rem;letter-spacing:.01em}
 .brand .sub{font-size:.72rem;color:var(--ink-3);font-family:"IBM Plex Mono",monospace;letter-spacing:.04em}
-nav.rail{display:flex;gap:2px;overflow-x:auto;scrollbar-width:thin;max-width:100%}
+nav.rail{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+nav.rail::-webkit-scrollbar{display:none}
 nav.rail button{
-  font-family:"IBM Plex Sans Condensed",sans-serif;font-size:.86rem;font-weight:600;letter-spacing:.03em;
+  font-family:"IBM Plex Sans Condensed",sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.02em;
   text-transform:uppercase;background:none;border:0;border-bottom:2px solid transparent;
-  color:var(--ink-3);padding:8px 11px;cursor:pointer;white-space:nowrap;
+  color:var(--ink-3);padding:8px 9px;cursor:pointer;white-space:nowrap;
 }
 nav.rail button:hover{color:var(--ink)}
 nav.rail button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
 .themebtn{
   background:var(--panel-2);border:1px solid var(--line);color:var(--ink-2);
-  border-radius:var(--r);padding:5px 9px;font-size:.72rem;cursor:pointer;
+  border-radius:var(--r);padding:5px 9px;font-size:.72rem;cursor:pointer;flex:none;
   font-family:"IBM Plex Mono",monospace;letter-spacing:.04em;
 }
 .themebtn:hover{border-color:var(--accent);color:var(--accent-deep)}
@@ -300,6 +307,68 @@ table.data td.m{font-family:"IBM Plex Mono",monospace}
 .ticket{border-left:3px solid var(--bad);background:var(--panel-2);padding:10px 14px;font-size:.89rem;color:var(--ink-2);border-radius:0 var(--r) var(--r) 0}
 .ticket b{color:var(--ink)}
 .footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);color:var(--ink-3);font-size:.79rem;display:flex;flex-wrap:wrap;gap:6px 18px}
+/* ---------- play layer ---------- */
+.xp{display:flex;align-items:center;gap:8px;margin-left:auto;flex:none;white-space:nowrap;
+  padding:4px 10px;border:1px solid var(--line);border-radius:20px;background:var(--panel-2)}
+.xp .rank{font-family:"IBM Plex Sans Condensed",sans-serif;font-size:.72rem;font-weight:600;
+  letter-spacing:.05em;text-transform:uppercase;color:var(--accent-deep);white-space:nowrap}
+.xp .bar{width:58px;height:5px;flex:none;border-radius:3px;background:var(--panel-3);overflow:hidden}
+.xp .bar i{display:block;height:100%;background:var(--accent);width:0;transition:width .6s cubic-bezier(.2,.9,.3,1)}
+.xp .pts{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.xp.pop{animation:xppop .55s ease}
+@keyframes xppop{0%{transform:scale(1)}35%{transform:scale(1.09)}100%{transform:scale(1)}}
+
+#confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:200}
+.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);z-index:210;
+  background:var(--ink);color:var(--ground);padding:10px 18px;border-radius:22px;
+  font-family:"IBM Plex Sans Condensed",sans-serif;font-weight:600;font-size:.92rem;letter-spacing:.02em;
+  box-shadow:0 12px 30px -12px rgba(0,0,0,.55);opacity:0;transition:all .3s cubic-bezier(.2,.9,.3,1);pointer-events:none}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.toast b{color:var(--accent)}
+
+svg.topo .n-router{cursor:pointer}
+svg.topo .n-router:hover .n-body{stroke:var(--accent);stroke-width:2.2}
+.nodecard{background:var(--panel);border:1px solid var(--accent);border-radius:var(--r);padding:14px 16px;
+  display:none;flex-direction:column;gap:9px}
+.nodecard.on{display:flex}
+
+.gamepick{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.gcard{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:15px 16px;
+  display:flex;flex-direction:column;gap:7px;cursor:pointer;text-align:left;font:inherit;color:inherit;
+  transition:transform .18s ease,border-color .18s ease}
+.gcard:hover{transform:translateY(-2px);border-color:var(--accent)}
+.gcard[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-wash)}
+.gcard .gname{font-family:"IBM Plex Sans Condensed",sans-serif;font-weight:700;font-size:1.05rem}
+.gcard .gdesc{font-size:.84rem;color:var(--ink-2);line-height:1.4}
+.gcard .gbest{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--ink-3);margin-top:auto}
+
+.arena{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.arena-hud{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:10px 16px;
+  background:var(--panel-2);border-bottom:1px solid var(--line-soft)}
+.hudstat{font-family:"IBM Plex Mono",monospace;font-size:.76rem;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.hudstat b{color:var(--ink);font-size:1.05rem;font-weight:600}
+.streak{font-family:"IBM Plex Mono",monospace;font-size:.74rem;padding:3px 9px;border-radius:12px;
+  background:var(--rip-wash);color:var(--rip);font-weight:600;opacity:0;transition:opacity .2s}
+.streak.on{opacity:1}
+.timerbar{flex:1;min-width:110px;height:6px;background:var(--panel-3);border-radius:3px;overflow:hidden}
+.timerbar i{display:block;height:100%;background:var(--accent);width:100%}
+.timerbar.low i{background:var(--bad)}
+.arena-body{padding:22px 18px;display:flex;flex-direction:column;gap:16px;align-items:center;text-align:center}
+.gq{font-family:"IBM Plex Sans Condensed",sans-serif;font-size:1.35rem;font-weight:600;line-height:1.25;max-width:34ch}
+.gsub{font-family:"IBM Plex Mono",monospace;font-size:.86rem;color:var(--ink-2);white-space:pre-wrap}
+.gopts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:9px;width:100%;max-width:640px}
+.gopt{font-family:"IBM Plex Mono",monospace;font-size:.87rem;line-height:1.4;padding:13px 12px;border:1px solid var(--line);
+  border-radius:var(--r);background:var(--panel-2);cursor:pointer;color:var(--ink);transition:transform .12s ease}
+.gopt:hover{border-color:var(--accent);transform:translateY(-1px)}
+.gopt.right{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)}
+.gopt.wrongpick{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 13%,transparent);color:var(--bad)}
+.gopt:disabled{cursor:default}
+.gfeed{font-size:.88rem;color:var(--ink-2);min-height:2.4em;max-width:56ch}
+.gfeed b{color:var(--ink)}
+.gover{display:flex;flex-direction:column;gap:12px;align-items:center;padding:10px 0}
+.gover .big{font-family:"IBM Plex Mono",monospace;font-size:2.6rem;font-weight:600;color:var(--accent-deep);line-height:1}
+.speedrun{font-family:"IBM Plex Mono",monospace;font-size:1.35rem;font-weight:600;font-variant-numeric:tabular-nums}
+
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 </style>
 
@@ -308,7 +377,6 @@ table.data td.m{font-family:"IBM Plex Mono",monospace}
     <div class="brand">
       <span class="mark">19&#8209;1</span>
       <h1>IGP Lab Bench</h1>
-      <span class="sub">RIPv2 &amp; EIGRP</span>
     </div>
     <nav class="rail" role="tablist" aria-label="Sections">
       <button role="tab" aria-selected="true" data-v="brief">Topology</button>
@@ -317,8 +385,14 @@ table.data td.m{font-family:"IBM Plex Mono",monospace}
       <button role="tab" aria-selected="false" data-v="console">Console</button>
       <button role="tab" aria-selected="false" data-v="missions">Missions</button>
       <button role="tab" aria-selected="false" data-v="scenarios">Scenarios</button>
+      <button role="tab" aria-selected="false" data-v="arcade">Arcade</button>
       <button role="tab" aria-selected="false" data-v="exam">Exam</button>
     </nav>
+    <div class="xp" id="xpMeter" title="Experience earned on this bench">
+      <span class="rank" id="xpRank">Cable Puller</span>
+      <span class="bar"><i id="xpBar"></i></span>
+      <span class="pts" id="xpPts">0 XP</span>
+    </div>
     <button class="themebtn" id="themeBtn" title="Switch theme">THEME</button>
   </div>
 </header>
@@ -332,6 +406,7 @@ table.data td.m{font-family:"IBM Plex Mono",monospace}
       <span class="eyebrow">Interior Gateway Protocol Fundamentals &mdash; Lab 19-1</span>
       <h2>One network, two routing protocols, five routers.</h2>
       <p class="lede">IP addressing is already done. Your job is to run RIPv2 across the whole network, then run EIGRP AS&nbsp;100 across the same network and watch which routes win. Everything on this bench &mdash; every command, output, metric and answer &mdash; comes from the five source decks listed at the bottom of the page.</p>
+      <p class="lede" style="color:var(--ink-3);font-size:.9rem"><b style="color:var(--ink-2)">Click any router or PC below</b> to open its live state. Clearing missions, closing tickets and winning arcade rounds earns XP and moves the rank in the top bar.</p>
     </div>
 
     <div class="stage">
@@ -354,6 +429,7 @@ table.data td.m{font-family:"IBM Plex Mono",monospace}
     </div>
 
     <div id="briefVerdict" class="note" style="display:none"></div>
+    <div class="nodecard" id="nodeCard"></div>
 
     <div class="grid g2">
       <div class="card">
@@ -392,7 +468,7 @@ table.data td.m{font-family:"IBM Plex Mono",monospace}
     <div class="stack-s">
       <span class="eyebrow">Source decks 19-2, 19-4, 19-5</span>
       <h2>Everything the decks teach, in order.</h2>
-      <p class="lede">Two protocol families, both Distance Vector. Read the left column, run the commands on the right in the Console when you want to feel them work.</p>
+      <p class="lede">Two protocol families, both Distance Vector. Every card with a <b>&#9654; Watch it run</b> button types its commands onto the real routers for you, one line at a time, so you see the output the slide is talking about.</p>
     </div>
 
     <div class="chiprow" id="learnFilter">
@@ -411,7 +487,7 @@ table.data td.m{font-family:"IBM Plex Mono",monospace}
     <div class="stack-s">
       <span class="eyebrow">Watch the protocols run</span>
       <h2>Distance Vector, in motion.</h2>
-      <p class="lede">Four animations built from the lab's real numbers. Each one plays on the same topology you configure in the Console.</p>
+      <p class="lede">Four animations built from the lab's real numbers, playing on the same topology you configure in the Console. Start with the <b>path race</b> &mdash; it is the whole lesson of this lab in eight seconds.</p>
     </div>
 
     <div class="chiprow" id="animPick">
@@ -478,6 +554,14 @@ table.data td.m{font-family:"IBM Plex Mono",monospace}
               <button class="btn sm ghost" id="btnWipe">Erase all configs</button>
             </div>
             <p style="color:var(--ink-3);font-size:.78rem;margin-top:4px">Presets write the answer-key configuration onto every router so you can inspect a working network. Erase takes you back to the lab's starting point: interfaces up, no routing protocols.</p>
+            <hr class="hr">
+            <div class="row" style="justify-content:space-between">
+              <span class="eyebrow" style="margin:0">RIPv2 speed run</span>
+              <span class="speedrun" id="srClock">--:--.-</span>
+            </div>
+            <p style="color:var(--ink-3);font-size:.78rem;margin:0">Erase the bench, then configure RIPv2 with <code class="inl">no auto-summary</code> and <code class="inl">network 10.0.0.0</code> on all five routers. Clock stops the instant the last router is done.</p>
+            <div class="row"><button class="btn sm primary" id="srStart">Start run</button>
+              <span class="mono" style="font-size:.74rem;color:var(--ink-3)" id="srBest"></span></div>
           </div>
         </div>
         <div class="pane">
@@ -495,7 +579,7 @@ table.data td.m{font-family:"IBM Plex Mono",monospace}
     <div class="stack-s">
       <span class="eyebrow">19-1 IGP Fundamentals Configuration &mdash; Lab Exercise</span>
       <h2>Thirteen missions, checked against your live config.</h2>
-      <p class="lede">These are the lab's own steps, in the lab's own order. Configure the routers in the Console, then hit <b>Check</b>. Stuck? Take the hint first &mdash; the full answer key is one more click away, and it will still be there when you need it.</p>
+      <p class="lede">These are the lab's own steps, in the lab's own order. Configure the routers in the Console, then hit <b>Check</b>. Stuck? Take the hint first &mdash; the full answer key is one more click away, and it will still be there when you need it. Each mission cleared is worth <b>40 XP</b>.</p>
     </div>
     <div class="scorebar">
       <div><span class="eyebrow" style="margin:0">Missions complete</span><div class="big"><span id="mDone">0</span> / 13</div></div>
@@ -513,9 +597,32 @@ table.data td.m{font-family:"IBM Plex Mono",monospace}
     <div class="stack-s">
       <span class="eyebrow">Ticket queue</span>
       <h2>Eight faults, already loaded on the bench.</h2>
-      <p class="lede">Each ticket pushes a broken configuration onto the real routers. Open the Console, diagnose with <code class="inl">show</code> commands, fix it, then come back and check. Hint first, full answer second.</p>
+      <p class="lede">Each ticket pushes a broken configuration onto the real routers. Open the Console, diagnose with <code class="inl">show</code> commands, fix it, then come back and check. Hint first, full answer second. A closed ticket is worth <b>60 XP</b> &mdash; the biggest payout on the bench.</p>
     </div>
     <div class="stack-s" id="scenarioList"></div>
+  </div>
+</section>
+
+<!-- ============ ARCADE ============ -->
+<section class="view" id="v-arcade">
+  <div class="stack">
+    <div class="stack-s">
+      <span class="eyebrow">Drills that fight back</span>
+      <h2>Three games. Sixty seconds each.</h2>
+      <p class="lede">The three things CCNA candidates fumble under time pressure: wildcard maths, which route wins the table, and where a metric comes from. Build a streak &mdash; every third right answer in a row doubles the points.</p>
+    </div>
+    <div class="gamepick" id="gamePick"></div>
+    <div class="arena" id="arena" hidden>
+      <div class="arena-hud">
+        <span class="hudstat">SCORE <b id="gScore">0</b></span>
+        <span class="hudstat">ROUND <b id="gRound">0</b></span>
+        <span class="streak" id="gStreak">🔥 streak &times;2</span>
+        <span class="timerbar" id="gTimerWrap"><i id="gTimer"></i></span>
+        <span class="hudstat"><b id="gClock">60</b>s</span>
+        <button class="btn sm ghost" id="gQuit">Stop</button>
+      </div>
+      <div class="arena-body" id="arenaBody"></div>
+    </div>
   </div>
 </section>
 
@@ -525,7 +632,7 @@ table.data td.m{font-family:"IBM Plex Mono",monospace}
     <div class="stack-s">
       <span class="eyebrow">Objective questions</span>
       <h2>CCNA exam drill.</h2>
-      <p class="lede">Twenty-eight single-answer questions drawn only from the five decks and the lab answer key. Pick an answer to see the explanation and where it comes from.</p>
+      <p class="lede">Twenty-eight single-answer questions drawn only from the five decks and the lab answer key. Pick an answer to see the explanation and where it comes from. <b>15 XP</b> for each one you get right first time.</p>
     </div>
     <div class="scorebar">
       <div><span class="eyebrow" style="margin:0">Correct</span><div class="big"><span id="qCorrect">0</span> / 28</div></div>
@@ -1652,24 +1759,24 @@ const LEARN=[
 {f:'rip',t:'RIPng',s:'19-2 · slide 3',h:`<ul class="facts">
   <li>RIPng (RIP next generation) supports <strong>IPv6</strong> networks.</li>
   <li>It is <strong>not covered on the CCNA exam</strong>.</li></ul>`},
-{f:'rip',t:'RIPv2 configuration',s:'19-2 · slide 4',h:`<pre class="cli"><span class="p">R1(config)#</span>router rip
+{f:'rip',t:'RIPv2 configuration',s:'19-2 · slide 4',run:['R1',['enable','configure terminal','router rip','version 2','no auto-summary','network 10.0.0.0','do show ip protocols']],h:`<pre class="cli"><span class="p">R1(config)#</span>router rip
 <span class="p">R1(config-router)#</span>version 2
 <span class="p">R1(config-router)#</span>network 10.0.0.0</pre>
   <p style="color:var(--ink-2);font-size:.89rem">The <code class="inl">network</code> command should reference a <strong>classful</strong> network. No subnet mask is specified.</p>`},
-{f:'rip',t:'Auto-summary',s:'19-2 · slide 5',h:`<ul class="facts">
+{f:'rip',t:'Auto-summary',s:'19-2 · slide 5',run:['R1',['enable','configure terminal','router rip','auto-summary','do show ip protocols','no auto-summary']],h:`<ul class="facts">
   <li>RIP will automatically summarise routes to the classful boundary <strong>by default</strong>.</li>
   <li>192.168.10.1/30 will be advertised as <strong>192.168.10.0/24</strong>.</li>
   <li>172.16.10.1/30 will be advertised as <strong>172.16.0.0/16</strong>.</li>
   <li>This is almost never desirable.</li></ul>
   <pre class="cli"><span class="p">R1(config)#</span>router rip
 <span class="p">R1(config-router)#</span>no auto-summary</pre>`},
-{f:'rip',t:'Manual summarisation',s:'19-2 · slide 6',h:`<ul class="facts">
+{f:'rip',t:'Manual summarisation',s:'19-2 · slide 6',run:['R2',['enable','configure terminal','interface f0/1','ip summary-address rip 10.1.0.0 255.255.0.0','do show run | section rip']],h:`<ul class="facts">
   <li>Manual summarisation gives you control of exactly how you summarise.</li>
   <li>The individual summarised routes are <strong>not advertised</strong> &mdash; only their summary route.</li>
   <li>It is applied under the <strong>interface</strong>, not under the routing process.</li></ul>
   <pre class="cli"><span class="p">R2(config-router)#</span>interface f1/0
 <span class="p">R2(config-if)#</span>ip summary-address rip 10.0.0.0 255.255.0.0</pre>`},
-{f:'rip',t:'Verification — show ip protocols',s:'19-2 · slide 7',h:`<pre class="cli"><span class="p">R1#</span>show ip protocols
+{f:'rip',t:'Verification — show ip protocols',s:'19-2 · slide 7',run:['R1',['enable','show ip protocols']],h:`<pre class="cli"><span class="p">R1#</span>show ip protocols
 *** IP Routing is NSF aware ***
 Routing Protocol is "rip"
   Sending updates every 30 seconds, next due in 27 seconds
@@ -1686,13 +1793,13 @@ Routing Protocol is "rip"
     10.0.0.2             120      00:00:12
   Distance: (default is 120)</pre>
   <p style="color:var(--ink-2);font-size:.89rem">One screen tells you the version in use, whether auto-summary is off, which networks are advertised, who your neighbours are, and the administrative distance.</p>`},
-{f:'rip',t:'Verification — show run | section rip',s:'19-2 · slide 8',h:`<pre class="cli"><span class="p">R1#</span>sh run | section rip
+{f:'rip',t:'Verification — show run | section rip',s:'19-2 · slide 8',run:['R1',['enable','show run | section rip']],h:`<pre class="cli"><span class="p">R1#</span>sh run | section rip
 router rip
  version 2
  network 10.0.0.0
  no auto-summary</pre>
   <p style="color:var(--ink-2);font-size:.89rem">The fastest way to read back exactly what you typed, with none of the rest of the running config in the way.</p>`},
-{f:'rip',t:'Verification — show ip route',s:'19-2 · slide 9',h:`<pre class="cli"><span class="cm">10.0.0.0/8 is variably subnetted, 12 subnets, 2 masks</span>
+{f:'rip',t:'Verification — show ip route',s:'19-2 · slide 9',run:['R1',['enable','show ip route']],h:`<pre class="cli"><span class="cm">10.0.0.0/8 is variably subnetted, 12 subnets, 2 masks</span>
 C        10.0.0.0/24 is directly connected, FastEthernet0/0
 L        10.0.0.1/32 is directly connected, FastEthernet0/0
 R        10.1.0.0/24 [120/1] via 10.0.0.2, 00:00:15, FastEthernet0/0
@@ -1701,7 +1808,7 @@ R        10.1.1.0/24 [120/2] via 10.0.3.2, 00:00:03, FastEthernet3/0
   <ul class="facts"><li><strong>R</strong> is a RIP route. <strong>C</strong> is connected, <strong>L</strong> is the local /32 address of the interface itself.</li>
   <li><code class="inl">[120/2]</code> reads as <strong>administrative distance 120</strong>, <strong>metric 2 hops</strong>.</li>
   <li>Two lines for 10.1.1.0/24 is equal cost multi path in action.</li></ul>`},
-{f:'rip',t:'Verification — show ip rip database',s:'19-2 · slide 10',h:`<pre class="cli"><span class="p">R1#</span>show ip rip database
+{f:'rip',t:'Verification — show ip rip database',s:'19-2 · slide 10',run:['R1',['enable','show ip rip database']],h:`<pre class="cli"><span class="p">R1#</span>show ip rip database
 10.0.0.0/8    auto-summary
 10.0.0.0/24    directly connected, FastEthernet0/0
 10.1.0.0/24
@@ -1710,7 +1817,7 @@ R        10.1.1.0/24 [120/2] via 10.0.3.2, 00:00:03, FastEthernet3/0
     [2] via 10.0.3.2, 00:00:00, FastEthernet3/0
     [2] via 10.0.0.2, 00:00:12, FastEthernet0/0</pre>
   <p style="color:var(--ink-2);font-size:.89rem">Everything RIP knows, including routes that lost to a better protocol and never made it into the routing table.</p>`},
-{f:'rip',t:'Default route injection',s:'19-2 · slides 11-12',h:`<pre class="cli"><span class="p">R4(config)#</span>ip route 0.0.0.0 0.0.0.0 203.0.113.2
+{f:'rip',t:'Default route injection',s:'19-2 · slides 11-12',run:['R4',['enable','configure terminal','ip route 0.0.0.0 0.0.0.0 203.0.113.2','router rip','default-information originate','do show ip route']],h:`<pre class="cli"><span class="p">R4(config)#</span>ip route 0.0.0.0 0.0.0.0 203.0.113.2
 <span class="p">R4(config)#</span>router rip
 <span class="p">R4(config-router)#</span>default-information originate</pre>
   <ul class="facts">
@@ -1728,9 +1835,9 @@ R        10.1.1.0/24 [120/2] via 10.0.3.2, 00:00:03, FastEthernet3/0
   <li>EIGRP will automatically perform <strong>equal cost load balancing on up to 4 paths</strong> by default.</li>
   <li>This can be increased up to <strong>32 paths</strong> (platform dependent).</li>
   <li>EIGRP can also be configured to perform <strong>unequal cost load balancing</strong> &mdash; something RIP cannot do at all.</li></ul>`},
-{f:'eigrp',t:'The Autonomous System number',s:'19-4 · slide 3',h:`<pre class="cli"><span class="p">R1(config)#</span>router eigrp 100</pre>
+{f:'eigrp',t:'The Autonomous System number',s:'19-4 · slide 3',run:['R1',['enable','configure terminal','router eigrp 100','network 10.0.0.0','do show ip eigrp neighbors']],h:`<pre class="cli"><span class="p">R1(config)#</span>router eigrp 100</pre>
   <p style="color:var(--ink-2);font-size:.89rem">&lsquo;100&rsquo; is the <strong>Autonomous System (AS)</strong>, meaning an independent administrative domain. EIGRP routers need to have the <strong>same AS number to peer</strong> with each other.</p>`},
-{f:'eigrp',t:'network with a wildcard mask',s:'19-4 · slide 4',h:`<pre class="cli"><span class="p">R1(config)#</span>router eigrp 100
+{f:'eigrp',t:'network with a wildcard mask',s:'19-4 · slide 4',run:['R2',['enable','configure terminal','router eigrp 100','no network 10.0.0.0','network 10.0.0.0 0.0.255.255','do show ip eigrp interfaces']],h:`<pre class="cli"><span class="p">R1(config)#</span>router eigrp 100
 <span class="p">R1(config-router)#</span>network 10.0.0.0 0.0.255.255</pre>
   <ul class="facts">
   <li>The network command uses a <strong>wildcard mask</strong>, which is the inverse of a subnet mask.</li>
@@ -1776,7 +1883,7 @@ network 10.0.2.1 0.0.0.0</pre>
   <li>It defaults to the <strong>highest IP address of any loopback interface</strong>, or the <strong>highest other IP address</strong> if no loopback exists.</li>
   <li><strong>Loopback interfaces never go down</strong>, so the Router ID will not change.</li>
   <li>You can also manually specify the Router ID. Best practice is a loopback, or set it manually.</li></ul>`},
-{f:'eigrp',t:'Router ID — the three cases',s:'19-4 · slides 12-14',h:`<pre class="cli"><span class="c">! no loopback: highest interface IP wins</span>
+{f:'eigrp',t:'Router ID — the three cases',s:'19-4 · slides 12-14',run:['R1',['enable','configure terminal','interface loopback0','ip address 1.1.1.1 255.255.255.255','exit','do show ip protocols','router eigrp 100','eigrp router-id 2.2.2.2','do show ip protocols']],h:`<pre class="cli"><span class="c">! no loopback: highest interface IP wins</span>
 Router-ID: 10.0.3.1
 
 <span class="c">! Loopback0 1.1.1.1 configured</span>
@@ -1785,10 +1892,10 @@ Router-ID: 1.1.1.1
 <span class="p">R1(config-router)#</span>eigrp router-id 2.2.2.2
 Router-ID: 2.2.2.2</pre>
   <p class="note warn">If a loopback or higher IP address is configured <b>after</b> EIGRP has been set up, the Router ID will change on EIGRP process restart &mdash; not immediately.</p>`},
-{f:'eigrp',t:'Verification — show run | section eigrp',s:'19-5 · slide 1',h:`<pre class="cli"><span class="p">R1#</span>show run | section eigrp
+{f:'eigrp',t:'Verification — show run | section eigrp',s:'19-5 · slide 1',run:['R1',['enable','show run | section eigrp']],h:`<pre class="cli"><span class="p">R1#</span>show run | section eigrp
 router eigrp 100
  network 10.0.0.0</pre>`},
-{f:'eigrp',t:'Verification — show ip protocols',s:'19-5 · slide 2',h:`<pre class="cli"><span class="p">R1#</span>show ip protocols
+{f:'eigrp',t:'Verification — show ip protocols',s:'19-5 · slide 2',run:['R1',['enable','show ip protocols']],h:`<pre class="cli"><span class="p">R1#</span>show ip protocols
 Routing Protocol is "eigrp 100"
   EIGRP-IPv4 Protocol for AS(100)
     Metric weight K1=1, K2=0, K3=1, K4=0, K5=0
@@ -1803,7 +1910,7 @@ Routing Protocol is "eigrp 100"
     10.0.0.0
   Distance: internal 90 external 170</pre>
   <p style="color:var(--ink-2);font-size:.89rem">K1 and K3 are set to 1: the metric is built from <strong>bandwidth and delay</strong>. Variance 1 means equal cost load balancing only.</p>`},
-{f:'eigrp',t:'Verification — show ip eigrp interfaces',s:'19-5 · slide 3',h:`<pre class="cli"><span class="p">R1#</span>show ip eigrp interfaces
+{f:'eigrp',t:'Verification — show ip eigrp interfaces',s:'19-5 · slide 3',run:['R1',['enable','show ip eigrp interfaces']],h:`<pre class="cli"><span class="p">R1#</span>show ip eigrp interfaces
 EIGRP-IPv4 Interfaces for AS(100)
                        Xmit Queue   PeerQ  Mean
 Interface       Peers  Un/Reliable  Un/Rel SRTT
@@ -1811,19 +1918,19 @@ Fa0/0             1      0/0         0/0    46
 Fa1/0             0      0/0         0/0     0
 Fa2/0             0      0/0         0/0     0</pre>
   <p style="color:var(--ink-2);font-size:.89rem">Which interfaces EIGRP is actually running on, and how many peers each one has. An interface with <strong>0 peers</strong> is either a LAN edge or a problem.</p>`},
-{f:'eigrp',t:'Verification — show ip eigrp neighbors',s:'19-5 · slide 4',h:`<pre class="cli"><span class="p">R2#</span>show ip eigrp neighbors
+{f:'eigrp',t:'Verification — show ip eigrp neighbors',s:'19-5 · slide 4',run:['R2',['enable','show ip eigrp neighbors']],h:`<pre class="cli"><span class="p">R2#</span>show ip eigrp neighbors
 EIGRP-IPv4 Neighbors for AS(100)
 H   Address        Interface   Hold Uptime   SRTT  RTO  Q  Seq
                                (sec)         (ms)      Cnt Num
 1   10.0.0.1       Fa0/0        13  01:55:26  18   108  0  51</pre>
   <p style="color:var(--ink-2);font-size:.89rem">The first command to run when EIGRP routes are missing. No neighbour means no routes &mdash; check the AS number, the network statement, and the interface.</p>`},
-{f:'eigrp',t:'Verification — show ip route',s:'19-5 · slide 5',h:`<pre class="cli"><span class="p">R2#</span>show ip route
+{f:'eigrp',t:'Verification — show ip route',s:'19-5 · slide 5',run:['R2',['enable','show ip route']],h:`<pre class="cli"><span class="p">R2#</span>show ip route
 D        10.0.1.0/24 [90/30720] via 10.0.0.1, 01:23:44, FastEthernet0/0
 D        10.0.2.0/24 [90/30720] via 10.0.0.1, 01:57:24, FastEthernet0/0</pre>
   <ul class="facts"><li><strong>D</strong> is the code for an EIGRP route. <strong>EX</strong> is an EIGRP external route.</li>
   <li><code class="inl">[90/30720]</code> is administrative distance 90 and the composite metric.</li>
   <li>30720 is two 100&nbsp;Mbps FastEthernet hops: 256 &times; (10,000,000/100,000 + 20).</li></ul>`},
-{f:'both',t:'Administrative distance decides the winner',s:'19-1 Answer Key · questions 11 and 12',h:`<dl class="kv">
+{f:'both',t:'Administrative distance decides the winner',s:'19-1 Answer Key · questions 11 and 12',run:['R1',['enable','show ip route','show ip rip database']],h:`<dl class="kv">
   <dt>EIGRP internal</dt><dd>90</dd><dt>EIGRP external</dt><dd>170</dd><dt>RIP</dt><dd>120</dd>
   <dt>Static</dt><dd>1</dd><dt>Connected</dt><dd>0</dd></dl>
   <ul class="facts">
@@ -2244,15 +2351,39 @@ $('#briefClear').addEventListener('click',()=>{ clearHL('tb'); bv.style.display=
 
 /* ---------- learn ---------- */
 function renderLearn(f){
-  $('#learnGrid').innerHTML=LEARN.filter(c=>f==='all'||c.f===f||c.f==='both').map(c=>
+  $('#learnGrid').innerHTML=LEARN.filter(c=>f==='all'||c.f===f||c.f==='both').map((c,i)=>
     `<div class="card"><h3>${c.t} <span class="tag ${c.f}">${c.f==='both'?'RIP + EIGRP':c.f.toUpperCase()}</span></h3>
-     ${c.h}<div class="src" style="margin-top:auto;padding-top:8px">${c.s}</div></div>`).join('');
+     ${c.h}
+     <div class="row" style="margin-top:auto;padding-top:8px;justify-content:space-between">
+       <span class="src">${c.s}</span>
+       ${c.run?`<button class="btn sm" data-demo="${LEARN.indexOf(c)}">▶ Watch it run on ${c.run[0]}</button>`:''}
+     </div></div>`).join('');
+  $$('#learnGrid [data-demo]').forEach(b=>b.addEventListener('click',()=>{
+    const c=LEARN[+b.dataset.demo]; demo(c.run[0],c.run[1]); }));
 }
 $$('#learnFilter .chip').forEach(b=>b.addEventListener('click',()=>{
   $$('#learnFilter .chip').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
   renderLearn(b.dataset.f);
 }));
 renderLearn('all');
+
+/* ---------- type a command sequence onto the bench ---------- */
+let demoT=[];
+function demo(dev,cmds){
+  demoT.forEach(clearTimeout); demoT=[];
+  $('nav.rail button[data-v="console"]').click();
+  $('#devTabs button[data-d="'+dev+'"]').click();
+  document.getElementById('termOut').innerHTML='';
+  if(!ROUTERS.some(R=>S[R].rip.on||S[R].eigrp.as!==null)){
+    presetAll(); w('% Answer-key configuration loaded first, so these commands have something to show.','cm'); }
+  let i=0;
+  const step=()=>{
+    if(i>=cmds.length){ $('#termIn').focus(); return; }
+    exec(cmds[i++]); $('#prompt').textContent=promptStr(); refreshUI();
+    demoT.push(setTimeout(step,430));
+  };
+  demoT.push(setTimeout(step,240));
+}
 
 /* ---------- animations ---------- */
 let curAnim='rip';
@@ -2329,6 +2460,7 @@ function refreshUI(){
           `<span>${f.ip||'unassigned'}${on.length?' · '+on.join('+'):''}${pas?' · passive':''}</span></div>`;
       }).join('');
   }
+  if(typeof srPoll==='function') srPoll();
   const done=mDone.length; $('#mDone').textContent=done; $('#mBar').style.width=(done/13*100)+'%';
   $$('#missionList .mission').forEach(el=>el.classList.toggle('done',mDone.includes(+el.dataset.n)));
 }
@@ -2379,8 +2511,18 @@ function wireReveal(scope){
       :(b.dataset.rev==='hint'?'Hide hint':'Hide answer');
   }));
 }
-function markDone(n){ if(!mDone.includes(n)){ mDone.push(n); store.set('missions',mDone); } refreshUI();
-  const el=$('#missionList .mission[data-n="'+n+'"]'); if(el){el.classList.add('done'); el.querySelector('.m-state').textContent='done';} }
+function markDone(n){
+  const fresh=!mDone.includes(n);
+  if(fresh){ mDone.push(n); store.set('missions',mDone); }
+  refreshUI();
+  const el=$('#missionList .mission[data-n="'+n+'"]');
+  if(el){ el.classList.add('done'); el.querySelector('.m-state').textContent='done'; }
+  if(fresh){
+    awardXp(40,'Mission '+n+' cleared','m'+n);
+    burst(mDone.length===13?160:55);
+    if(mDone.length===13) toast('All thirteen missions cleared. <b>Lab complete.</b>');
+  }
+}
 function runCheck(n){
   const m=MISSIONS.find(x=>x.n===n), v=$('#missionList [data-v="'+n+'"]');
   const r=m.check(); v.className='verdict show '+(r.ok?'pass':'fail'); v.textContent=r.m;
@@ -2422,6 +2564,8 @@ function renderScenarios(){
     const s=SCEN.find(x=>x.id===b.dataset.scheck), r=s.check();
     const v=$('#scenarioList [data-sv="'+s.id+'"]');
     v.className='verdict show '+(r.ok?'pass':'fail'); v.textContent=r.m;
+    if(r.ok){ const first=!awarded.includes('s'+s.id);
+      awardXp(60,'Ticket closed','s'+s.id); if(first) burst(70); }
   }));
 }
 renderScenarios();
@@ -2446,6 +2590,8 @@ function renderQuiz(){
     if(i in qState) lock(qState[i]);
     card.querySelectorAll('.opt').forEach(o=>o.addEventListener('click',()=>{
       const pick=+o.dataset.i; qState[i]=pick; store.set('quiz',qState); lock(pick); scoreQuiz();
+      if(pick===q.c) awardXp(15,'Question '+(i+1)+' right','q'+i);
+      if(Object.keys(qState).length===QUIZ.length) burst(120);
     }));
   });
   scoreQuiz();
@@ -2457,6 +2603,290 @@ function scoreQuiz(){
 }
 $('#qReset').addEventListener('click',()=>{ qState={}; store.set('quiz',qState); renderQuiz(); });
 renderQuiz();
+
+
+/* =====================================================================
+   PLAY LAYER — XP, celebration, arcade, speed run
+   ===================================================================== */
+const RANKS=[[0,'Cable Puller'],[150,'Patch Panel Pro'],[400,'NOC Technician'],
+             [750,'Routing Engineer'],[1200,'CCNA Ready']];
+let XP=store.get('xp',0), awarded=store.get('awarded',[]);
+const rankOf=x=>RANKS.filter(r=>x>=r[0]).pop();
+function paintXp(){
+  const r=rankOf(XP), i=RANKS.indexOf(r), next=RANKS[i+1];
+  const pct = next ? (XP-r[0])/(next[0]-r[0])*100 : 100;
+  $('#xpRank').textContent=r[1];
+  $('#xpBar').style.width=Math.min(100,pct)+'%';
+  $('#xpPts').textContent=XP+' XP';
+}
+function awardXp(n,label,key){
+  if(key){ if(awarded.includes(key)) return; awarded.push(key); store.set('awarded',awarded); }
+  const before=rankOf(XP)[1];
+  XP+=n; store.set('xp',XP); paintXp();
+  const m=$('#xpMeter'); m.classList.remove('pop'); void m.offsetWidth; m.classList.add('pop');
+  const after=rankOf(XP)[1];
+  if(after!==before){ toast('New rank: <b>'+after+'</b>'); burst(90); }
+  else if(label) toast(label+' <b>+'+n+' XP</b>');
+}
+let toastT=null;
+function toast(html){
+  let el=$('#toast');
+  if(!el){ el=document.createElement('div'); el.id='toast'; el.className='toast'; document.body.appendChild(el); }
+  el.innerHTML=html; el.classList.add('on');
+  clearTimeout(toastT); toastT=setTimeout(()=>el.classList.remove('on'),2400);
+}
+/* confetti */
+let cfx=null,cfp=[],cfRAF=0;
+function burst(n){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let c=$('#confetti');
+  if(!c){ c=document.createElement('canvas'); c.id='confetti'; document.body.appendChild(c); }
+  c.width=innerWidth; c.height=innerHeight; cfx=c.getContext('2d');
+  const cols=['#0F8F8A','#2CB3AC','#C08A2E','#D2963E','#5F53B8','#2C8355'];
+  for(let i=0;i<n;i++) cfp.push({x:innerWidth/2+(Math.random()-.5)*260, y:innerHeight*0.34,
+    vx:(Math.random()-.5)*9, vy:-6-Math.random()*8, g:.30+Math.random()*.14,
+    w:4+Math.random()*5, h:3+Math.random()*7, a:Math.random()*6, va:(Math.random()-.5)*.35,
+    c:cols[(Math.random()*cols.length)|0], life:70+Math.random()*45});
+  if(!cfRAF) cfRAF=requestAnimationFrame(cfStep);
+}
+function cfStep(){
+  cfx.clearRect(0,0,cfx.canvas.width,cfx.canvas.height);
+  cfp=cfp.filter(p=>--p.life>0);
+  cfp.forEach(p=>{ p.x+=p.vx; p.y+=p.vy; p.vy+=p.g; p.vx*=.995; p.a+=p.va;
+    cfx.save(); cfx.translate(p.x,p.y); cfx.rotate(p.a); cfx.fillStyle=p.c;
+    cfx.globalAlpha=Math.min(1,p.life/28); cfx.fillRect(-p.w/2,-p.h/2,p.w,p.h); cfx.restore(); });
+  if(cfp.length) cfRAF=requestAnimationFrame(cfStep); else { cfRAF=0; cfx.clearRect(0,0,cfx.canvas.width,cfx.canvas.height); }
+}
+paintXp();
+
+/* ---------- clickable topology ---------- */
+function nodeCard(n){
+  const el=$('#nodeCard'); el.classList.add('on');
+  if(HOSTS[n]){
+    const h=HOSTS[n], reach=pingResult(n,'10.1.2.10');
+    el.innerHTML=`<h3>${n} <span class="tag both">host</span></h3>
+      <dl class="kv"><dt>address</dt><dd>${h.ip}/24</dd><dt>gateway</dt><dd>${h.gw}</dd>
+      <dt>switch</dt><dd>${h.sw}</dd><dt>reaches PC3</dt><dd>${n==='PC3'?'itself':(reach.ok?'yes':'no — '+reach.why)}</dd></dl>
+      <div class="row"><button class="btn sm" data-jump="${n}">Open a terminal on ${n}</button></div>`;
+  }else{
+    const r=S[n], rt=RT[n]||[];
+    const rows=Object.values(r.ifs).map(f=>{
+      const on=[]; if(ripIfs(r).some(x=>x.n===f.n)) on.push('RIP'); if(eigrpIfs(r).some(x=>x.n===f.n)) on.push('EIGRP');
+      return `<tr><td class="m">${shortIf(f.n)}</td><td class="m">${f.ip}/24</td>
+        <td class="m">${f.bw===TE?'10 Mbps':'100 Mbps'}</td>
+        <td class="m">${on.join(' + ')||'—'}${r.rip.passive.has(f.n)?' · passive':''}</td>
+        <td class="m">${f.peer}</td></tr>`;}).join('');
+    el.innerHTML=`<h3>${n} <span class="tag ${r.eigrp.as!==null?'eigrp':r.rip.on?'rip':'both'}">${
+        r.eigrp.as!==null?'EIGRP AS '+r.eigrp.as : r.rip.on?'RIPv'+(r.rip.version||1) : 'no routing protocol'}</span></h3>
+      <div class="tablewrap"><table class="data"><thead><tr><th>Interface</th><th>Address</th><th>Speed</th><th>Running</th><th>Connects to</th></tr></thead><tbody>${rows}</tbody></table></div>
+      <div class="row"><span class="hudstat">${rt.length} routes · ${rt.filter(o=>o.proto==='rip').length} RIP · ${rt.filter(o=>o.proto==='eigrp').length} EIGRP · ${ADJ[n]?ADJ[n].length:0} EIGRP neighbours</span></div>
+      <div class="row"><button class="btn sm" data-jump="${n}">Open a terminal on ${n}</button>
+        <button class="btn sm ghost" data-close="1">Close</button></div>`;
+  }
+  el.querySelectorAll('[data-jump]').forEach(b=>b.addEventListener('click',()=>{
+    $('nav.rail button[data-v="console"]').click();
+    $('#devTabs button[data-d="'+b.dataset.jump+'"]').click(); }));
+  el.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>el.classList.remove('on')));
+}
+DEVLIST.forEach(n=>{
+  const g=document.getElementById('tb-n-'+n);
+  if(g){ g.style.cursor='pointer'; g.addEventListener('click',()=>nodeCard(n)); }
+});
+
+/* ---------- speed run ---------- */
+let SR={on:false,t0:0,tick:null,best:store.get('srbest',null)};
+function srFmt(ms){ const s=ms/1000; return String(Math.floor(s/60)).padStart(2,'0')+':'+
+  String(Math.floor(s%60)).padStart(2,'0')+'.'+Math.floor(s*10%10); }
+function srPaintBest(){ $('#srBest').textContent = SR.best?('best '+srFmt(SR.best)):'no run yet'; }
+$('#srStart').addEventListener('click',()=>{
+  wipe(); document.getElementById('termOut').innerHTML='';
+  w('% SPEED RUN — RIPv2 + no auto-summary + network 10.0.0.0 on R1 through R5. Go.','hd');
+  T.dev='R1'; T.mode='user'; $$('#devTabs button').forEach(x=>x.setAttribute('aria-selected',String(x.dataset.d==='R1')));
+  $('#prompt').textContent=promptStr();
+  SR.on=true; SR.t0=performance.now(); clearInterval(SR.tick);
+  SR.tick=setInterval(()=>{ if(SR.on) $('#srClock').textContent=srFmt(performance.now()-SR.t0); },97);
+  $('#termIn').focus();
+});
+function srPoll(){
+  if(!SR.on) return;
+  if(!ROUTERS.every(R=>ripOk(R))) return;
+  SR.on=false; clearInterval(SR.tick);
+  const ms=performance.now()-SR.t0; $('#srClock').textContent=srFmt(ms);
+  const pb=!SR.best||ms<SR.best; if(pb){ SR.best=ms; store.set('srbest',ms); }
+  srPaintBest(); burst(110);
+  toast((pb?'Personal best! ':'Run complete ')+'<b>'+srFmt(ms)+'</b>');
+  w('% SPEED RUN COMPLETE — '+srFmt(ms)+(pb?'  (personal best)':''),'ok');
+  awardXp(80,'Speed run');
+}
+srPaintBest();
+
+/* ---------- arcade ---------- */
+const MASKS=[['255.0.0.0','0.255.255.255'],['255.255.0.0','0.0.255.255'],['255.255.255.0','0.0.0.255'],
+ ['255.255.255.128','0.0.0.127'],['255.255.255.192','0.0.0.63'],['255.255.255.224','0.0.0.31'],
+ ['255.255.255.240','0.0.0.15'],['255.255.255.248','0.0.0.7'],['255.255.255.252','0.0.0.3'],
+ ['255.255.248.0','0.0.7.255'],['255.255.240.0','0.0.15.255'],['255.192.0.0','0.63.255.255']];
+const pickN=(arr,n,not)=>{ const p=arr.filter(x=>x!==not); const o=[];
+  while(o.length<n&&p.length) o.push(p.splice((Math.random()*p.length)|0,1)[0]); return o; };
+const shuffle=a=>{ for(let i=a.length-1;i>0;i--){const j=(Math.random()*(i+1))|0;[a[i],a[j]]=[a[j],a[i]];} return a; };
+function mk(q,sub,correct,wrongs,e){
+  const opts=shuffle([correct,...wrongs]);
+  return {q,sub,opts,c:opts.indexOf(correct),e};
+}
+const GAMES={
+ wildcard:{name:'Wildcard Rush',emoji:'🎯',
+  desc:'Subnet mask to wildcard mask and back, plus the classful defaults IOS falls back on. The maths CCNA asks you to do in your head.',
+  src:'19-4 slides 4-5',
+  gen(){
+    const r=Math.random();
+    if(r<0.45){ const [m,wc]=MASKS[(Math.random()*MASKS.length)|0];
+      return mk('Which wildcard mask matches this subnet mask?', m, wc,
+        pickN(MASKS.map(x=>x[1]),3,wc),
+        'Subtract each octet of the subnet mask from 255. '+m+' becomes <b>'+wc+'</b>.'); }
+    if(r<0.75){ const [m,wc]=MASKS[(Math.random()*MASKS.length)|0];
+      return mk('Which subnet mask does this wildcard mask correspond to?', wc, m,
+        pickN(MASKS.map(x=>x[0]),3,m),
+        'A wildcard is the inverse of a subnet mask. '+wc+' inverts to <b>'+m+'</b>.'); }
+    const cls=[['10.0.0.0','0.255.255.255','Class A'],['172.16.0.0','0.0.255.255','Class B'],
+               ['192.168.10.0','0.0.0.255','Class C']][(Math.random()*3)|0];
+    return mk('network '+cls[0]+' is typed with no wildcard mask. Which wildcard does IOS use?',
+      'R1(config-router)# network '+cls[0], cls[1],
+      pickN(['0.255.255.255','0.0.255.255','0.0.0.255','0.0.0.0'],3,cls[1]),
+      'With no wildcard the command defaults to the classful boundary. '+cls[0]+' is a '+cls[2]+
+      ' address, so IOS uses <b>'+cls[1]+'</b>.');
+  }},
+ showdown:{name:'Table Showdown',emoji:'⚖️',
+  desc:'Two routes for the same prefix arrive from different protocols. Only one gets installed. Call it before the router does.',
+  src:'19-1 Answer Key q11 · 19-5 slide 2',
+  gen(){
+    const P=[{n:'EIGRP internal',c:'D',ad:90},{n:'EIGRP external',c:'D EX',ad:170},{n:'RIP',c:'R',ad:120}];
+    const nets=['10.1.2.0/24','10.1.0.0/24','10.0.2.0/24','10.0.1.0/24','10.1.3.0/24'];
+    const net=nets[(Math.random()*nets.length)|0];
+    let a,b;
+    if(Math.random()<0.25){ a={...P[(Math.random()*3)|0]}; b={...a}; }
+    else { a=P[(Math.random()*3)|0]; do{ b=P[(Math.random()*3)|0]; }while(b.n===a.n); }
+    const met=p=>p.ad===120?(1+(Math.random()*4|0)):(256*(100+10*(2+(Math.random()*4|0))));
+    const ma=met(a), mb=met(b);
+    const line=(p,m,nh)=>p.c+'  '+net+' ['+p.ad+'/'+m+'] via '+nh;
+    const A=line(a,ma,'10.0.0.2'), B=line(b,mb,'10.0.3.2');
+    let win, why;
+    if(a.ad!==b.ad){ win = a.ad<b.ad?A:B;
+      why='Different protocols are compared on <b>administrative distance</b>, never on metric. '+
+          (a.ad<b.ad?a.n:b.n)+' has AD '+Math.min(a.ad,b.ad)+', which beats '+Math.max(a.ad,b.ad)+'.'; }
+    else if(ma!==mb){ win = ma<mb?A:B;
+      why='Same protocol, same AD of '+a.ad+' — so the <b>lower metric</b> wins: '+Math.min(ma,mb)+'.'; }
+    else { win='Both — installed as equal cost paths';
+      why='Same protocol, same AD and the same metric, so both go in. Equal cost multi path, up to 4 paths.'; }
+    const all=[A,B,'Both — installed as equal cost paths','Neither — the router drops both'];
+    const opts=shuffle(all.filter((x,i,arr)=>arr.indexOf(x)===i));
+    return {q:'Both of these arrive for '+net+'. Which one lands in the routing table?',
+      sub:A+'\n'+B, opts, c:opts.indexOf(win), e:why};
+  }},
+ metric:{name:'Metric Mind',emoji:'🧮',
+  desc:'Where the numbers in [90/35840] and [120/2] actually come from. Bandwidth and delay for EIGRP, hop count for RIP.',
+  src:'19-1 Answer Key · 19-2 slide 1',
+  gen(){
+    const r=Math.random();
+    if(r<0.4){ const n=2+((Math.random()*4)|0), v=256*(100+10*n);
+      return mk('An EIGRP path crosses '+n+' FastEthernet interfaces, every link 100 Mbps.\nWhat is the composite metric?',
+        '256 × ( 10,000,000 / bandwidth + total delay )\nFastEthernet delay = 100 µs = 10 units each',
+        String(v), pickN([256*(100+10*(n+1)),256*(100+10*(n-1)),256*(100+10*(n+2)),100*n*256].map(String),3,String(v)),
+        '10,000,000 / 100,000 kbps = 100. Delay is 10 per FastEthernet interface, so '+(10*n)+
+        ' in total. 256 × (100 + '+(10*n)+') = <b>'+v+'</b>.'); }
+    if(r<0.62){ const n=2+((Math.random()*2)|0), v=256*(1000+10*n);
+      return mk('The slowest link on an EIGRP path is 10 Mbps, and the path crosses '+n+' FastEthernet interfaces.\nWhat is the metric?',
+        'Only the slowest bandwidth counts; delay is cumulative',
+        String(v), pickN([256*(100+10*n),256*(1000+10*(n+1)),256*(10000+10*n),1000*256].map(String),3,String(v)),
+        '10,000,000 / 10,000 kbps = 1000, plus '+(10*n)+' of delay. 256 × (1000 + '+(10*n)+') = <b>'+v+'</b>.'+
+        (v===261120?' This is exactly R1’s metric for 10.1.3.0/24 in the lab.':'')); }
+    if(r<0.8){ const n=1+((Math.random()*3)|0);
+      return mk('A RIP route reaches you after crossing '+n+' router'+(n>1?'s':'')+'.\nWhat metric appears in the routing table?',
+        'R  10.1.x.0/24 [120/?] via 10.0.0.2', String(n),
+        pickN(['1','2','3','4','15','0'],3,String(n)),
+        'RIP counts hops and nothing else. '+n+' router'+(n>1?'s':'')+' crossed means <b>[120/'+n+']</b>.'); }
+    const qs=[['What is the maximum usable RIP hop count?','15',['16','32','120','255'],
+        'The maximum hop count is <b>15</b>. A route advertised at 16 hops is unreachable.'],
+      ['What administrative distance does an internal EIGRP route carry?','90',['110','120','170','1'],
+        'EIGRP internal is <b>90</b>, EIGRP external is 170, RIP is 120.'],
+      ['Across how many equal cost paths does EIGRP load balance by default?','4',['2','8','16','32'],
+        'Four by default, and it can be raised to <b>32</b> (platform dependent).'],
+      ['Which multicast address carries RIPv2 updates?','224.0.0.9',['224.0.0.5','224.0.0.10','224.0.0.2','255.255.255.255'],
+        'RIPv2 uses <b>224.0.0.9</b>. RIPv1 broadcast its updates instead.']][(Math.random()*4)|0];
+    return mk(qs[0],'',qs[1],qs[2].slice(0,3),qs[3]);
+  }}
+};
+let G={key:null,score:0,round:0,streak:0,left:60,tick:null,cur:null,locked:false};
+let gBest=store.get('gbest',{});
+function paintPick(){
+  $('#gamePick').innerHTML=Object.entries(GAMES).map(([k,g])=>
+    `<button class="gcard" data-g="${k}" aria-pressed="${G.key===k}">
+       <span class="gname">${g.emoji} ${g.name}</span>
+       <span class="gdesc">${g.desc}</span>
+       <span class="gbest">best ${gBest[k]||0} pts · ${g.src}</span>
+     </button>`).join('');
+  $$('#gamePick .gcard').forEach(b=>b.addEventListener('click',()=>startGame(b.dataset.g)));
+}
+function startGame(k){
+  clearInterval(G.tick);
+  G={key:k,score:0,round:0,streak:0,left:60,tick:null,cur:null,locked:false};
+  paintPick(); $('#arena').hidden=false;
+  $('#arena').scrollIntoView({behavior:'smooth',block:'nearest'});
+  G.tick=setInterval(()=>{
+    G.left-=0.1;
+    $('#gClock').textContent=Math.max(0,G.left).toFixed(0);
+    $('#gTimer').style.width=Math.max(0,G.left/60*100)+'%';
+    $('#gTimerWrap').classList.toggle('low',G.left<10);
+    if(G.left<=0) endGame();
+  },100);
+  nextQ();
+}
+function nextQ(){
+  G.cur=GAMES[G.key].gen(); G.locked=false; G.round++;
+  $('#gRound').textContent=G.round;
+  $('#arenaBody').innerHTML=
+    `<div class="gq">${G.cur.q.replace(/\n/g,'<br>')}</div>`+
+    (G.cur.sub?`<pre class="gsub">${G.cur.sub}</pre>`:'')+
+    `<div class="gopts">${G.cur.opts.map((o,i)=>`<button class="gopt" data-i="${i}">${o}</button>`).join('')}</div>`+
+    `<div class="gfeed"></div>`;
+  $$('#arenaBody .gopt').forEach(b=>b.addEventListener('click',()=>answer(+b.dataset.i)));
+}
+function answer(i){
+  if(G.locked) return; G.locked=true;
+  const right=i===G.cur.c;
+  $$('#arenaBody .gopt').forEach((b,j)=>{ b.disabled=true;
+    if(j===G.cur.c) b.classList.add('right'); else if(j===i) b.classList.add('wrongpick'); });
+  if(right){
+    G.streak++;
+    const mult=G.streak>=3?2:1;
+    G.score+=10*mult;
+    $('#gStreak').classList.toggle('on',G.streak>=3);
+    $('#gStreak').innerHTML='🔥 '+G.streak+' in a row'+(mult>1?' &times;2':'');
+    $('#arenaBody .gfeed').innerHTML='<b style="color:var(--ok)">Correct.</b> '+G.cur.e;
+  }else{
+    G.streak=0; $('#gStreak').classList.remove('on');
+    $('#arenaBody .gfeed').innerHTML='<b style="color:var(--bad)">Not that one.</b> '+G.cur.e;
+  }
+  $('#gScore').textContent=G.score;
+  setTimeout(()=>{ if(G.left>0&&G.locked) nextQ(); }, right?1250:2600);
+}
+function endGame(){
+  clearInterval(G.tick); G.left=0;
+  $('#gClock').textContent='0'; $('#gTimer').style.width='0%';
+  const pb=G.score>(gBest[G.key]||0);
+  if(pb){ gBest[G.key]=G.score; store.set('gbest',gBest); }
+  $('#arenaBody').innerHTML=
+    `<div class="gover"><span class="eyebrow" style="margin:0">${GAMES[G.key].name} — time</span>
+     <span class="big">${G.score}</span>
+     <span class="gfeed">${pb?'<b>New personal best.</b> ':''}${G.round-1} question${G.round===2?'':'s'} answered in 60 seconds.</span>
+     <div class="row"><button class="btn primary" id="gAgain">Play again</button>
+       <button class="btn ghost" id="gBack">Pick another game</button></div></div>`;
+  $('#gAgain').addEventListener('click',()=>startGame(G.key));
+  $('#gBack').addEventListener('click',()=>{ $('#arena').hidden=true; G.key=null; paintPick(); });
+  if(G.score>0) awardXp(Math.min(60,Math.round(G.score/2)),GAMES[G.key].name);
+  if(pb&&G.score>=60) burst(80);
+  paintPick();
+}
+$('#gQuit').addEventListener('click',endGame);
+paintPick();
 
 /* ---------- boot ---------- */
 wipe();
