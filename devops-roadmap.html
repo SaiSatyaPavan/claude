@@ -140,6 +140,28 @@ section{display:grid;gap:14px}
 .gap{border:1px dashed var(--line);border-radius:var(--r);padding:10px 14px;color:var(--ink-2);font-size:.92rem;display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:baseline}
 .gap .wk{font-size:.8rem;color:var(--slate);white-space:nowrap}
 .foot{color:var(--ink-3);font-size:.85rem}
+
+@page{size:Letter;margin:14mm 12mm}
+@media print{
+  :root{--shadow:none;--ground:#FFFFFF}
+  body{background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .topbar{position:static;border-bottom:0;padding:0}
+  .topbar-in{padding:0 0 6px}
+  .meter{display:none}
+  .shell{padding:12px 0 0;max-width:none;gap:22px}
+  .card,.callout,.facts,.decision{box-shadow:none}
+  .shell,section.phase,.courses,.card,.items,.notes,.brief{display:block}
+  .shell>*+*{margin-top:22px}
+  .courses>*+*{margin-top:22px}
+  .card>*+*{margin-top:12px}
+  .items .item+.item{margin-top:7px}
+  .notes li+li{margin-top:4px}
+  .item,.line,.notes li,.decision,.fact{break-inside:avoid}
+  .card-head,.head{break-after:avoid;break-inside:avoid}
+  .pill,.count,.foot{display:none}
+  input[type=date]{border:0;background:none;padding:0}
+  a{color:inherit;text-decoration:none}
+}
 </style>
 </head>
 <body>
