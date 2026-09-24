@@ -194,6 +194,11 @@ section{display:grid;gap:14px}
     <p>Set a 20 dollar budget alert in week 1. NAT gateways, RDS, and EKS charge by the hour whether you use them or not. Destroy at the end of every session and check the billing page every Sunday.</p>
   </section>
 
+  <section class="callout" id="applier">
+    <span class="eyebrow">For whoever applies</span>
+    <p>Applications start the week after the SAA result. Each week card below carries an Apply line with the titles to add that week. Reject any posting that mentions clearance, Secret, TS/SCI, US citizen, US person, Public Trust, ITAR or DoD 8570, and anything Senior, Lead, Principal, II, III or five-plus years. Require E-Verify. Prefer companies with H-1B filings in the last two years. W-2 contracts through an E-Verify staffing agency that signs the I-983 are fine, 1099 is not, and never a firm that charges for training or benches unpaid.</p>
+  </section>
+
   <section class="phase" data-hue="slate" id="courses">
     <div class="phase-head"><span class="eyebrow">Your three courses</span><h2>What to take and what to skip</h2></div>
     <p class="blurb">Together the three courses hold roughly 100 hours of video. Watched end to end, with hands-on time, that is a 25-hour week for twelve weeks. Cherry-picked as below it is closer to 17 hours a week, which leaves room for the projects.</p>
@@ -347,14 +352,14 @@ var WEEKS=[
     [null,'First full practice exam. Review every wrong answer against the course notes, not just the answer explanation.'],
     ['linux','Package managers. Bash scripting: variables, loops, conditionals, functions. Write a script that backs up a directory to S3 with the AWS CLI.']
   ]},
-  {n:5,phase:'p1',title:'Practice exams and the real exam',course:'SAA slides PDF for revision. Tutorials Dojo practice exams.',items:[
+  {n:5,phase:'p1',title:'Practice exams and the real exam',course:'SAA slides PDF for revision. Tutorials Dojo practice exams.',apply:'Not yet. Applications start the week after the SAA result, with the certification on the resume.',items:[
     [null,'Two practice exams a day until you score above 80 percent on three in a row.'],
     [null,'Re-watch the weakest domain. VPC and IAM questions should be close to perfect.'],
     ['exam','Sit the AWS SAA exam at the end of the week.'],
     ['linux','Daily practice continues. Work through OverTheWire Bandit levels 0 to 15.'],
     ['resume','Replace exam scheduled with the pass date and credential ID. Add a Cloud group with the services you can explain: VPC, EC2, S3, IAM, RDS, ELB, Route 53, CloudWatch, Lambda.']
   ]},
-  {n:6,phase:'p2',title:'Terraform core and state',course:'Decoding DevOps: Terraform section (VPC, modules, backends). Its Python basics for the daily slot.',items:[
+  {n:6,phase:'p2',title:'Terraform core and state',course:'Decoding DevOps: Terraform section (VPC, modules, backends). Its Python basics for the daily slot.',apply:'Start: Cloud Support Associate at AWS, cloud support engineer at MSPs, cloud engineer I, cloud operations engineer, cloud network engineer. Network engineer I and NOC as fallbacks. Associate cloud programs at Infosys, TCS, Cognizant, Accenture, Capgemini.',items:[
     [null,'Install Terraform. Providers, resources, variables, outputs, locals, data sources.'],
     [null,'count, for_each, lifecycle rules, tfvars files, fmt, validate, plan, apply, destroy.'],
     [null,'Remote state: S3 backend with state locking. terraform import. Never edit state by hand.'],
@@ -362,7 +367,7 @@ var WEEKS=[
     ['python','Thirty minutes a day from here on: variables, lists, dicts, functions, reading JSON and YAML.'],
     ['cost','Destroy the NAT gateway when you stop for the day. It bills by the hour.']
   ]},
-  {n:7,phase:'p2',title:'Modules, project 1, Ansible',course:'Decoding DevOps: finish Terraform, then the Ansible section.',items:[
+  {n:7,phase:'p2',title:'Modules, project 1, Ansible',course:'Decoding DevOps: finish Terraform, then the Ansible section.',apply:'Same titles. Resend the resume the day project 1 goes live.',items:[
     [null,'Write your own module, then consume a public Terraform Registry module and read its source.'],
     ['build','Project 1 complete: ALB, Auto Scaling group, RDS in a private subnet, security groups, all from code. tflint clean.'],
     ['build','README with an architecture diagram and a run guide that works from one apply.'],
@@ -370,7 +375,7 @@ var WEEKS=[
     ['resume','Add a Projects section. Project 1 formatted like a job entry: title, GitHub link, three bullets of action, tool, outcome. Add Terraform and Ansible to an Infrastructure as Code group.'],
     ['cost','terraform destroy at the end of the week. Check the billing page.']
   ]},
-  {n:8,phase:'p3',title:'Docker and Python automation',course:'Decoding DevOps: Docker section, then Python for AWS automation.',items:[
+  {n:8,phase:'p3',title:'Docker and Python automation',course:'Decoding DevOps: Docker section, then Python for AWS automation.',apply:'Add: infrastructure automation engineer, cloud automation engineer, network automation engineer, build and release engineer.',items:[
     [null,'Images versus containers, Dockerfile instructions, layers and caching, multi-stage builds, dockerignore.'],
     [null,'Volumes, networks, docker compose, non-root user, HEALTHCHECK, image tagging.'],
     [null,'Push an image to ECR and read the scan results.'],
@@ -378,7 +383,7 @@ var WEEKS=[
     ['build','Script: audit every security group for 0.0.0.0/0 on ports other than 80 and 443 and print a report.'],
     ['resume','Add Docker to a Containers group. Add Python (boto3) to OS and Scripting.']
   ]},
-  {n:9,phase:'p3',title:'GitHub Actions and project 2',course:'Decoding DevOps: GitHub Actions in full, Jenkins at basic level. Skip the GitLab CI, Nexus, SonarQube, and CodePipeline labs.',items:[
+  {n:9,phase:'p3',title:'GitHub Actions and project 2',course:'Decoding DevOps: GitHub Actions in full, Jenkins at basic level. Skip the GitLab CI, Nexus, SonarQube, and CodePipeline labs.',apply:'Add: junior DevOps engineer, DevOps engineer I, associate DevOps engineer. Resend the resume the day project 2 goes live.',items:[
     [null,'GitHub Actions: workflow syntax, triggers, jobs, steps, matrix, secrets, caching, artifacts.'],
     [null,'OIDC federation to AWS with an IAM role. No static access keys anywhere.'],
     ['build','Project 2: pipeline that builds, tests, pushes to ECR, and deploys to ECS Fargate with a rolling update.'],
@@ -388,7 +393,7 @@ var WEEKS=[
     ['build','Rebuild the course pipeline for a different small app in your own repo. The course app sits in hundreds of portfolios. Yours must not be a clone.'],
     ['resume','Add project 2, leading with the pipeline. Add the security group audit script as a fourth bullet if space allows. Add GitHub Actions and CI/CD to a CI/CD group.']
   ]},
-  {n:10,phase:'p4',title:'Kubernetes fundamentals on a local cluster',course:'Decoding DevOps: Kubernetes section, first half.',items:[
+  {n:10,phase:'p4',title:'Kubernetes fundamentals on a local cluster',course:'Decoding DevOps: Kubernetes section, first half.',apply:'Add: DevOps engineer at companies under 500 people, platform engineer I.',items:[
     [null,'Architecture: API server, etcd, scheduler, controller manager, kubelet, kube-proxy. Trace a request from ingress to pod.'],
     [null,'Install kind or minikube. kubectl get, describe, logs, exec, apply, delete, port-forward.'],
     [null,'Pods, ReplicaSets, Deployments, rollouts and rollbacks.'],
@@ -396,7 +401,7 @@ var WEEKS=[
     [null,'Resource requests and limits, liveness and readiness probes, HPA, PV and PVC basics.'],
     [null,'Debug drill: break a deployment three ways (bad image tag, failing probe, missing ConfigMap) and fix each with kubectl only.']
   ]},
-  {n:11,phase:'p4',title:'EKS, Helm, Prometheus, project 3',course:'Decoding DevOps: Kubernetes second half, Helm, Prometheus, Grafana, Alertmanager.',items:[
+  {n:11,phase:'p4',title:'EKS, Helm, Prometheus, project 3',course:'Decoding DevOps: Kubernetes second half, Helm, Prometheus, Grafana, Alertmanager.',apply:'Add: junior Kubernetes engineer. Resend the resume the day project 3 goes live.',items:[
     ['build','Provision EKS with Terraform. A public module is fine. Connect kubectl.'],
     [null,'Helm: charts, values, install, upgrade, rollback. Write a chart for the project 2 app.'],
     ['build','Project 3: deploy through Helm with an HPA and an Ingress via the AWS Load Balancer Controller.'],
@@ -405,7 +410,7 @@ var WEEKS=[
     ['resume','Add project 3. Add Kubernetes, Helm, EKS to Containers. Add Prometheus, Grafana, CloudWatch to a Monitoring group.'],
     ['cost','Destroy the EKS cluster at the end of the week. It is the most expensive thing in this plan.']
   ]},
-  {n:12,phase:'p5',title:'Portfolio, keywords, explanations',course:'Decoding DevOps: GitOps project with ArgoCD, as the stretch.',items:[
+  {n:12,phase:'p5',title:'Portfolio, keywords, explanations',course:'Decoding DevOps: GitOps project with ArgoCD, as the stretch.',apply:'All titles above. Hiring slows from Dec 20 to Jan 2. Keep sending, they are read in the first week of January.',items:[
     ['build','Each repo: README with architecture diagram, how to run, and a design decisions paragraph.'],
     [null,'Pin the three repos on your GitHub profile. Profile README with the credential strip.'],
     [null,'Practice a two-minute explanation of each project aloud. Record yourself once and listen back.'],
@@ -414,13 +419,13 @@ var WEEKS=[
     ['build','Stretch: the GitOps project from Decoding DevOps. ArgoCD on EKS syncing your Helm chart from Git. It talks better in interviews than the Terraform Associate exam.'],
     ['cost','Confirm every AWS resource is destroyed. Check the bill one last time.']
   ]},
-  {n:13,phase:'p5',title:'Holiday catch-up',course:'Nothing new. Re-watch any Decoding DevOps section whose item above is still unticked.',items:[
+  {n:13,phase:'p5',title:'Holiday catch-up',course:'Nothing new. Re-watch any Decoding DevOps section whose item above is still unticked.',apply:'All titles above. Resend the final resume with the three repo links.',items:[
     [null,'Finish every unticked item from weeks 1 to 12 before starting anything new.'],
     [null,'Keep the three repos warm: one small improvement each, so the commit history is not frozen when a hiring manager opens it.'],
     [null,'Re-record the two-minute explanation of each project and listen back once.'],
     ['resume','Send the final resume and the three repo links to whoever is applying for you, if not already done.']
   ]},
-  {n:14,phase:'p6',title:'KCNA domains',course:'Linux Foundation LFS158, Introduction to Kubernetes, free, for the gaps. KodeKloud KCNA course if you want video.',items:[
+  {n:14,phase:'p6',title:'KCNA domains',course:'Linux Foundation LFS158, Introduction to Kubernetes, free, for the gaps. KodeKloud KCNA course if you want video.',apply:'Add: site reliability engineer I, associate SRE, cloud platform engineer.',items:[
     ['book','Book the KCNA for the last day of week 15. Check whether the registration includes the killer.sh KCNA simulator and save it for week 15.'],
     [null,'Kubernetes fundamentals, 46 percent: architecture, the API and objects, containers, scheduling, kubectl, namespaces, RBAC basics. Revision of weeks 10 and 11.'],
     [null,'Container orchestration, 22 percent: CNI networking, CSI storage, CRI runtimes, security contexts and policies, service mesh concepts.'],
@@ -428,7 +433,7 @@ var WEEKS=[
     [null,'Observability, 8 percent: Prometheus, OpenTelemetry concepts, logs, metrics, traces, cost management.'],
     [null,'Application delivery, 8 percent: GitOps, ArgoCD and Flux, CI/CD fundamentals. If you did the week 12 stretch this is done.']
   ]},
-  {n:15,phase:'p6',title:'KCNA exam',course:'Practice questions from the KodeKloud course or the killer.sh simulator if included.',items:[
+  {n:15,phase:'p6',title:'KCNA exam',course:'Practice questions from the KodeKloud course or the killer.sh simulator if included.',apply:'All titles. Resend the resume with KCNA on it the day you pass.',items:[
     [null,'Practice questions daily. Two full mock exams above 80 percent before you sit it.'],
     [null,'Re-read the CNCF landscape and the Kubernetes glossary once. The exam asks for definitions, not for typing commands.'],
     ['exam','Sit the KCNA at the end of the week.'],
@@ -465,7 +470,8 @@ function build(){
         '<span class="wk">Week '+w.n+'</span><span class="dates" data-dates="'+w.n+'"></span>'+
         '<h3>'+esc(w.title)+'</h3><span class="pill" data-pill="'+w.n+'" hidden></span>'+
         '<span class="count" data-count="'+w.n+'"></span></div>'+
-        (w.course?'<p class="course"><span class="lbl">Courses</span><span>'+esc(w.course)+'</span></p>':'')+'<ul class="items">';
+        (w.course?'<p class="course"><span class="lbl">Courses</span><span>'+esc(w.course)+'</span></p>':'')+
+        (w.apply?'<p class="course"><span class="lbl">Apply</span><span>'+esc(w.apply)+'</span></p>':'')+'<ul class="items">';
       w.items.forEach(function(it,i){html+=itemHtml('w'+w.n+'-'+(i+1),it[0],it[1]);});
       html+='</ul></article>';
     });
