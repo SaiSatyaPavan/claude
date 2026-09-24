@@ -215,8 +215,8 @@ section{display:grid;gap:14px}
   </section>
 
   <section class="phase" data-hue="slate" id="courses">
-    <div class="phase-head"><span class="eyebrow">Your three courses</span><h2>What to take, and at what depth</h2></div>
-    <p class="blurb">Together the three courses hold roughly 90 hours of video. Watched end to end, with hands-on time, that is a 22-hour week for twelve weeks. Taken at the depths below, Full with every lab and Overview as one pass at 1.5x with no labs, it is closer to 17 hours a week, which leaves room for the projects.</p>
+    <div class="phase-head"><span class="eyebrow">Your four courses</span><h2>What to take, and at what depth</h2></div>
+    <p class="blurb">The first three courses hold roughly 90 hours of video across the twelve weeks. Watched end to end, with hands-on time, that is a 22-hour week. Taken at the depths below, Full with every lab and Overview as one pass at 1.5x with no labs, it is closer to 17 hours a week, which leaves room for the projects. The KCNA course adds about ten hours in January.</p>
     <div class="courses">
       <div class="ccard" data-v="primary">
         <div class="name">AWS Certified Solutions Architect Associate (SAA-C03)</div>
@@ -263,6 +263,21 @@ section{display:grid;gap:14px}
         <span class="lbl">Overview only</span>
         <ul><li>Nothing. Every section in full. The Terraform Associate exam itself is not needed.</li></ul>
       </div>
+      <div class="ccard" data-v="primary">
+        <div class="name">Kubernetes and Cloud Native Associate (KCNA) Exam Course</div>
+        <div class="verdict">Primary for KCNA, weeks 14 to 15</div>
+        <span class="lbl">Take</span>
+        <ul>
+          <li>Cloud native fundamentals and architecture, then Kubernetes fundamentals to advanced with every browser lab. That is 62 percent of the exam.</li>
+          <li>Container orchestration, observability with Prometheus and Grafana, application delivery with Argo CD.</li>
+          <li>Both practice exams, and review every wrong answer against the lecture before the real exam.</li>
+        </ul>
+        <span class="lbl">Overview only</span>
+        <ul>
+          <li>Docker and containers from the ground up. You did Docker in week 8.</li>
+          <li>Argo CD hands-on, if you finished the week 12 GitOps stretch.</li>
+        </ul>
+      </div>
     </div>
     <p class="blurb">Two rules for all three. The course sample apps sit in hundreds of GitHub portfolios, so follow each project once, then rebuild it for a different small app in your own repo with your own README. And use the AI assistants the course shows for speed, but be able to explain every line, because interviewers ask.</p>
   </section>
@@ -306,7 +321,7 @@ section{display:grid;gap:14px}
         <li><span class="k">Kubernetes</span><span class="v">kubernetes.io tutorials. KodeKloud labs. kind quick start.</span></li>
         <li><span class="k">Monitoring</span><span class="v">kube-prometheus-stack chart README. Grafana fundamentals.</span></li>
         <li><span class="k">ArgoCD</span><span class="v">Official Getting Started guide, for the week 12 stretch.</span></li>
-        <li><span class="k">KCNA</span><span class="v">Linux Foundation LFS158, free. KodeKloud KCNA course. killer.sh simulator if your registration includes it.</span></li>
+        <li><span class="k">KCNA</span><span class="v">Your KCNA course and its practice exams. killer.sh simulator if your registration includes it.</span></li>
       </ul>
     </section>
   </section>
@@ -333,7 +348,7 @@ var PHASES=[
   {id:'p5',hue:'slate',label:'Phase 5',name:'Consolidate',span:'Weeks 12 to 13',
    blurb:'Polish the three repos, run the resume keyword pass, and practice the explanations until each project takes two minutes to tell. If there is time left, the ArgoCD GitOps project from the course. Week 13 is the holiday buffer for anything that slipped.'},
   {id:'p6',hue:'blue',label:'January',name:'KCNA while the applications are out',span:'Weeks 14 to 15',
-   blurb:'The Kubernetes and Cloud Native Associate is a 60-question, 90-minute multiple-choice exam. Kubernetes fundamentals are 46 percent of it, and you did that in weeks 10 and 11, so this is mostly revision plus the cloud native concepts the roadmap skipped. Two weeks, exam at the end of week 15, and the certification line on the resume grows while recruiters are reading it.'}
+   blurb:'The Kubernetes and Cloud Native Associate is a 60-question, 90-minute multiple-choice exam. Your KCNA course covers the whole curriculum with browser labs and practice exams, and Kubernetes fundamentals, 46 percent of the exam, are revision of weeks 10 and 11. Two weeks in the course order, exam at the end of week 15, and the certification line on the resume grows while recruiters are reading it.'}
 ];
 
 var WEEKS=[
@@ -448,7 +463,7 @@ var WEEKS=[
     [null,'Re-record the two-minute explanation of each project and listen back once.'],
     ['resume','Send the final resume and the three repo links to whoever is applying for you, if not already done.']
   ]},
-  {n:14,phase:'p6',title:'KCNA domains',course:'Linux Foundation LFS158, Introduction to Kubernetes, free, for the gaps. KodeKloud KCNA course if you want video.',apply:'Add: site reliability engineer I, associate SRE, cloud platform engineer.',items:[
+  {n:14,phase:'p6',title:'KCNA domains',course:'KCNA course: cloud native fundamentals, then Kubernetes fundamentals to advanced with the browser labs. Docker section at overview.',apply:'Add: site reliability engineer I, associate SRE, cloud platform engineer.',items:[
     ['book','Book the KCNA for the last day of week 15. Check whether the registration includes the killer.sh KCNA simulator and save it for week 15.'],
     [null,'Kubernetes fundamentals, 46 percent: architecture, the API and objects, containers, scheduling, kubectl, namespaces, RBAC basics. Revision of weeks 10 and 11.'],
     [null,'Container orchestration, 22 percent: CNI networking, CSI storage, CRI runtimes, security contexts and policies, service mesh concepts.'],
@@ -456,8 +471,8 @@ var WEEKS=[
     [null,'Observability, 8 percent: Prometheus, OpenTelemetry concepts, logs, metrics, traces, cost management.'],
     [null,'Application delivery, 8 percent: GitOps, ArgoCD and Flux, CI/CD fundamentals. If you did the week 12 stretch this is done.']
   ]},
-  {n:15,phase:'p6',title:'KCNA exam',course:'Practice questions from the KodeKloud course or the killer.sh simulator if included.',apply:'All titles. Resend the resume with KCNA on it the day you pass.',items:[
-    [null,'Practice questions daily. Two full mock exams above 80 percent before you sit it.'],
+  {n:15,phase:'p6',title:'KCNA exam',course:'KCNA course: container orchestration, observability, Argo CD, then both practice exams and the exam tips section.',apply:'All titles. Resend the resume with KCNA on it the day you pass.',items:[
+    [null,'Both course practice exams above 80 percent, every wrong answer traced back to its lecture. killer.sh simulator on top if included.'],
     [null,'Re-read the CNCF landscape and the Kubernetes glossary once. The exam asks for definitions, not for typing commands.'],
     ['exam','Sit the KCNA at the end of the week.'],
     ['resume','Add KCNA under certifications and Kubernetes to the credential strip the day you pass. Send the updated resume to whoever is applying for you.']
@@ -474,7 +489,7 @@ var DONE=[
   'You can explain each project in two minutes without notes.'
 ];
 
-var TIMELINES=[{"name": "AWS Certified Solutions Architect Associate (SAA-C03)", "hue": "amber", "rows": [[1, "Getting started, IAM and AWS CLI, EC2 fundamentals, EC2 at SAA level, EC2 instance storage (EBS, EFS), high availability and scalability (ELB, ASG)", "full"], [2, "RDS, Aurora, ElastiCache. Route 53. Classic solutions architecture. S3 introduction, advanced S3, S3 security. CloudFront and Global Accelerator. Storage extras (Snow, FSx, Storage Gateway, Transfer Family, DataSync)", "full"], [3, "Decoupling (SQS, SNS, Kinesis). Containers (ECS, Fargate, ECR, EKS). Serverless (Lambda, DynamoDB, API Gateway, Cognito). Serverless architectures. Databases in AWS. Monitoring (CloudWatch, CloudTrail, Config)", "full"], [3, "Data and analytics. Machine learning services", "over"], [4, "IAM advanced (Organizations, SCPs, STS). Security and encryption (KMS, SSM, Secrets Manager, Shield, WAF, GuardDuty). Networking VPC, your strongest domain. Disaster recovery and migrations. More solutions architecture. Well-Architected and whitepapers. First run of the included practice exam", "full"], [4, "Other services section", "over"], [5, "Exam prep section. Practice exam again, Tutorials Dojo sets, slides PDF for revision. Exam on the last day", "full"]]}, {"name": "HashiCorp Terraform: The Ultimate Beginner's Guide with Labs", "hue": "purple", "rows": [[6, "Days 1 and 2: IaC principles, installation, provider setup, CLI workflow (init, plan, apply, destroy, fmt, validate)", "full"], [6, "Days 3 and 4: resources, variables, outputs, locals, data sources, refactoring for DRY code", "full"], [6, "Days 5 to 7: state, every remaining lab, then the roadmap VPC module built with what you learned", "full"]]}, {"name": "Decoding DevOps, From Basics to Advanced Projects with AI", "hue": "teal", "rows": [[1, "Linux and server management (with the Gemini CLI parts)", "full"], [1, "Vagrant setup. You use EC2 instead", "over"], [2, "Bash scripting, first half", "full"], [2, "Networking fundamentals. Your CCNA covers it", "over"], [3, "YAML and JSON. Bash scripting, second half", "full"], [4, "Bash scripting labs with GitHub Copilot", "full"], [4, "AWS Cloud section, one pass at 1.5x as SAA revision", "over"], [5, "Nothing. SAA exam week", "over"], [6, "Python scripting basics, in the daily slot", "full"], [7, "Infrastructure as Code with Terraform (VPC, modules, backends). Configuration management with Ansible", "full"], [8, "Docker. Python for automation and AWS tasks with Amazon Q", "full"], [9, "Git. GitHub Actions in full. Jenkins basics, one day", "full"], [9, "Maven, GitLab CI, Nexus, SonarQube, Slack integration. AWS DevOps services: CodeCommit, CodeBuild, CodePipeline, Beanstalk, Lambda", "over"], [10, "Kubernetes, first half: architecture, kubectl, pods, deployments, services, ingress, config, probes", "full"], [11, "Kubernetes, second half, production-grade setup. Helm. Lens. Prometheus, Grafana, Alertmanager", "full"], [11, "Loki and Alloy", "over"], [12, "GitOps project: GitHub Actions, Kubernetes, Helm, ArgoCD, as the stretch", "full"]]}, {"name": "KCNA, no course, revision plus the exam curriculum", "hue": "blue", "rows": [[14, "Decoding DevOps Kubernetes sections again at 1.5x. Then the five KCNA domains by weight from the official curriculum: Kubernetes fundamentals 46, container orchestration 22, cloud native architecture 16, observability 8, application delivery 8", "full"], [15, "Practice questions daily, killer.sh simulator if included, two mocks above 80 percent, exam on the last day", "full"]]}];
+var TIMELINES=[{"name": "AWS Certified Solutions Architect Associate (SAA-C03)", "hue": "amber", "rows": [[1, "Getting started, IAM and AWS CLI, EC2 fundamentals, EC2 at SAA level, EC2 instance storage (EBS, EFS), high availability and scalability (ELB, ASG)", "full"], [2, "RDS, Aurora, ElastiCache. Route 53. Classic solutions architecture. S3 introduction, advanced S3, S3 security. CloudFront and Global Accelerator. Storage extras (Snow, FSx, Storage Gateway, Transfer Family, DataSync)", "full"], [3, "Decoupling (SQS, SNS, Kinesis). Containers (ECS, Fargate, ECR, EKS). Serverless (Lambda, DynamoDB, API Gateway, Cognito). Serverless architectures. Databases in AWS. Monitoring (CloudWatch, CloudTrail, Config)", "full"], [3, "Data and analytics. Machine learning services", "over"], [4, "IAM advanced (Organizations, SCPs, STS). Security and encryption (KMS, SSM, Secrets Manager, Shield, WAF, GuardDuty). Networking VPC, your strongest domain. Disaster recovery and migrations. More solutions architecture. Well-Architected and whitepapers. First run of the included practice exam", "full"], [4, "Other services section", "over"], [5, "Exam prep section. Practice exam again, Tutorials Dojo sets, slides PDF for revision. Exam on the last day", "full"]]}, {"name": "HashiCorp Terraform: The Ultimate Beginner's Guide with Labs", "hue": "purple", "rows": [[6, "Days 1 and 2: IaC principles, installation, provider setup, CLI workflow (init, plan, apply, destroy, fmt, validate)", "full"], [6, "Days 3 and 4: resources, variables, outputs, locals, data sources, refactoring for DRY code", "full"], [6, "Days 5 to 7: state, every remaining lab, then the roadmap VPC module built with what you learned", "full"]]}, {"name": "Decoding DevOps, From Basics to Advanced Projects with AI", "hue": "teal", "rows": [[1, "Linux and server management (with the Gemini CLI parts)", "full"], [1, "Vagrant setup. You use EC2 instead", "over"], [2, "Bash scripting, first half", "full"], [2, "Networking fundamentals. Your CCNA covers it", "over"], [3, "YAML and JSON. Bash scripting, second half", "full"], [4, "Bash scripting labs with GitHub Copilot", "full"], [4, "AWS Cloud section, one pass at 1.5x as SAA revision", "over"], [5, "Nothing. SAA exam week", "over"], [6, "Python scripting basics, in the daily slot", "full"], [7, "Infrastructure as Code with Terraform (VPC, modules, backends). Configuration management with Ansible", "full"], [8, "Docker. Python for automation and AWS tasks with Amazon Q", "full"], [9, "Git. GitHub Actions in full. Jenkins basics, one day", "full"], [9, "Maven, GitLab CI, Nexus, SonarQube, Slack integration. AWS DevOps services: CodeCommit, CodeBuild, CodePipeline, Beanstalk, Lambda", "over"], [10, "Kubernetes, first half: architecture, kubectl, pods, deployments, services, ingress, config, probes", "full"], [11, "Kubernetes, second half, production-grade setup. Helm. Lens. Prometheus, Grafana, Alertmanager", "full"], [11, "Loki and Alloy", "over"], [12, "GitOps project: GitHub Actions, Kubernetes, Helm, ArgoCD, as the stretch", "full"]]}, {"name": "Kubernetes and Cloud Native Associate (KCNA) Exam Course", "hue": "blue", "rows": [[14, "Days 1 and 2: introduction, cloud native fundamentals and architecture (CNCF, personas, open standards, autoscaling, serverless, community and governance)", "full"], [14, "Day 2: Docker and containers from the ground up. One pass, labs only where something is new", "over"], [14, "Days 3 to 7: Kubernetes fundamentals to advanced with every browser lab. Largest section, 46 percent of the exam", "full"], [15, "Days 1 and 2: container orchestration (CNI networking, CSI storage, CRI runtimes, security, service mesh)", "full"], [15, "Day 3: telemetry and observability, Prometheus and Grafana hands-on", "full"], [15, "Day 4: GitOps and cloud native application delivery with Argo CD. Overview instead if you did the week 12 stretch", "full"], [15, "Days 5 and 6: both practice exams, review every wrong answer, exam tips section. Day 7: the exam", "full"]]}];
 
 var state={done:{},startDate:START_DEFAULT};
 
