@@ -64,13 +64,13 @@ h1{font-size:2rem;line-height:1.1}
 h2{font-size:1.4rem;line-height:1.2}
 h3{font-size:1.08rem;line-height:1.25}
 p{margin:0}
-.mono,.lbl,.eyebrow,.wk,.dates,.count,.span,.num,.tag,.pill,.verdict,.k,.fact .v,input[type=date]{font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;font-variant-ligatures:none}
+.mono,.lbl,.eyebrow,.wk,.dates,.count,.span,.num,.tag,.pill,.verdict,.k,.fact .v,.depth,input[type=date]{font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;font-variant-ligatures:none}
 .eyebrow{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3)}
+.lbl{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3)}
 a{color:var(--accent-deep)}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
 @media (prefers-reduced-motion:reduce){*{transition-duration:.001ms!important}}
 
-/* top bar */
 .topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--panel);border-bottom:1px solid var(--line)}
 .topbar-in{max-width:960px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
 .topbar .name{font-family:"IBM Plex Sans Condensed","IBM Plex Sans",Arial,sans-serif;font-weight:600;font-size:1.1rem;white-space:nowrap}
@@ -79,8 +79,7 @@ a{color:var(--accent-deep)}
 .meter .fill{height:100%;width:0;background:var(--accent);transition:width .25s}
 .meter .num{font-size:.8rem;color:var(--ink-2);font-variant-numeric:tabular-nums;white-space:nowrap}
 
-/* shell */
-.shell{max-width:960px;margin:0 auto;padding:28px 20px 72px;display:grid;gap:40px}
+.shell{max-width:960px;margin:0 auto;padding:28px 20px 72px;display:grid;gap:36px}
 section{display:grid;gap:14px}
 .intro{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:28px;align-items:start}
 @media (max-width:720px){.intro{grid-template-columns:1fr}}
@@ -93,13 +92,11 @@ section{display:grid;gap:14px}
 .fact .v{font-size:.9rem;text-align:right;font-variant-numeric:tabular-nums}
 .fact input[type=date]{font-size:.9rem;color:var(--ink);background:var(--panel-2);border:1px solid var(--line);border-radius:var(--r);padding:2px 6px;max-width:100%}
 
-/* decisions */
 .decisions{grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
 .decision{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
 .decision .name{font-weight:600}
 .decision .verdict{font-size:.74rem;text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
 .decision[data-v="take"] .verdict{color:var(--ok)}
-.decision[data-v="optional"] .verdict{color:var(--warn)}
 .decision[data-v="later"] .verdict{color:var(--ink-3)}
 .decision .why{color:var(--ink-2);font-size:.9rem;margin-top:6px}
 
@@ -107,69 +104,41 @@ section{display:grid;gap:14px}
 .callout .eyebrow{color:var(--warn)}
 .callout p{color:var(--ink-2);max-width:70ch}
 
-/* course map */
-.courses{grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
-.ccard{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;display:grid;gap:8px;align-content:start}
-.ccard .name{font-weight:600;line-height:1.3}
-.ccard .verdict{font-size:.74rem;text-transform:uppercase;letter-spacing:.06em}
-.ccard[data-v="primary"] .verdict{color:var(--ok)}
-.ccard[data-v="pick"] .verdict{color:var(--warn)}
-.ccard[data-v="skip"] .verdict{color:var(--ink-3)}
-.ccard ul{margin:0;padding-left:18px;color:var(--ink-2);font-size:.92rem;display:grid;gap:4px}
-.lbl{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3)}
-.course{font-size:.9rem;color:var(--ink-2);display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:baseline}
-.course .lbl{color:var(--hue);white-space:nowrap}
-
-/* course timelines */
-.tl-list{display:grid;gap:24px}
-.tl{display:grid;gap:8px}
-.tl h3{color:var(--hue)}
-.tl-scroll{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:var(--r)}
-.tl table{width:100%;border-collapse:collapse;font-size:.92rem;min-width:520px}
-.tl th{text-align:left;font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);font-weight:500;padding:8px 10px;border-bottom:1px solid var(--line)}
-.tl td{padding:8px 10px;border-bottom:1px solid var(--line-soft);vertical-align:top}
-.tl tr:last-child td{border-bottom:0}
-.tl td.wk,.tl td.dates{white-space:nowrap;font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;font-size:.8rem;color:var(--ink-2);font-variant-numeric:tabular-nums}
-.tl td.wk{color:var(--hue);font-weight:500}
-.depth{display:inline-block;font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;font-size:.66rem;text-transform:uppercase;letter-spacing:.06em;padding:0 6px;border-radius:2px;line-height:1.7;white-space:nowrap}
-.depth.full{background:var(--hue-wash);color:var(--hue)}
-.depth.over{background:var(--panel-3);color:var(--ink-2)}
-
-/* phases and weeks */
 [data-hue="amber"]{--hue:var(--amber);--hue-wash:var(--amber-wash)}
 [data-hue="purple"]{--hue:var(--purple);--hue-wash:var(--purple-wash)}
 [data-hue="teal"]{--hue:var(--teal);--hue-wash:var(--teal-wash)}
 [data-hue="blue"]{--hue:var(--blue);--hue-wash:var(--blue-wash)}
 [data-hue="slate"]{--hue:var(--slate);--hue-wash:var(--slate-wash)}
-.phases{display:grid;gap:40px}
-.phase-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;border-bottom:2px solid var(--hue);padding-bottom:8px}
-.phase-head .eyebrow{color:var(--hue)}
-.phase-head .span{margin-left:auto;font-size:.8rem;color:var(--ink-2);font-variant-numeric:tabular-nums}
+
+.head{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;border-bottom:2px solid var(--hue);padding-bottom:8px}
+.head .eyebrow{color:var(--hue)}
 .blurb{color:var(--ink-2);max-width:70ch}
-.week{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px 13px;display:grid;gap:10px;box-shadow:var(--shadow)}
-.week.now{border-color:var(--hue);box-shadow:0 0 0 1px var(--hue), var(--shadow)}
-.week-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px}
-.week-head .wk{font-size:.8rem;color:var(--hue);font-weight:500}
-.week-head .dates{font-size:.8rem;color:var(--ink-3);font-variant-numeric:tabular-nums}
-.week-head h3{flex:1 1 100%}
-@media (min-width:640px){.week-head h3{flex:1 1 auto}}
-.week-head .count{margin-left:auto;font-size:.8rem;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.courses{display:grid;gap:22px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px 14px;display:grid;gap:12px;box-shadow:var(--shadow)}
+.card.now{border-color:var(--hue);box-shadow:0 0 0 1px var(--hue), var(--shadow)}
+.card-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px}
+.card-head .wk{font-size:.8rem;color:var(--hue);font-weight:500}
+.card-head .dates{font-size:.8rem;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.card-head h3{flex:1 1 100%;font-size:1.2rem}
+@media (min-width:640px){.card-head h3{flex:1 1 auto}}
+.card-head .count{margin-left:auto;font-size:.8rem;color:var(--ink-3);font-variant-numeric:tabular-nums}
 .pill{font-size:.68rem;text-transform:uppercase;letter-spacing:.06em;background:var(--hue);color:var(--panel);padding:1px 7px;border-radius:2px;line-height:1.6}
-.items{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.items{list-style:none;margin:0;padding:0;display:grid;gap:7px}
 .item{display:grid;grid-template-columns:18px 1fr;gap:10px;align-items:start}
 .item input{margin:4px 0 0;width:16px;height:16px;accent-color:var(--hue);cursor:pointer}
 .item label{cursor:pointer}
 .item.done label{color:var(--ink-3)}
-.item.resume{background:var(--panel-2);border-radius:var(--r);padding:7px 10px 7px 10px}
-.tag{display:inline-block;font-size:.66rem;text-transform:uppercase;letter-spacing:.06em;background:var(--hue-wash);color:var(--hue);padding:0 6px;border-radius:2px;margin-right:6px;vertical-align:1px;line-height:1.7}
-
-/* closing lists */
-.two{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;align-items:start}
-.two section{gap:10px}
-.plain{list-style:none;margin:0;padding:0;display:grid;gap:8px}
-.plain li{display:grid;grid-template-columns:minmax(88px,auto) 1fr;gap:10px;align-items:baseline}
-.plain .k{font-size:.78rem;color:var(--ink-2)}
-.plain .v{color:var(--ink);font-size:.95rem}
+.item .wk{font-size:.78rem;color:var(--hue);margin-right:8px;white-space:nowrap}
+.item .dates{font-size:.78rem;color:var(--ink-3);margin-right:8px;white-space:nowrap}
+.depth{display:inline-block;font-size:.66rem;text-transform:uppercase;letter-spacing:.06em;padding:0 6px;border-radius:2px;line-height:1.7;white-space:nowrap;margin-left:6px;vertical-align:1px}
+.depth.full{background:var(--hue-wash);color:var(--hue)}
+.depth.over{background:var(--panel-3);color:var(--ink-2)}
+.line{font-size:.92rem;color:var(--ink-2);display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:baseline}
+.line .lbl{color:var(--hue);white-space:nowrap}
+.line.apply{background:var(--panel-2);border-radius:var(--r);padding:8px 10px;color:var(--ink)}
+.notes{margin:0;padding-left:18px;color:var(--ink-2);font-size:.92rem;display:grid;gap:4px}
+.gap{border:1px dashed var(--line);border-radius:var(--r);padding:10px 14px;color:var(--ink-2);font-size:.92rem;display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:baseline}
+.gap .wk{font-size:.8rem;color:var(--slate);white-space:nowrap}
 .foot{color:var(--ink-3);font-size:.85rem}
 </style>
 </head>
@@ -182,15 +151,15 @@ section{display:grid;gap:14px}
 <main class="shell">
   <section class="intro">
     <div class="brief">
-      <p class="eyebrow">Twelve-week study plan</p>
+      <p class="eyebrow">Four courses, one after another</p>
       <h1>From CCNA to a junior cloud or DevOps role</h1>
-      <p>You already hold the part most DevOps candidates lack: networking. The next twelve weeks add the cloud, automation, and container skills on top, one project at a time, and update the resume as each skill becomes real. Tick items as you finish them. The resume changes are tasks too.</p>
+      <p>You already hold the part most DevOps candidates lack: networking. Four courses run back to back, each one finished before the next begins, with the resume updated and new job titles opened at the end of each. Tick sections as you finish them.</p>
     </div>
     <div class="facts">
       <div class="fact"><span class="k">Goal</span><span class="v">job in January 2027</span></div>
       <div class="fact"><span class="k">Start</span><span class="v"><input type="date" id="start-date" value="2026-09-28" aria-label="Start date"></span></div>
-      <div class="fact"><span class="k">Study ends</span><span class="v" id="end-date"></span></div>
       <div class="fact"><span class="k">SAA exam</span><span class="v" id="exam-date"></span></div>
+      <div class="fact"><span class="k">Courses end</span><span class="v" id="end-date"></span></div>
       <div class="fact"><span class="k">KCNA exam</span><span class="v" id="kcna-date"></span></div>
       <div class="fact"><span class="k">Hours</span><span class="v">about 20 a week</span></div>
       <div class="fact"><span class="k">Rhythm</span><span class="v">2 h weekdays, 5 h weekend days</span></div>
@@ -199,9 +168,9 @@ section{display:grid;gap:14px}
 
   <section class="decisions" aria-label="Certification decisions">
     <div class="decision" data-v="take"><div class="name">AWS Solutions Architect Associate</div><div class="verdict">Take, week 5</div><p class="why">The keyword recruiters filter on first. Book it in week 1.</p></div>
-    <div class="decision" data-v="later"><div class="name">Terraform Associate</div><div class="verdict">Skip</div><p class="why">Not needed. The Terraform course plus a working VPC repo say more than the exam. Week 12 goes to ArgoCD instead.</p></div>
+    <div class="decision" data-v="later"><div class="name">Terraform Associate</div><div class="verdict">Skip</div><p class="why">Not needed. The Terraform course plus a working VPC repo say more than the exam.</p></div>
     <div class="decision" data-v="later"><div class="name">CKA</div><div class="verdict">After hire</div><p class="why">Two to three months on its own. First six months on the job, employer usually pays.</p></div>
-    <div class="decision" data-v="take"><div class="name">KCNA</div><div class="verdict">Take, January</div><p class="why">Multiple choice, two weeks of prep in January while applications are out. Weeks 14 and 15 below.</p></div>
+    <div class="decision" data-v="take"><div class="name">KCNA</div><div class="verdict">Take, January</div><p class="why">Two weeks in January while applications are out. Course 4 below.</p></div>
   </section>
 
   <section class="callout">
@@ -211,119 +180,13 @@ section{display:grid;gap:14px}
 
   <section class="callout" id="applier">
     <span class="eyebrow">For whoever applies</span>
-    <p>Applications start the week after the SAA result. Each week card below carries an Apply line with the titles to add that week. Reject any posting that mentions clearance, Secret, TS/SCI, US citizen, US person, Public Trust, ITAR or DoD 8570, and anything Senior, Lead, Principal, II, III or five-plus years. Require E-Verify. Prefer companies with H-1B filings in the last two years. W-2 contracts through an E-Verify staffing agency that signs the I-983 are fine, 1099 is not, and never a firm that charges for training or benches unpaid.</p>
+    <p>Applications start the week after the SAA result. Each course card carries an Apply during line and an Apply after line with the titles to use. Reject any posting that mentions clearance, Secret, TS/SCI, US citizen, US person, Public Trust, ITAR or DoD 8570, and anything Senior, Lead, Principal, II, III or five-plus years. Require E-Verify. Prefer companies with H-1B filings in the last two years. W-2 contracts through an E-Verify staffing agency that signs the I-983 are fine, 1099 is not, and never a firm that charges for training or benches unpaid.</p>
   </section>
 
-  <section class="phase" data-hue="slate" id="courses">
-    <div class="phase-head"><span class="eyebrow">Your four courses</span><h2>What to take, and at what depth</h2></div>
-    <p class="blurb">The first three courses hold roughly 90 hours of video across the twelve weeks. Watched end to end, with hands-on time, that is a 22-hour week. Taken at the depths below, Full with every lab and Overview as one pass at 1.5x with no labs, it is closer to 17 hours a week, which leaves room for the projects. The KCNA course adds about ten hours in January.</p>
-    <div class="courses">
-      <div class="ccard" data-v="primary">
-        <div class="name">AWS Certified Solutions Architect Associate (SAA-C03)</div>
-        <div class="verdict">Primary, weeks 1 to 5</div>
-        <span class="lbl">Take</span>
-        <ul>
-          <li>Every section, in order, plus the included practice exam.</li>
-          <li>Add Tutorials Dojo practice sets in weeks 4 and 5. One practice exam is not enough.</li>
-          <li>Confirm the exam code on the AWS certification page when you book. If a newer version is live, the course still covers most of it. Buy practice exams for the live version.</li>
-        </ul>
-        <span class="lbl">Overview only</span>
-        <ul><li>Machine learning, data and analytics, and the other services section. One pass, no notes.</li></ul>
-      </div>
-      <div class="ccard" data-v="pick">
-        <div class="name">Decoding DevOps, From Basics to Advanced Projects with AI</div>
-        <div class="verdict">Cherry-pick, weeks 1 to 12</div>
-        <span class="lbl">Take</span>
-        <ul>
-          <li>Linux and server management, Bash, YAML and JSON, in the daily slot of weeks 1 to 4.</li>
-          <li>Terraform section for the VPC, modules and backends project in week 7, after the Terraform course, then Ansible.</li>
-          <li>Docker and Python for AWS automation, week 8.</li>
-          <li>GitHub Actions in full and Jenkins at basic level, week 9.</li>
-          <li>Kubernetes, Helm, Prometheus, Grafana, Alertmanager, weeks 10 and 11.</li>
-          <li>The GitOps project with ArgoCD, week 12 stretch.</li>
-        </ul>
-        <span class="lbl">Overview only</span>
-        <ul>
-          <li>Its AWS section, one pass at 1.5x as SAA revision.</li>
-          <li>Vagrant and networking fundamentals. You use EC2, and you hold a CCNA.</li>
-          <li>Maven, Nexus, SonarQube, GitLab CI, Slack integration. Know what each is for.</li>
-          <li>CodeCommit, CodeBuild, CodePipeline, Beanstalk. CodeCommit is closed to new customers.</li>
-          <li>Loki and Alloy, after Prometheus and Grafana work.</li>
-        </ul>
-      </div>
-      <div class="ccard" data-v="primary">
-        <div class="name">HashiCorp Terraform: The Ultimate Beginner's Guide with Labs</div>
-        <div class="verdict">Primary for Terraform, week 6</div>
-        <span class="lbl">Take</span>
-        <ul>
-          <li>All of it, in order, in week 6: install, providers, CLI workflow, state, variables, outputs, locals, DRY refactoring.</li>
-          <li>Do every lab by hand. Do not copy the finished code from the repo.</li>
-          <li>Then the Decoding DevOps Terraform section in week 7 for the AWS VPC, modules and backends project.</li>
-        </ul>
-        <span class="lbl">Overview only</span>
-        <ul><li>Nothing. Every section in full. The Terraform Associate exam itself is not needed.</li></ul>
-      </div>
-      <div class="ccard" data-v="primary">
-        <div class="name">Kubernetes and Cloud Native Associate (KCNA) Exam Course</div>
-        <div class="verdict">Primary for KCNA, weeks 14 to 15</div>
-        <span class="lbl">Take</span>
-        <ul>
-          <li>Cloud native fundamentals and architecture, then Kubernetes fundamentals to advanced with every browser lab. That is 62 percent of the exam.</li>
-          <li>Container orchestration, observability with Prometheus and Grafana, application delivery with Argo CD.</li>
-          <li>Both practice exams, and review every wrong answer against the lecture before the real exam.</li>
-        </ul>
-        <span class="lbl">Overview only</span>
-        <ul>
-          <li>Docker and containers from the ground up. You did Docker in week 8.</li>
-          <li>Argo CD hands-on, if you finished the week 12 GitOps stretch.</li>
-        </ul>
-      </div>
-    </div>
-    <p class="blurb">Two rules for all three. The course sample apps sit in hundreds of GitHub portfolios, so follow each project once, then rebuild it for a different small app in your own repo with your own README. And use the AI assistants the course shows for speed, but be able to explain every line, because interviewers ask.</p>
-  </section>
-
-  <section class="phase" data-hue="slate" id="timelines-wrap">
-    <div class="phase-head"><span class="eyebrow">One timeline per course</span><h2>Course timelines</h2></div>
-    <p class="blurb">Each course on its own calendar, in the order the instructor built it. Full means normal speed with every lab. Overview means one pass at 1.5x speed, no labs, so you know what the tool is for when a job posting names it.</p>
-    <div class="tl-list" id="timelines"></div>
-  </section>
-
-  <div class="phases" id="phases"></div>
-
-  <section class="phase" data-hue="slate" id="done-when">
-    <div class="phase-head"><span class="eyebrow">Finish line</span><h2>Done when</h2><span class="span" id="done-prog"></span></div>
-    <p class="blurb">Twelve weeks is complete when every line below is true, not when the calendar runs out.</p>
-    <ul class="items" id="done-list"></ul>
-  </section>
-
-  <section class="two">
-    <section class="phase" data-hue="slate">
-      <div class="phase-head"><span class="eyebrow">Deliberately skipped</span><h2>Not in this plan</h2></div>
-      <ul class="plain">
-        <li><span class="k">CKA</span><span class="v">After you are hired, within the first six months. Employers usually pay for it.</span></li>
-        <li><span class="k">Terraform Associate</span><span class="v">Not needed. The Terraform course and a working VPC repo cover it.</span></li>
-        <li><span class="k">AWS DevOps Pro</span><span class="v">After a year on the job.</span></li>
-        <li><span class="k">Vagrant, GitLab CI, Beanstalk, CodeCommit</span><span class="v">Not resume skills for this window. Overview lectures only.</span></li>
-        <li><span class="k">Service mesh, Loki, Alloy</span><span class="v">Learn on the job when a team uses them.</span></li>
-      </ul>
-    </section>
-    <section class="phase" data-hue="slate">
-      <div class="phase-head"><span class="eyebrow">Study material</span><h2>Resources</h2></div>
-      <ul class="plain">
-        <li><span class="k">AWS SAA</span><span class="v">Your SAA-C03 course. Tutorials Dojo practice exams. AWS Skill Builder exam prep.</span></li>
-        <li><span class="k">DevOps</span><span class="v">Decoding DevOps, the sections named on each week card.</span></li>
-        <li><span class="k">Linux</span><span class="v">Linux Journey. OverTheWire Bandit.</span></li>
-        <li><span class="k">Terraform</span><span class="v">Your Terraform course, The Ultimate Beginner's Guide with Labs. Terraform Registry AWS modules.</span></li>
-        <li><span class="k">Ansible</span><span class="v">The course section, then the official Getting Started guide.</span></li>
-        <li><span class="k">Docker</span><span class="v">Docker Get Started docs. Bret Fisher, Docker Mastery.</span></li>
-        <li><span class="k">GitHub Actions</span><span class="v">Official docs. The aws-actions configure-aws-credentials OIDC guide.</span></li>
-        <li><span class="k">Python</span><span class="v">Automate the Boring Stuff. boto3 documentation.</span></li>
-        <li><span class="k">Kubernetes</span><span class="v">kubernetes.io tutorials. KodeKloud labs. kind quick start.</span></li>
-        <li><span class="k">Monitoring</span><span class="v">kube-prometheus-stack chart README. Grafana fundamentals.</span></li>
-        <li><span class="k">ArgoCD</span><span class="v">Official Getting Started guide, for the week 12 stretch.</span></li>
-        <li><span class="k">KCNA</span><span class="v">Your KCNA course and its practice exams. killer.sh simulator if your registration includes it.</span></li>
-      </ul>
-    </section>
+  <section class="phase" data-hue="slate">
+    <div class="head"><span class="eyebrow">Your four courses</span><h2>What to take, and at what depth</h2></div>
+    <p class="blurb">Full means normal speed with every lab typed by hand. Overview means one pass at 1.5x speed with no labs, so the tool means something when a job posting names it. Nothing is skipped. Each course starts the week the previous one ends.</p>
+    <div class="courses" id="courses"></div>
   </section>
 
   <p class="foot" id="foot">Progress is saved in this browser.</p>
@@ -333,203 +196,70 @@ section{display:grid;gap:14px}
 (function(){
 'use strict';
 var START_DEFAULT='2026-09-28';
-var KEY='ccna-to-devops:v1';
-var TAGS={book:'Book',exam:'Exam',setup:'Setup',linux:'Linux',git:'Git',python:'Python',build:'Build',resume:'Resume',cost:'Cost'};
+var KEY='ccna-to-devops:v2';
 
-var PHASES=[
-  {id:'p1',hue:'amber',label:'Phase 1',name:'AWS SAA, Linux, Git',span:'Weeks 1 to 5',
-   blurb:'One video course, practice exams until you score above 80 percent, and the real exam at the end of week 5. Thirty minutes of Linux and Git every day in parallel. Your CCNA makes VPC and networking your strongest domain, so aim for full marks there.'},
-  {id:'p2',hue:'purple',label:'Phase 2',name:'Terraform and a taste of Ansible',span:'Weeks 6 to 7',
-   blurb:'The Terraform course first, then build the network you already understand from code. Project 1 is a multi-AZ VPC with a load balancer, an Auto Scaling group, and a database, reproducible in one apply.'},
-  {id:'p3',hue:'teal',label:'Phase 3',name:'Docker, CI/CD, Python',span:'Weeks 8 to 9',
-   blurb:'Containerize an app and ship it through a pipeline with no static keys. Project 2 is the pipeline, on GitHub Actions, with one day of Jenkins so the word is not new in interviews. The Python script bridges your networking background to automation.'},
-  {id:'p4',hue:'blue',label:'Phase 4',name:'Kubernetes and observability',span:'Weeks 10 to 11',
-   blurb:'Fundamentals on a local cluster first, then EKS. Project 3 moves the app from project 2 onto Kubernetes with a Helm chart, autoscaling, and a Grafana dashboard. No CKA yet.'},
-  {id:'p5',hue:'slate',label:'Phase 5',name:'Consolidate',span:'Weeks 12 to 13',
-   blurb:'Polish the three repos, run the resume keyword pass, and practice the explanations until each project takes two minutes to tell. If there is time left, the ArgoCD GitOps project from the course. Week 13 is the holiday buffer for anything that slipped.'},
-  {id:'p6',hue:'blue',label:'January',name:'KCNA while the applications are out',span:'Weeks 14 to 15',
-   blurb:'The Kubernetes and Cloud Native Associate is a 60-question, 90-minute multiple-choice exam. Your KCNA course covers the whole curriculum with browser labs and practice exams, and Kubernetes fundamentals, 46 percent of the exam, are revision of weeks 10 and 11. Two weeks in the course order, exam at the end of week 15, and the certification line on the resume grows while recruiters are reading it.'}
+var COURSES=[
+  {id:"c1",hue:"amber",name:"AWS Certified Solutions Architect Associate (SAA-C03)",weeks:[1,5],
+   rows:[
+     [1,"Getting started, IAM and AWS CLI, EC2 fundamentals, EC2 at SAA level, EC2 instance storage (EBS, EFS), high availability and scalability (ELB, ASG)","full"],
+     [2,"RDS, Aurora, ElastiCache. Route 53. Classic solutions architecture. S3, advanced S3, S3 security. CloudFront and Global Accelerator. Storage extras","full"],
+     [3,"Decoupling (SQS, SNS, Kinesis). Containers (ECS, Fargate, ECR, EKS). Serverless and serverless architectures. Databases in AWS. Monitoring (CloudWatch, CloudTrail, Config)","full"],
+     [3,"Data and analytics. Machine learning services","over"],
+     [4,"IAM advanced (Organizations, SCPs, STS). Security and encryption (KMS, SSM, Secrets Manager, WAF, Shield, GuardDuty). Networking VPC, your strongest domain. Disaster recovery and migrations. More solutions architecture. Well-Architected and whitepapers. First run of the included practice exam","full"],
+     [4,"Other services section","over"],
+     [5,"Exam prep section. Practice exam again, Tutorials Dojo sets, slides PDF for revision. Exam on the last day of the week","full"]
+   ],
+   notes:["Book the exam in week 1 for the last day of week 5. Confirm the live exam code on the AWS certification page when booking.","The included practice exam is not enough on its own. Add Tutorials Dojo sets in weeks 4 and 5.","Week 1 also rewrites the resume: headline Cloud / DevOps Engineer, credential strip CCNA and SAA exam scheduled, three-line summary, skills grouped by category, one page, no visa status."],
+   resume:"Pass date and credential ID on the certification line. Cloud skills group with the services you can explain: VPC, EC2, S3, IAM, RDS, ELB, Route 53, CloudWatch, Lambda.",
+   during:"None. Applications start the week after the result.",
+   after:"Cloud Support Associate at AWS. Cloud support engineer at managed service providers. Cloud engineer I, associate cloud engineer, cloud operations engineer, cloud network engineer. Network engineer I and NOC engineer as fallbacks. Associate cloud programs at Infosys, TCS, Cognizant, Accenture, Capgemini."},
+  {id:"c2",hue:"purple",name:"HashiCorp Terraform: The Ultimate Beginner's Guide with Labs",weeks:[6,6],
+   rows:[
+     [6,"Days 1 and 2: IaC principles, installation, provider setup, CLI workflow (init, plan, apply, destroy, fmt, validate)","full"],
+     [6,"Days 3 and 4: resources, variables, outputs, locals, data sources, refactoring for DRY code","full"],
+     [6,"Days 5 to 7: state, every remaining lab, then a two-AZ VPC module with public and private subnets and NAT in your own repo","full"]
+   ],
+   notes:["Type every lab yourself. Do not copy the finished code from the course repo.","Destroy the NAT gateway when you stop for the day. It bills by the hour."],
+   resume:"Terraform in an Infrastructure as Code skills group. The VPC module repo as the first project entry.",
+   during:"The list from course 1 continues.",
+   after:"Add infrastructure automation engineer, cloud automation engineer, network automation engineer. Resend the resume with the VPC repo link."},
+  {id:"c3",hue:"teal",name:"Decoding DevOps, From Basics to Advanced Projects with AI",weeks:[7,12],
+   rows:[
+     [7,"Linux and server management. Bash scripting. YAML and JSON. Python scripting basics","full"],
+     [7,"Vagrant setup, you use EC2 instead. Networking fundamentals, your CCNA covers it","over"],
+     [8,"Terraform (VPC, modules, backends), which becomes project 1 with an ALB, an Auto Scaling group and RDS added to your VPC module. Ansible, configure the instances with a playbook","full"],
+     [8,"AWS Cloud section, one pass as SAA revision","over"],
+     [9,"Docker. Python for automation and AWS tasks with Amazon Q. Security group audit script with boto3","full"],
+     [10,"Git. GitHub Actions, which becomes project 2, a pipeline to ECR and ECS Fargate with OIDC for an app of your own. Jenkins basics, one day","full"],
+     [10,"Maven, GitLab CI, Nexus, SonarQube, Slack integration. AWS DevOps services: CodeCommit, CodeBuild, CodePipeline, Beanstalk, Lambda","over"],
+     [11,"Kubernetes, all of it. Helm. Lens. Project 3: the app from project 2 on EKS through Terraform, with a Helm chart and an HPA","full"],
+     [12,"Prometheus, Grafana, Alertmanager on the EKS cluster, one dashboard and one alert that fires. GitOps project with ArgoCD","full"],
+     [12,"Loki and Alloy","over"]
+   ],
+   notes:["The course sample app sits in hundreds of GitHub portfolios. Follow each course project once, then rebuild it for a different small app in your own repo with your own README.","Use the AI assistants the course shows for speed, but be able to explain every line. Interviewers ask.","Destroy RDS after week 8 and the EKS cluster after week 12. Check the bill.","Every repo gets an architecture diagram, a how-to-run section and a design decisions paragraph before you move on."],
+   resume:"Projects 1, 2 and 3 as job-style entries with GitHub links. Docker, Kubernetes, Helm, EKS in Containers. GitHub Actions and CI/CD in a CI/CD group. Ansible in IaC. Python (boto3) in Scripting. Prometheus, Grafana, CloudWatch in Monitoring. Keyword pass: DevOps, CI/CD, Infrastructure as Code, AWS, Terraform, Kubernetes, Docker, Linux, Python, monitoring, automation.",
+   during:"After project 1 goes live at the end of week 8: build and release engineer, junior DevOps engineer, DevOps engineer I, associate DevOps engineer. After project 2 at the end of week 10: DevOps engineer at companies under 500 people, platform engineer I. After project 3 at the end of week 11: junior Kubernetes engineer. Resend the resume each time.",
+   after:"All titles above. Resend the final resume with the three repo links. Hiring slows from Dec 20 to Jan 2, keep sending, they are read in the first week of January."},
+  {id:"c4",hue:"blue",name:"Kubernetes and Cloud Native Associate (KCNA) Exam Course",weeks:[14,15],
+   rows:[
+     [14,"Days 1 and 2: introduction, cloud native fundamentals and architecture (CNCF, personas, open standards, autoscaling, serverless, community and governance)","full"],
+     [14,"Day 2: Docker and containers from the ground up. You did Docker in week 9","over"],
+     [14,"Days 3 to 7: Kubernetes fundamentals to advanced with every browser lab. The largest section, 46 percent of the exam","full"],
+     [15,"Days 1 and 2: container orchestration (CNI networking, CSI storage, CRI runtimes, security, service mesh)","full"],
+     [15,"Day 3: telemetry and observability, Prometheus and Grafana hands-on","full"],
+     [15,"Day 4: GitOps and cloud native application delivery with Argo CD. Overview instead if you did the ArgoCD project in week 12","full"],
+     [15,"Days 5 and 6: both practice exams, every wrong answer traced back to its lecture, exam tips section. Day 7: the exam","full"]
+   ],
+   notes:["Book the KCNA in week 14 for the last day of week 15. Check whether the registration includes the killer.sh simulator and use it in week 15.","Score above 80 percent on both course practice exams before you sit it."],
+   resume:"KCNA on the certification line and Kubernetes in the credential strip the day you pass.",
+   during:"Add site reliability engineer I, associate SRE, cloud platform engineer, with KCNA exam scheduled on the resume.",
+   after:"All titles. Resend the resume with KCNA on it the day you pass."}
 ];
-
-var WEEKS=[
-  {n:1,phase:'p1',title:'Accounts, IAM, EC2',course:'SAA course: IAM, EC2, EBS, ELB, ASG sections. Decoding DevOps: Linux and server management, in the daily slot.',items:[
-    ['book','Book the AWS SAA exam for the last day of week 5. A booked date sets the pace for everything below.'],
-    ['setup','Create an AWS free-tier account, turn on a 20 dollar budget alert, create an IAM admin user with MFA, and stop using the root user.'],
-    ['setup','Launch an Ubuntu EC2 instance and do every exercise from its terminal from now on.'],
-    [null,'IAM: users, groups, roles, policies, permission boundaries, STS, cross-account access.'],
-    [null,'EC2: instance families, AMIs, user data, EBS versus instance store, snapshots, placement groups.'],
-    ['linux','Shell navigation, file permissions, users and groups, sudo, ssh.'],
-    ['git','Create a GitHub account. init, clone, add, commit, push, and a sensible gitignore.'],
-    ['resume','Headline to Cloud / DevOps Engineer. Credential strip under your name: CCNA, AWS SAA (exam scheduled), Terraform, Docker. Three-line summary that leads with networking and ends with your cloud stack. Skills grouped by category.'],
-    ['resume','Rewrite existing bullets with automated, scripted, provisioned, monitored. One page, PDF, no columns, GitHub and LinkedIn links in the header, no visa status.']
-  ]},
-  {n:2,phase:'p1',title:'VPC, load balancing, DNS',course:'SAA course: VPC, Route 53, CloudFront sections. Decoding DevOps: Linux continued, Bash basics.',items:[
-    [null,'VPC: subnets, route tables, internet and NAT gateways, security groups versus NACLs, flow logs.'],
-    [null,'VPC: peering, Transit Gateway, site-to-site VPN, Direct Connect, gateway and interface endpoints.'],
-    [null,'Load balancing: ALB versus NLB versus Gateway Load Balancer, target groups, health checks, sticky sessions.'],
-    [null,'Auto Scaling groups: launch templates, scaling policies, lifecycle hooks.'],
-    [null,'Route 53 routing policies and health checks. CloudFront distributions, origins, caching.'],
-    ['linux','systemd units, journalctl, SSH keys and config, cron.'],
-    ['git','Branches, pull requests, rebase versus merge, resolving conflicts.'],
-    ['resume','Add a Networking group to skills: TCP/IP, routing and switching, VLANs, VPN, DNS, load balancing, firewalls. This is the group most applicants cannot fill.']
-  ]},
-  {n:3,phase:'p1',title:'Storage, databases, serverless',course:'SAA course: S3, storage, database, and serverless sections. Decoding DevOps: Bash, YAML and JSON.',items:[
-    [null,'S3: storage classes, lifecycle rules, versioning, replication, encryption options, bucket policies, presigned URLs.'],
-    [null,'EFS, FSx, Storage Gateway, Snow family: which one for which case.'],
-    [null,'RDS, Aurora, DynamoDB, ElastiCache, Redshift: when to pick which. Multi-AZ versus read replicas.'],
-    [null,'Lambda, API Gateway, SQS, SNS, EventBridge, Step Functions basics, Kinesis overview.'],
-    ['linux','grep, sed, awk, find, pipes and redirection.'],
-    ['linux','Networking tools: ip, ss, dig, curl, tcpdump. Diagnose a failing connection to a web server with only these five.']
-  ]},
-  {n:4,phase:'p1',title:'Security, monitoring, first practice exam',course:'SAA course: monitoring, security, container, and architecture sections, then its practice exam. Decoding DevOps: Bash scripting labs.',items:[
-    [null,'CloudWatch metrics, logs, alarms, dashboards. CloudTrail. AWS Config.'],
-    [null,'KMS, Secrets Manager, Parameter Store, ACM, WAF, Shield, GuardDuty at overview level.'],
-    [null,'ECS, Fargate, EKS, ECR overview. CloudFormation and Elastic Beanstalk basics.'],
-    [null,'Organizations, SCPs, Control Tower overview. Well-Architected pillars. Cost Explorer, Budgets, Savings Plans.'],
-    [null,'Migration services overview: DMS, Snowball, DataSync, Application Migration Service.'],
-    [null,'First full practice exam. Review every wrong answer against the course notes, not just the answer explanation.'],
-    ['linux','Package managers. Bash scripting: variables, loops, conditionals, functions. Write a script that backs up a directory to S3 with the AWS CLI.']
-  ]},
-  {n:5,phase:'p1',title:'Practice exams and the real exam',course:'SAA slides PDF for revision. Tutorials Dojo practice exams.',apply:'Not yet. Applications start the week after the SAA result, with the certification on the resume.',items:[
-    [null,'Two practice exams a day until you score above 80 percent on three in a row.'],
-    [null,'Re-watch the weakest domain. VPC and IAM questions should be close to perfect.'],
-    ['exam','Sit the AWS SAA exam at the end of the week.'],
-    ['linux','Daily practice continues. Work through OverTheWire Bandit levels 0 to 15.'],
-    ['resume','Replace exam scheduled with the pass date and credential ID. Add a Cloud group with the services you can explain: VPC, EC2, S3, IAM, RDS, ELB, Route 53, CloudWatch, Lambda.']
-  ]},
-  {n:6,phase:'p2',title:'Terraform core and state',course:'Terraform course: all of it in order, every lab, this week. Decoding DevOps: Python basics for the daily slot.',apply:'Start: Cloud Support Associate at AWS, cloud support engineer at MSPs, cloud engineer I, cloud operations engineer, cloud network engineer. Network engineer I and NOC as fallbacks. Associate cloud programs at Infosys, TCS, Cognizant, Accenture, Capgemini.',items:[
-    [null,'Install Terraform. Providers, CLI workflow, resources, variables, outputs, locals, data sources, DRY refactoring with locals.'],
-    [null,'count, for_each, lifecycle rules, tfvars files, fmt, validate, plan, apply, destroy.'],
-    [null,'Remote state: S3 backend with state locking. terraform import. Never edit state by hand.'],
-    ['build','VPC module: public and private subnets across two AZs, internet gateway, NAT, route tables.'],
-    ['python','Thirty minutes a day from here on: variables, lists, dicts, functions, reading JSON and YAML.'],
-    ['cost','Destroy the NAT gateway when you stop for the day. It bills by the hour.']
-  ]},
-  {n:7,phase:'p2',title:'Modules, project 1, Ansible',course:'Decoding DevOps: Terraform section for the VPC, modules and backends project, then the Ansible section.',apply:'Same titles. Resend the resume the day project 1 goes live.',items:[
-    [null,'Write your own module, then consume a public Terraform Registry module and read its source.'],
-    ['build','Project 1 complete: ALB, Auto Scaling group, RDS in a private subnet, security groups, all from code. tflint clean.'],
-    ['build','README with an architecture diagram and a run guide that works from one apply.'],
-    [null,'Ansible, two days only: inventory, ad hoc commands, playbooks, roles. Configure the EC2 instances with a playbook.'],
-    ['resume','Add a Projects section. Project 1 formatted like a job entry: title, GitHub link, three bullets of action, tool, outcome. Add Terraform and Ansible to an Infrastructure as Code group.'],
-    ['cost','terraform destroy at the end of the week. Check the billing page.']
-  ]},
-  {n:8,phase:'p3',title:'Docker and Python automation',course:'Decoding DevOps: Docker section, then Python for AWS automation.',apply:'Add: infrastructure automation engineer, cloud automation engineer, network automation engineer, build and release engineer.',items:[
-    [null,'Images versus containers, Dockerfile instructions, layers and caching, multi-stage builds, dockerignore.'],
-    [null,'Volumes, networks, docker compose, non-root user, HEALTHCHECK, image tagging.'],
-    [null,'Push an image to ECR and read the scan results.'],
-    ['python','boto3 sessions, clients, paginators, error handling. requests against a REST API.'],
-    ['build','Script: audit every security group for 0.0.0.0/0 on ports other than 80 and 443 and print a report.'],
-    ['resume','Add Docker to a Containers group. Add Python (boto3) to OS and Scripting.']
-  ]},
-  {n:9,phase:'p3',title:'GitHub Actions and project 2',course:'Decoding DevOps: GitHub Actions in full, Jenkins at basic level. Skip the GitLab CI, Nexus, SonarQube, and CodePipeline labs.',apply:'Add: junior DevOps engineer, DevOps engineer I, associate DevOps engineer. Resend the resume the day project 2 goes live.',items:[
-    [null,'GitHub Actions: workflow syntax, triggers, jobs, steps, matrix, secrets, caching, artifacts.'],
-    [null,'OIDC federation to AWS with an IAM role. No static access keys anywhere.'],
-    ['build','Project 2: pipeline that builds, tests, pushes to ECR, and deploys to ECS Fargate with a rolling update.'],
-    [null,'Deployment strategies: rolling, blue/green, canary. Explain each in one minute.'],
-    [null,'Branch strategy and semantic version tags on releases.'],
-    [null,'Jenkins, one day: install on EC2, a declarative pipeline with build, test, and Docker image stages, agents, credentials. It appears on more junior postings than GitHub Actions.'],
-    ['build','Rebuild the course pipeline for a different small app in your own repo. The course app sits in hundreds of portfolios. Yours must not be a clone.'],
-    ['resume','Add project 2, leading with the pipeline. Add the security group audit script as a fourth bullet if space allows. Add GitHub Actions and CI/CD to a CI/CD group.']
-  ]},
-  {n:10,phase:'p4',title:'Kubernetes fundamentals on a local cluster',course:'Decoding DevOps: Kubernetes section, first half.',apply:'Add: DevOps engineer at companies under 500 people, platform engineer I.',items:[
-    [null,'Architecture: API server, etcd, scheduler, controller manager, kubelet, kube-proxy. Trace a request from ingress to pod.'],
-    [null,'Install kind or minikube. kubectl get, describe, logs, exec, apply, delete, port-forward.'],
-    [null,'Pods, ReplicaSets, Deployments, rollouts and rollbacks.'],
-    [null,'Services (ClusterIP, NodePort, LoadBalancer), Ingress, ConfigMaps, Secrets, namespaces.'],
-    [null,'Resource requests and limits, liveness and readiness probes, HPA, PV and PVC basics.'],
-    [null,'Debug drill: break a deployment three ways (bad image tag, failing probe, missing ConfigMap) and fix each with kubectl only.']
-  ]},
-  {n:11,phase:'p4',title:'EKS, Helm, Prometheus, project 3',course:'Decoding DevOps: Kubernetes second half, Helm, Prometheus, Grafana, Alertmanager.',apply:'Add: junior Kubernetes engineer. Resend the resume the day project 3 goes live.',items:[
-    ['build','Provision EKS with Terraform. A public module is fine. Connect kubectl.'],
-    [null,'Helm: charts, values, install, upgrade, rollback. Write a chart for the project 2 app.'],
-    ['build','Project 3: deploy through Helm with an HPA and an Ingress via the AWS Load Balancer Controller.'],
-    [null,'Install kube-prometheus-stack. One Grafana dashboard, one alert rule that actually fires.'],
-    [null,'CloudWatch Container Insights at overview level.'],
-    ['resume','Add project 3. Add Kubernetes, Helm, EKS to Containers. Add Prometheus, Grafana, CloudWatch to a Monitoring group.'],
-    ['cost','Destroy the EKS cluster at the end of the week. It is the most expensive thing in this plan.']
-  ]},
-  {n:12,phase:'p5',title:'Portfolio, keywords, explanations',course:'Decoding DevOps: GitOps project with ArgoCD, as the stretch.',apply:'All titles above. Hiring slows from Dec 20 to Jan 2. Keep sending, they are read in the first week of January.',items:[
-    ['build','Each repo: README with architecture diagram, how to run, and a design decisions paragraph.'],
-    [null,'Pin the three repos on your GitHub profile. Profile README with the credential strip.'],
-    [null,'Practice a two-minute explanation of each project aloud. Record yourself once and listen back.'],
-    ['resume','Keyword pass. These exact words must appear: DevOps, CI/CD, Infrastructure as Code, AWS, Terraform, Kubernetes, Docker, Linux, Python, monitoring, automation.'],
-    ['resume','Final one-page pass. Cut objective statements, coursework lists, long Cisco feature lists. Keep education with degree and graduation date.'],
-    ['build','Stretch: the GitOps project from Decoding DevOps. ArgoCD on EKS syncing your Helm chart from Git. It talks better in interviews than the Terraform Associate exam.'],
-    ['cost','Confirm every AWS resource is destroyed. Check the bill one last time.']
-  ]},
-  {n:13,phase:'p5',title:'Holiday catch-up',course:'Nothing new. Re-watch any Decoding DevOps section whose item above is still unticked.',apply:'All titles above. Resend the final resume with the three repo links.',items:[
-    [null,'Finish every unticked item from weeks 1 to 12 before starting anything new.'],
-    [null,'Keep the three repos warm: one small improvement each, so the commit history is not frozen when a hiring manager opens it.'],
-    [null,'Re-record the two-minute explanation of each project and listen back once.'],
-    ['resume','Send the final resume and the three repo links to whoever is applying for you, if not already done.']
-  ]},
-  {n:14,phase:'p6',title:'KCNA domains',course:'KCNA course: cloud native fundamentals, then Kubernetes fundamentals to advanced with the browser labs. Docker section at overview.',apply:'Add: site reliability engineer I, associate SRE, cloud platform engineer.',items:[
-    ['book','Book the KCNA for the last day of week 15. Check whether the registration includes the killer.sh KCNA simulator and save it for week 15.'],
-    [null,'Kubernetes fundamentals, 46 percent: architecture, the API and objects, containers, scheduling, kubectl, namespaces, RBAC basics. Revision of weeks 10 and 11.'],
-    [null,'Container orchestration, 22 percent: CNI networking, CSI storage, CRI runtimes, security contexts and policies, service mesh concepts.'],
-    [null,'Cloud native architecture, 16 percent: autoscaling, serverless, open standards, the CNCF landscape and project maturity levels, community roles.'],
-    [null,'Observability, 8 percent: Prometheus, OpenTelemetry concepts, logs, metrics, traces, cost management.'],
-    [null,'Application delivery, 8 percent: GitOps, ArgoCD and Flux, CI/CD fundamentals. If you did the week 12 stretch this is done.']
-  ]},
-  {n:15,phase:'p6',title:'KCNA exam',course:'KCNA course: container orchestration, observability, Argo CD, then both practice exams and the exam tips section.',apply:'All titles. Resend the resume with KCNA on it the day you pass.',items:[
-    [null,'Both course practice exams above 80 percent, every wrong answer traced back to its lecture. killer.sh simulator on top if included.'],
-    [null,'Re-read the CNCF landscape and the Kubernetes glossary once. The exam asks for definitions, not for typing commands.'],
-    ['exam','Sit the KCNA at the end of the week.'],
-    ['resume','Add KCNA under certifications and Kubernetes to the credential strip the day you pass. Send the updated resume to whoever is applying for you.']
-  ]}
-];
-
-var DONE=[
-  'AWS SAA passed and on the resume with the credential ID.',
-  'Three pinned repos, each with an architecture diagram and a README.',
-  'Resume has the headline, grouped skills, certifications, three projects, and fits one page.',
-  'You can write a two-AZ VPC in Terraform from memory.',
-  'You can write a Dockerfile and a GitHub Actions workflow from memory.',
-  'You can debug a crashing pod with kubectl.',
-  'You can explain each project in two minutes without notes.'
-];
-
-var TIMELINES=[{"name": "AWS Certified Solutions Architect Associate (SAA-C03)", "hue": "amber", "rows": [[1, "Getting started, IAM and AWS CLI, EC2 fundamentals, EC2 at SAA level, EC2 instance storage (EBS, EFS), high availability and scalability (ELB, ASG)", "full"], [2, "RDS, Aurora, ElastiCache. Route 53. Classic solutions architecture. S3 introduction, advanced S3, S3 security. CloudFront and Global Accelerator. Storage extras (Snow, FSx, Storage Gateway, Transfer Family, DataSync)", "full"], [3, "Decoupling (SQS, SNS, Kinesis). Containers (ECS, Fargate, ECR, EKS). Serverless (Lambda, DynamoDB, API Gateway, Cognito). Serverless architectures. Databases in AWS. Monitoring (CloudWatch, CloudTrail, Config)", "full"], [3, "Data and analytics. Machine learning services", "over"], [4, "IAM advanced (Organizations, SCPs, STS). Security and encryption (KMS, SSM, Secrets Manager, Shield, WAF, GuardDuty). Networking VPC, your strongest domain. Disaster recovery and migrations. More solutions architecture. Well-Architected and whitepapers. First run of the included practice exam", "full"], [4, "Other services section", "over"], [5, "Exam prep section. Practice exam again, Tutorials Dojo sets, slides PDF for revision. Exam on the last day", "full"]]}, {"name": "HashiCorp Terraform: The Ultimate Beginner's Guide with Labs", "hue": "purple", "rows": [[6, "Days 1 and 2: IaC principles, installation, provider setup, CLI workflow (init, plan, apply, destroy, fmt, validate)", "full"], [6, "Days 3 and 4: resources, variables, outputs, locals, data sources, refactoring for DRY code", "full"], [6, "Days 5 to 7: state, every remaining lab, then the roadmap VPC module built with what you learned", "full"]]}, {"name": "Decoding DevOps, From Basics to Advanced Projects with AI", "hue": "teal", "rows": [[1, "Linux and server management (with the Gemini CLI parts)", "full"], [1, "Vagrant setup. You use EC2 instead", "over"], [2, "Bash scripting, first half", "full"], [2, "Networking fundamentals. Your CCNA covers it", "over"], [3, "YAML and JSON. Bash scripting, second half", "full"], [4, "Bash scripting labs with GitHub Copilot", "full"], [4, "AWS Cloud section, one pass at 1.5x as SAA revision", "over"], [5, "Nothing. SAA exam week", "over"], [6, "Python scripting basics, in the daily slot", "full"], [7, "Infrastructure as Code with Terraform (VPC, modules, backends). Configuration management with Ansible", "full"], [8, "Docker. Python for automation and AWS tasks with Amazon Q", "full"], [9, "Git. GitHub Actions in full. Jenkins basics, one day", "full"], [9, "Maven, GitLab CI, Nexus, SonarQube, Slack integration. AWS DevOps services: CodeCommit, CodeBuild, CodePipeline, Beanstalk, Lambda", "over"], [10, "Kubernetes, first half: architecture, kubectl, pods, deployments, services, ingress, config, probes", "full"], [11, "Kubernetes, second half, production-grade setup. Helm. Lens. Prometheus, Grafana, Alertmanager", "full"], [11, "Loki and Alloy", "over"], [12, "GitOps project: GitHub Actions, Kubernetes, Helm, ArgoCD, as the stretch", "full"]]}, {"name": "Kubernetes and Cloud Native Associate (KCNA) Exam Course", "hue": "blue", "rows": [[14, "Days 1 and 2: introduction, cloud native fundamentals and architecture (CNCF, personas, open standards, autoscaling, serverless, community and governance)", "full"], [14, "Day 2: Docker and containers from the ground up. One pass, labs only where something is new", "over"], [14, "Days 3 to 7: Kubernetes fundamentals to advanced with every browser lab. Largest section, 46 percent of the exam", "full"], [15, "Days 1 and 2: container orchestration (CNI networking, CSI storage, CRI runtimes, security, service mesh)", "full"], [15, "Day 3: telemetry and observability, Prometheus and Grafana hands-on", "full"], [15, "Day 4: GitOps and cloud native application delivery with Argo CD. Overview instead if you did the week 12 stretch", "full"], [15, "Days 5 and 6: both practice exams, review every wrong answer, exam tips section. Day 7: the exam", "full"]]}];
+var GAP={week:13,text:"Holiday catch-up. Nothing new. Finish every unticked section above, one small commit per repo, and send the final resume with the three repo links to whoever applies for you."};
 
 var state={done:{},startDate:START_DEFAULT};
 
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
-function itemHtml(id,kind,text){
-  var tag=kind?'<span class="tag">'+TAGS[kind]+'</span>':'';
-  return '<li class="item'+(kind==='resume'?' resume':'')+'" data-id="'+id+'"><input type="checkbox" id="'+id+'"><label for="'+id+'">'+tag+esc(text)+'</label></li>';
-}
-function build(){
-  var html='';
-  PHASES.forEach(function(p){
-    html+='<section class="phase" data-hue="'+p.hue+'" id="'+p.id+'">'+
-      '<div class="phase-head"><span class="eyebrow">'+p.label+'</span><h2>'+esc(p.name)+'</h2>'+
-      '<span class="span">'+p.span+' · <span data-pprog="'+p.id+'"></span></span></div>'+
-      '<p class="blurb">'+esc(p.blurb)+'</p>';
-    WEEKS.filter(function(w){return w.phase===p.id;}).forEach(function(w){
-      html+='<article class="week" id="week-'+w.n+'" data-week="'+w.n+'"><div class="week-head">'+
-        '<span class="wk">Week '+w.n+'</span><span class="dates" data-dates="'+w.n+'"></span>'+
-        '<h3>'+esc(w.title)+'</h3><span class="pill" data-pill="'+w.n+'" hidden></span>'+
-        '<span class="count" data-count="'+w.n+'"></span></div>'+
-        (w.course?'<p class="course"><span class="lbl">Courses</span><span>'+esc(w.course)+'</span></p>':'')+
-        (w.apply?'<p class="course"><span class="lbl">Apply</span><span>'+esc(w.apply)+'</span></p>':'')+'<ul class="items">';
-      w.items.forEach(function(it,i){html+=itemHtml('w'+w.n+'-'+(i+1),it[0],it[1]);});
-      html+='</ul></article>';
-    });
-    html+='</section>';
-  });
-  document.getElementById('phases').innerHTML=html;
-  var th='';
-  TIMELINES.forEach(function(t){
-    th+='<div class="tl" data-hue="'+t.hue+'"><h3>'+esc(t.name)+'</h3><div class="tl-scroll"><table><thead><tr><th>Week</th><th>Dates</th><th>Sections</th><th>Depth</th></tr></thead><tbody>';
-    t.rows.forEach(function(r){
-      th+='<tr><td class="wk">Week '+r[0]+'</td><td class="dates" data-dates="'+r[0]+'"></td><td>'+esc(r[1])+'</td><td><span class="depth '+r[2]+'">'+(r[2]==='full'?'Full':'Overview')+'</span></td></tr>';
-    });
-    th+='</tbody></table></div></div>';
-  });
-  document.getElementById('timelines').innerHTML=th;
-  document.getElementById('done-list').innerHTML=DONE.map(function(t,i){return itemHtml('d-'+(i+1),null,t);}).join('');
-}
-
 function parseDate(s){
   var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s||'');
   if(!m) return parseDate(START_DEFAULT);
@@ -539,54 +269,74 @@ function parseDate(s){
 function addDays(d,n){var x=new Date(d.getTime());x.setDate(x.getDate()+n);return x;}
 function fmt(d){return d.toLocaleDateString('en-US',{month:'short',day:'numeric'});}
 function fmtYear(d){return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});}
+function weekRange(start,n){var s=addDays(start,7*(n-1));return fmt(s)+' – '+fmt(addDays(s,6));}
+function spanRange(start,a,b){return fmt(addDays(start,7*(a-1)))+' – '+fmt(addDays(start,7*(b-1)+6));}
+
+function build(){
+  var html='';
+  COURSES.forEach(function(c,ci){
+    if(GAP&&GAP.week===c.weeks[0]-1&&ci>0){
+      html+='<div class="gap"><span class="wk">Week '+GAP.week+' · <span data-dates="'+GAP.week+'"></span></span><span>'+esc(GAP.text)+'</span></div>';
+    }
+    html+='<article class="card" data-hue="'+c.hue+'" id="'+c.id+'">'+
+      '<div class="card-head"><span class="wk">Course '+(ci+1)+' · '+(c.weeks[0]===c.weeks[1]?'Week '+c.weeks[0]:'Weeks '+c.weeks[0]+' to '+c.weeks[1])+'</span>'+
+      '<span class="dates" data-span="'+c.id+'"></span><h3>'+esc(c.name)+'</h3>'+
+      '<span class="pill" data-pill="'+c.id+'" hidden></span><span class="count" data-count="'+c.id+'"></span></div>'+
+      '<ul class="items">';
+    c.rows.forEach(function(r,i){
+      var id=c.id+'-'+(i+1);
+      html+='<li class="item" data-id="'+id+'"><input type="checkbox" id="'+id+'"><label for="'+id+'">'+
+        '<span class="wk">Week '+r[0]+'</span><span class="dates" data-dates="'+r[0]+'"></span>'+esc(r[1])+
+        '<span class="depth '+r[2]+'">'+(r[2]==='full'?'Full':'Overview')+'</span></label></li>';
+    });
+    html+='</ul>';
+    if(c.notes&&c.notes.length){html+='<ul class="notes">'+c.notes.map(function(n){return '<li>'+esc(n)+'</li>';}).join('')+'</ul>';}
+    html+='<p class="line"><span class="lbl">Resume</span><span>'+esc(c.resume)+'</span></p>';
+    html+='<p class="line apply"><span class="lbl">Apply during</span><span>'+esc(c.during)+'</span></p>';
+    html+='<p class="line apply"><span class="lbl">Apply after</span><span>'+esc(c.after)+'</span></p>';
+    html+='</article>';
+  });
+  document.getElementById('courses').innerHTML=html;
+}
 
 function paint(){
   var start=parseDate(state.startDate);
   var today=new Date(); today.setHours(0,0,0,0);
-  var idx=Math.floor((today-start)/(7*864e5));
+  var idx=Math.floor((today-start)/(7*864e5))+1;
   document.getElementById('start-date').value=state.startDate;
-  document.getElementById('end-date').textContent=fmtYear(addDays(start,83));
   document.getElementById('exam-date').textContent='by '+fmt(addDays(start,34));
+  document.getElementById('end-date').textContent=fmtYear(addDays(start,83));
   document.getElementById('kcna-date').textContent='by '+fmt(addDays(start,104));
 
-  var total=0,done=0,phaseTotals={},phaseDone={};
-  var lis=document.querySelectorAll('.item');
-  for(var i=0;i<lis.length;i++){
-    var li=lis[i],id=li.getAttribute('data-id'),on=!!state.done[id];
-    li.querySelector('input').checked=on;
-    li.classList.toggle('done',on);
-  }
-  WEEKS.forEach(function(w){
-    var t=w.items.length,d=0;
-    for(var i=1;i<=t;i++) if(state.done['w'+w.n+'-'+i]) d++;
-    total+=t; done+=d;
-    phaseTotals[w.phase]=(phaseTotals[w.phase]||0)+t;
-    phaseDone[w.phase]=(phaseDone[w.phase]||0)+d;
-    document.querySelector('[data-count="'+w.n+'"]').textContent=d+'/'+t;
-    var s=addDays(start,7*(w.n-1));
-    var dl=document.querySelectorAll('[data-dates="'+w.n+'"]');
-    for(var j=0;j<dl.length;j++) dl[j].textContent=fmt(s)+' – '+fmt(addDays(s,6));
-    var art=document.getElementById('week-'+w.n), pill=document.querySelector('[data-pill="'+w.n+'"]');
-    var now=(idx===w.n-1);
-    art.classList.toggle('now',now);
-    if(now){pill.textContent='This week';pill.hidden=false;}
-    else if(w.n===1&&idx<0){var days=Math.round((start-today)/864e5);pill.textContent=days===1?'Starts tomorrow':'Starts in '+days+' days';pill.hidden=false;}
+  var dl=document.querySelectorAll('[data-dates]');
+  for(var i=0;i<dl.length;i++){dl[i].textContent=weekRange(start,+dl[i].getAttribute('data-dates'));}
+
+  var total=0,done=0;
+  COURSES.forEach(function(c){
+    var t=c.rows.length,d=0;
+    for(var i=1;i<=t;i++){
+      var id=c.id+'-'+i,on=!!state.done[id];
+      var li=document.querySelector('.item[data-id="'+id+'"]');
+      li.querySelector('input').checked=on; li.classList.toggle('done',on);
+      if(on)d++;
+    }
+    total+=t;done+=d;
+    document.querySelector('[data-count="'+c.id+'"]').textContent=d+'/'+t;
+    document.querySelector('[data-span="'+c.id+'"]').textContent=spanRange(start,c.weeks[0],c.weeks[1]);
+    var now=idx>=c.weeks[0]&&idx<=c.weeks[1];
+    var card=document.getElementById(c.id),pill=document.querySelector('[data-pill="'+c.id+'"]');
+    card.classList.toggle('now',now);
+    if(now){pill.textContent='Now';pill.hidden=false;}
+    else if(c.id==='c1'&&idx<1){var days=Math.round((start-today)/864e5);pill.textContent=days===1?'Starts tomorrow':'Starts in '+days+' days';pill.hidden=false;}
     else{pill.hidden=true;}
   });
-  PHASES.forEach(function(p){document.querySelector('[data-pprog="'+p.id+'"]').textContent=(phaseDone[p.id]||0)+'/'+(phaseTotals[p.id]||0);});
-  var dt=DONE.length,dd=0;
-  for(var k=1;k<=dt;k++) if(state.done['d-'+k]) dd++;
-  total+=dt; done+=dd;
-  document.getElementById('done-prog').textContent=dd+'/'+dt;
   document.getElementById('num').textContent=done+' / '+total+' done';
   document.getElementById('fill').style.width=(total?Math.round(100*done/total):0)+'%';
 }
 
 function setFoot(t){document.getElementById('foot').textContent=t;}
 function saveLocal(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
-function loadLocal(){
-  try{var raw=localStorage.getItem(KEY);if(!raw)return;var d=JSON.parse(raw);applyData(d,false);}catch(e){}
-}
+function loadLocal(){try{var raw=localStorage.getItem(KEY);if(!raw)return;applyData(JSON.parse(raw),false);}catch(e){}}
 function applyData(d,repaint){
   if(!d||typeof d!=='object')return;
   state.done=(d.done&&typeof d.done==='object')?Object.assign({},d.done):{};
@@ -594,7 +344,6 @@ function applyData(d,repaint){
   if(repaint!==false) paint();
 }
 
-/* shared store: the artifact database when this page runs inside claude.ai */
 var docRef=null,writing=false,dirty=false,firstSnap=true,retried=false;
 function persist(){saveLocal();if(docRef){dirty=true;flush();}}
 function flush(){
