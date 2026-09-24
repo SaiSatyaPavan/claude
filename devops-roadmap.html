@@ -184,7 +184,7 @@ section{display:grid;gap:14px}
 
   <section class="decisions" aria-label="Certification decisions">
     <div class="decision" data-v="take"><div class="name">AWS Solutions Architect Associate</div><div class="verdict">Take, week 5</div><p class="why">The keyword recruiters filter on first. Book it in week 1.</p></div>
-    <div class="decision" data-v="later"><div class="name">Terraform Associate</div><div class="verdict">After January</div><p class="why">Course 3 repeats the Terraform of weeks 6 and 7. Take the exam once employed. Week 12 goes to ArgoCD instead.</p></div>
+    <div class="decision" data-v="later"><div class="name">Terraform Associate</div><div class="verdict">Skip</div><p class="why">Not needed. The Terraform course plus a working VPC repo say more than the exam. Week 12 goes to ArgoCD instead.</p></div>
     <div class="decision" data-v="later"><div class="name">CKA</div><div class="verdict">After hire</div><p class="why">Two to three months on its own. First six months on the job, employer usually pays.</p></div>
     <div class="decision" data-v="take"><div class="name">KCNA</div><div class="verdict">Take, January</div><p class="why">Multiple choice, two weeks of prep in January while applications are out. Weeks 14 and 15 below.</p></div>
   </section>
@@ -201,7 +201,7 @@ section{display:grid;gap:14px}
 
   <section class="phase" data-hue="slate" id="courses">
     <div class="phase-head"><span class="eyebrow">Your three courses</span><h2>What to take and what to skip</h2></div>
-    <p class="blurb">Together the three courses hold roughly 100 hours of video. Watched end to end, with hands-on time, that is a 25-hour week for twelve weeks. Cherry-picked as below it is closer to 17 hours a week, which leaves room for the projects.</p>
+    <p class="blurb">Together the three courses hold roughly 90 hours of video. Watched end to end, with hands-on time, that is a 22-hour week for twelve weeks. Cherry-picked as below it is closer to 17 hours a week, which leaves room for the projects.</p>
     <div class="courses">
       <div class="ccard" data-v="primary">
         <div class="name">AWS Certified Solutions Architect Associate (SAA-C03)</div>
@@ -221,7 +221,7 @@ section{display:grid;gap:14px}
         <span class="lbl">Take</span>
         <ul>
           <li>Linux and server management, Bash, YAML and JSON, in the daily slot of weeks 1 to 4.</li>
-          <li>Terraform (VPC, modules, backends) and Ansible, weeks 6 and 7.</li>
+          <li>Terraform section for the VPC, modules and backends project in week 7, after the Terraform course, then Ansible.</li>
           <li>Docker and Python for AWS automation, week 8.</li>
           <li>GitHub Actions in full and Jenkins at basic level, week 9.</li>
           <li>Kubernetes, Helm, Prometheus, Grafana, Alertmanager, weeks 10 and 11.</li>
@@ -236,15 +236,17 @@ section{display:grid;gap:14px}
           <li>Loki and Alloy, until Prometheus and Grafana work.</li>
         </ul>
       </div>
-      <div class="ccard" data-v="skip">
-        <div class="name">HashiCorp Certified: Terraform Associate and DevOps Projects</div>
-        <div class="verdict">Skip until employed</div>
-        <span class="lbl">Why</span>
+      <div class="ccard" data-v="primary">
+        <div class="name">HashiCorp Terraform: The Ultimate Beginner's Guide with Labs</div>
+        <div class="verdict">Primary for Terraform, week 6</div>
+        <span class="lbl">Take</span>
         <ul>
-          <li>Its Terraform content repeats the Decoding DevOps section you do in weeks 6 and 7.</li>
-          <li>The Terraform Associate exam is a weak resume filter. A working VPC repo says more.</li>
-          <li>Return to it for the exam after January, when an employer may pay for it.</li>
+          <li>All of it, in order, in week 6: install, providers, CLI workflow, state, variables, outputs, locals, DRY refactoring.</li>
+          <li>Do every lab by hand. Do not copy the finished code from the repo.</li>
+          <li>Then the Decoding DevOps Terraform section in week 7 for the AWS VPC, modules and backends project.</li>
         </ul>
+        <span class="lbl">Skip</span>
+        <ul><li>Nothing. It is short and hands-on. The Terraform Associate exam itself is not needed.</li></ul>
       </div>
     </div>
     <p class="blurb">Two rules for all three. The course sample apps sit in hundreds of GitHub portfolios, so follow each project once, then rebuild it for a different small app in your own repo with your own README. And use the AI assistants the course shows for speed, but be able to explain every line, because interviewers ask.</p>
@@ -263,7 +265,7 @@ section{display:grid;gap:14px}
       <div class="phase-head"><span class="eyebrow">Deliberately skipped</span><h2>Not in this plan</h2></div>
       <ul class="plain">
         <li><span class="k">CKA</span><span class="v">After you are hired, within the first six months. Employers usually pay for it.</span></li>
-        <li><span class="k">Terraform Associate</span><span class="v">After January. Course 3 waits with it.</span></li>
+        <li><span class="k">Terraform Associate</span><span class="v">Not needed. The Terraform course and a working VPC repo cover it.</span></li>
         <li><span class="k">AWS DevOps Pro</span><span class="v">After a year on the job.</span></li>
         <li><span class="k">Vagrant, GitLab CI, Beanstalk, CodeCommit</span><span class="v">Not resume skills for this window. Overview lectures only.</span></li>
         <li><span class="k">Service mesh, Loki, Alloy</span><span class="v">Learn on the job when a team uses them.</span></li>
@@ -275,7 +277,7 @@ section{display:grid;gap:14px}
         <li><span class="k">AWS SAA</span><span class="v">Your SAA-C03 course. Tutorials Dojo practice exams. AWS Skill Builder exam prep.</span></li>
         <li><span class="k">DevOps</span><span class="v">Decoding DevOps, the sections named on each week card.</span></li>
         <li><span class="k">Linux</span><span class="v">Linux Journey. OverTheWire Bandit.</span></li>
-        <li><span class="k">Terraform</span><span class="v">HashiCorp developer tutorials for AWS. Terraform Registry AWS modules.</span></li>
+        <li><span class="k">Terraform</span><span class="v">Your Terraform course, The Ultimate Beginner's Guide with Labs. Terraform Registry AWS modules.</span></li>
         <li><span class="k">Ansible</span><span class="v">The course section, then the official Getting Started guide.</span></li>
         <li><span class="k">Docker</span><span class="v">Docker Get Started docs. Bret Fisher, Docker Mastery.</span></li>
         <li><span class="k">GitHub Actions</span><span class="v">Official docs. The aws-actions configure-aws-credentials OIDC guide.</span></li>
@@ -302,7 +304,7 @@ var PHASES=[
   {id:'p1',hue:'amber',label:'Phase 1',name:'AWS SAA, Linux, Git',span:'Weeks 1 to 5',
    blurb:'One video course, practice exams until you score above 80 percent, and the real exam at the end of week 5. Thirty minutes of Linux and Git every day in parallel. Your CCNA makes VPC and networking your strongest domain, so aim for full marks there.'},
   {id:'p2',hue:'purple',label:'Phase 2',name:'Terraform and a taste of Ansible',span:'Weeks 6 to 7',
-   blurb:'Build the network you already understand, but from code. Project 1 is a multi-AZ VPC with a load balancer, an Auto Scaling group, and a database, reproducible in one apply.'},
+   blurb:'The Terraform course first, then build the network you already understand from code. Project 1 is a multi-AZ VPC with a load balancer, an Auto Scaling group, and a database, reproducible in one apply.'},
   {id:'p3',hue:'teal',label:'Phase 3',name:'Docker, CI/CD, Python',span:'Weeks 8 to 9',
    blurb:'Containerize an app and ship it through a pipeline with no static keys. Project 2 is the pipeline, on GitHub Actions, with one day of Jenkins so the word is not new in interviews. The Python script bridges your networking background to automation.'},
   {id:'p4',hue:'blue',label:'Phase 4',name:'Kubernetes and observability',span:'Weeks 10 to 11',
@@ -359,15 +361,15 @@ var WEEKS=[
     ['linux','Daily practice continues. Work through OverTheWire Bandit levels 0 to 15.'],
     ['resume','Replace exam scheduled with the pass date and credential ID. Add a Cloud group with the services you can explain: VPC, EC2, S3, IAM, RDS, ELB, Route 53, CloudWatch, Lambda.']
   ]},
-  {n:6,phase:'p2',title:'Terraform core and state',course:'Decoding DevOps: Terraform section (VPC, modules, backends). Its Python basics for the daily slot.',apply:'Start: Cloud Support Associate at AWS, cloud support engineer at MSPs, cloud engineer I, cloud operations engineer, cloud network engineer. Network engineer I and NOC as fallbacks. Associate cloud programs at Infosys, TCS, Cognizant, Accenture, Capgemini.',items:[
-    [null,'Install Terraform. Providers, resources, variables, outputs, locals, data sources.'],
+  {n:6,phase:'p2',title:'Terraform core and state',course:'Terraform course: all of it in order, every lab, this week. Decoding DevOps: Python basics for the daily slot.',apply:'Start: Cloud Support Associate at AWS, cloud support engineer at MSPs, cloud engineer I, cloud operations engineer, cloud network engineer. Network engineer I and NOC as fallbacks. Associate cloud programs at Infosys, TCS, Cognizant, Accenture, Capgemini.',items:[
+    [null,'Install Terraform. Providers, CLI workflow, resources, variables, outputs, locals, data sources, DRY refactoring with locals.'],
     [null,'count, for_each, lifecycle rules, tfvars files, fmt, validate, plan, apply, destroy.'],
     [null,'Remote state: S3 backend with state locking. terraform import. Never edit state by hand.'],
     ['build','VPC module: public and private subnets across two AZs, internet gateway, NAT, route tables.'],
     ['python','Thirty minutes a day from here on: variables, lists, dicts, functions, reading JSON and YAML.'],
     ['cost','Destroy the NAT gateway when you stop for the day. It bills by the hour.']
   ]},
-  {n:7,phase:'p2',title:'Modules, project 1, Ansible',course:'Decoding DevOps: finish Terraform, then the Ansible section.',apply:'Same titles. Resend the resume the day project 1 goes live.',items:[
+  {n:7,phase:'p2',title:'Modules, project 1, Ansible',course:'Decoding DevOps: Terraform section for the VPC, modules and backends project, then the Ansible section.',apply:'Same titles. Resend the resume the day project 1 goes live.',items:[
     [null,'Write your own module, then consume a public Terraform Registry module and read its source.'],
     ['build','Project 1 complete: ALB, Auto Scaling group, RDS in a private subnet, security groups, all from code. tflint clean.'],
     ['build','README with an architecture diagram and a run guide that works from one apply.'],
