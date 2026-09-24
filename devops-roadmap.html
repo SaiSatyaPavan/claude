@@ -120,12 +120,27 @@ section{display:grid;gap:14px}
 .course{font-size:.9rem;color:var(--ink-2);display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:baseline}
 .course .lbl{color:var(--hue);white-space:nowrap}
 
+/* course timelines */
+.tl-list{display:grid;gap:24px}
+.tl{display:grid;gap:8px}
+.tl h3{color:var(--hue)}
+.tl-scroll{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:var(--r)}
+.tl table{width:100%;border-collapse:collapse;font-size:.92rem;min-width:520px}
+.tl th{text-align:left;font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);font-weight:500;padding:8px 10px;border-bottom:1px solid var(--line)}
+.tl td{padding:8px 10px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+.tl tr:last-child td{border-bottom:0}
+.tl td.wk,.tl td.dates{white-space:nowrap;font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;font-size:.8rem;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.tl td.wk{color:var(--hue);font-weight:500}
+.depth{display:inline-block;font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;font-size:.66rem;text-transform:uppercase;letter-spacing:.06em;padding:0 6px;border-radius:2px;line-height:1.7;white-space:nowrap}
+.depth.full{background:var(--hue-wash);color:var(--hue)}
+.depth.over{background:var(--panel-3);color:var(--ink-2)}
+
 /* phases and weeks */
-.phase[data-hue="amber"]{--hue:var(--amber);--hue-wash:var(--amber-wash)}
-.phase[data-hue="purple"]{--hue:var(--purple);--hue-wash:var(--purple-wash)}
-.phase[data-hue="teal"]{--hue:var(--teal);--hue-wash:var(--teal-wash)}
-.phase[data-hue="blue"]{--hue:var(--blue);--hue-wash:var(--blue-wash)}
-.phase[data-hue="slate"]{--hue:var(--slate);--hue-wash:var(--slate-wash)}
+[data-hue="amber"]{--hue:var(--amber);--hue-wash:var(--amber-wash)}
+[data-hue="purple"]{--hue:var(--purple);--hue-wash:var(--purple-wash)}
+[data-hue="teal"]{--hue:var(--teal);--hue-wash:var(--teal-wash)}
+[data-hue="blue"]{--hue:var(--blue);--hue-wash:var(--blue-wash)}
+[data-hue="slate"]{--hue:var(--slate);--hue-wash:var(--slate-wash)}
 .phases{display:grid;gap:40px}
 .phase-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;border-bottom:2px solid var(--hue);padding-bottom:8px}
 .phase-head .eyebrow{color:var(--hue)}
@@ -200,8 +215,8 @@ section{display:grid;gap:14px}
   </section>
 
   <section class="phase" data-hue="slate" id="courses">
-    <div class="phase-head"><span class="eyebrow">Your three courses</span><h2>What to take and what to skip</h2></div>
-    <p class="blurb">Together the three courses hold roughly 90 hours of video. Watched end to end, with hands-on time, that is a 22-hour week for twelve weeks. Cherry-picked as below it is closer to 17 hours a week, which leaves room for the projects.</p>
+    <div class="phase-head"><span class="eyebrow">Your three courses</span><h2>What to take, and at what depth</h2></div>
+    <p class="blurb">Together the three courses hold roughly 90 hours of video. Watched end to end, with hands-on time, that is a 22-hour week for twelve weeks. Taken at the depths below, Full with every lab and Overview as one pass at 1.5x with no labs, it is closer to 17 hours a week, which leaves room for the projects.</p>
     <div class="courses">
       <div class="ccard" data-v="primary">
         <div class="name">AWS Certified Solutions Architect Associate (SAA-C03)</div>
@@ -212,8 +227,8 @@ section{display:grid;gap:14px}
           <li>Add Tutorials Dojo practice sets in weeks 4 and 5. One practice exam is not enough.</li>
           <li>Confirm the exam code on the AWS certification page when you book. If a newer version is live, the course still covers most of it. Buy practice exams for the live version.</li>
         </ul>
-        <span class="lbl">Skip</span>
-        <ul><li>Nothing. The slides PDF is your revision deck for week 5.</li></ul>
+        <span class="lbl">Overview only</span>
+        <ul><li>Machine learning, data and analytics, and the other services section. One pass, no notes.</li></ul>
       </div>
       <div class="ccard" data-v="pick">
         <div class="name">Decoding DevOps, From Basics to Advanced Projects with AI</div>
@@ -227,13 +242,13 @@ section{display:grid;gap:14px}
           <li>Kubernetes, Helm, Prometheus, Grafana, Alertmanager, weeks 10 and 11.</li>
           <li>The GitOps project with ArgoCD, week 12 stretch.</li>
         </ul>
-        <span class="lbl">Skip</span>
+        <span class="lbl">Overview only</span>
         <ul>
-          <li>Its AWS section. The SAA course already covers it.</li>
-          <li>Vagrant. Use EC2 or WSL instead.</li>
-          <li>Maven, Nexus, SonarQube, GitLab CI: one overview lecture each, no labs.</li>
-          <li>CodeCommit, CodeBuild, CodePipeline, Beanstalk: CodeCommit is closed to new customers. One overview lecture, no labs.</li>
-          <li>Loki and Alloy, until Prometheus and Grafana work.</li>
+          <li>Its AWS section, one pass at 1.5x as SAA revision.</li>
+          <li>Vagrant and networking fundamentals. You use EC2, and you hold a CCNA.</li>
+          <li>Maven, Nexus, SonarQube, GitLab CI, Slack integration. Know what each is for.</li>
+          <li>CodeCommit, CodeBuild, CodePipeline, Beanstalk. CodeCommit is closed to new customers.</li>
+          <li>Loki and Alloy, after Prometheus and Grafana work.</li>
         </ul>
       </div>
       <div class="ccard" data-v="primary">
@@ -245,11 +260,17 @@ section{display:grid;gap:14px}
           <li>Do every lab by hand. Do not copy the finished code from the repo.</li>
           <li>Then the Decoding DevOps Terraform section in week 7 for the AWS VPC, modules and backends project.</li>
         </ul>
-        <span class="lbl">Skip</span>
-        <ul><li>Nothing. It is short and hands-on. The Terraform Associate exam itself is not needed.</li></ul>
+        <span class="lbl">Overview only</span>
+        <ul><li>Nothing. Every section in full. The Terraform Associate exam itself is not needed.</li></ul>
       </div>
     </div>
     <p class="blurb">Two rules for all three. The course sample apps sit in hundreds of GitHub portfolios, so follow each project once, then rebuild it for a different small app in your own repo with your own README. And use the AI assistants the course shows for speed, but be able to explain every line, because interviewers ask.</p>
+  </section>
+
+  <section class="phase" data-hue="slate" id="timelines-wrap">
+    <div class="phase-head"><span class="eyebrow">One timeline per course</span><h2>Course timelines</h2></div>
+    <p class="blurb">Each course on its own calendar, in the order the instructor built it. Full means normal speed with every lab. Overview means one pass at 1.5x speed, no labs, so you know what the tool is for when a job posting names it.</p>
+    <div class="tl-list" id="timelines"></div>
   </section>
 
   <div class="phases" id="phases"></div>
@@ -453,6 +474,8 @@ var DONE=[
   'You can explain each project in two minutes without notes.'
 ];
 
+var TIMELINES=[{"name": "AWS Certified Solutions Architect Associate (SAA-C03)", "hue": "amber", "rows": [[1, "Getting started, IAM and AWS CLI, EC2 fundamentals, EC2 at SAA level, EC2 instance storage (EBS, EFS), high availability and scalability (ELB, ASG)", "full"], [2, "RDS, Aurora, ElastiCache. Route 53. Classic solutions architecture. S3 introduction, advanced S3, S3 security. CloudFront and Global Accelerator. Storage extras (Snow, FSx, Storage Gateway, Transfer Family, DataSync)", "full"], [3, "Decoupling (SQS, SNS, Kinesis). Containers (ECS, Fargate, ECR, EKS). Serverless (Lambda, DynamoDB, API Gateway, Cognito). Serverless architectures. Databases in AWS. Monitoring (CloudWatch, CloudTrail, Config)", "full"], [3, "Data and analytics. Machine learning services", "over"], [4, "IAM advanced (Organizations, SCPs, STS). Security and encryption (KMS, SSM, Secrets Manager, Shield, WAF, GuardDuty). Networking VPC, your strongest domain. Disaster recovery and migrations. More solutions architecture. Well-Architected and whitepapers. First run of the included practice exam", "full"], [4, "Other services section", "over"], [5, "Exam prep section. Practice exam again, Tutorials Dojo sets, slides PDF for revision. Exam on the last day", "full"]]}, {"name": "HashiCorp Terraform: The Ultimate Beginner's Guide with Labs", "hue": "purple", "rows": [[6, "Days 1 and 2: IaC principles, installation, provider setup, CLI workflow (init, plan, apply, destroy, fmt, validate)", "full"], [6, "Days 3 and 4: resources, variables, outputs, locals, data sources, refactoring for DRY code", "full"], [6, "Days 5 to 7: state, every remaining lab, then the roadmap VPC module built with what you learned", "full"]]}, {"name": "Decoding DevOps, From Basics to Advanced Projects with AI", "hue": "teal", "rows": [[1, "Linux and server management (with the Gemini CLI parts)", "full"], [1, "Vagrant setup. You use EC2 instead", "over"], [2, "Bash scripting, first half", "full"], [2, "Networking fundamentals. Your CCNA covers it", "over"], [3, "YAML and JSON. Bash scripting, second half", "full"], [4, "Bash scripting labs with GitHub Copilot", "full"], [4, "AWS Cloud section, one pass at 1.5x as SAA revision", "over"], [5, "Nothing. SAA exam week", "over"], [6, "Python scripting basics, in the daily slot", "full"], [7, "Infrastructure as Code with Terraform (VPC, modules, backends). Configuration management with Ansible", "full"], [8, "Docker. Python for automation and AWS tasks with Amazon Q", "full"], [9, "Git. GitHub Actions in full. Jenkins basics, one day", "full"], [9, "Maven, GitLab CI, Nexus, SonarQube, Slack integration. AWS DevOps services: CodeCommit, CodeBuild, CodePipeline, Beanstalk, Lambda", "over"], [10, "Kubernetes, first half: architecture, kubectl, pods, deployments, services, ingress, config, probes", "full"], [11, "Kubernetes, second half, production-grade setup. Helm. Lens. Prometheus, Grafana, Alertmanager", "full"], [11, "Loki and Alloy", "over"], [12, "GitOps project: GitHub Actions, Kubernetes, Helm, ArgoCD, as the stretch", "full"]]}, {"name": "KCNA, no course, revision plus the exam curriculum", "hue": "blue", "rows": [[14, "Decoding DevOps Kubernetes sections again at 1.5x. Then the five KCNA domains by weight from the official curriculum: Kubernetes fundamentals 46, container orchestration 22, cloud native architecture 16, observability 8, application delivery 8", "full"], [15, "Practice questions daily, killer.sh simulator if included, two mocks above 80 percent, exam on the last day", "full"]]}];
+
 var state={done:{},startDate:START_DEFAULT};
 
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
@@ -480,6 +503,15 @@ function build(){
     html+='</section>';
   });
   document.getElementById('phases').innerHTML=html;
+  var th='';
+  TIMELINES.forEach(function(t){
+    th+='<div class="tl" data-hue="'+t.hue+'"><h3>'+esc(t.name)+'</h3><div class="tl-scroll"><table><thead><tr><th>Week</th><th>Dates</th><th>Sections</th><th>Depth</th></tr></thead><tbody>';
+    t.rows.forEach(function(r){
+      th+='<tr><td class="wk">Week '+r[0]+'</td><td class="dates" data-dates="'+r[0]+'"></td><td>'+esc(r[1])+'</td><td><span class="depth '+r[2]+'">'+(r[2]==='full'?'Full':'Overview')+'</span></td></tr>';
+    });
+    th+='</tbody></table></div></div>';
+  });
+  document.getElementById('timelines').innerHTML=th;
   document.getElementById('done-list').innerHTML=DONE.map(function(t,i){return itemHtml('d-'+(i+1),null,t);}).join('');
 }
 
@@ -517,7 +549,8 @@ function paint(){
     phaseDone[w.phase]=(phaseDone[w.phase]||0)+d;
     document.querySelector('[data-count="'+w.n+'"]').textContent=d+'/'+t;
     var s=addDays(start,7*(w.n-1));
-    document.querySelector('[data-dates="'+w.n+'"]').textContent=fmt(s)+' – '+fmt(addDays(s,6));
+    var dl=document.querySelectorAll('[data-dates="'+w.n+'"]');
+    for(var j=0;j<dl.length;j++) dl[j].textContent=fmt(s)+' – '+fmt(addDays(s,6));
     var art=document.getElementById('week-'+w.n), pill=document.querySelector('[data-pill="'+w.n+'"]');
     var now=(idx===w.n-1);
     art.classList.toggle('now',now);
