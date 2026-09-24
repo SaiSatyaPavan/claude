@@ -64,7 +64,7 @@ h1{font-size:2rem;line-height:1.1}
 h2{font-size:1.4rem;line-height:1.2}
 h3{font-size:1.08rem;line-height:1.25}
 p{margin:0}
-.mono,.eyebrow,.wk,.dates,.count,.span,.num,.tag,.pill,.verdict,.k,.fact .v,input[type=date]{font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;font-variant-ligatures:none}
+.mono,.lbl,.eyebrow,.wk,.dates,.count,.span,.num,.tag,.pill,.verdict,.k,.fact .v,input[type=date]{font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;font-variant-ligatures:none}
 .eyebrow{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3)}
 a{color:var(--accent-deep)}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
@@ -106,6 +106,19 @@ section{display:grid;gap:14px}
 .callout{border:1px solid var(--warn);background:var(--panel);border-radius:var(--r);padding:12px 14px;gap:4px}
 .callout .eyebrow{color:var(--warn)}
 .callout p{color:var(--ink-2);max-width:70ch}
+
+/* course map */
+.courses{grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
+.ccard{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;display:grid;gap:8px;align-content:start}
+.ccard .name{font-weight:600;line-height:1.3}
+.ccard .verdict{font-size:.74rem;text-transform:uppercase;letter-spacing:.06em}
+.ccard[data-v="primary"] .verdict{color:var(--ok)}
+.ccard[data-v="pick"] .verdict{color:var(--warn)}
+.ccard[data-v="skip"] .verdict{color:var(--ink-3)}
+.ccard ul{margin:0;padding-left:18px;color:var(--ink-2);font-size:.92rem;display:grid;gap:4px}
+.lbl{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3)}
+.course{font-size:.9rem;color:var(--ink-2);display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:baseline}
+.course .lbl{color:var(--hue);white-space:nowrap}
 
 /* phases and weeks */
 .phase[data-hue="amber"]{--hue:var(--amber);--hue-wash:var(--amber-wash)}
@@ -159,6 +172,7 @@ section{display:grid;gap:14px}
       <p>You already hold the part most DevOps candidates lack: networking. The next twelve weeks add the cloud, automation, and container skills on top, one project at a time, and update the resume as each skill becomes real. Tick items as you finish them. The resume changes are tasks too.</p>
     </div>
     <div class="facts">
+      <div class="fact"><span class="k">Goal</span><span class="v">job in January 2027</span></div>
       <div class="fact"><span class="k">Start</span><span class="v"><input type="date" id="start-date" value="2026-09-28" aria-label="Start date"></span></div>
       <div class="fact"><span class="k">Ends</span><span class="v" id="end-date"></span></div>
       <div class="fact"><span class="k">SAA exam</span><span class="v" id="exam-date"></span></div>
@@ -169,7 +183,7 @@ section{display:grid;gap:14px}
 
   <section class="decisions" aria-label="Certification decisions">
     <div class="decision" data-v="take"><div class="name">AWS Solutions Architect Associate</div><div class="verdict">Take, week 5</div><p class="why">The keyword recruiters filter on first. Book it in week 1.</p></div>
-    <div class="decision" data-v="optional"><div class="name">Terraform Associate</div><div class="verdict">Optional, week 12</div><p class="why">Cheap and quick, but only after the three projects exist.</p></div>
+    <div class="decision" data-v="later"><div class="name">Terraform Associate</div><div class="verdict">After January</div><p class="why">Course 3 repeats the Terraform of weeks 6 and 7. Take the exam once employed. Week 12 goes to ArgoCD instead.</p></div>
     <div class="decision" data-v="later"><div class="name">CKA</div><div class="verdict">After hire</div><p class="why">Two to three months on its own. First six months on the job, employer usually pays.</p></div>
     <div class="decision" data-v="later"><div class="name">KCNA</div><div class="verdict">Only if ahead</div><p class="why">Multiple choice, one to two weeks. Not before SAA and the projects.</p></div>
   </section>
@@ -177,6 +191,57 @@ section{display:grid;gap:14px}
   <section class="callout">
     <span class="eyebrow">AWS bill guard</span>
     <p>Set a 20 dollar budget alert in week 1. NAT gateways, RDS, and EKS charge by the hour whether you use them or not. Destroy at the end of every session and check the billing page every Sunday.</p>
+  </section>
+
+  <section class="phase" data-hue="slate" id="courses">
+    <div class="phase-head"><span class="eyebrow">Your three courses</span><h2>What to take and what to skip</h2></div>
+    <p class="blurb">Together the three courses hold roughly 100 hours of video. Watched end to end, with hands-on time, that is a 25-hour week for twelve weeks. Cherry-picked as below it is closer to 17 hours a week, which leaves room for the projects.</p>
+    <div class="courses">
+      <div class="ccard" data-v="primary">
+        <div class="name">AWS Certified Solutions Architect Associate (SAA-C03)</div>
+        <div class="verdict">Primary, weeks 1 to 5</div>
+        <span class="lbl">Take</span>
+        <ul>
+          <li>Every section, in order, plus the included practice exam.</li>
+          <li>Add Tutorials Dojo practice sets in weeks 4 and 5. One practice exam is not enough.</li>
+          <li>Confirm the exam code on the AWS certification page when you book. If a newer version is live, the course still covers most of it. Buy practice exams for the live version.</li>
+        </ul>
+        <span class="lbl">Skip</span>
+        <ul><li>Nothing. The slides PDF is your revision deck for week 5.</li></ul>
+      </div>
+      <div class="ccard" data-v="pick">
+        <div class="name">Decoding DevOps, From Basics to Advanced Projects with AI</div>
+        <div class="verdict">Cherry-pick, weeks 1 to 12</div>
+        <span class="lbl">Take</span>
+        <ul>
+          <li>Linux and server management, Bash, YAML and JSON, in the daily slot of weeks 1 to 4.</li>
+          <li>Terraform (VPC, modules, backends) and Ansible, weeks 6 and 7.</li>
+          <li>Docker and Python for AWS automation, week 8.</li>
+          <li>GitHub Actions in full and Jenkins at basic level, week 9.</li>
+          <li>Kubernetes, Helm, Prometheus, Grafana, Alertmanager, weeks 10 and 11.</li>
+          <li>The GitOps project with ArgoCD, week 12 stretch.</li>
+        </ul>
+        <span class="lbl">Skip</span>
+        <ul>
+          <li>Its AWS section. The SAA course already covers it.</li>
+          <li>Vagrant. Use EC2 or WSL instead.</li>
+          <li>Maven, Nexus, SonarQube, GitLab CI: one overview lecture each, no labs.</li>
+          <li>CodeCommit, CodeBuild, CodePipeline, Beanstalk: CodeCommit is closed to new customers. One overview lecture, no labs.</li>
+          <li>Loki and Alloy, until Prometheus and Grafana work.</li>
+        </ul>
+      </div>
+      <div class="ccard" data-v="skip">
+        <div class="name">HashiCorp Certified: Terraform Associate and DevOps Projects</div>
+        <div class="verdict">Skip until employed</div>
+        <span class="lbl">Why</span>
+        <ul>
+          <li>Its Terraform content repeats the Decoding DevOps section you do in weeks 6 and 7.</li>
+          <li>The Terraform Associate exam is a weak resume filter. A working VPC repo says more.</li>
+          <li>Return to it for the exam after January, when an employer may pay for it.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="blurb">Two rules for all three. The course sample apps sit in hundreds of GitHub portfolios, so follow each project once, then rebuild it for a different small app in your own repo with your own README. And use the AI assistants the course shows for speed, but be able to explain every line, because interviewers ask.</p>
   </section>
 
   <div class="phases" id="phases"></div>
@@ -192,23 +257,27 @@ section{display:grid;gap:14px}
       <div class="phase-head"><span class="eyebrow">Deliberately skipped</span><h2>Not in this plan</h2></div>
       <ul class="plain">
         <li><span class="k">CKA</span><span class="v">After you are hired, within the first six months. Employers usually pay for it.</span></li>
+        <li><span class="k">Terraform Associate</span><span class="v">After January. Course 3 waits with it.</span></li>
         <li><span class="k">AWS DevOps Pro</span><span class="v">After a year on the job.</span></li>
         <li><span class="k">KCNA</span><span class="v">Only if SAA is passed and all three projects finish early.</span></li>
-        <li><span class="k">Jenkins, ArgoCD, service mesh</span><span class="v">Learn on the job when a team uses them.</span></li>
+        <li><span class="k">Vagrant, GitLab CI, Beanstalk, CodeCommit</span><span class="v">Not resume skills for this window. Overview lectures only.</span></li>
+        <li><span class="k">Service mesh, Loki, Alloy</span><span class="v">Learn on the job when a team uses them.</span></li>
       </ul>
     </section>
     <section class="phase" data-hue="slate">
       <div class="phase-head"><span class="eyebrow">Study material</span><h2>Resources</h2></div>
       <ul class="plain">
-        <li><span class="k">AWS SAA</span><span class="v">Stephane Maarek or Adrian Cantrill course. Tutorials Dojo practice exams. AWS Skill Builder exam prep.</span></li>
+        <li><span class="k">AWS SAA</span><span class="v">Your SAA-C03 course. Tutorials Dojo practice exams. AWS Skill Builder exam prep.</span></li>
+        <li><span class="k">DevOps</span><span class="v">Decoding DevOps, the sections named on each week card.</span></li>
         <li><span class="k">Linux</span><span class="v">Linux Journey. OverTheWire Bandit.</span></li>
         <li><span class="k">Terraform</span><span class="v">HashiCorp developer tutorials for AWS. Terraform Registry AWS modules.</span></li>
-        <li><span class="k">Ansible</span><span class="v">Official Getting Started guide.</span></li>
+        <li><span class="k">Ansible</span><span class="v">The course section, then the official Getting Started guide.</span></li>
         <li><span class="k">Docker</span><span class="v">Docker Get Started docs. Bret Fisher, Docker Mastery.</span></li>
         <li><span class="k">GitHub Actions</span><span class="v">Official docs. The aws-actions configure-aws-credentials OIDC guide.</span></li>
         <li><span class="k">Python</span><span class="v">Automate the Boring Stuff. boto3 documentation.</span></li>
         <li><span class="k">Kubernetes</span><span class="v">kubernetes.io tutorials. KodeKloud labs. kind quick start.</span></li>
         <li><span class="k">Monitoring</span><span class="v">kube-prometheus-stack chart README. Grafana fundamentals.</span></li>
+        <li><span class="k">ArgoCD</span><span class="v">Official Getting Started guide, for the week 12 stretch.</span></li>
       </ul>
     </section>
   </section>
@@ -229,15 +298,15 @@ var PHASES=[
   {id:'p2',hue:'purple',label:'Phase 2',name:'Terraform and a taste of Ansible',span:'Weeks 6 to 7',
    blurb:'Build the network you already understand, but from code. Project 1 is a multi-AZ VPC with a load balancer, an Auto Scaling group, and a database, reproducible in one apply.'},
   {id:'p3',hue:'teal',label:'Phase 3',name:'Docker, CI/CD, Python',span:'Weeks 8 to 9',
-   blurb:'Containerize an app and ship it through a pipeline with no static keys. Project 2 is the pipeline. The Python script bridges your networking background to automation.'},
+   blurb:'Containerize an app and ship it through a pipeline with no static keys. Project 2 is the pipeline, on GitHub Actions, with one day of Jenkins so the word is not new in interviews. The Python script bridges your networking background to automation.'},
   {id:'p4',hue:'blue',label:'Phase 4',name:'Kubernetes and observability',span:'Weeks 10 to 11',
    blurb:'Fundamentals on a local cluster first, then EKS. Project 3 moves the app from project 2 onto Kubernetes with a Helm chart, autoscaling, and a Grafana dashboard. No CKA yet.'},
   {id:'p5',hue:'slate',label:'Phase 5',name:'Consolidate',span:'Week 12',
-   blurb:'Polish the three repos, run the resume keyword pass, and practice the explanations until each project takes two minutes to tell.'}
+   blurb:'Polish the three repos, run the resume keyword pass, and practice the explanations until each project takes two minutes to tell. If there is time left, the ArgoCD GitOps project from the course.'}
 ];
 
 var WEEKS=[
-  {n:1,phase:'p1',title:'Accounts, IAM, EC2',items:[
+  {n:1,phase:'p1',title:'Accounts, IAM, EC2',course:'SAA course: IAM, EC2, EBS, ELB, ASG sections. Decoding DevOps: Linux and server management, in the daily slot.',items:[
     ['book','Book the AWS SAA exam for the last day of week 5. A booked date sets the pace for everything below.'],
     ['setup','Create an AWS free-tier account, turn on a 20 dollar budget alert, create an IAM admin user with MFA, and stop using the root user.'],
     ['setup','Launch an Ubuntu EC2 instance and do every exercise from its terminal from now on.'],
@@ -248,7 +317,7 @@ var WEEKS=[
     ['resume','Headline to Cloud / DevOps Engineer. Credential strip under your name: CCNA, AWS SAA (exam scheduled), Terraform, Docker. Three-line summary that leads with networking and ends with your cloud stack. Skills grouped by category.'],
     ['resume','Rewrite existing bullets with automated, scripted, provisioned, monitored. One page, PDF, no columns, GitHub and LinkedIn links in the header, no visa status.']
   ]},
-  {n:2,phase:'p1',title:'VPC, load balancing, DNS',items:[
+  {n:2,phase:'p1',title:'VPC, load balancing, DNS',course:'SAA course: VPC, Route 53, CloudFront sections. Decoding DevOps: Linux continued, Bash basics.',items:[
     [null,'VPC: subnets, route tables, internet and NAT gateways, security groups versus NACLs, flow logs.'],
     [null,'VPC: peering, Transit Gateway, site-to-site VPN, Direct Connect, gateway and interface endpoints.'],
     [null,'Load balancing: ALB versus NLB versus Gateway Load Balancer, target groups, health checks, sticky sessions.'],
@@ -258,7 +327,7 @@ var WEEKS=[
     ['git','Branches, pull requests, rebase versus merge, resolving conflicts.'],
     ['resume','Add a Networking group to skills: TCP/IP, routing and switching, VLANs, VPN, DNS, load balancing, firewalls. This is the group most applicants cannot fill.']
   ]},
-  {n:3,phase:'p1',title:'Storage, databases, serverless',items:[
+  {n:3,phase:'p1',title:'Storage, databases, serverless',course:'SAA course: S3, storage, database, and serverless sections. Decoding DevOps: Bash, YAML and JSON.',items:[
     [null,'S3: storage classes, lifecycle rules, versioning, replication, encryption options, bucket policies, presigned URLs.'],
     [null,'EFS, FSx, Storage Gateway, Snow family: which one for which case.'],
     [null,'RDS, Aurora, DynamoDB, ElastiCache, Redshift: when to pick which. Multi-AZ versus read replicas.'],
@@ -266,7 +335,7 @@ var WEEKS=[
     ['linux','grep, sed, awk, find, pipes and redirection.'],
     ['linux','Networking tools: ip, ss, dig, curl, tcpdump. Diagnose a failing connection to a web server with only these five.']
   ]},
-  {n:4,phase:'p1',title:'Security, monitoring, first practice exam',items:[
+  {n:4,phase:'p1',title:'Security, monitoring, first practice exam',course:'SAA course: monitoring, security, container, and architecture sections, then its practice exam. Decoding DevOps: Bash scripting labs.',items:[
     [null,'CloudWatch metrics, logs, alarms, dashboards. CloudTrail. AWS Config.'],
     [null,'KMS, Secrets Manager, Parameter Store, ACM, WAF, Shield, GuardDuty at overview level.'],
     [null,'ECS, Fargate, EKS, ECR overview. CloudFormation and Elastic Beanstalk basics.'],
@@ -275,14 +344,14 @@ var WEEKS=[
     [null,'First full practice exam. Review every wrong answer against the course notes, not just the answer explanation.'],
     ['linux','Package managers. Bash scripting: variables, loops, conditionals, functions. Write a script that backs up a directory to S3 with the AWS CLI.']
   ]},
-  {n:5,phase:'p1',title:'Practice exams and the real exam',items:[
+  {n:5,phase:'p1',title:'Practice exams and the real exam',course:'SAA slides PDF for revision. Tutorials Dojo practice exams.',items:[
     [null,'Two practice exams a day until you score above 80 percent on three in a row.'],
     [null,'Re-watch the weakest domain. VPC and IAM questions should be close to perfect.'],
     ['exam','Sit the AWS SAA exam at the end of the week.'],
     ['linux','Daily practice continues. Work through OverTheWire Bandit levels 0 to 15.'],
     ['resume','Replace exam scheduled with the pass date and credential ID. Add a Cloud group with the services you can explain: VPC, EC2, S3, IAM, RDS, ELB, Route 53, CloudWatch, Lambda.']
   ]},
-  {n:6,phase:'p2',title:'Terraform core and state',items:[
+  {n:6,phase:'p2',title:'Terraform core and state',course:'Decoding DevOps: Terraform section (VPC, modules, backends). Its Python basics for the daily slot.',items:[
     [null,'Install Terraform. Providers, resources, variables, outputs, locals, data sources.'],
     [null,'count, for_each, lifecycle rules, tfvars files, fmt, validate, plan, apply, destroy.'],
     [null,'Remote state: S3 backend with state locking. terraform import. Never edit state by hand.'],
@@ -290,7 +359,7 @@ var WEEKS=[
     ['python','Thirty minutes a day from here on: variables, lists, dicts, functions, reading JSON and YAML.'],
     ['cost','Destroy the NAT gateway when you stop for the day. It bills by the hour.']
   ]},
-  {n:7,phase:'p2',title:'Modules, project 1, Ansible',items:[
+  {n:7,phase:'p2',title:'Modules, project 1, Ansible',course:'Decoding DevOps: finish Terraform, then the Ansible section.',items:[
     [null,'Write your own module, then consume a public Terraform Registry module and read its source.'],
     ['build','Project 1 complete: ALB, Auto Scaling group, RDS in a private subnet, security groups, all from code. tflint clean.'],
     ['build','README with an architecture diagram and a run guide that works from one apply.'],
@@ -298,7 +367,7 @@ var WEEKS=[
     ['resume','Add a Projects section. Project 1 formatted like a job entry: title, GitHub link, three bullets of action, tool, outcome. Add Terraform and Ansible to an Infrastructure as Code group.'],
     ['cost','terraform destroy at the end of the week. Check the billing page.']
   ]},
-  {n:8,phase:'p3',title:'Docker and Python automation',items:[
+  {n:8,phase:'p3',title:'Docker and Python automation',course:'Decoding DevOps: Docker section, then Python for AWS automation.',items:[
     [null,'Images versus containers, Dockerfile instructions, layers and caching, multi-stage builds, dockerignore.'],
     [null,'Volumes, networks, docker compose, non-root user, HEALTHCHECK, image tagging.'],
     [null,'Push an image to ECR and read the scan results.'],
@@ -306,15 +375,17 @@ var WEEKS=[
     ['build','Script: audit every security group for 0.0.0.0/0 on ports other than 80 and 443 and print a report.'],
     ['resume','Add Docker to a Containers group. Add Python (boto3) to OS and Scripting.']
   ]},
-  {n:9,phase:'p3',title:'GitHub Actions and project 2',items:[
+  {n:9,phase:'p3',title:'GitHub Actions and project 2',course:'Decoding DevOps: GitHub Actions in full, Jenkins at basic level. Skip the GitLab CI, Nexus, SonarQube, and CodePipeline labs.',items:[
     [null,'GitHub Actions: workflow syntax, triggers, jobs, steps, matrix, secrets, caching, artifacts.'],
     [null,'OIDC federation to AWS with an IAM role. No static access keys anywhere.'],
     ['build','Project 2: pipeline that builds, tests, pushes to ECR, and deploys to ECS Fargate with a rolling update.'],
     [null,'Deployment strategies: rolling, blue/green, canary. Explain each in one minute.'],
     [null,'Branch strategy and semantic version tags on releases.'],
+    [null,'Jenkins, one day: install on EC2, a declarative pipeline with build, test, and Docker image stages, agents, credentials. It appears on more junior postings than GitHub Actions.'],
+    ['build','Rebuild the course pipeline for a different small app in your own repo. The course app sits in hundreds of portfolios. Yours must not be a clone.'],
     ['resume','Add project 2, leading with the pipeline. Add the security group audit script as a fourth bullet if space allows. Add GitHub Actions and CI/CD to a CI/CD group.']
   ]},
-  {n:10,phase:'p4',title:'Kubernetes fundamentals on a local cluster',items:[
+  {n:10,phase:'p4',title:'Kubernetes fundamentals on a local cluster',course:'Decoding DevOps: Kubernetes section, first half.',items:[
     [null,'Architecture: API server, etcd, scheduler, controller manager, kubelet, kube-proxy. Trace a request from ingress to pod.'],
     [null,'Install kind or minikube. kubectl get, describe, logs, exec, apply, delete, port-forward.'],
     [null,'Pods, ReplicaSets, Deployments, rollouts and rollbacks.'],
@@ -322,7 +393,7 @@ var WEEKS=[
     [null,'Resource requests and limits, liveness and readiness probes, HPA, PV and PVC basics.'],
     [null,'Debug drill: break a deployment three ways (bad image tag, failing probe, missing ConfigMap) and fix each with kubectl only.']
   ]},
-  {n:11,phase:'p4',title:'EKS, Helm, Prometheus, project 3',items:[
+  {n:11,phase:'p4',title:'EKS, Helm, Prometheus, project 3',course:'Decoding DevOps: Kubernetes second half, Helm, Prometheus, Grafana, Alertmanager.',items:[
     ['build','Provision EKS with Terraform. A public module is fine. Connect kubectl.'],
     [null,'Helm: charts, values, install, upgrade, rollback. Write a chart for the project 2 app.'],
     ['build','Project 3: deploy through Helm with an HPA and an Ingress via the AWS Load Balancer Controller.'],
@@ -331,13 +402,13 @@ var WEEKS=[
     ['resume','Add project 3. Add Kubernetes, Helm, EKS to Containers. Add Prometheus, Grafana, CloudWatch to a Monitoring group.'],
     ['cost','Destroy the EKS cluster at the end of the week. It is the most expensive thing in this plan.']
   ]},
-  {n:12,phase:'p5',title:'Portfolio, keywords, explanations',items:[
+  {n:12,phase:'p5',title:'Portfolio, keywords, explanations',course:'Decoding DevOps: GitOps project with ArgoCD, as the stretch.',items:[
     ['build','Each repo: README with architecture diagram, how to run, and a design decisions paragraph.'],
     [null,'Pin the three repos on your GitHub profile. Profile README with the credential strip.'],
     [null,'Practice a two-minute explanation of each project aloud. Record yourself once and listen back.'],
     ['resume','Keyword pass. These exact words must appear: DevOps, CI/CD, Infrastructure as Code, AWS, Terraform, Kubernetes, Docker, Linux, Python, monitoring, automation.'],
     ['resume','Final one-page pass. Cut objective statements, coursework lists, long Cisco feature lists. Keep education with degree and graduation date.'],
-    [null,'Optional: Terraform Associate exam, only if all three projects are done.'],
+    ['build','Stretch: the GitOps project from Decoding DevOps. ArgoCD on EKS syncing your Helm chart from Git. It talks better in interviews than the Terraform Associate exam.'],
     ['cost','Confirm every AWS resource is destroyed. Check the bill one last time.']
   ]}
 ];
@@ -370,7 +441,8 @@ function build(){
       html+='<article class="week" id="week-'+w.n+'" data-week="'+w.n+'"><div class="week-head">'+
         '<span class="wk">Week '+w.n+'</span><span class="dates" data-dates="'+w.n+'"></span>'+
         '<h3>'+esc(w.title)+'</h3><span class="pill" data-pill="'+w.n+'" hidden></span>'+
-        '<span class="count" data-count="'+w.n+'"></span></div><ul class="items">';
+        '<span class="count" data-count="'+w.n+'"></span></div>'+
+        (w.course?'<p class="course"><span class="lbl">Courses</span><span>'+esc(w.course)+'</span></p>':'')+'<ul class="items">';
       w.items.forEach(function(it,i){html+=itemHtml('w'+w.n+'-'+(i+1),it[0],it[1]);});
       html+='</ul></article>';
     });
