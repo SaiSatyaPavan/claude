@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CCNA to DevOps</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ground:#E7EAEC; --panel:#FFFFFF; --panel-2:#F1F4F5; --panel-3:#E3E8EA;
+  --line:#C8D1D6; --line-soft:#DFE5E8;
+  --ink:#111A20; --ink-2:#41535F; --ink-3:#71838F;
+  --accent:#0F8F8A; --accent-deep:#0A6B67; --accent-wash:#DDEFEE;
+  --amber:#A96C1D; --amber-wash:#F3E7D3;
+  --purple:#5F53B8; --purple-wash:#E4E1F5;
+  --teal:#0F8F8A; --teal-wash:#DDEFEE;
+  --blue:#2E6DB4; --blue-wash:#DCE8F6;
+  --slate:#4B5B66; --slate-wash:#E1E7EA;
+  --ok:#2C8355; --warn:#B0791A; --bad:#B84734;
+  --shadow:0 1px 2px rgba(17,26,32,.07), 0 8px 24px -14px rgba(17,26,32,.32);
+  --r:4px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --ground:#0D1319; --panel:#151E25; --panel-2:#1B252D; --panel-3:#222E37;
+    --line:#2A3841; --line-soft:#212D35;
+    --ink:#DCE5EA; --ink-2:#9BADB9; --ink-3:#71838F;
+    --accent:#2CB3AC; --accent-deep:#7FD6D1; --accent-wash:#122B2C;
+    --amber:#D2963E; --amber-wash:#2E2416;
+    --purple:#9187DF; --purple-wash:#1F1D33;
+    --teal:#2CB3AC; --teal-wash:#122B2C;
+    --blue:#6AA6E8; --blue-wash:#14243A;
+    --slate:#8698A4; --slate-wash:#1C262E;
+    --ok:#4CAE79; --warn:#D7A238; --bad:#DE7059;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -16px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ground:#0D1319; --panel:#151E25; --panel-2:#1B252D; --panel-3:#222E37;
+  --line:#2A3841; --line-soft:#212D35;
+  --ink:#DCE5EA; --ink-2:#9BADB9; --ink-3:#71838F;
+  --accent:#2CB3AC; --accent-deep:#7FD6D1; --accent-wash:#122B2C;
+  --amber:#D2963E; --amber-wash:#2E2416;
+  --purple:#9187DF; --purple-wash:#1F1D33;
+  --teal:#2CB3AC; --teal-wash:#122B2C;
+  --blue:#6AA6E8; --blue-wash:#14243A;
+  --slate:#8698A4; --slate-wash:#1C262E;
+  --ok:#4CAE79; --warn:#D7A238; --bad:#DE7059;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -16px rgba(0,0,0,.8);
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font-family:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+  font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:"IBM Plex Sans Condensed","IBM Plex Sans",Arial,sans-serif;text-wrap:balance;margin:0;font-weight:600;letter-spacing:.005em}
+h1{font-size:2rem;line-height:1.1}
+h2{font-size:1.4rem;line-height:1.2}
+h3{font-size:1.08rem;line-height:1.25}
+p{margin:0}
+.mono,.eyebrow,.wk,.dates,.count,.span,.num,.tag,.pill,.verdict,.k,.fact .v,input[type=date]{font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;font-variant-ligatures:none}
+.eyebrow{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3)}
+a{color:var(--accent-deep)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.001ms!important}}
+
+/* top bar */
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--panel);border-bottom:1px solid var(--line)}
+.topbar-in{max-width:960px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.topbar .name{font-family:"IBM Plex Sans Condensed","IBM Plex Sans",Arial,sans-serif;font-weight:600;font-size:1.1rem;white-space:nowrap}
+.meter{flex:1 1 200px;min-width:160px;display:flex;align-items:center;gap:10px}
+.meter .bar{flex:1;height:6px;background:var(--panel-3);border-radius:3px;overflow:hidden}
+.meter .fill{height:100%;width:0;background:var(--accent);transition:width .25s}
+.meter .num{font-size:.8rem;color:var(--ink-2);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* shell */
+.shell{max-width:960px;margin:0 auto;padding:28px 20px 72px;display:grid;gap:40px}
+section{display:grid;gap:14px}
+.intro{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:28px;align-items:start}
+@media (max-width:720px){.intro{grid-template-columns:1fr}}
+.brief{display:grid;gap:12px}
+.brief p{max-width:62ch;color:var(--ink-2)}
+.facts{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:grid;gap:9px;box-shadow:var(--shadow)}
+.fact{display:flex;justify-content:space-between;gap:12px;align-items:baseline;border-bottom:1px solid var(--line-soft);padding-bottom:8px}
+.fact:last-child{border-bottom:0;padding-bottom:0}
+.fact .k{font-size:.78rem;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em}
+.fact .v{font-size:.9rem;text-align:right;font-variant-numeric:tabular-nums}
+.fact input[type=date]{font-size:.9rem;color:var(--ink);background:var(--panel-2);border:1px solid var(--line);border-radius:var(--r);padding:2px 6px;max-width:100%}
+
+/* decisions */
+.decisions{grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.decision{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+.decision .name{font-weight:600}
+.decision .verdict{font-size:.74rem;text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
+.decision[data-v="take"] .verdict{color:var(--ok)}
+.decision[data-v="optional"] .verdict{color:var(--warn)}
+.decision[data-v="later"] .verdict{color:var(--ink-3)}
+.decision .why{color:var(--ink-2);font-size:.9rem;margin-top:6px}
+
+.callout{border:1px solid var(--warn);background:var(--panel);border-radius:var(--r);padding:12px 14px;gap:4px}
+.callout .eyebrow{color:var(--warn)}
+.callout p{color:var(--ink-2);max-width:70ch}
+
+/* phases and weeks */
+.phase[data-hue="amber"]{--hue:var(--amber);--hue-wash:var(--amber-wash)}
+.phase[data-hue="purple"]{--hue:var(--purple);--hue-wash:var(--purple-wash)}
+.phase[data-hue="teal"]{--hue:var(--teal);--hue-wash:var(--teal-wash)}
+.phase[data-hue="blue"]{--hue:var(--blue);--hue-wash:var(--blue-wash)}
+.phase[data-hue="slate"]{--hue:var(--slate);--hue-wash:var(--slate-wash)}
+.phases{display:grid;gap:40px}
+.phase-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;border-bottom:2px solid var(--hue);padding-bottom:8px}
+.phase-head .eyebrow{color:var(--hue)}
+.phase-head .span{margin-left:auto;font-size:.8rem;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.blurb{color:var(--ink-2);max-width:70ch}
+.week{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px 13px;display:grid;gap:10px;box-shadow:var(--shadow)}
+.week.now{border-color:var(--hue);box-shadow:0 0 0 1px var(--hue), var(--shadow)}
+.week-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px}
+.week-head .wk{font-size:.8rem;color:var(--hue);font-weight:500}
+.week-head .dates{font-size:.8rem;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.week-head h3{flex:1 1 100%}
+@media (min-width:640px){.week-head h3{flex:1 1 auto}}
+.week-head .count{margin-left:auto;font-size:.8rem;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.pill{font-size:.68rem;text-transform:uppercase;letter-spacing:.06em;background:var(--hue);color:var(--panel);padding:1px 7px;border-radius:2px;line-height:1.6}
+.items{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.item{display:grid;grid-template-columns:18px 1fr;gap:10px;align-items:start}
+.item input{margin:4px 0 0;width:16px;height:16px;accent-color:var(--hue);cursor:pointer}
+.item label{cursor:pointer}
+.item.done label{color:var(--ink-3)}
+.item.resume{background:var(--panel-2);border-radius:var(--r);padding:7px 10px 7px 10px}
+.tag{display:inline-block;font-size:.66rem;text-transform:uppercase;letter-spacing:.06em;background:var(--hue-wash);color:var(--hue);padding:0 6px;border-radius:2px;margin-right:6px;vertical-align:1px;line-height:1.7}
+
+/* closing lists */
+.two{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;align-items:start}
+.two section{gap:10px}
+.plain{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.plain li{display:grid;grid-template-columns:minmax(88px,auto) 1fr;gap:10px;align-items:baseline}
+.plain .k{font-size:.78rem;color:var(--ink-2)}
+.plain .v{color:var(--ink);font-size:.95rem}
+.foot{color:var(--ink-3);font-size:.85rem}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="topbar-in">
+  <span class="name">CCNA to DevOps</span>
+  <div class="meter" aria-label="Overall progress"><div class="bar"><div class="fill" id="fill"></div></div><span class="num" id="num">0 / 0 done</span></div>
+</div></header>
+
+<main class="shell">
+  <section class="intro">
+    <div class="brief">
+      <p class="eyebrow">Twelve-week study plan</p>
+      <h1>From CCNA to a junior cloud or DevOps role</h1>
+      <p>You already hold the part most DevOps candidates lack: networking. The next twelve weeks add the cloud, automation, and container skills on top, one project at a time, and update the resume as each skill becomes real. Tick items as you finish them. The resume changes are tasks too.</p>
+    </div>
+    <div class="facts">
+      <div class="fact"><span class="k">Start</span><span class="v"><input type="date" id="start-date" value="2026-09-28" aria-label="Start date"></span></div>
+      <div class="fact"><span class="k">Ends</span><span class="v" id="end-date"></span></div>
+      <div class="fact"><span class="k">SAA exam</span><span class="v" id="exam-date"></span></div>
+      <div class="fact"><span class="k">Hours</span><span class="v">about 20 a week</span></div>
+      <div class="fact"><span class="k">Rhythm</span><span class="v">2 h weekdays, 5 h weekend days</span></div>
+    </div>
+  </section>
+
+  <section class="decisions" aria-label="Certification decisions">
+    <div class="decision" data-v="take"><div class="name">AWS Solutions Architect Associate</div><div class="verdict">Take, week 5</div><p class="why">The keyword recruiters filter on first. Book it in week 1.</p></div>
+    <div class="decision" data-v="optional"><div class="name">Terraform Associate</div><div class="verdict">Optional, week 12</div><p class="why">Cheap and quick, but only after the three projects exist.</p></div>
+    <div class="decision" data-v="later"><div class="name">CKA</div><div class="verdict">After hire</div><p class="why">Two to three months on its own. First six months on the job, employer usually pays.</p></div>
+    <div class="decision" data-v="later"><div class="name">KCNA</div><div class="verdict">Only if ahead</div><p class="why">Multiple choice, one to two weeks. Not before SAA and the projects.</p></div>
+  </section>
+
+  <section class="callout">
+    <span class="eyebrow">AWS bill guard</span>
+    <p>Set a 20 dollar budget alert in week 1. NAT gateways, RDS, and EKS charge by the hour whether you use them or not. Destroy at the end of every session and check the billing page every Sunday.</p>
+  </section>
+
+  <div class="phases" id="phases"></div>
+
+  <section class="phase" data-hue="slate" id="done-when">
+    <div class="phase-head"><span class="eyebrow">Finish line</span><h2>Done when</h2><span class="span" id="done-prog"></span></div>
+    <p class="blurb">Twelve weeks is complete when every line below is true, not when the calendar runs out.</p>
+    <ul class="items" id="done-list"></ul>
+  </section>
+
+  <section class="two">
+    <section class="phase" data-hue="slate">
+      <div class="phase-head"><span class="eyebrow">Deliberately skipped</span><h2>Not in this plan</h2></div>
+      <ul class="plain">
+        <li><span class="k">CKA</span><span class="v">After you are hired, within the first six months. Employers usually pay for it.</span></li>
+        <li><span class="k">AWS DevOps Pro</span><span class="v">After a year on the job.</span></li>
+        <li><span class="k">KCNA</span><span class="v">Only if SAA is passed and all three projects finish early.</span></li>
+        <li><span class="k">Jenkins, ArgoCD, service mesh</span><span class="v">Learn on the job when a team uses them.</span></li>
+      </ul>
+    </section>
+    <section class="phase" data-hue="slate">
+      <div class="phase-head"><span class="eyebrow">Study material</span><h2>Resources</h2></div>
+      <ul class="plain">
+        <li><span class="k">AWS SAA</span><span class="v">Stephane Maarek or Adrian Cantrill course. Tutorials Dojo practice exams. AWS Skill Builder exam prep.</span></li>
+        <li><span class="k">Linux</span><span class="v">Linux Journey. OverTheWire Bandit.</span></li>
+        <li><span class="k">Terraform</span><span class="v">HashiCorp developer tutorials for AWS. Terraform Registry AWS modules.</span></li>
+        <li><span class="k">Ansible</span><span class="v">Official Getting Started guide.</span></li>
+        <li><span class="k">Docker</span><span class="v">Docker Get Started docs. Bret Fisher, Docker Mastery.</span></li>
+        <li><span class="k">GitHub Actions</span><span class="v">Official docs. The aws-actions configure-aws-credentials OIDC guide.</span></li>
+        <li><span class="k">Python</span><span class="v">Automate the Boring Stuff. boto3 documentation.</span></li>
+        <li><span class="k">Kubernetes</span><span class="v">kubernetes.io tutorials. KodeKloud labs. kind quick start.</span></li>
+        <li><span class="k">Monitoring</span><span class="v">kube-prometheus-stack chart README. Grafana fundamentals.</span></li>
+      </ul>
+    </section>
+  </section>
+
+  <p class="foot" id="foot">Progress is saved in this browser.</p>
+</main>
+
+<script>
+(function(){
+'use strict';
+var START_DEFAULT='2026-09-28';
+var KEY='ccna-to-devops:v1';
+var TAGS={book:'Book',exam:'Exam',setup:'Setup',linux:'Linux',git:'Git',python:'Python',build:'Build',resume:'Resume',cost:'Cost'};
+
+var PHASES=[
+  {id:'p1',hue:'amber',label:'Phase 1',name:'AWS SAA, Linux, Git',span:'Weeks 1 to 5',
+   blurb:'One video course, practice exams until you score above 80 percent, and the real exam at the end of week 5. Thirty minutes of Linux and Git every day in parallel. Your CCNA makes VPC and networking your strongest domain, so aim for full marks there.'},
+  {id:'p2',hue:'purple',label:'Phase 2',name:'Terraform and a taste of Ansible',span:'Weeks 6 to 7',
+   blurb:'Build the network you already understand, but from code. Project 1 is a multi-AZ VPC with a load balancer, an Auto Scaling group, and a database, reproducible in one apply.'},
+  {id:'p3',hue:'teal',label:'Phase 3',name:'Docker, CI/CD, Python',span:'Weeks 8 to 9',
+   blurb:'Containerize an app and ship it through a pipeline with no static keys. Project 2 is the pipeline. The Python script bridges your networking background to automation.'},
+  {id:'p4',hue:'blue',label:'Phase 4',name:'Kubernetes and observability',span:'Weeks 10 to 11',
+   blurb:'Fundamentals on a local cluster first, then EKS. Project 3 moves the app from project 2 onto Kubernetes with a Helm chart, autoscaling, and a Grafana dashboard. No CKA yet.'},
+  {id:'p5',hue:'slate',label:'Phase 5',name:'Consolidate',span:'Week 12',
+   blurb:'Polish the three repos, run the resume keyword pass, and practice the explanations until each project takes two minutes to tell.'}
+];
+
+var WEEKS=[
+  {n:1,phase:'p1',title:'Accounts, IAM, EC2',items:[
+    ['book','Book the AWS SAA exam for the last day of week 5. A booked date sets the pace for everything below.'],
+    ['setup','Create an AWS free-tier account, turn on a 20 dollar budget alert, create an IAM admin user with MFA, and stop using the root user.'],
+    ['setup','Launch an Ubuntu EC2 instance and do every exercise from its terminal from now on.'],
+    [null,'IAM: users, groups, roles, policies, permission boundaries, STS, cross-account access.'],
+    [null,'EC2: instance families, AMIs, user data, EBS versus instance store, snapshots, placement groups.'],
+    ['linux','Shell navigation, file permissions, users and groups, sudo, ssh.'],
+    ['git','Create a GitHub account. init, clone, add, commit, push, and a sensible gitignore.'],
+    ['resume','Headline to Cloud / DevOps Engineer. Credential strip under your name: CCNA, AWS SAA (exam scheduled), Terraform, Docker. Three-line summary that leads with networking and ends with your cloud stack. Skills grouped by category.'],
+    ['resume','Rewrite existing bullets with automated, scripted, provisioned, monitored. One page, PDF, no columns, GitHub and LinkedIn links in the header, no visa status.']
+  ]},
+  {n:2,phase:'p1',title:'VPC, load balancing, DNS',items:[
+    [null,'VPC: subnets, route tables, internet and NAT gateways, security groups versus NACLs, flow logs.'],
+    [null,'VPC: peering, Transit Gateway, site-to-site VPN, Direct Connect, gateway and interface endpoints.'],
+    [null,'Load balancing: ALB versus NLB versus Gateway Load Balancer, target groups, health checks, sticky sessions.'],
+    [null,'Auto Scaling groups: launch templates, scaling policies, lifecycle hooks.'],
+    [null,'Route 53 routing policies and health checks. CloudFront distributions, origins, caching.'],
+    ['linux','systemd units, journalctl, SSH keys and config, cron.'],
+    ['git','Branches, pull requests, rebase versus merge, resolving conflicts.'],
+    ['resume','Add a Networking group to skills: TCP/IP, routing and switching, VLANs, VPN, DNS, load balancing, firewalls. This is the group most applicants cannot fill.']
+  ]},
+  {n:3,phase:'p1',title:'Storage, databases, serverless',items:[
+    [null,'S3: storage classes, lifecycle rules, versioning, replication, encryption options, bucket policies, presigned URLs.'],
+    [null,'EFS, FSx, Storage Gateway, Snow family: which one for which case.'],
+    [null,'RDS, Aurora, DynamoDB, ElastiCache, Redshift: when to pick which. Multi-AZ versus read replicas.'],
+    [null,'Lambda, API Gateway, SQS, SNS, EventBridge, Step Functions basics, Kinesis overview.'],
+    ['linux','grep, sed, awk, find, pipes and redirection.'],
+    ['linux','Networking tools: ip, ss, dig, curl, tcpdump. Diagnose a failing connection to a web server with only these five.']
+  ]},
+  {n:4,phase:'p1',title:'Security, monitoring, first practice exam',items:[
+    [null,'CloudWatch metrics, logs, alarms, dashboards. CloudTrail. AWS Config.'],
+    [null,'KMS, Secrets Manager, Parameter Store, ACM, WAF, Shield, GuardDuty at overview level.'],
+    [null,'ECS, Fargate, EKS, ECR overview. CloudFormation and Elastic Beanstalk basics.'],
+    [null,'Organizations, SCPs, Control Tower overview. Well-Architected pillars. Cost Explorer, Budgets, Savings Plans.'],
+    [null,'Migration services overview: DMS, Snowball, DataSync, Application Migration Service.'],
+    [null,'First full practice exam. Review every wrong answer against the course notes, not just the answer explanation.'],
+    ['linux','Package managers. Bash scripting: variables, loops, conditionals, functions. Write a script that backs up a directory to S3 with the AWS CLI.']
+  ]},
+  {n:5,phase:'p1',title:'Practice exams and the real exam',items:[
+    [null,'Two practice exams a day until you score above 80 percent on three in a row.'],
+    [null,'Re-watch the weakest domain. VPC and IAM questions should be close to perfect.'],
+    ['exam','Sit the AWS SAA exam at the end of the week.'],
+    ['linux','Daily practice continues. Work through OverTheWire Bandit levels 0 to 15.'],
+    ['resume','Replace exam scheduled with the pass date and credential ID. Add a Cloud group with the services you can explain: VPC, EC2, S3, IAM, RDS, ELB, Route 53, CloudWatch, Lambda.']
+  ]},
+  {n:6,phase:'p2',title:'Terraform core and state',items:[
+    [null,'Install Terraform. Providers, resources, variables, outputs, locals, data sources.'],
+    [null,'count, for_each, lifecycle rules, tfvars files, fmt, validate, plan, apply, destroy.'],
+    [null,'Remote state: S3 backend with state locking. terraform import. Never edit state by hand.'],
+    ['build','VPC module: public and private subnets across two AZs, internet gateway, NAT, route tables.'],
+    ['python','Thirty minutes a day from here on: variables, lists, dicts, functions, reading JSON and YAML.'],
+    ['cost','Destroy the NAT gateway when you stop for the day. It bills by the hour.']
+  ]},
+  {n:7,phase:'p2',title:'Modules, project 1, Ansible',items:[
+    [null,'Write your own module, then consume a public Terraform Registry module and read its source.'],
+    ['build','Project 1 complete: ALB, Auto Scaling group, RDS in a private subnet, security groups, all from code. tflint clean.'],
+    ['build','README with an architecture diagram and a run guide that works from one apply.'],
+    [null,'Ansible, two days only: inventory, ad hoc commands, playbooks, roles. Configure the EC2 instances with a playbook.'],
+    ['resume','Add a Projects section. Project 1 formatted like a job entry: title, GitHub link, three bullets of action, tool, outcome. Add Terraform and Ansible to an Infrastructure as Code group.'],
+    ['cost','terraform destroy at the end of the week. Check the billing page.']
+  ]},
+  {n:8,phase:'p3',title:'Docker and Python automation',items:[
+    [null,'Images versus containers, Dockerfile instructions, layers and caching, multi-stage builds, dockerignore.'],
+    [null,'Volumes, networks, docker compose, non-root user, HEALTHCHECK, image tagging.'],
+    [null,'Push an image to ECR and read the scan results.'],
+    ['python','boto3 sessions, clients, paginators, error handling. requests against a REST API.'],
+    ['build','Script: audit every security group for 0.0.0.0/0 on ports other than 80 and 443 and print a report.'],
+    ['resume','Add Docker to a Containers group. Add Python (boto3) to OS and Scripting.']
+  ]},
+  {n:9,phase:'p3',title:'GitHub Actions and project 2',items:[
+    [null,'GitHub Actions: workflow syntax, triggers, jobs, steps, matrix, secrets, caching, artifacts.'],
+    [null,'OIDC federation to AWS with an IAM role. No static access keys anywhere.'],
+    ['build','Project 2: pipeline that builds, tests, pushes to ECR, and deploys to ECS Fargate with a rolling update.'],
+    [null,'Deployment strategies: rolling, blue/green, canary. Explain each in one minute.'],
+    [null,'Branch strategy and semantic version tags on releases.'],
+    ['resume','Add project 2, leading with the pipeline. Add the security group audit script as a fourth bullet if space allows. Add GitHub Actions and CI/CD to a CI/CD group.']
+  ]},
+  {n:10,phase:'p4',title:'Kubernetes fundamentals on a local cluster',items:[
+    [null,'Architecture: API server, etcd, scheduler, controller manager, kubelet, kube-proxy. Trace a request from ingress to pod.'],
+    [null,'Install kind or minikube. kubectl get, describe, logs, exec, apply, delete, port-forward.'],
+    [null,'Pods, ReplicaSets, Deployments, rollouts and rollbacks.'],
+    [null,'Services (ClusterIP, NodePort, LoadBalancer), Ingress, ConfigMaps, Secrets, namespaces.'],
+    [null,'Resource requests and limits, liveness and readiness probes, HPA, PV and PVC basics.'],
+    [null,'Debug drill: break a deployment three ways (bad image tag, failing probe, missing ConfigMap) and fix each with kubectl only.']
+  ]},
+  {n:11,phase:'p4',title:'EKS, Helm, Prometheus, project 3',items:[
+    ['build','Provision EKS with Terraform. A public module is fine. Connect kubectl.'],
+    [null,'Helm: charts, values, install, upgrade, rollback. Write a chart for the project 2 app.'],
+    ['build','Project 3: deploy through Helm with an HPA and an Ingress via the AWS Load Balancer Controller.'],
+    [null,'Install kube-prometheus-stack. One Grafana dashboard, one alert rule that actually fires.'],
+    [null,'CloudWatch Container Insights at overview level.'],
+    ['resume','Add project 3. Add Kubernetes, Helm, EKS to Containers. Add Prometheus, Grafana, CloudWatch to a Monitoring group.'],
+    ['cost','Destroy the EKS cluster at the end of the week. It is the most expensive thing in this plan.']
+  ]},
+  {n:12,phase:'p5',title:'Portfolio, keywords, explanations',items:[
+    ['build','Each repo: README with architecture diagram, how to run, and a design decisions paragraph.'],
+    [null,'Pin the three repos on your GitHub profile. Profile README with the credential strip.'],
+    [null,'Practice a two-minute explanation of each project aloud. Record yourself once and listen back.'],
+    ['resume','Keyword pass. These exact words must appear: DevOps, CI/CD, Infrastructure as Code, AWS, Terraform, Kubernetes, Docker, Linux, Python, monitoring, automation.'],
+    ['resume','Final one-page pass. Cut objective statements, coursework lists, long Cisco feature lists. Keep education with degree and graduation date.'],
+    [null,'Optional: Terraform Associate exam, only if all three projects are done.'],
+    ['cost','Confirm every AWS resource is destroyed. Check the bill one last time.']
+  ]}
+];
+
+var DONE=[
+  'AWS SAA passed and on the resume with the credential ID.',
+  'Three pinned repos, each with an architecture diagram and a README.',
+  'Resume has the headline, grouped skills, certifications, three projects, and fits one page.',
+  'You can write a two-AZ VPC in Terraform from memory.',
+  'You can write a Dockerfile and a GitHub Actions workflow from memory.',
+  'You can debug a crashing pod with kubectl.',
+  'You can explain each project in two minutes without notes.'
+];
+
+var state={done:{},startDate:START_DEFAULT};
+
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+function itemHtml(id,kind,text){
+  var tag=kind?'<span class="tag">'+TAGS[kind]+'</span>':'';
+  return '<li class="item'+(kind==='resume'?' resume':'')+'" data-id="'+id+'"><input type="checkbox" id="'+id+'"><label for="'+id+'">'+tag+esc(text)+'</label></li>';
+}
+function build(){
+  var html='';
+  PHASES.forEach(function(p){
+    html+='<section class="phase" data-hue="'+p.hue+'" id="'+p.id+'">'+
+      '<div class="phase-head"><span class="eyebrow">'+p.label+'</span><h2>'+esc(p.name)+'</h2>'+
+      '<span class="span">'+p.span+' · <span data-pprog="'+p.id+'"></span></span></div>'+
+      '<p class="blurb">'+esc(p.blurb)+'</p>';
+    WEEKS.filter(function(w){return w.phase===p.id;}).forEach(function(w){
+      html+='<article class="week" id="week-'+w.n+'" data-week="'+w.n+'"><div class="week-head">'+
+        '<span class="wk">Week '+w.n+'</span><span class="dates" data-dates="'+w.n+'"></span>'+
+        '<h3>'+esc(w.title)+'</h3><span class="pill" data-pill="'+w.n+'" hidden></span>'+
+        '<span class="count" data-count="'+w.n+'"></span></div><ul class="items">';
+      w.items.forEach(function(it,i){html+=itemHtml('w'+w.n+'-'+(i+1),it[0],it[1]);});
+      html+='</ul></article>';
+    });
+    html+='</section>';
+  });
+  document.getElementById('phases').innerHTML=html;
+  document.getElementById('done-list').innerHTML=DONE.map(function(t,i){return itemHtml('d-'+(i+1),null,t);}).join('');
+}
+
+function parseDate(s){
+  var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s||'');
+  if(!m) return parseDate(START_DEFAULT);
+  var d=new Date(+m[1],+m[2]-1,+m[3]);
+  return isNaN(d.getTime())?parseDate(START_DEFAULT):d;
+}
+function addDays(d,n){var x=new Date(d.getTime());x.setDate(x.getDate()+n);return x;}
+function fmt(d){return d.toLocaleDateString('en-US',{month:'short',day:'numeric'});}
+function fmtYear(d){return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});}
+
+function paint(){
+  var start=parseDate(state.startDate);
+  var today=new Date(); today.setHours(0,0,0,0);
+  var idx=Math.floor((today-start)/(7*864e5));
+  document.getElementById('start-date').value=state.startDate;
+  document.getElementById('end-date').textContent=fmtYear(addDays(start,83));
+  document.getElementById('exam-date').textContent='by '+fmt(addDays(start,34));
+
+  var total=0,done=0,phaseTotals={},phaseDone={};
+  var lis=document.querySelectorAll('.item');
+  for(var i=0;i<lis.length;i++){
+    var li=lis[i],id=li.getAttribute('data-id'),on=!!state.done[id];
+    li.querySelector('input').checked=on;
+    li.classList.toggle('done',on);
+  }
+  WEEKS.forEach(function(w){
+    var t=w.items.length,d=0;
+    for(var i=1;i<=t;i++) if(state.done['w'+w.n+'-'+i]) d++;
+    total+=t; done+=d;
+    phaseTotals[w.phase]=(phaseTotals[w.phase]||0)+t;
+    phaseDone[w.phase]=(phaseDone[w.phase]||0)+d;
+    document.querySelector('[data-count="'+w.n+'"]').textContent=d+'/'+t;
+    var s=addDays(start,7*(w.n-1));
+    document.querySelector('[data-dates="'+w.n+'"]').textContent=fmt(s)+' – '+fmt(addDays(s,6));
+    var art=document.getElementById('week-'+w.n), pill=document.querySelector('[data-pill="'+w.n+'"]');
+    var now=(idx===w.n-1);
+    art.classList.toggle('now',now);
+    if(now){pill.textContent='This week';pill.hidden=false;}
+    else if(w.n===1&&idx<0){var days=Math.round((start-today)/864e5);pill.textContent=days===1?'Starts tomorrow':'Starts in '+days+' days';pill.hidden=false;}
+    else{pill.hidden=true;}
+  });
+  PHASES.forEach(function(p){document.querySelector('[data-pprog="'+p.id+'"]').textContent=(phaseDone[p.id]||0)+'/'+(phaseTotals[p.id]||0);});
+  var dt=DONE.length,dd=0;
+  for(var k=1;k<=dt;k++) if(state.done['d-'+k]) dd++;
+  total+=dt; done+=dd;
+  document.getElementById('done-prog').textContent=dd+'/'+dt;
+  document.getElementById('num').textContent=done+' / '+total+' done';
+  document.getElementById('fill').style.width=(total?Math.round(100*done/total):0)+'%';
+}
+
+function setFoot(t){document.getElementById('foot').textContent=t;}
+function saveLocal(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
+function loadLocal(){
+  try{var raw=localStorage.getItem(KEY);if(!raw)return;var d=JSON.parse(raw);applyData(d,false);}catch(e){}
+}
+function applyData(d,repaint){
+  if(!d||typeof d!=='object')return;
+  state.done=(d.done&&typeof d.done==='object')?Object.assign({},d.done):{};
+  if(typeof d.startDate==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(d.startDate)) state.startDate=d.startDate;
+  if(repaint!==false) paint();
+}
+
+/* shared store: the artifact database when this page runs inside claude.ai */
+var docRef=null,writing=false,dirty=false,firstSnap=true,retried=false;
+function persist(){saveLocal();if(docRef){dirty=true;flush();}}
+function flush(){
+  if(!docRef||writing||!dirty)return;
+  writing=true;dirty=false;
+  docRef.set({done:state.done,startDate:state.startDate,updatedAt:new Date().toISOString()}).then(function(){
+    writing=false;retried=false;if(dirty)flush();
+  },function(err){
+    writing=false;
+    var code=err&&err.code;
+    if(code==='invalid_argument'||code==='revoked'||code==='not_granted'){docRef=null;setFoot('Read-only here. Progress is saved in this browser only.');}
+    else if(code==='unavailable'&&!retried){retried=true;dirty=true;setTimeout(flush,700+Math.random()*800);}
+    else{setFoot('Could not save to the shared store. Progress is saved in this browser.');}
+  });
+}
+function connect(){
+  var p=(window.claude&&typeof window.claude.use==='function')?window.claude.use('db'):Promise.resolve(null);
+  p.then(function(db){
+    if(!db)return;
+    var ref=db.doc('progress/roadmap');
+    ref.onSnapshot(function(snap){
+      if(firstSnap){
+        firstSnap=false;docRef=ref;
+        setFoot('Progress syncs across your devices through this page.');
+        if(snap.exists){applyData(snap.data(),true);saveLocal();}
+        else{dirty=true;flush();}
+        return;
+      }
+      if(writing||dirty)return;
+      if(snap.exists){applyData(snap.data(),true);saveLocal();}
+    },function(){docRef=null;setFoot('Progress is saved in this browser only.');});
+  }).catch(function(){});
+}
+
+build();
+loadLocal();
+paint();
+document.addEventListener('change',function(e){
+  var t=e.target;
+  if(t&&t.matches&&t.matches('.item input')){
+    if(t.checked)state.done[t.id]=true;else delete state.done[t.id];
+    paint();persist();
+  }else if(t&&t.id==='start-date'){
+    if(/^\d{4}-\d{2}-\d{2}$/.test(t.value)){state.startDate=t.value;paint();persist();}
+  }
+});
+connect();
+})();
+</script>
+</body>
+</html>
