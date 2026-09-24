@@ -174,8 +174,9 @@ section{display:grid;gap:14px}
     <div class="facts">
       <div class="fact"><span class="k">Goal</span><span class="v">job in January 2027</span></div>
       <div class="fact"><span class="k">Start</span><span class="v"><input type="date" id="start-date" value="2026-09-28" aria-label="Start date"></span></div>
-      <div class="fact"><span class="k">Ends</span><span class="v" id="end-date"></span></div>
+      <div class="fact"><span class="k">Study ends</span><span class="v" id="end-date"></span></div>
       <div class="fact"><span class="k">SAA exam</span><span class="v" id="exam-date"></span></div>
+      <div class="fact"><span class="k">KCNA exam</span><span class="v" id="kcna-date"></span></div>
       <div class="fact"><span class="k">Hours</span><span class="v">about 20 a week</span></div>
       <div class="fact"><span class="k">Rhythm</span><span class="v">2 h weekdays, 5 h weekend days</span></div>
     </div>
@@ -185,7 +186,7 @@ section{display:grid;gap:14px}
     <div class="decision" data-v="take"><div class="name">AWS Solutions Architect Associate</div><div class="verdict">Take, week 5</div><p class="why">The keyword recruiters filter on first. Book it in week 1.</p></div>
     <div class="decision" data-v="later"><div class="name">Terraform Associate</div><div class="verdict">After January</div><p class="why">Course 3 repeats the Terraform of weeks 6 and 7. Take the exam once employed. Week 12 goes to ArgoCD instead.</p></div>
     <div class="decision" data-v="later"><div class="name">CKA</div><div class="verdict">After hire</div><p class="why">Two to three months on its own. First six months on the job, employer usually pays.</p></div>
-    <div class="decision" data-v="later"><div class="name">KCNA</div><div class="verdict">Only if ahead</div><p class="why">Multiple choice, one to two weeks. Not before SAA and the projects.</p></div>
+    <div class="decision" data-v="take"><div class="name">KCNA</div><div class="verdict">Take, January</div><p class="why">Multiple choice, two weeks of prep after the twelve weeks, while applications are out. Weeks 13 and 14 below.</p></div>
   </section>
 
   <section class="callout">
@@ -259,7 +260,6 @@ section{display:grid;gap:14px}
         <li><span class="k">CKA</span><span class="v">After you are hired, within the first six months. Employers usually pay for it.</span></li>
         <li><span class="k">Terraform Associate</span><span class="v">After January. Course 3 waits with it.</span></li>
         <li><span class="k">AWS DevOps Pro</span><span class="v">After a year on the job.</span></li>
-        <li><span class="k">KCNA</span><span class="v">Only if SAA is passed and all three projects finish early.</span></li>
         <li><span class="k">Vagrant, GitLab CI, Beanstalk, CodeCommit</span><span class="v">Not resume skills for this window. Overview lectures only.</span></li>
         <li><span class="k">Service mesh, Loki, Alloy</span><span class="v">Learn on the job when a team uses them.</span></li>
       </ul>
@@ -278,6 +278,7 @@ section{display:grid;gap:14px}
         <li><span class="k">Kubernetes</span><span class="v">kubernetes.io tutorials. KodeKloud labs. kind quick start.</span></li>
         <li><span class="k">Monitoring</span><span class="v">kube-prometheus-stack chart README. Grafana fundamentals.</span></li>
         <li><span class="k">ArgoCD</span><span class="v">Official Getting Started guide, for the week 12 stretch.</span></li>
+        <li><span class="k">KCNA</span><span class="v">Linux Foundation LFS158, free. KodeKloud KCNA course. killer.sh simulator if your registration includes it.</span></li>
       </ul>
     </section>
   </section>
@@ -302,7 +303,9 @@ var PHASES=[
   {id:'p4',hue:'blue',label:'Phase 4',name:'Kubernetes and observability',span:'Weeks 10 to 11',
    blurb:'Fundamentals on a local cluster first, then EKS. Project 3 moves the app from project 2 onto Kubernetes with a Helm chart, autoscaling, and a Grafana dashboard. No CKA yet.'},
   {id:'p5',hue:'slate',label:'Phase 5',name:'Consolidate',span:'Week 12',
-   blurb:'Polish the three repos, run the resume keyword pass, and practice the explanations until each project takes two minutes to tell. If there is time left, the ArgoCD GitOps project from the course.'}
+   blurb:'Polish the three repos, run the resume keyword pass, and practice the explanations until each project takes two minutes to tell. If there is time left, the ArgoCD GitOps project from the course.'},
+  {id:'p6',hue:'blue',label:'January',name:'KCNA while the applications are out',span:'Weeks 13 to 14',
+   blurb:'The Kubernetes and Cloud Native Associate is a 60-question, 90-minute multiple-choice exam. Kubernetes fundamentals are 46 percent of it, and you did that in weeks 10 and 11, so this is mostly revision plus the cloud native concepts the roadmap skipped. Two weeks, exam at the end of week 14, and the certification line on the resume grows while recruiters are reading it.'}
 ];
 
 var WEEKS=[
@@ -410,6 +413,21 @@ var WEEKS=[
     ['resume','Final one-page pass. Cut objective statements, coursework lists, long Cisco feature lists. Keep education with degree and graduation date.'],
     ['build','Stretch: the GitOps project from Decoding DevOps. ArgoCD on EKS syncing your Helm chart from Git. It talks better in interviews than the Terraform Associate exam.'],
     ['cost','Confirm every AWS resource is destroyed. Check the bill one last time.']
+  ]},
+  {n:13,phase:'p6',title:'KCNA domains',course:'Linux Foundation LFS158, Introduction to Kubernetes, free, for the gaps. KodeKloud KCNA course if you want video.',items:[
+    ['book','Book the KCNA for the last day of week 14. Check whether the registration includes the killer.sh KCNA simulator and save it for week 14.'],
+    [null,'Kubernetes fundamentals, 46 percent: architecture, the API and objects, containers, scheduling, kubectl, namespaces, RBAC basics. Revision of weeks 10 and 11.'],
+    [null,'Container orchestration, 22 percent: CNI networking, CSI storage, CRI runtimes, security contexts and policies, service mesh concepts.'],
+    [null,'Cloud native architecture, 16 percent: autoscaling, serverless, open standards, the CNCF landscape and project maturity levels, community roles.'],
+    [null,'Observability, 8 percent: Prometheus, OpenTelemetry concepts, logs, metrics, traces, cost management.'],
+    [null,'Application delivery, 8 percent: GitOps, ArgoCD and Flux, CI/CD fundamentals. If you did the week 12 stretch this is done.'],
+    [null,'Keep the three repos warm: one small improvement a week so the commit history is not frozen when a hiring manager opens it.']
+  ]},
+  {n:14,phase:'p6',title:'KCNA exam',course:'Practice questions from the KodeKloud course or the killer.sh simulator if included.',items:[
+    [null,'Practice questions daily. Two full mock exams above 80 percent before you sit it.'],
+    [null,'Re-read the CNCF landscape and the Kubernetes glossary once. The exam asks for definitions, not for typing commands.'],
+    ['exam','Sit the KCNA at the end of the week.'],
+    ['resume','Add KCNA under certifications and Kubernetes to the credential strip the day you pass. Send the updated resume to whoever is applying for you.']
   ]}
 ];
 
@@ -469,6 +487,7 @@ function paint(){
   document.getElementById('start-date').value=state.startDate;
   document.getElementById('end-date').textContent=fmtYear(addDays(start,83));
   document.getElementById('exam-date').textContent='by '+fmt(addDays(start,34));
+  document.getElementById('kcna-date').textContent='by '+fmt(addDays(start,97));
 
   var total=0,done=0,phaseTotals={},phaseDone={};
   var lis=document.querySelectorAll('.item');
