@@ -632,7 +632,8 @@ code{color:#CFE0FF}
 .lesson-nav{border-top-color:var(--card-line)}
 
 /* ===== Learn: interactive Overview ===== */
-.learn{display:grid;gap:18px}
+.learn{display:grid;gap:18px;grid-template-columns:minmax(0,1fr)}
+.ov-simwrap{min-width:0}
 .ov-intro{display:grid;gap:16px;grid-template-columns:minmax(0,1fr)}
 .ov-intro .topo{margin:0}
 .wyl{border-radius:14px;padding:16px;align-self:start}
@@ -707,6 +708,84 @@ code{color:#CFE0FF}
   .ov-intro .topo-scroll svg,.walk .topo-scroll svg{min-width:0}
   .learn-grid{grid-template-columns:minmax(0,1fr) 310px}
   .walk-grid{grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);align-items:start}
+}
+
+/* Explanation and Training parts */
+.wyl-how{margin:0 0 12px;font-size:.88rem;color:var(--muted);line-height:1.5}
+.wyl-how b{color:var(--ink);font-weight:600}
+.tparts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:14px 0 0;scroll-margin-top:calc(env(safe-area-inset-top,0px) + var(--top-h) + 64px)}
+.tpart{position:relative;display:flex;align-items:flex-start;gap:10px;padding:11px 12px;border:1px solid rgba(148,163,184,.2);border-radius:12px;background:rgba(255,255,255,.025);color:var(--ink);text-align:left;cursor:pointer;min-width:0;transition:border-color .2s,background .2s,box-shadow .2s}
+.tpart:hover{border-color:rgba(91,140,255,.55)}
+.tpart.on{border-color:rgba(91,140,255,.7);background:linear-gradient(135deg,rgba(59,130,246,.16),rgba(139,92,246,.12));box-shadow:0 0 0 3px rgba(91,140,255,.12),0 10px 26px rgba(79,70,229,.2)}
+.tp-n{flex:none;width:30px;height:30px;display:grid;place-items:center;border-radius:9px;border:1px solid var(--line-strong);font:700 .9rem var(--display);color:var(--muted)}
+.tpart.on .tp-n{background:var(--grad);border-color:transparent;color:#FFFFFF;box-shadow:0 0 14px rgba(99,102,241,.5)}
+.tp-t{display:grid;gap:2px;min-width:0}
+.tp-t b{font:700 1rem/1.2 var(--display);letter-spacing:.02em}
+.tp-t small{font-size:.78rem;line-height:1.35;color:var(--muted)}
+.tp-prog{position:absolute;top:9px;right:10px;font:600 .72rem var(--mono);color:var(--muted);padding:2px 7px;border-radius:999px;background:rgba(255,255,255,.05)}
+.tp-prog.full{color:var(--ok);background:rgba(52,211,153,.14)}
+.tpart[data-p="tr"] .tp-t{padding-right:40px}
+.tpane{display:grid;gap:14px}
+.tpane[hidden]{display:none}
+.t-sum{margin:0;display:grid;gap:6px;padding:14px 16px;border:1px solid rgba(34,211,238,.28);border-radius:14px;background:linear-gradient(135deg,rgba(34,211,238,.08),rgba(99,102,241,.07));font-size:1.04rem;line-height:1.5}
+.t-sum .eyebrow{color:var(--cyan)}
+.ex-grid{display:grid;gap:14px;grid-template-columns:minmax(0,1fr)}
+.ex-main,.ex-side{display:grid;gap:12px;align-content:start;min-width:0}
+.exsec{border-radius:14px;padding:16px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.012)),var(--surface);border:1px solid var(--card-line);box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+.exsec>h4{display:flex;align-items:center;gap:10px;margin:0 0 10px;font:700 1.05rem var(--cond);letter-spacing:.02em}
+.exsec .learn-body>:last-child{margin-bottom:0}
+.ex-ia{border-color:rgba(139,92,246,.35)}
+.ex-ia .tnum{background:linear-gradient(135deg,#8B5CF6,#6366F1)}
+.terms-card{padding:12px 14px;border:1px solid rgba(139,92,246,.28);border-radius:12px;background:rgba(139,92,246,.06)}
+.terms{margin:8px 0 12px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 12px;font-size:.84rem;line-height:1.4}
+.terms:last-child{margin-bottom:0}
+.terms dt{font:600 .8rem/1.5 var(--mono);color:var(--cyan)}
+.terms dd{margin:0;display:grid;gap:1px;color:var(--muted)}
+.terms dd b{color:var(--ink);font-weight:600}
+.k-terms dt{font:600 .84rem/1.4 var(--sans);color:var(--ink);grid-column:1/-1}
+.k-terms dd{margin-top:-6px;grid-column:1/-1}
+.tk-h{margin-top:4px}
+.ex-foot{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;padding:14px 16px;border:1px dashed rgba(91,140,255,.4);border-radius:14px}
+.ex-foot p{margin:0;flex:1 1 260px;font-size:.9rem}
+.tr-track{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px;counter-reset:tr}
+.tr-track li{counter-increment:tr;display:inline-flex;align-items:center;gap:7px;padding:6px 11px;border:1px solid rgba(148,163,184,.2);border-radius:999px;font:500 .82rem var(--sans);color:var(--muted)}
+.tr-track li::before{content:counter(tr);width:18px;height:18px;display:grid;place-items:center;border-radius:50%;background:rgba(255,255,255,.07);font:600 .7rem var(--mono)}
+.tr-track li.done{border-color:rgba(52,211,153,.45);color:var(--ok);background:rgba(52,211,153,.07)}
+.tr-track li.done::before{content:"✓";background:rgba(52,211,153,.2)}
+.fc-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;margin:0 0 10px;font:500 .85rem var(--sans);color:var(--muted)}
+.fcards{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}
+.fcard{position:relative;height:138px;padding:0;border:0;background:none;color:var(--ink);cursor:pointer;perspective:900px;text-align:left}
+.fc-in{position:absolute;inset:0;transition:transform .45s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d}
+.fcard.flip .fc-in{transform:rotateY(180deg)}
+.fc-face{position:absolute;inset:0;display:grid;align-content:center;gap:5px;padding:12px 14px;border-radius:12px;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
+.fc-front{border:1px solid rgba(91,140,255,.35);background:linear-gradient(160deg,rgba(59,130,246,.14),rgba(139,92,246,.08)),var(--surface)}
+.fc-front small{font:600 .68rem var(--cond);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.fc-front b{font:700 1.2rem/1.2 var(--display);overflow-wrap:anywhere}
+.fc-front em{font-style:normal;font-size:.74rem;color:var(--muted)}
+.fc-back{transform:rotateY(180deg);border:1px solid rgba(52,211,153,.4);background:linear-gradient(160deg,rgba(52,211,153,.12),rgba(34,211,238,.06)),var(--surface)}
+.fc-back b{font:600 .9rem/1.3 var(--sans);color:#FFFFFF}
+.fc-back span{font-size:.8rem;line-height:1.4;color:var(--muted)}
+.fcard:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:12px}
+.oral .or-ask{margin:0 0 6px;font:600 1.02rem/1.4 var(--sans);color:#FFFFFF}
+.oral>.muted{margin:0 0 12px;font-size:.9rem}
+.or-body{display:grid;gap:12px;margin-top:4px}
+.or-body[hidden]{display:none}
+.or-ans{padding:12px 14px;border-left:3px solid var(--violet);border-radius:0 10px 10px 0;background:rgba(139,92,246,.07)}
+.or-rate{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;font-size:.9rem;color:var(--muted)}
+abbr.ac{text-decoration:underline dotted rgba(34,211,238,.75);text-underline-offset:3px;text-decoration-thickness:1.5px;cursor:help;border-radius:3px}
+abbr.ac:hover,abbr.ac:focus-visible{color:var(--cyan);background:rgba(34,211,238,.08)}
+.acro-pop{position:fixed;z-index:80;max-width:min(300px,calc(100vw - 16px));display:grid;gap:3px;padding:10px 12px;border:1px solid rgba(34,211,238,.4);border-radius:10px;background:#0B1324;box-shadow:0 14px 40px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.03);font-size:.84rem;line-height:1.4;pointer-events:none}
+.acro-pop[hidden]{display:none}
+.acro-pop b{font:600 .78rem var(--mono);color:var(--cyan)}
+.acro-pop .ap-full{font-weight:600;color:#FFFFFF}
+.acro-pop .ap-mean{color:var(--muted)}
+@container stage (min-width:1040px){
+  .ex-grid{grid-template-columns:minmax(0,1fr) 320px;align-items:start}
+}
+@media (max-width:560px){
+  .tparts{grid-template-columns:minmax(0,1fr)}
+  .fcards{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .fcard{height:150px}
 }
 
 @media (prefers-reduced-motion: reduce){*{transition:none!important;scroll-behavior:auto!important}}
@@ -4410,6 +4489,7 @@ class MissionLab extends Lab{
       clearTimeout(armed); armed = 0; rb.textContent = 'Reset mission'; rb.classList.remove('danger-armed'); this.stopDemo(); this.reset();
     });
     if (M.widget) this.mountWidget(M.widget);
+    acroDom(s.querySelector('.ticket'), null, {expand:false}); this.acSeen = new Set();
   }
   mountWidget(kind){
     const box = this.root.querySelector('.mi-widget'); box.hidden = false;
@@ -4427,6 +4507,7 @@ class MissionLab extends Lab{
     const M = this.def.M, st = mst(this.def.q.id);
     const p = document.createElement('p'); p.className = 'mh'; p.innerHTML = '<b>Where to look.</b> ' + M.hint;
     this.hintEl.prepend(p);
+    acroDom(p, this.acSeen);
     if (!st.h){ st.h = 1; saveMissions(); }
     this.s2.disabled = false;
   }
@@ -4442,6 +4523,7 @@ class MissionLab extends Lab{
       (x.show ? '<span class="bstep">' + ICON.tool + esc(x.show) + '</span>' : '') + '</li>').join('') + '</ol>' +
       '<div class="row"><button type="button" class="btn primary runsol">Run the solution in the console</button></div>' +
       '<h4>Model interview answer</h4><div class="ia">' + q.a + (q.tip ? '<p class="tip">' + q.tip + '</p>' : '') + '</div>';
+    acroDom(this.ansEl, this.acSeen);
     this.ansEl.hidden = false;
     this.ansEl.querySelector('.runsol').addEventListener('click', () => { this.root.querySelector('.term').scrollIntoView({behavior:reduceMotion ? 'auto' : 'smooth', block:'nearest'}); this.runDemo(true); });
     if (!st.a){ st.a = 1; saveMissions(); }
@@ -4476,7 +4558,7 @@ function quizEl(q, onChange){
     const whyEl = box.querySelector('.qz-why');
     function paint(){ const a = (mstate[q.id] || {}).q || []; const k = a[i];
       bs.forEach((b, j) => { b.classList.toggle('right', k != null && j === right); b.classList.toggle('wrong', k != null && j === k && k !== right); b.disabled = k != null; b.setAttribute('aria-pressed', String(j === k)); });
-      whyEl.hidden = k == null; if (k != null) whyEl.innerHTML = (k === right ? '<span class="pill ok">Correct</span> ' : '<span class="pill bad">Not quite</span> The answer is ' + 'ABCD'[pos[right]] + '. ') + esc(why); }
+      whyEl.hidden = k == null; if (k != null) whyEl.innerHTML = (k === right ? '<span class="pill ok">Correct</span> ' : '<span class="pill bad">Not quite</span> The answer is ' + 'ABCD'[pos[right]] + '. ') + esc(why); acroDom(whyEl, null, {expand:false}); }
     paint(); qwrap.appendChild(box); return paint;
   });
   const sc = sec.querySelector('.qscore'), rt = sec.querySelector('.qretry');
@@ -5466,19 +5548,19 @@ MS('net1', {
   brief:'The interviewer will ask what L6, L10 and L11 mean. Trace this unit through all three in the MES: the board it was built from, the server it is now, and the rack it is going into. Then check the link the rack test depends on.',
   hint:'mes unit shows this server\'s level. mes board and mes rack follow it down to the board and up to the rack. ethtool eno1 checks the onboard port that rack test uses.',
   cmds:[
-    {re:/^mes\s+board\b.*$/i, fn(m, L){ return 'Board ' + L.S.board + '   [[b:L6: PCBA]] (printed circuit board assembly)\n  SMT line 2, reflow profile R2-GP-C\n  AOI PASS   ICT PASS   FCT PASS   06/12/2026\n  Installed in unit ' + L.S.sn + ' (L10)'; }},
+    {re:/^mes\s+board\b.*$/i, fn(m, L){ return 'Barebones build for board ' + L.S.board + '   [[b:L6: barebones]] (chassis, motherboard, power supplies and fans; no CPU, memory or drives)\n  Board from the SMT line passed AOI, ICT and FCT on 06/12/2026\n  Barebones assembly and power-on test PASS 06/15/2026\n  Built up into unit ' + L.S.sn + ' (L10)'; }},
     {re:/^mes\s+rack\b.*$/i, fn(m, L){ return 'Rack R14   [[b:L11: rack integration]]\n  U17   ' + L.S.sn + '   R2-GP 2U server (L10)\n  U15-U16, U18-U32   16 more R2-GP servers (L10)\n  U42   TOR-R14 top-of-rack switch, 48 x 1G + 4 x 100G uplinks\n  2 x PDU, cabling map CM-R14 rev B\n  L11 tests: cabling map, power per PDU, every server PXE boots and passes rack burn-in, switch config per customer'; }},
-    {re:/^mes\s+levels?$/i, fn(){ return 'Integration levels on this site\n  L6   board assembly (PCBA): SMT, AOI, ICT, FCT\n  L10  complete server: chassis, board, CPUs, memory, drives, PSUs, tested\n  L11  rack integration: servers, switches, PDUs, cabling, tested as one rack\n  L12  multi-rack or cluster delivery, with customer software'; }}
+    {re:/^mes\s+levels?$/i, fn(){ return 'Integration levels on this site\n  L6   barebones: chassis, motherboard, power supplies and fans, no CPU, memory or drives\n  L10  complete server: chassis, board, CPUs, memory, drives, PSUs, tested\n  L11  rack integration: servers, switches, PDUs, cabling, tested as one rack\n  L12  multi-rack or cluster delivery, with customer software'; }}
   ],
   goals:[
     {t:'Find this unit\'s integration level', on:/^mes\s+unit/i, out:/level L10/, h:'The unit record.', c:'mes unit'},
-    {t:'Trace the board back to its L6 record', on:/^mes\s+board/i, out:/L6/, h:'The board has its own history.', c:'mes board'},
+    {t:'Trace it back to its L6 barebones record', on:/^mes\s+board/i, out:/L6/, h:'The barebones build has its own history.', c:'mes board'},
     {t:'See the L11 rack it goes into', on:/^mes\s+rack/i, out:/L11/, h:'Where does this server go next?', c:'mes rack'},
     {t:'Check the port rack test depends on', on:/^ethtool\s+eno1$/i, out:/Link detected: yes/, h:'The onboard port eno1 PXE boots in the rack.', c:'ethtool eno1'}
   ],
   sol:[{cmd:'mes unit'}, {cmd:'mes board'}, {cmd:'mes rack'}, {cmd:'ethtool eno1'}],
   quiz:[
-    ['What is L10 in server manufacturing?', ['A bare circuit board', 'A fully built and tested server: chassis, board, CPUs, memory, drives and PSUs', 'A whole rack with switches', 'A software image'], 1, 'L6 is the board (PCBA), L10 the complete server, and L11 the rack integration with power and networking.'],
+    ['What is L10 in server manufacturing?', ['A barebones chassis with no CPU or memory', 'A fully built and tested server: chassis, board, CPUs, memory, drives and PSUs', 'A whole rack with switches', 'A software image'], 1, 'L6 is the barebones chassis (board, PSUs and fans), L10 the complete tested server, and L11 the rack integration with power and networking.'],
     ['Why does L11 rack integration suit someone with a CCNA?', ['It doesn\'t', 'Rack tests cable many servers to top-of-rack switches, so VLAN, cabling, link and PXE problems show up there', 'L11 is only about power', 'It replaces the BMC'], 1, 'At L11 the whole rack is tested as a system. Network skills help debug it directly.']
   ]
 });
@@ -6002,10 +6084,701 @@ TALK('bh10', {
   ]
 });
 
-/* ================= Learn: step-by-step teaching for every interview question =================
-   Each topic teaches one interview question: the explanation, the commands it uses,
-   a worked example you step through on the same preconfigured unit the mission uses
-   (every step runs for real and shows what it proves), and a quick check. */
+/* ================= Glossary: every abbreviation spelled out =================
+   ACRO[key] = [full form as it reads mid-sentence, what it means, optional plural full form].
+   acroDom() walks the text of an element: the first time an abbreviation appears in a topic it is
+   followed by its full form in brackets; every use gets a dotted underline and a tap or hover card. */
+const ACRO = {
+  AC:['alternating current','The mains power from the wall outlet or PDU.'],
+  DC:['direct current','Steady voltage, like the 12 V the power supplies deliver to the board.'],
+  PSU:['power supply unit','Converts AC from the wall into the DC rails the server runs on.'],
+  PDU:['power distribution unit','The power strip in a rack that feeds every server and switch.'],
+  VRM:['voltage regulator module','Steps 12 V down to the low voltages the CPU and memory need.'],
+  PMBus:['Power Management Bus','The link a power supply uses to report status and faults to the BMC.'],
+  CPU:['central processing unit','The processor that runs the code; servers often have two.'],
+  GPU:['graphics processing unit','A processor for parallel work such as AI; servers may carry several.'],
+  AMD:['Advanced Micro Devices','A CPU and GPU maker; its server CPUs are called EPYC.'],
+  'AMD-V':['AMD Virtualization','AMD\'s hardware support for running virtual machines.'],
+  'VT-x':['Intel Virtualization Technology','Intel\'s hardware support for running virtual machines.'],
+  'VT-d':['Intel Virtualization Technology for Directed I/O','Lets devices be assigned safely to virtual machines.'],
+  IOMMU:['input-output memory management unit','Hardware that controls which memory a device may reach.'],
+  NUMA:['non-uniform memory access','Each CPU reaches its own memory faster than the other CPU\'s.'],
+  IERR:['internal error','A serious processor error logged by the BMC.'],
+  MCE:['machine check exception','An error the CPU reports when it detects a hardware fault.'],
+  LGA:['land grid array','A socket type with spring pins that touch flat pads on the CPU.'],
+  RAM:['random-access memory','The server\'s working memory.'],
+  DRAM:['dynamic random-access memory','The memory chips on a DIMM.'],
+  DIMM:['dual in-line memory module','A memory stick.'],
+  RDIMM:['registered DIMM','Server memory with a register chip that buffers signals.'],
+  UDIMM:['unbuffered DIMM','Desktop-style memory with no register chip.'],
+  LRDIMM:['load-reduced DIMM','Server memory that buffers data signals too, for very large capacities.'],
+  RCD:['registering clock driver','The chip on an RDIMM that buffers command and address signals.'],
+  DDR5:['Double Data Rate 5','The fifth generation of DDR memory, used on current servers.'],
+  DDR4:['Double Data Rate 4','The previous generation of DDR memory.'],
+  DPC:['DIMMs per channel','How many memory sticks share one memory channel.'],
+  ECC:['error-correcting code','Extra bits stored with data so memory can fix small errors.'],
+  CE:['correctable error','A memory error ECC fixed automatically; it is logged.'],
+  UE:['uncorrectable error','A memory error ECC could not fix; the system usually halts.'],
+  EDAC:['Error Detection and Correction','The Linux kernel subsystem that reports memory errors.'],
+  SPD:['serial presence detect','A small chip on each DIMM that tells the BIOS its size and speed.'],
+  'MT/s':['megatransfers per second','Memory speed: millions of data transfers per second.'],
+  'GT/s':['gigatransfers per second','PCIe speed per lane: billions of transfers per second.'],
+  'Gb/s':['gigabits per second','Link speed: billions of bits per second.'],
+  Gb:['gigabit','One billion bits; network speeds are quoted in bits.'],
+  GB:['gigabyte','About one billion bytes; memory and storage are quoted in bytes.'],
+  TB:['terabyte','About one thousand gigabytes.'],
+  GiB:['gibibyte','Exactly 1,024 × 1,024 × 1,024 bytes.'],
+  BIOS:['Basic Input/Output System','The firmware that starts the server and runs POST.'],
+  UEFI:['Unified Extensible Firmware Interface','The modern firmware standard that replaced the legacy BIOS.'],
+  POST:['power-on self-test','The checks the firmware runs at every boot before loading an OS.','power-on self-tests'],
+  CMOS:['complementary metal-oxide-semiconductor','The battery-backed memory and clock that keep settings when unplugged.'],
+  RTC:['real-time clock','The chip that keeps the date and time, powered by the coin cell.'],
+  ROM:['read-only memory','Firmware stored on a chip; option ROMs are firmware on add-in cards.','read-only memories'],
+  NVRAM:['nonvolatile RAM','Memory that keeps its contents without power.'],
+  SPI:['Serial Peripheral Interface','The bus most firmware flash chips use.'],
+  AMI:['American Megatrends','A company whose BIOS and BMC firmware many servers use.'],
+  CPLD:['complex programmable logic device','A small programmable chip that handles power sequencing and board logic.'],
+  EEPROM:['electrically erasable programmable read-only memory','A small memory chip, for example the FRU chip that holds serial numbers.','electrically erasable programmable read-only memories'],
+  TPM:['Trusted Platform Module','A security chip that stores keys and records what firmware booted.'],
+  PCR:['platform configuration register','A TPM register that records hashes of each boot stage.'],
+  PK:['platform key','The top Secure Boot key that controls who may change the other keys.'],
+  KEK:['key exchange key','A Secure Boot key allowed to update the allowed and blocked lists.'],
+  LUKS:['Linux Unified Key Setup','The standard Linux disk encryption format; it can unlock with the TPM.'],
+  MOK:['Machine Owner Key','An extra Secure Boot key Linux uses to trust its own components.'],
+  SMBIOS:['System Management BIOS','The tables the firmware builds that describe the hardware; dmidecode reads them.'],
+  BMC:['baseboard management controller','A small computer on the motherboard for remote management, running even when the server is off.'],
+  IPMI:['Intelligent Platform Management Interface','The older protocol for talking to a BMC, used through ipmitool.'],
+  SEL:['System Event Log','The BMC\'s log of hardware events.'],
+  SDR:['sensor data record','The BMC\'s list of sensors and their thresholds.'],
+  FRU:['field-replaceable unit','A part replaceable on site; also the chip holding its serial and part numbers.'],
+  KCS:['keyboard controller style','The local interface the OS uses to talk to the BMC.'],
+  SOL:['serial over LAN','Viewing the server\'s serial console through the BMC over the network.'],
+  KVM:['keyboard, video and mouse','Remote control of the server\'s screen and input.'],
+  iDRAC:['integrated Dell Remote Access Controller','Dell\'s BMC.'],
+  iLO:['Integrated Lights-Out','HPE\'s BMC.'],
+  HPE:['Hewlett Packard Enterprise','A server maker.'],
+  DMTF:['Distributed Management Task Force','The standards body that publishes Redfish.'],
+  REST:['Representational State Transfer','A style of web API built on URLs and standard HTTP methods.'],
+  API:['application programming interface','A defined way for programs to talk to each other.'],
+  JSON:['JavaScript Object Notation','A plain-text data format of names and values.'],
+  URL:['uniform resource locator','A web address.'],
+  HTTP:['Hypertext Transfer Protocol','The protocol for web requests.'],
+  HTTPS:['HTTP Secure','HTTP encrypted with TLS.'],
+  TLS:['Transport Layer Security','The encryption that protects HTTPS; it relies on certificates and a correct clock.'],
+  UDP:['User Datagram Protocol','A simple connectionless network protocol used by DHCP, TFTP and IPMI.'],
+  PCIe:['Peripheral Component Interconnect Express','The high-speed bus for NICs, GPUs, NVMe drives and controllers.'],
+  AER:['Advanced Error Reporting','The PCIe feature that logs link errors.'],
+  NIC:['network interface card','A network adapter.'],
+  LOM:['LAN on motherboard','A network port built into the motherboard.'],
+  OCP:['Open Compute Project','An open hardware group; its OCP NIC slot is a standard mezzanine card slot.'],
+  'I/O':['input/output','Data moving in and out of a device.'],
+  SATA:['Serial ATA','The common, lower-cost drive interface, 6 Gb/s.'],
+  SAS:['Serial Attached SCSI','The enterprise drive interface: faster and dual-port.'],
+  SCSI:['Small Computer System Interface','The command set SAS drives use.'],
+  ATA:['AT Attachment','The original PC drive interface that SATA is based on.'],
+  NVMe:['Non-Volatile Memory Express','A protocol for flash drives connected directly over PCIe.'],
+  SSD:['solid-state drive','A drive that stores data on flash chips.'],
+  HDD:['hard disk drive','A drive with spinning platters.'],
+  HBA:['host bus adapter','A storage card that passes drives straight to the OS.'],
+  RAID:['redundant array of independent disks','Combining drives for speed, protection or both.'],
+  JBOD:['just a bunch of disks','Drives passed through individually, with no RAID.'],
+  VD:['virtual disk','The logical drive a RAID controller builds from physical drives.'],
+  SMART:['Self-Monitoring, Analysis and Reporting Technology','Health data that drives record about themselves.'],
+  UDMA:['Ultra Direct Memory Access','The SATA transfer mode; UDMA CRC errors point to a cable or backplane.'],
+  CRC:['cyclic redundancy check','A checksum on each frame; CRC errors mean data was corrupted in transit.'],
+  OS:['operating system','The main software, such as Linux, that runs on the server.'],
+  VM:['virtual machine','A software computer running on a physical server.'],
+  PC:['personal computer','A desktop or laptop computer.'],
+  USB:['Universal Serial Bus','The standard port for keyboards and flash drives.'],
+  VGA:['Video Graphics Array','The analog video port on the rear of a server.'],
+  LED:['light-emitting diode','A status light.'],
+  UID:['unit identification','A blue light you switch on to find one server in a rack.'],
+  RPM:['revolutions per minute','Fan speed.'],
+  ID:['identifier','A unique name or number.'],
+  LAN:['local area network','A network within one site.'],
+  VLAN:['virtual LAN','A separate logical network on shared switches.'],
+  LAG:['link aggregation group','A bundle of links that act as one.'],
+  LACP:['Link Aggregation Control Protocol','The protocol that negotiates a link bundle with the switch (802.3ad).'],
+  STP:['Spanning Tree Protocol','Stops switching loops by blocking redundant paths.'],
+  SVI:['switched virtual interface','A VLAN\'s IP interface on a switch.'],
+  MTU:['maximum transmission unit','The largest frame a link will carry.'],
+  OSI:['Open Systems Interconnection','The seven-layer networking model, from physical to application.'],
+  DHCP:['Dynamic Host Configuration Protocol','Hands out IP addresses automatically.'],
+  TFTP:['Trivial File Transfer Protocol','A simple file transfer used by legacy PXE boot.'],
+  PXE:['Preboot Execution Environment','Booting a server from the network.'],
+  NBP:['network bootstrap program','The small program PXE downloads and runs first.'],
+  IP:['Internet Protocol','The addressing layer of networks; an IP address identifies a host.','Internet Protocol addresses'],
+  MAC:['media access control','The hardware address of a network port.','media access control addresses'],
+  OUI:['organizationally unique identifier','The first half of a MAC address, which names the maker.'],
+  DAC:['direct attach copper','A copper cable with transceivers built into each end, for short runs.'],
+  AOC:['active optical cable','A fiber cable with transceivers built into each end.'],
+  SFP:['small form-factor pluggable','A pluggable transceiver module.'],
+  'SFP+':['enhanced small form-factor pluggable','The 10G version of SFP.'],
+  SFP28:['25G small form-factor pluggable','The 25G version of SFP.'],
+  QSFP28:['quad small form-factor pluggable, 28G per lane','A 100G module with four 25G lanes.'],
+  QSFP:['quad small form-factor pluggable','A four-lane pluggable transceiver module.'],
+  'QSFP-DD':['QSFP double density','A 400G and 800G module with eight lanes.'],
+  OSFP:['octal small form-factor pluggable','Another eight-lane 400G and 800G module.'],
+  RJ45:['registered jack 45','The standard copper Ethernet connector.'],
+  SR:['short reach','Optics for multimode fiber over short distances.'],
+  LR:['long reach','Optics for single-mode fiber over long distances.'],
+  LC:['Lucent connector','The small duplex fiber connector used on most optics.'],
+  OM3:['optical multimode 3','A grade of multimode fiber, usually aqua, for short-reach optics.'],
+  OM4:['optical multimode 4','A higher grade of multimode fiber that reaches further at the same speed.'],
+  ToR:['top of rack','The switch at the top of a rack that the servers plug into.'],
+  CLI:['command-line interface','Typing commands, as on a switch or Linux shell.'],
+  SSH:['Secure Shell','Encrypted remote command-line access.'],
+  CCNA:['Cisco Certified Network Associate','An entry-level networking certification.'],
+  ESD:['electrostatic discharge','A static shock that can damage chips.'],
+  EPA:['ESD protected area','The marked bench area where ESD controls are enforced.'],
+  PPE:['personal protective equipment','Safety gear such as gloves and glasses.'],
+  DMM:['digital multimeter','The meter that measures voltage, resistance and continuity.'],
+  OL:['over limit','What a multimeter shows when the reading is out of range, such as an open circuit.'],
+  GND:['ground','The zero-volt reference.'],
+  STBY:['standby','The always-on power rail.'],
+  PCB:['printed circuit board','The bare board.'],
+  PCBA:['printed circuit board assembly','A board with its components soldered on.'],
+  SMT:['surface-mount technology','The line that places and solders parts on boards.'],
+  AOI:['automated optical inspection','A camera check of soldered boards.'],
+  ICT:['in-circuit test','An electrical test of a board\'s components.'],
+  FCT:['functional test','A test that the board works as a whole.'],
+  L6:['Level 6','The barebones chassis stage: board, power supplies and fans.'],
+  L10:['Level 10','A fully built and tested server.'],
+  L11:['Level 11','A full rack of servers, switches and cabling, tested together.'],
+  L12:['Level 12','A multi-rack cluster.'],
+  MES:['manufacturing execution system','The factory system that tracks every unit by serial number.'],
+  BOM:['bill of materials','The list of parts that make up a product.'],
+  SKU:['stock keeping unit','One specific product configuration.'],
+  WI:['work instruction','The controlled step-by-step document for a task.'],
+  ECN:['engineering change notice','The formal record of a change to a product or document.'],
+  QE:['quality engineer','The engineer who owns quality data and corrective actions.'],
+  FPY:['first pass yield','The share of units that pass test the first time.'],
+  RTY:['rolled throughput yield','The product of the first-pass yields of every station.'],
+  NTF:['no trouble found','A failure that could not be reproduced.','no-trouble-found results'],
+  NFF:['no fault found','Another name for no trouble found.'],
+  RMA:['return merchandise authorization','Approval to send a failed part back to its supplier.'],
+  RCA:['root cause analysis','Finding the underlying reason a failure happened.'],
+  '8D':['eight disciplines','A structured team process for serious problems.'],
+  DMAIC:['define, measure, analyze, improve, control','The Six Sigma improvement cycle.'],
+  '5S':['sort, set in order, shine, standardize, sustain','A method for keeping the workplace organized.'],
+  KPI:['key performance indicator','A number used to measure performance.'],
+  OEM:['original equipment manufacturer','The brand that designs and sells the product.'],
+  ODM:['original design manufacturer','A company that designs and builds products for other brands.'],
+  EMS:['electronics manufacturing services','Companies that build electronics for other brands.'],
+  NIST:['National Institute of Standards and Technology','The U.S. standards agency.'],
+  SP:['Special Publication','A NIST guidance document, like SP 800-88.'],
+  'SHA-256':['Secure Hash Algorithm, 256-bit','A hash used to verify a file has not changed.'],
+  DCGM:['Data Center GPU Manager','NVIDIA\'s tool for GPU health checks and diagnostics.'],
+  STAR:['situation, task, action, result','A structure for telling interview stories.'],
+  HR:['human resources','The team that handles hiring and pay.']
+};
+const ACRO_KEYS = Object.keys(ACRO).sort((a, b) => b.length - a.length);
+const ACRO_RE = new RegExp('(^|[^A-Za-z0-9-])(' + ACRO_KEYS.map(k => k.replace(/[.*+?^${}()|[\]\\\/]/g, '\\$&')).join('|') + ')(s?)(?![A-Za-z0-9]|-[A-Z0-9])', 'g');
+const ACRO_SKIP = 'code,pre,abbr,a,button,script,style,textarea,input,select,svg,.term,.no-acro';
+/* Spell out abbreviations inside an element. seen: a Set shared across one topic, so only the
+   first use is expanded; expand:false adds the underline and card without the bracket. */
+function acroDom(root, seen, opts){
+  if (!root) return seen; seen = seen || new Set(); const expand = !(opts && opts.expand === false);
+  const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {acceptNode:n => (n.parentElement && n.parentElement.closest(ACRO_SKIP)) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT});
+  const nodes = []; while (w.nextNode()) nodes.push(w.currentNode);
+  const all = root.textContent.toLowerCase();
+  nodes.forEach((n, i) => {
+    const t = n.nodeValue; ACRO_RE.lastIndex = 0; if (!ACRO_RE.test(t)) return;
+    const next = i + 1 < nodes.length ? nodes[i + 1].nodeValue : '';
+    const frag = acroWrap(t, (k, pl, end) => {
+      const [full, , plural] = ACRO[k]; const after = (t.slice(end) + next).slice(0, 2);
+      const add = expand && !seen.has(k) && after !== ' (' && !all.includes(full.toLowerCase());
+      seen.add(k); return add ? ' (' + (pl ? (plural || full + 's') : full) + ')' : '';
+    });
+    n.parentNode.replaceChild(frag, n);
+  });
+  return seen;
+}
+/* Wrap each abbreviation in text; ext(key, plural, end) returns the bracket to add after it, if any.
+   Abbreviations inside a bracket are underlined too, but never expanded again. */
+function acroWrap(t, ext){
+  const frag = document.createDocumentFragment(); let last = 0, m; const re = new RegExp(ACRO_RE.source, 'g');
+  while ((m = re.exec(t))){
+    const k = m[2], pl = m[3], at = m.index + m[1].length, end = at + k.length + pl.length;
+    frag.appendChild(document.createTextNode(t.slice(last, at)));
+    const ab = document.createElement('abbr'); ab.className = 'ac'; ab.tabIndex = 0; ab.dataset.k = k; ab.textContent = k + pl; if (!ext) ab.classList.add('nest'); frag.appendChild(ab);
+    const x = ext ? ext(k, pl, end) : ''; if (x) frag.appendChild(acroWrap(x, null));
+    last = end;
+  }
+  frag.appendChild(document.createTextNode(t.slice(last))); return frag;
+}
+/* Hover, focus or tap an underlined abbreviation to see its card */
+const acroPop = (() => {
+  let pop = null, cur = null;
+  function el(){ if (!pop){ pop = document.createElement('div'); pop.className = 'acro-pop'; pop.id = 'acro-pop'; pop.setAttribute('role', 'tooltip'); pop.hidden = true; document.body.appendChild(pop); } return pop; }
+  function show(a){
+    const k = a.dataset.k, e = ACRO[k]; if (!e) return; const p = el(); cur = a;
+    p.innerHTML = '<b></b><span class="ap-full"></span><span class="ap-mean"></span>';
+    p.querySelector('b').textContent = k; p.querySelector('.ap-full').textContent = e[0]; p.querySelector('.ap-mean').textContent = e[1];
+    p.hidden = false; a.setAttribute('aria-describedby', 'acro-pop');
+    const r = a.getBoundingClientRect(), pw = p.offsetWidth, ph = p.offsetHeight, vw = document.documentElement.clientWidth;
+    let x = Math.max(8, Math.min(r.left + r.width / 2 - pw / 2, vw - pw - 8)), y = r.bottom + 8;
+    if (y + ph > window.innerHeight - 8) y = Math.max(8, r.top - ph - 8);
+    p.style.left = x + 'px'; p.style.top = y + 'px';
+  }
+  function hide(){ if (pop) pop.hidden = true; if (cur) cur.removeAttribute('aria-describedby'); cur = null; }
+  const pick = e => e.target && e.target.closest ? e.target.closest('abbr.ac') : null;
+  document.addEventListener('mouseover', e => { const a = pick(e); if (a) show(a); });
+  document.addEventListener('mouseout', e => { const a = pick(e); if (a && a === cur && !a.contains(e.relatedTarget)) hide(); });
+  document.addEventListener('focusin', e => { const a = pick(e); if (a) show(a); else hide(); });
+  document.addEventListener('click', e => { const a = pick(e); if (a){ e.preventDefault(); if (cur === a && !el().hidden && e.pointerType !== 'mouse') hide(); else show(a); } else hide(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') hide(); });
+  window.addEventListener('scroll', hide, {passive:true, capture:true});
+  return {show, hide};
+})();
+
+/* ================= Teaching content: explanation sections, key terms =================
+   TEACH[id] = {s: one-line summary, sec: [[heading, html], ...], k: [[term, meaning], ...]}
+   Abbreviations are written plainly here; acroDom() spells each one out on first use. */
+const TEACH = {};
+Object.assign(TEACH, {
+hw1:{s:'A server trades a desktop\'s low cost for uptime: redundant parts, error-correcting memory and a management controller that works when everything else is down.',
+sec:[['How it works','<p>A server is designed around three goals: <b>stay up</b>, <b>fail gracefully</b>, and <b>be managed without anyone at the keyboard</b>.</p><ul><li><b>No single point of failure.</b> Two PSUs, extra fans and RAID mean one part can die while the server keeps running.</li><li><b>Memory that protects itself.</b> ECC memory fixes small errors instead of crashing.</li><li><b>Out-of-band management.</b> The BMC is a separate small computer on the board, powered by standby power, so you can power cycle, read sensors and logs, and open a console over the network even when the OS is dead.</li></ul>'],
+['On the factory floor','<p>Servers arrive at the debug bench as 1U or 2U rack units (1U is 1.75 inches, 44.45 mm). Hot-swap PSUs, fans and drives come out without tools while the unit runs. The test system talks to the BMC over the management network to power the unit on, read its logs and check its sensors, so the BMC is the first thing you look at when a unit fails.</p>'],
+['What goes wrong','<p>Redundancy can <b>hide</b> a failure: a server with one dead PSU or fan still runs. That is why tests check redundancy status in the BMC, not just whether the unit powers on. A desktop answer ("it\'s just a bigger PC") misses the point; the interviewer wants to hear redundancy, ECC and the BMC.</p>']],
+k:[['Hot-swap','A part you can remove and replace while the server keeps running.'],['Out-of-band management','Managing a server through a separate path (the BMC) that does not depend on the host operating system.'],['Rack unit (U)','The height unit for rack equipment: 1U is 1.75 inches.']]},
+
+hw2:{s:'Air flows front to back, so the parts sit in that order: drives, fans, the board with CPUs and memory, then power supplies and expansion cards at the rear.',
+sec:[['How it works','<p>Cool air enters at the front (the cold aisle) and leaves at the rear (the hot aisle). The layout follows the air:</p><ul><li><b>Front:</b> drive bays plugged into a <b>backplane</b>, the board that connects every drive to the controller.</li><li><b>Middle:</b> the fan wall, then the <b>air shroud</b>, a plastic duct that forces air over the CPU heatsinks and DIMMs.</li><li><b>Motherboard:</b> CPU sockets, DIMM slots, the BMC chip, the TPM and the CMOS battery.</li><li><b>Rear:</b> PSUs, riser cards holding PCIe cards, the OCP NIC slot, the dedicated management port, USB and VGA.</li></ul>'],
+['On the factory floor','<p>Assembly follows a work instruction in roughly this order, and a debug tech must be able to point to any part and name it. When a unit fails, you open the lid and check the obvious things in the same order: drives seated, fans all spinning, shroud in place, DIMM latches closed, risers fully down, PSUs locked.</p>'],
+['What goes wrong','<p>The classic assembly misses are a <b>missing air shroud</b> (CPUs overheat), a <b>riser not fully seated</b> (cards missing), an <b>unplugged backplane cable</b> (drives missing), and a <b>fan in the wrong position or unplugged</b>. Each maps to a failure you will see at test.</p>']],
+k:[['Backplane','The board behind the drive bays that connects each drive to the storage controller.'],['Air shroud','A plastic duct that forces airflow over the CPU heatsinks and memory.'],['Riser card','A card that turns a motherboard slot sideways so expansion cards fit in a short chassis.']]},
+
+hw3:{s:'ECC memory stores extra check bits so it can fix small errors on the fly; servers use registered DIMMs, which add a buffer chip so more memory fits per channel.',
+sec:[['How it works','<p>A DDR5 module has two independent 32-bit subchannels. An ECC RDIMM adds 8 check bits to each, so every access moves <b>40 bits per subchannel (80 in total: 64 data, 16 ECC)</b>. The memory controller uses those check bits to <b>correct</b> small errors and <b>detect</b> bigger ones; many servers use stronger codes that survive a whole failed memory chip.</p><ul><li><b>CE (correctable error):</b> fixed automatically and logged. One now and then is normal; a rising count on one DIMM is a warning.</li><li><b>UE (uncorrectable error):</b> data is lost, so the system usually halts or crashes.</li></ul><p>An RDIMM adds an <b>RCD</b> (registering clock driver) that buffers the command and address signals, so the controller drives one load instead of many chips. That is what lets servers run large capacities.</p>'],
+['On the factory floor','<p>Read the DIMM label: capacity, ranks (for example 2Rx4), speed (for example 4800 or 5600 MT/s) and type (RDIMM). Match the part number to the BOM. In DDR5, RDIMMs and UDIMMs are even keyed differently, so a desktop UDIMM will not seat in a server slot. Memory errors show up in the SEL and in the OS through EDAC.</p>'],
+['What goes wrong','<p>A DIMM whose CE count keeps climbing is replaced before it turns into a UE and crashes a customer\'s system. Mixed part numbers, speeds or ranks can drop the whole channel to a slower speed or cause a POST warning. A UE during burn-in is always a failure, never a retest-and-ship.</p>']],
+k:[['Rank','A set of memory chips that the controller reads together; 2R means two ranks on one DIMM.'],['Correctable error','A memory error the ECC code fixed automatically; it is logged but the system keeps running.'],['Uncorrectable error','A memory error ECC could not fix; the system usually halts to avoid using bad data.']]},
+
+hw4:{s:'Every CPU has several memory channels; you fill them in the order the platform guide gives, evenly across channels and CPUs, with identical DIMMs.',
+sec:[['How it works','<p>The memory controller lives inside the CPU. Each CPU has several <b>channels</b> (8 on many Intel Xeon platforms, 12 on AMD EPYC 9004), and each channel has one or two slots (1DPC or 2DPC). Bandwidth grows with the number of channels in use, so <b>8 DIMMs on 8 channels are faster than 8 DIMMs on 4 channels</b>, even at the same capacity.</p><p>Slots are named by channel and position, like A1, B1, C1. The first slot of each channel is usually marked by color or silkscreen.</p>'],
+['On the factory floor','<p>The work instruction includes a population table for each configuration: which slots get a DIMM for 8, 16 or 32 DIMMs. You never guess. At test, the diagnostic compares the slot-by-slot inventory (from dmidecode) with the expected layout and flags any empty or unexpected slot.</p>'],
+['What goes wrong','<ul><li>A DIMM in a slot that belongs to an <b>empty CPU socket</b> is not seen at all.</li><li>An unbalanced layout gives lower bandwidth or a POST warning.</li><li>Mixed sizes, speeds or ranks can downclock the channel or stop the boot.</li></ul>']],
+k:[['Memory channel','An independent path between the CPU\'s memory controller and its DIMM slots.'],['DPC (DIMMs per channel)','How many DIMMs share one channel; 1DPC usually runs at the highest speed.'],['Population table','The platform guide\'s chart of which slots to fill for each DIMM count.']]},
+
+hw5:{s:'SATA is the cheap single-port option, SAS adds speed and a second port for redundancy, and NVMe puts flash directly on PCIe lanes for the lowest latency.',
+sec:[['How it works','<ul><li><b>SATA</b> runs at 6 Gb/s through one port. It is cheap and common for boot drives.</li><li><b>SAS</b> runs at 12 or 24 Gb/s and is <b>dual-port</b>, so two controllers can reach the same drive. A SAS controller or HBA can also run SATA drives; a SATA controller cannot run SAS drives, and the connectors are keyed to stop you trying.</li><li><b>NVMe</b> is a protocol built for flash that talks straight over PCIe, usually 4 lanes per drive, with many parallel queues. Form factors include U.2/U.3, E1.S/E3.S and M.2.</li></ul>'],
+['On the factory floor','<p>Check each drive\'s model, capacity and firmware against the BOM, and know which backplane the unit has: SAS/SATA, NVMe, or tri-mode (all three). NVMe drives appear in nvme list; SAS and SATA drives appear through the controller or in lsblk.</p>'],
+['What goes wrong','<p>When an NVMe drive is missing, suspect the backplane cable, the PCIe bifurcation setting in BIOS, a retimer card, or the bay itself. A SAS drive in a SATA-only backplane is simply not seen. Drive firmware that does not match the required version is a test failure even if the drive works.</p>']],
+k:[['Dual-port','A drive with two independent connections, so it stays reachable if one path fails.'],['Tri-mode','A backplane or controller that supports SAS, SATA and NVMe drives in the same bays.'],['Form factor','The physical size and connector of a part, such as U.2, E1.S or M.2 for drives.']]},
+
+hw6:{s:'RAID combines drives for speed, protection or both; the level you pick sets how many drives can fail and how much capacity you keep.',
+sec:[['How it works','<p>RAID uses three building blocks: <b>striping</b> (spread data across drives for speed), <b>mirroring</b> (write identical copies), and <b>parity</b> (store a calculated value that can rebuild a lost drive).</p><ul><li><b>RAID 0:</b> striping only. Full capacity, no protection.</li><li><b>RAID 1:</b> a mirror. Half the capacity, survives one failure.</li><li><b>RAID 5:</b> striping with single parity, at least 3 drives, capacity of n−1 drives, survives one failure.</li><li><b>RAID 6:</b> double parity, at least 4 drives, capacity of n−2, survives two failures.</li><li><b>RAID 10:</b> stripes across mirrored pairs, at least 4 drives, half the capacity, survives one failure per pair.</li></ul>'],
+['On the factory floor','<p>The customer configuration says which virtual disks to build, or whether the controller runs as an HBA (JBOD mode, drives passed straight to the OS). You create or verify the setup with the vendor tool, for example storcli /c0 show. A hardware RAID card has its own cache, protected by a battery or supercapacitor.</p>'],
+['What goes wrong','<p>Drives reused from another system can show as <b>Foreign</b> and must be imported or cleared per procedure. A drive marked <b>Unconfigured Bad</b> needs investigation. A <b>degraded</b> array still works but has lost its protection until the rebuild finishes. And RAID is not a backup: it protects against a drive failure, not against deleted data.</p>']],
+k:[['Striping','Splitting data across several drives so they work in parallel.'],['Parity','A calculated value that lets the array rebuild the data of a failed drive.'],['Degraded array','An array that has lost a drive and is running without its full protection.']]},
+
+hw7:{s:'PCIe devices talk over lanes; at power-up each link trains to a width and speed, and a link that trains lower than it should is a classic hardware fault.',
+sec:[['How it works','<p>A PCIe <b>lane</b> is one pair of wires in each direction. Links come in x1, x4, x8 and x16, and each generation roughly doubles the speed per lane: Gen3 is 8 GT/s, Gen4 16 GT/s, Gen5 32 GT/s. At power-up, <b>link training</b> negotiates the widest and fastest link both ends and the wiring can support.</p><ul><li><b>Riser cards</b> turn slots sideways so full-height cards fit in 1U and 2U chassis.</li><li><b>Bifurcation</b> splits one x16 slot into x8x8 or x4x4x4x4 so one slot can feed several NVMe drives. It is set in BIOS.</li><li><b>Retimers</b> clean up the signal over long board traces and cables.</li></ul>'],
+['On the factory floor','<p>Every card has an expected link, for example x16 at Gen5. The test reads it with lspci -vv: <b>LnkCap</b> is what the device can do and <b>LnkSta</b> is what it actually got. A mismatch fails the unit.</p>'],
+['What goes wrong','<p>A link at x8 instead of x16, or Gen3 instead of Gen5, points to seating, the riser, a cable or a retimer. A card or NVMe adapter that is missing entirely often means the bifurcation setting does not match the hardware.</p>']],
+k:[['Lane','One transmit pair and one receive pair; links bundle 1 to 16 lanes.'],['Link training','The handshake at power-up that sets a PCIe link\'s width and speed.'],['Bifurcation','Splitting one wide PCIe slot into several narrower links, set in BIOS.']]},
+
+hw8:{s:'1+1 means two power supplies share the load and either one alone can carry the server, so one can fail or be swapped with no downtime.',
+sec:[['How it works','<p>In an <b>N+1</b> design you have the N units you need plus one spare; with power supplies, 1+1 means one is enough and one is extra. Both share the load in normal running. Each PSU reports its input, output, temperature and faults to the BMC over PMBus, so the BMC knows the instant redundancy is lost.</p>'],
+['On the factory floor','<p>The redundancy test, with the unit under load per the procedure: pull one PSU\'s cord, confirm the server stays up and the SEL logs <b>redundancy lost</b>, restore it, confirm <b>redundancy regained</b>, then repeat on the other side. Record the result in the MES.</p>'],
+['What goes wrong','<p>Input voltage matters: many high-wattage PSUs only reach full rating at 200 to 240 V and derate on 110 to 120 V, so under heavy load the remaining PSU may not carry the server alone. Two different PSU models in one server trigger a mismatch warning. A PSU that is seated but shows an amber LED is a failed or unpowered supply.</p>']],
+k:[['N+1 redundancy','Having one more unit than the minimum needed, so any single one can fail.'],['Derating','A supply delivering less than its rated power, for example on low input voltage.'],['Redundancy lost','The BMC event logged when only one working supply remains.']]},
+
+hw9:{s:'The TPM is a security chip that holds keys and records what firmware booted; the CMOS battery keeps the clock running when the server is unplugged.',
+sec:[['How it works','<p>The <b>TPM</b> (version 2.0 on current servers) stores encryption keys that never leave the chip, and it records a hash of each boot component in its PCRs. That <b>measured boot</b> lets disk encryption unlock only on an unchanged system, and lets a remote service verify (attest) what firmware actually ran. It can be a soldered chip, a plug-in module, or firmware inside the CPU.</p><p>The <b>CMOS battery</b>, usually a CR2032 coin cell, powers the RTC and a small amount of settings memory when AC is removed. Most BIOS settings now live in flash, but the clock always needs the battery.</p>'],
+['On the factory floor','<p>Some SKUs ship with a TPM module that must be installed and enabled per the customer configuration. A dead battery shows up as the date resetting to a default year after the unit sits unplugged.</p>'],
+['What goes wrong','<p>A wrong date breaks certificate checks (TLS) and makes SEL timestamps useless for debugging. A missing or disabled TPM breaks the customer\'s encryption or attestation. Always check the clock early when logs look out of order.</p>']],
+k:[['Measured boot','Recording a hash of each boot stage in the TPM so it can be verified later.'],['Attestation','Proving to a remote party which firmware and software actually booted.'],['Coin cell','The small CR2032 battery that keeps the real-time clock running.']]},
+
+fw1:{s:'Boot happens in stages: standby power and the BMC, main power and voltage rails, firmware and POST, then a boot device and the OS. Where it stops tells you where to look.',
+sec:[['How it works','<ol><li><b>AC on.</b> The PSUs provide standby power and the BMC boots (this can take a minute or two). The server is "off", but the BMC is running.</li><li><b>Power on.</b> The button or BMC tells the PSUs to turn on main 12 V. VRMs bring up the CPU and memory rails in order, each confirming with a <b>power good</b> signal before the next starts.</li><li><b>Firmware.</b> The CPU starts running BIOS/UEFI. POST initializes the CPUs, trains memory (minutes on big configs), enumerates PCIe devices and loads option ROMs.</li><li><b>Boot device.</b> The boot manager hands off to a local disk, USB or PXE.</li><li><b>OS.</b> The bootloader loads the kernel.</li></ol>'],
+['On the factory floor','<p>Most test lines PXE boot a diagnostic OS, so every unit goes through all five stages at every test. Knowing which stage you are in turns a vague "it won\'t boot" into a short list of suspects.</p>'],
+['What goes wrong','<ul><li>No standby, BMC dead: AC, PSU or a short.</li><li>Fans spin, no POST: CPU, memory, VRM or a corrupted BIOS.</li><li>Hangs at memory training: DIMMs or the CPU\'s memory controller.</li><li>Hangs at PCIe enumeration: an add-in card or riser.</li><li>"No boot device": boot order, boot mode or PXE.</li></ul>']],
+k:[['Standby power','The small always-on supply that runs the BMC whenever AC is connected.'],['Power good','The signal each voltage regulator sends when its rail is stable.'],['Memory training','The step in POST where the controller tunes timing for every DIMM.']]},
+
+fw2:{s:'POST codes are two-digit hex checkpoints the BIOS writes at each boot step; the last one shown tells you where a hung server stopped.',
+sec:[['How it works','<p>At each checkpoint the BIOS writes a byte to I/O port 80h. The board shows it on a two-digit debug LED display, and the BMC captures the recent history in a POST code viewer. The value is hexadecimal, like B2 or 4F.</p>'],
+['On the factory floor','<p>When a unit hangs, record the <b>last code</b> and the few before it in the MES, then look it up in <b>that platform\'s</b> code table. A hang during memory initialization points to DIMMs or the CPU\'s memory controller. A hang during PCIe enumeration points to an add-in card or riser. Then isolate with minimum config.</p>'],
+['What goes wrong','<p>Codes differ between BIOS vendors and platforms, so a code from one board\'s table means nothing on another. A cycling sequence means a reboot loop, not a single hang. And the final code a healthy system shows on its way to the OS is not an error.</p>']],
+k:[['Port 80h','The I/O address the BIOS writes POST codes to.'],['Hexadecimal','Base-16 numbers using 0 to 9 and A to F, like B2.'],['Code table','The platform-specific list that says what each POST code means.']]},
+
+fw3:{s:'The BMC is a small computer on the motherboard for remote management; IPMI is the older way to talk to it and Redfish is the modern REST API replacing it.',
+sec:[['How it works','<p>The BMC has its own processor, memory, flash and network port, and runs on standby power. It reads temperature, voltage and fan sensors, keeps the SEL, controls power, provides a remote console, and flashes firmware. Vendor names include iDRAC (Dell), iLO (HPE) and XClarity (Lenovo); many hyperscale designs run OpenBMC.</p><ul><li><b>IPMI</b> is the older binary protocol, usually used through ipmitool, over UDP port 623 on the network or locally from the OS.</li><li><b>Redfish</b> is the DMTF standard that replaces it: a REST API that returns JSON over HTTPS, with resources like /redfish/v1/Systems.</li></ul>'],
+['On the factory floor','<p>The test system drives every unit through its BMC: power on and off, read the FRU data and sensors, pull the SEL, and push firmware. If the BMC does not work, the unit cannot be tested.</p>'],
+['What goes wrong','<p>A BMC can be unreachable (network, VLAN, wrong port), hung (fix it with ipmitool mc reset cold or an AC cycle), running the wrong firmware, or have the wrong clock, which scrambles log timestamps.</p>']],
+k:[['Remote console','A view of the server\'s screen and keyboard through the BMC over the network.'],['OpenBMC','An open-source BMC firmware used in many hyperscale servers.'],['Redfish resource','A URL in the Redfish API that represents a part of the server, returned as JSON.']]},
+
+fw4:{s:'The SEL is the BMC\'s event log: hardware faults with timestamps and locations, even when the OS never saw them.',
+sec:[['How it works','<p>The SEL lives in the BMC\'s nonvolatile memory. Each entry has an ID, a timestamp, the sensor, the event, and whether it was <b>asserted</b> (started) or <b>deasserted</b> (cleared). It has limited space, typically a few hundred to a few thousand entries. Read it with ipmitool sel elist, Redfish, or the BMC web page.</p>'],
+['On the factory floor','<p>Factories often clear the SEL before each test stage, so every new entry belongs to that run. After a failure, look for memory ECC errors with a DIMM location, PSU failures or redundancy lost, processor errors like IERR or machine checks, temperature or voltage thresholds, and fan failures. Compare timestamps with the test failure, and attach the SEL to the MES record.</p>'],
+['What goes wrong','<p>A full SEL can stop logging new events. A wrong BMC clock makes timestamps useless. And an old event from a previous stage can send you after the wrong part, which is exactly why the log is cleared between stages.</p>']],
+k:[['Asserted','An event that has started, like a sensor crossing its threshold.'],['Deasserted','The matching entry when that condition clears.'],['Threshold','The limit a sensor reading must cross to log an event.']]},
+
+fw5:{s:'Flash only the approved image for that exact board, verify its checksum, never cut power mid-flash, and confirm the new version reads back.',
+sec:[['How it works','<p>A server has many firmware images: BIOS, BMC, CPLD, NIC, RAID controller, drives and PSUs. Most live in SPI flash chips. Many boards keep a primary and a backup BIOS or BMC image, and a hardware root of trust checks each image\'s signature before it runs. Updates go through the BMC (Redfish UpdateService), a vendor tool, or the test system.</p>'],
+['On the factory floor','<p>The customer specifies exact versions, listed in the work order or pushed by the test system. The safe routine: the approved image for that exact board revision, checksum verified, stable power, then read the version back and record it in the MES.</p>'],
+['What goes wrong','<p>Power loss mid-flash can brick a part. The wrong image for the board revision can fail or misbehave. Anti-rollback protection may block a downgrade. Recovery options are the backup image, the vendor\'s recovery mode, or reprogramming the chip with an SPI programmer.</p>']],
+k:[['Bricked','A device whose firmware is so damaged it no longer starts.'],['Checksum','A hash of a file used to prove it has not been altered or corrupted.'],['Anti-rollback','Protection that refuses to install an older firmware version.']]},
+
+fw6:{s:'Check the BIOS settings a failure depends on: boot order and mode, PXE, bifurcation, memory, virtualization, Secure Boot and TPM, and the power profile.',
+sec:[['How it works','<p>BIOS settings are stored in nonvolatile memory and applied on every boot. Customers define a required configuration, and it can be set and read back through setup screens, vendor tools, or Redfish BIOS attributes.</p><ul><li><b>Boot:</b> order, UEFI or legacy mode, PXE on the right NIC.</li><li><b>Devices:</b> PCIe bifurcation for NVMe adapters.</li><li><b>CPU:</b> VT-x or AMD-V, VT-d or IOMMU, power and performance profile.</li><li><b>Security:</b> Secure Boot and TPM state.</li></ul>'],
+['On the factory floor','<p>Compare the unit\'s settings with the required list rather than trusting memory. If the settings look corrupted, load defaults or clear CMOS, then reapply the customer configuration and confirm it.</p>'],
+['What goes wrong','<p>The wrong bifurcation hides NVMe drives. A boot mode that does not match the PXE server stops network boot. Virtualization left off breaks the customer\'s VMs. And a CMOS clear quietly wipes the customer settings if nobody reapplies them.</p>']],
+k:[['Boot mode','UEFI or legacy BIOS; it must match the boot media or PXE server.'],['IOMMU','Hardware that lets the OS assign devices safely to virtual machines.'],['Power profile','A BIOS preset that trades power saving against performance.']]},
+
+fw7:{s:'PXE lets a server boot from the network: get an address from DHCP, download a small boot program over TFTP or HTTP, and run it.',
+sec:[['How it works','<ol><li>The NIC\'s PXE firmware broadcasts a DHCP request.</li><li>The DHCP server answers with an IP address plus two extra pieces: <b>which server</b> to download from and <b>which file</b>.</li><li>The NIC downloads that small NBP over TFTP (legacy) or HTTP (UEFI HTTP boot).</li><li>The NBP loads the kernel and the diagnostic OS.</li></ol>'],
+['On the factory floor','<p>Every unit PXE boots the diagnostic OS, so nothing is installed on the customer\'s drives. For it to work: PXE enabled on the right NIC, first in the boot order, a link on the right VLAN, and DHCP and TFTP reachable. Some lines also register each MAC address first.</p>'],
+['What goes wrong','<ul><li>No DHCP offer: wrong VLAN, or a missing ip helper-address when the DHCP server is on another subnet.</li><li>TFTP timeout: a route or firewall problem.</li><li>The wrong boot file: the boot mode does not match the server\'s files.</li><li>PXE runs on the wrong NIC.</li></ul>']],
+k:[['Network boot','Starting a computer from an image downloaded over the network instead of a local disk.'],['Boot filename','The file the DHCP reply tells the client to download.'],['Diagnostic OS','A small operating system that runs the factory tests from memory.']]},
+
+fw8:{s:'Clear CMOS to reset BIOS settings to defaults when a unit will not POST after a change, after a failed update, or when settings look corrupted.',
+sec:[['How it works','<p>Clearing CMOS wipes the stored BIOS settings back to factory defaults. The standard method is the <b>clear CMOS jumper</b>, with AC unplugged, following the platform guide. Removing the coin cell with AC unplugged also works on many boards, but because standby power keeps the settings alive, AC must be removed either way.</p>'],
+['On the factory floor','<p>Record that you cleared it, then reapply the customer\'s required settings (boot order, PXE, bifurcation, Secure Boot) and verify them before sending the unit back to test.</p>'],
+['What goes wrong','<p>Leaving the jumper in the clear position can stop the board booting or wipe settings on every boot. Clearing with AC still connected may do nothing. And the biggest miss: forgetting to reapply the customer settings, so the unit fails later for a new reason.</p>']],
+k:[['Clear CMOS jumper','Two pins you short to reset the BIOS settings to defaults.'],['Defaults','The factory settings the BIOS falls back to after a clear.'],['Customer configuration','The required BIOS settings the customer specified for this product.']]},
+
+lx1:{s:'lscpu summarizes the processors: model, sockets, cores and threads. Compare each number with the work order.',
+sec:[['How it works','<p>The kernel asks each processor to describe itself, and lscpu summarizes the answers: <b>Model name</b>, <b>Socket(s)</b>, <b>Core(s) per socket</b>, <b>Thread(s) per core</b> and NUMA nodes. Total threads = sockets × cores per socket × threads per core. cat /proc/cpuinfo lists the same detail per logical core.</p>'],
+['On the factory floor','<p>Check the model and core count against the work order. A dual-socket order must show two sockets and the right model on both.</p>'],
+['What goes wrong','<ul><li>A missing socket: the CPU is not seated, the socket has bent pins, or its power is not coming up.</li><li>Half the expected threads: Hyper-Threading disabled in BIOS.</li><li>The wrong model: the wrong part was picked. Check the BOM.</li></ul>']],
+k:[['Socket','The physical CPU position on the board.'],['Thread','A hardware execution context; with Hyper-Threading each core runs two.'],['NUMA node','A CPU and its directly attached memory, as the OS sees it.']]},
+
+lx2:{s:'dmidecode -t memory lists every slot, empty or not, with size, speed and serial; the EDAC tools show error counts.',
+sec:[['How it works','<p>dmidecode reads the SMBIOS tables the BIOS builds at boot. Each memory slot is a <b>Memory Device</b> entry with its Locator (slot name), Size, Speed, Configured Speed, Part Number and Serial Number. An empty slot shows <b>No Module Installed</b>. free -h shows the total the OS can use.</p><p>For errors: ras-mc-ctl --errors (from rasdaemon) or edac-util -v give counts per DIMM, and dmesg shows EDAC and machine-check messages.</p>'],
+['On the factory floor','<p>Compare the slot list with the population table and the BOM. The slot that says No Module Installed where a DIMM should be is where you look first.</p>'],
+['What goes wrong','<p>A <b>Configured Speed</b> lower than the rated speed points to mixed DIMMs or a population that forces a slower speed. free -h always shows a little less than installed, because firmware reserves some memory. That is normal, not a missing DIMM.</p>']],
+k:[['Locator','The slot name dmidecode prints for each DIMM position.'],['Configured speed','The speed the memory actually runs at, which can be lower than its rating.'],['rasdaemon','A Linux service that records hardware error events like memory CEs.']]},
+
+lx3:{s:'lspci lists every PCIe device; lspci -vv on one device shows whether its link trained at the width and speed it should.',
+sec:[['How it works','<p>Every PCIe function has an address in the form <b>bus:device.function</b>, like 3b:00.0. lspci lists them all, lspci -tv draws the tree of ports and devices, and sudo lspci -vv -s 3b:00.0 shows the detail for one, including <b>LnkCap</b> (what it can do) and <b>LnkSta</b> (what it got).</p>'],
+['On the factory floor','<p>The test compares the device list and each link with what the configuration expects. For NVIDIA GPUs, nvidia-smi shows each GPU with its temperature, power and errors.</p>'],
+['What goes wrong','<p>LnkSta lower than LnkCap, marked <b>downgraded</b>, points to seating, the riser or a cable. A device missing from the list points to seating, power or bifurcation. AER messages in dmesg show a link that is working but taking errors.</p>']],
+k:[['Bus:device.function','The PCIe address format lspci uses, such as 3b:00.0.'],['LnkCap','The link width and speed a PCIe device supports.'],['LnkSta','The link width and speed the device actually trained to.']]},
+
+lx4:{s:'lsblk lists drives; smartctl and nvme smart-log show their health; drives behind a RAID card need the vendor tool.',
+sec:[['How it works','<p>lsblk lists every block device with its size. For SATA and SAS drives, sudo smartctl -a /dev/sdX shows the SMART health result, reallocated and pending sectors, and the drive\'s error log. For NVMe, nvme list shows the drives and nvme smart-log /dev/nvme0 shows critical warnings, media errors, percentage used and temperature.</p>'],
+['On the factory floor','<p>Confirm the drive count, models, firmware and health match the configuration. Behind a hardware RAID controller the OS sees virtual disks, so use the vendor tool, like storcli /c0 show, or smartctl with the controller option.</p>'],
+['What goes wrong','<p>A rising <b>UDMA CRC error</b> count points to the cable or backplane, not the drive. Reallocated or pending sectors, or NVMe media errors, point to the drive itself. A drive missing from lsblk may just be hidden behind the controller.</p>']],
+k:[['Reallocated sector','A bad spot on a drive that has been replaced by a spare area.'],['Media error','An NVMe read or write the flash could not complete correctly.'],['Virtual disk','The single logical drive a RAID controller presents to the OS.']]},
+
+lx5:{s:'ip a shows the interfaces, ethtool shows link, speed and error counters, and ping and iperf3 prove traffic flows.',
+sec:[['How it works','<ul><li><b>ip a</b>: interfaces, MAC addresses, IP addresses and state (UP or DOWN).</li><li><b>ethtool eth0</b>: negotiated speed, duplex and <b>Link detected</b>.</li><li><b>ethtool -i eth0</b>: driver and firmware version.</li><li><b>ethtool -S eth0</b>: counters. Rising CRC or error counts mean a bad cable or optic.</li><li><b>ping</b> for reachability, <b>iperf3</b> for throughput.</li></ul>'],
+['On the factory floor','<p>The link must come up at the expected speed, for example 25000Mb/s on a 25G port, with zero errors after the traffic test. Record the NIC firmware version against the required one.</p>'],
+['What goes wrong','<p>Link detected: no means a physical problem: cable, optic, or the switch port. The wrong speed points to the cable or optic type or to autonegotiation. A link that is up with climbing CRC errors is almost always the cable, optic or a dirty fiber end.</p>']],
+k:[['Duplex','Whether a link sends and receives at the same time (full) or takes turns (half).'],['Throughput','How much data actually moves per second, measured with iperf3.'],['Error counters','Per-port counts of bad frames that point to cabling problems.']]},
+
+lx6:{s:'Check dmesg and the journal for kernel hardware errors, and pair them with the BMC\'s SEL, which catches what the OS cannot see.',
+sec:[['How it works','<p>The kernel logs hardware events to its ring buffer: dmesg -T prints it with readable times, and journalctl -k shows the same on systemd systems. Useful filters: dmesg -T | grep -iE "error|fail|mce|edac". Persistent logs live in /var/log/messages or /var/log/syslog. Look for MCE (machine checks), EDAC (memory), AER (PCIe) and I/O errors.</p>'],
+['On the factory floor','<p>After a test failure, check the OS logs and the SEL for the same time window. Some faults, like power and thermal events, only appear in the SEL because the OS never saw them or was already down.</p>'],
+['What goes wrong','<p>The ring buffer is limited and older messages scroll away, so collect logs promptly. If the OS and BMC clocks disagree, events will not line up. And not every "error" message is a fault; compare with a known-good unit.</p>']],
+k:[['Ring buffer','The kernel\'s fixed-size in-memory log; old messages are overwritten.'],['Machine check','A CPU-reported hardware error, logged as an MCE.'],['journalctl','The tool that reads the systemd journal, including kernel messages.']]},
+
+lx7:{s:'A handful of ipmitool commands cover most bench work: the event log, sensors, FRU data, power, the BMC\'s network and firmware.',
+sec:[['How it works','<ul><li><b>ipmitool sel elist</b>: the event log with readable names.</li><li><b>ipmitool sensor</b>: temperatures, voltages and fans with thresholds.</li><li><b>ipmitool fru print</b>: serial and part numbers.</li><li><b>ipmitool chassis status</b> and <b>chassis power cycle</b>.</li><li><b>ipmitool lan print 1</b>: the BMC\'s IP address and MAC.</li><li><b>ipmitool mc info</b>: BMC firmware version. <b>mc reset cold</b>: reboot the BMC.</li></ul>'],
+['On the factory floor','<p>From the unit\'s own OS, ipmitool talks to the BMC locally. From another machine, add -I lanplus -H &lt;ip&gt; -U &lt;user&gt; -P &lt;password&gt;. The test system uses the same commands (or Redfish) behind the scenes.</p>'],
+['What goes wrong','<p>Forgetting -I lanplus gets a connection failure on remote BMCs. lan print may need a different channel number on some boards. mc reset cold drops the BMC connection for a minute or two while it reboots, which is expected.</p>']],
+k:[['In-band','Talking to the BMC from the server\'s own OS.'],['lanplus','The ipmitool interface for IPMI 2.0 over the network.'],['Cold reset','A full reboot of the BMC without touching the host.']]},
+
+lx8:{s:'Burn-in loads each subsystem with a matching tool: stress-ng for CPU and memory, memtester for memory patterns, fio for drives, iperf3 for network, DCGM for GPUs.',
+sec:[['How it works','<ul><li><b>stress-ng</b>: CPU and memory load, heat and power draw.</li><li><b>memtester</b> or <b>MemTest86</b>: memory test patterns.</li><li><b>fio</b>: drive reads and writes at set block sizes and depths.</li><li><b>iperf3</b>: network throughput between two hosts.</li><li><b>NVIDIA DCGM</b> diagnostics: GPU health and stress.</li></ul>'],
+['On the factory floor','<p>Factories wrap these tools in their own automated scripts with pass and fail limits. The tech rarely runs them by hand; the job is to read which step failed, what the logs and SEL show, and work out why.</p>'],
+['What goes wrong','<p>Failures under load are often thermal or power related, so check temperatures and the SEL, not just the tool\'s output. A test that is too short misses early-life failures. And "passed on retest" is not a root cause.</p>']],
+k:[['Burn-in','Running the server under heavy load for hours to catch early failures.'],['Test pattern','A sequence of values written and read back to find bad memory cells.'],['Pass/fail limit','The threshold a measurement must meet for the test to pass.']]},
+
+lx9:{s:'dmidecode reads the system and board serials from SMBIOS, ipmitool fru print reads the FRU data programmed in the factory, and every serial is traced in the MES.',
+sec:[['How it works','<p><b>dmidecode -t system</b> shows the product name and system serial; <b>-t baseboard</b> shows the motherboard serial. Both come from SMBIOS tables. <b>ipmitool fru print</b> reads the FRU EEPROMs, which are programmed during manufacturing with part numbers and serials.</p>'],
+['On the factory floor','<p>The MES links the system serial to every part serial inside it. When you replace a part, you record the removed and installed serials so the build history stays exact.</p>'],
+['What goes wrong','<p>Blank or placeholder fields like "To Be Filled By O.E.M." mean the FRU was never programmed. After a motherboard swap, the new board\'s FRU must be programmed per procedure, or the system serial will not match the MES record.</p>']],
+k:[['Serial number','A unique ID for one physical unit or part.'],['FRU programming','Writing part and serial data into a unit\'s FRU memory.'],['Traceability','Being able to find exactly which parts went into which unit.']]}
+});
+
+Object.assign(TEACH, {
+ts0:{s:'Gather data, reproduce, check the simple things, change one thing at a time, retest fully, document, and escalate patterns.',
+sec:[['How it works','<p>Good troubleshooting is the scientific method at a bench. You form a guess from evidence, test it with a single change, and let the result decide.</p><ol><li><b>Gather:</b> the failing test step and error, the SEL and OS logs, and the unit\'s history in the MES.</li><li><b>Reproduce</b> it if you can.</li><li><b>Simple first:</b> seating, cables, power, the right parts and configuration, visible damage.</li><li><b>Isolate:</b> swap with known-good (golden) parts, or move a part to another slot and see if the failure follows it. Strip to minimum config if needed.</li><li><b>Fix and retest</b> through the full test flow.</li><li><b>Document</b> root cause, repair and serials in the MES.</li><li><b>Escalate patterns</b> to the test or quality engineer.</li></ol>'],
+['On the factory floor','<p>You will open almost every scenario answer in the interview with this sequence. On the line it is what keeps repairs fast and repeat failures low.</p>'],
+['Mistakes to avoid','<p><b>Shotgun swapping</b> (changing several parts at once) fixes the unit but teaches you nothing and burns good parts. Retesting only the failed step lets other faults ship. And an undocumented repair is invisible to the engineers who could stop it happening again.</p>']],
+k:[['Known-good (golden) part','A part proven to work, used to test whether a suspect part is faulty.'],['Minimum config','The fewest parts needed to boot: one CPU, one DIMM, no add-in cards.'],['Follows the part','When a fault moves with a part to a new slot, the part is bad.']]},
+
+ts1:{s:'Work along the power path: outlet and cord, PSUs, standby power and the BMC, the power button, then look for a short.',
+sec:[['How it works','<p>Power flows AC → PSU → standby rail → BMC → power button signal → main 12 V → board regulators. A dead unit means that chain is broken somewhere, and you walk it in order:</p><ol><li>Cord seated, PDU outlet live, try a known-good cord and outlet.</li><li>PSUs fully seated, check their LEDs, swap in a known-good PSU.</li><li>Standby present? BMC port link or its LED active.</li><li>Front panel cable to the power button.</li></ol>'],
+['On the factory floor','<p>If still nothing, suspect a short. Look for a loose screw, a misplaced standoff or metal debris under the board: a common assembly defect. With AC unplugged, measure the 12 V rail to ground; near zero ohms means a short. Then remove parts one at a time until the short disappears.</p>'],
+['What goes wrong','<p>Never measure resistance with AC connected. Skipping the visual inspection wastes time, because a stray screw is found faster by eye than by meter. And a PSU that shows amber on one side only may be the cord, not the PSU.</p>']],
+k:[['Short circuit','An unintended low-resistance path, often a rail touching ground.'],['Standoff','A metal post that holds the board off the chassis; a misplaced one can cause a short.'],['Power path','The chain from the wall outlet to the board\'s voltage rails.']]},
+
+ts2:{s:'Read the POST code, then strip to minimum config (one CPU, one DIMM, no cards) and add parts back one at a time.',
+sec:[['How it works','<p>Fans spinning means standby and main power are there, so the problem is in the CPU, memory, a card, or the BIOS. The POST code on the debug LEDs or in the BMC, plus the SEL, tells you roughly where it stopped.</p><p><b>Minimum config</b> removes the variables: one CPU in socket 1, one DIMM in the first slot, no add-in cards. If it POSTs, add parts back one at a time until it fails. The last part added is the suspect.</p>'],
+['On the factory floor','<p>If minimum config still does not POST: inspect the CPU socket under magnification for bent pins, confirm the heatsink was torqued in sequence, try a known-good CPU and DIMM, and clear CMOS. If the BIOS may be corrupted, use BIOS recovery or reflash it.</p>'],
+['What goes wrong','<p>Adding several parts back at once loses the answer. Ignoring the POST code means guessing. And a bent socket pin often shows up as a missing memory channel or PCIe slot, not just a dead board.</p>']],
+k:[['No POST','The server powers on but never completes its power-on self-test.'],['Bent pin','A deformed socket contact that breaks a connection to the CPU.'],['BIOS recovery','A vendor mode that restores a corrupted BIOS from a backup or USB image.']]},
+
+ts3:{s:'Confirm the slot and error type, reseat, then swap the DIMM with a known-good one. If the error follows the DIMM, replace it; if it stays in B2, suspect the slot, board or CPU.',
+sec:[['How it works','<p>The memory controller is inside the CPU, so a memory error can come from the DIMM, the slot, the board traces, or the CPU itself. One swap test separates them:</p><ul><li>Swap the DIMM in B2 with a known-good one, or trade it with a neighboring slot\'s DIMM, and rerun the memory test.</li><li><b>Error follows the DIMM:</b> the DIMM is bad. Replace it, log its serial, tag it for RMA.</li><li><b>Error stays in B2:</b> the slot, the board, or the CPU. Check the socket for bent pins.</li></ul>'],
+['On the factory floor','<p>First read the SEL or OS log: is it correctable or uncorrectable, and is it really B2? Reseat the DIMM and inspect the slot for debris or damage. After the fix, retest through the full flow.</p>'],
+['What goes wrong','<p>Replacing the DIMM without the swap test can ship a bad slot or CPU. Forgetting that the controller lives in the CPU sends you after the board when the CPU is the problem. And one CE is not the same as a UE, so read the log before acting.</p>']],
+k:[['Swap test','Exchanging a suspect part with a known-good one to see where the fault goes.'],['Memory controller','The circuit inside the CPU that drives the DIMMs.'],['Stays with the slot','When a fault remains in the same slot after a swap, the slot, board or CPU is bad.']]},
+
+ts4:{s:'Check seating and the drive LED, swap bays to see whether the fault follows the drive, and confirm the controller sees it in the right mode.',
+sec:[['How it works','<p>A drive reaches the OS through a chain: drive → caddy → bay → backplane → cable → controller (or directly to PCIe for NVMe) → driver. A break anywhere looks the same from the OS, so isolate:</p><ul><li>Move the drive to another bay and put a known-good drive in its bay.</li><li>Fault follows the drive: the drive. Fault stays with the bay: the backplane or its cable.</li></ul>'],
+['On the factory floor','<p>Check what the controller sees (lsblk, nvme list or storcli), the controller mode (RAID or HBA), and whether the drive shows as foreign or unconfigured. For NVMe, check the bifurcation setting and cabling. Compare drive firmware with the required version.</p>'],
+['What goes wrong','<p>A drive that is present but <b>foreign</b> or <b>unconfigured</b> looks missing to the OS. A drive not fully latched in its caddy is the most common cause and the fastest to check. For NVMe, a wrong bifurcation setting hides a whole group of bays at once.</p>']],
+k:[['Caddy','The tray a drive is mounted in to slide into a bay.'],['Foreign configuration','RAID metadata from another system found on a drive.'],['Controller mode','Whether a storage controller runs as RAID or passes drives through as an HBA.']]},
+
+ts5:{s:'Work bottom-up like the OSI model: physical link and optics, then the switch port, then speed, then VLAN, IP and DHCP, then counters and the NIC itself.',
+sec:[['How it works','<ol><li><b>Physical:</b> ethtool shows "Link detected: no". Check the cable and transceiver type (SFP28 for 25G, QSFP28 for 100G, DAC or optical), seating, clean fiber ends, then swap in known-good ones.</li><li><b>Switch side:</b> the port is up and not err-disabled; speed and autonegotiation match.</li><li><b>Wrong speed:</b> suspect the cable or optic type.</li><li><b>Up but no traffic:</b> VLAN, IP and DHCP, and ethtool -S error counters. CRC errors point to a bad cable.</li><li><b>The NIC:</b> try another port, confirm it appears in lspci, check its firmware.</li></ol>'],
+['On the factory floor','<p>In rack testing (L11) you own both ends: the server NIC and the ToR switch port. That is where CCNA skills directly speed up debug.</p>'],
+['What goes wrong','<p>A dirty fiber end is the most common cause of a link that flaps or takes errors. An err-disabled port stays down until it is reset on the switch. And the wrong optic type (short reach versus long reach, single-mode versus multimode) gives no link at all.</p>']],
+k:[['Err-disabled','A switch port shut down automatically after a detected error.'],['Transceiver (optic)','The pluggable module that turns electrical signals into light.'],['Bottom-up','Troubleshooting from the physical layer upward.']]},
+
+ts6:{s:'Read which sensor tripped in the SEL, then look for the classic airflow and contact misses: film on the thermal pad, no paste, bad torque, missing shroud or blanks, a failed fan.',
+sec:[['How it works','<p>Heat moves from the chip into the heatsink through thermal paste or a pad, then air carries it away. Anything that breaks either step causes overheating:</p><ul><li><b>Contact:</b> protective film left on the pad, missing paste, heatsink not torqued in sequence.</li><li><b>Airflow:</b> missing air shroud, missing blank fillers in empty bays or slots, a failed or unplugged fan, cables blocking the path.</li></ul><p>Air follows the easiest path, so an open slot lets it bypass the parts that need it.</p>'],
+['On the factory floor','<p>Check the SEL for temperature and fan events and which sensor tripped. Confirm the BMC fan profile and the ambient temperature of the test area. One hot CPU points to its heatsink; everything hot points to airflow or fans.</p>'],
+['What goes wrong','<p>Replacing a CPU for a heatsink problem wastes a part. Forgetting blanks after a repair recreates the fault. And throttling may not fail the test outright but shows up as low performance, so look at temperatures, not just pass or fail.</p>']],
+k:[['Thermal throttling','The CPU slowing itself down to stay under its temperature limit.'],['Blank filler','A cover for an empty bay or slot that keeps airflow on the right path.'],['Thermal interface material','The paste or pad between a chip and its heatsink.']]},
+
+ts7:{s:'Intermittents need data: log every failure, look for a pattern, rule out the tester, stress to reproduce, and never close it as "no trouble found" after one pass.',
+sec:[['How it works','<p>An intermittent fault is triggered by a condition you have not identified yet: heat, vibration, a marginal connection, a specific station. Your job is to find that condition. Record for every failure: test step, error, time, temperature, station and fixture. Then look for the pattern: the same slot, the same station, only when hot, only after a cold start.</p>'],
+['On the factory floor','<p>Rule out the tester by moving the unit to another station or swapping test cables. Reseat connectors, check for damaged pins or pinched cables, then run an extended stress test to reproduce it. If you cannot find it, escalate to the test engineer with your data.</p>'],
+['What goes wrong','<p>Marking it NTF because one retest passed is how intermittents reach customers. Changing several things at once hides which one mattered. And ignoring a station pattern leaves a bad tester failing good units.</p>']],
+k:[['Intermittent fault','A failure that comes and goes under conditions not yet identified.'],['Test fixture','The cables and adapters that connect a unit to the test station.'],['Reproduce','Making a failure happen again on purpose so it can be diagnosed.']]},
+
+ts8:{s:'Do the math, find the gap: 960 GB of an expected 1,024 GB is one 64 GB DIMM missing. Find which slot is empty, then isolate DIMM versus slot.',
+sec:[['How it works','<p>16 × 64 GB = 1,024 GB. Seeing 960 GB means exactly one 64 GB DIMM is not counted. The same approach works for any "less than expected" failure: compare what is detected with the work order, find the difference, and it points to the part.</p>'],
+['On the factory floor','<p>Run dmidecode -t memory to find the slot that shows No Module Installed, and check the SEL for a DIMM-disabled or training-failure event. Reseat that DIMM and inspect the slot. If it is still missing, swap it with a known-good DIMM to see whether the DIMM or the slot is at fault.</p>'],
+['What goes wrong','<p>Reseating every DIMM at once loses the evidence of which one it was. Forgetting that a CPU pin can disable a whole channel leads to replacing good DIMMs. And the OS always shows slightly less than installed, so make sure the gap is a real DIMM size.</p>']],
+k:[['Capacity math','Working out which part is missing from the size of the shortfall.'],['Training failure','A DIMM the BIOS could not tune during POST, so it was disabled.'],['Expected configuration','The part list and layout the work order says the unit must have.']]},
+
+ts9:{s:'Check seating and power, read the link with lspci -vv, check bifurcation, then move or swap the card to isolate card, riser or slot.',
+sec:[['How it works','<p>A card needs four things: a good mechanical seat (in the riser, and the riser in the board), power (GPUs need their own power cables), the right slot setting in BIOS (bifurcation), and a link that trains correctly. Check them in that order.</p>'],
+['On the factory floor','<p>Use lspci to see if it is present and lspci -vv LnkSta for its width and speed. Move the card to another slot, or swap in a known-good card, to isolate card, riser or slot. Confirm the card\'s firmware, and for GPUs check nvidia-smi for errors.</p>'],
+['What goes wrong','<p>A GPU with no power cable may still enumerate but fail under load. A riser that looks seated but is not fully down gives a downgraded link. And a card moved to a different slot may land on a different CPU, which changes performance but is not a fault.</p>']],
+k:[['Enumeration','The BIOS and OS discovering devices on the PCIe bus.'],['Auxiliary power','The separate power cable a high-power card like a GPU needs.'],['Downgraded link','A PCIe link that trained narrower or slower than it supports.']]},
+
+ts10:{s:'Check the cable is in the right management port with link, find the BMC\'s IP and network settings, ping from the same subnet, then reset the BMC if it is hung.',
+sec:[['How it works','<p>Reaching the BMC is a small networking problem. The BMC has its own MAC and IP, either on the <b>dedicated management port</b> or sharing a host NIC port (<b>shared LOM</b>). It gets its IP from DHCP or a static setting, and may be tagged into a VLAN.</p>'],
+['On the factory floor','<p>Get the BMC\'s IP from the BIOS setup screen or ipmitool lan print 1: is it DHCP or static, on the right subnet and VLAN? Ping it from the same subnet. If the BMC itself is unresponsive, cold-reset it with ipmitool mc reset cold or AC-cycle the server, then check its firmware version.</p>'],
+['What goes wrong','<p>The cable is in a host port while the BMC is set to dedicated, or the reverse. A VLAN tag on the BMC that the switch port does not carry. A static IP left over from another network. Each looks like "BMC down" but is a configuration mismatch.</p>']],
+k:[['Dedicated management port','A network port used only by the BMC.'],['Shared port','A host NIC port the BMC also uses for its own traffic.'],['Subnet','The range of IP addresses that can reach each other without a router.']]},
+
+ts11:{s:'Not yet: the unit runs the full test flow, you record symptom, cause, repair and serials in the MES, tag the part for failure analysis or RMA, and flag patterns.',
+sec:[['How it works','<p>A repair is not finished when the failing step passes. The whole flow has to pass, because the repair may have disturbed something else (a cable, a DIMM latch) or there may be a second fault. Then the record must be complete so anyone can trace what happened.</p>'],
+['On the factory floor','<p>In the MES: failure symptom, root cause, repair action, and the serials of removed and installed parts. Tag the failed part for failure analysis or RMA. If several units show the same failure (the same DIMM lot, the same assembly mistake), tell the engineer or supervisor so it gets fixed upstream.</p>'],
+['What goes wrong','<p>Retesting only the failed step lets new faults ship. Missing serials break traceability. And fixing the same failure twenty times without telling anyone is the most expensive way to run a line.</p>']],
+k:[['Full test flow','Every required test stage, run again after a repair.'],['Failure analysis','A lab investigation of a failed part to find its physical cause.'],['Upstream','Earlier in the process, where a defect was introduced.']]},
+
+tl1:{s:'ESD is a static shock too small to feel that can still damage chips. Prevent it with a tested wrist strap, a grounded mat, edge handling and shielding bags.',
+sec:[['How it works','<p>People and plastics build up static charge. When you touch a board, that charge jumps to the lowest-resistance path, often a chip pin, and can damage its tiny structures. The damage can be <b>latent</b>: the part passes today and fails at the customer later.</p>'],
+['On the factory floor','<ul><li>Wrist strap tested at the start of every shift, grounded mat, ESD smock and heel straps where required.</li><li>Work inside the EPA, the marked ESD protected area.</li><li>Handle boards and DIMMs by the edges.</li><li>Store parts in metallic silver <b>shielding</b> bags. Pink bags are anti-static but do not shield.</li><li>Keep plastic, foam and paper off the bench.</li></ul>'],
+['What goes wrong','<p>Skipping the strap test means you may be wearing a broken strap. Placing a board on top of a pink bag, or on a bare bench, is not protection. Because the damage is invisible, discipline matters more than luck.</p>']],
+k:[['Latent damage','ESD harm that does not fail a part immediately but shortens its life.'],['Shielding bag','A metallic bag that blocks static fields from reaching the part inside.'],['Wrist strap','A grounded band that drains static from your body.']]},
+
+tl2:{s:'Continuity and resistance with the power off to find shorts and bad cables; DC voltage with the power on to check rails are in spec.',
+sec:[['How it works','<ul><li><b>Continuity</b> (the beep), power off: checks a cable or trace is connected, and finds shorts.</li><li><b>Resistance</b>, power off: a rail near zero ohms to ground is a short.</li><li><b>DC voltage</b>, power on: confirms rails like 12 V, 5 V and 3.3 V are in spec at test points, usually about ±5%.</li></ul>'],
+['On the factory floor','<p>A DMM is the main tool for a unit that is dead or has a suspected short. For 12 V, ±5% is 11.4 to 12.6 V. Probe the documented test points, not random pins.</p>'],
+['What goes wrong','<p>Measuring resistance on a powered circuit gives wrong readings and can damage the meter. The wrong mode or range gives nonsense or OL. And slipping a probe between pins can short them, so work carefully.</p>']],
+k:[['Continuity','An unbroken electrical path; the meter beeps when it finds one.'],['Test point','A labeled pad on the board designed for probing a signal or rail.'],['Tolerance','The allowed range around a nominal value, like ±5%.']]},
+
+tl3:{s:'The PSUs output 12 V main plus standby; on the board, regulators step it down to 5 V, 3.3 V, about 1.1 V for DDR5 and around 1 V for the CPU core.',
+sec:[['How it works','<p>Server PSUs deliver a main <b>12 V</b> rail plus a small <b>standby</b> rail. Some newer rack designs, like Open Compute, distribute <b>48 V</b>. On the board, VRMs step 12 V down to 5 V, 3.3 V, and the low voltages chips need: around 1 V for the CPU core and about 1.1 V for DDR5 memory.</p>'],
+['On the factory floor','<p>Standby power is on whenever AC is connected, even when the server is off. That is why you unplug every cord before working inside, and why the BMC keeps running.</p>'],
+['What goes wrong','<p>A rail out of tolerance can cause random crashes or no POST. A VRM that fails often shows up as a missing CPU or a power fault in the SEL. And forgetting that standby is live is a safety and damage risk.</p>']],
+k:[['Rail','One supply voltage distributed across the board, like 12 V or 3.3 V.'],['Voltage regulator','A circuit that converts one voltage to a lower, stable one.'],['Standby rail','The always-on supply present whenever AC is connected.']]},
+
+tl4:{s:'Heatsinks must be tightened to the specified torque in the specified sequence so pressure is even; wrong torque means overheating or a cracked socket.',
+sec:[['How it works','<p>The heatsink presses the CPU into the socket and against the thermal paste. Even pressure gives full contact on every pin and across the whole chip. The sequence (numbered or crisscross) spreads the load gradually, the same way you tighten wheel nuts.</p>'],
+['On the factory floor','<p>Use a calibrated torque driver, set to the value in the work instruction, and check that its calibration sticker is current. Follow the numbers printed on the heatsink.</p>'],
+['What goes wrong','<ul><li>Too loose or uneven: poor contact, overheating, or missing memory channels.</li><li>Too tight: a cracked socket or damaged pins.</li><li>An out-of-calibration driver: every unit it touched is suspect.</li></ul>']],
+k:[['Torque','The rotational force applied to tighten a screw, measured in newton-metres or inch-pounds.'],['Torque sequence','The order screws must be tightened to spread pressure evenly.'],['Calibration','Checking a tool against a standard so its readings can be trusted.']]},
+
+tl5:{s:'Keep the socket cover on until the CPU goes in, never touch pins or contacts, match the orientation marks, and inspect under magnification if in doubt.',
+sec:[['How it works','<p>Server CPUs use LGA sockets: thousands of tiny spring pins in the socket touch flat pads on the CPU. Each pin carries power, ground or a signal. One bent pin can drop a memory channel, a PCIe slot, or the whole boot.</p>'],
+['On the factory floor','<ul><li>Leave the socket cover on until the CPU is ready to go in.</li><li>Handle the CPU by its edges or its carrier.</li><li>Match the orientation marks (a triangle or notch).</li><li>Lower it straight in, never slide it.</li><li>Inspect the pins under magnification if anything looks wrong.</li></ul>'],
+['What goes wrong','<p>A dropped part or a sliding install bends pins. Touching the contacts leaves oils that cause poor contact. Bent pins may not stop the boot, so a missing channel or slot is a reason to look at the socket.</p>']],
+k:[['Socket cover','The plastic cap that protects the socket pins until a CPU is installed.'],['Orientation mark','The triangle or notch that shows which way the CPU fits.'],['Carrier','The plastic frame some CPUs are mounted in for handling.']]},
+
+tl6:{s:'Yes. Work instructions are controlled documents; if you know a better way, propose it through the engineer so the document is changed properly.',
+sec:[['What they\'re really asking','<p>Whether you understand why factories are strict: every unit must be built the same way so quality is predictable and every step is traceable. They want someone who follows the process <b>and</b> helps improve it the right way.</p>'],
+['How to answer','<p>Say yes, and explain why: controlled documents protect quality and traceability. Then show initiative: you would suggest the improvement to the engineer, who can update the document through an ECN. Mention you always check you are on the current revision.</p>'],
+['Mistakes to avoid','<p>Saying you would quietly use your faster method. Saying you never question anything. Both are wrong: the answer is follow it, then improve it through the proper channel.</p>']],
+k:[['Controlled document','A document whose changes are reviewed, approved and tracked by revision.'],['Revision','The version of a document; you must always work from the current one.'],['Engineering change','The formal process to update a product or document.']]},
+
+net1:{s:'Integration levels: L6 is the barebones chassis, L10 the fully built and tested server, L11 a full rack, and L12 a multi-rack cluster.',
+sec:[['How it works','<ul><li><b>L6:</b> a barebones chassis with the motherboard, power supplies and fans, but no CPU, memory or drives.</li><li><b>L10:</b> a fully built and tested server with all components, firmware and configuration.</li><li><b>L11:</b> a full rack: many L10 servers plus switches, PDUs and cabling, tested together and shipped ready to plug in.</li><li><b>L12:</b> sometimes used for multi-rack clusters.</li></ul>'],
+['On the factory floor','<p>Each level has its own tests and records in the MES, and you can trace a server back through them. At L11 the whole rack is powered and networked, so switch configuration and cabling become part of debug.</p>'],
+['What goes wrong','<p>Mixing up the levels in an interview suggests you have not read about the industry. A common mix-up is calling L6 the bare circuit board; the board is built earlier on the SMT line, and L6 is the barebones chassis.</p>']],
+k:[['Integration level','How complete a build is, from barebones chassis to full racks.'],['Barebones','A chassis with board, power and fans but no CPU, memory or drives.'],['Rack integration','Installing, cabling and testing many servers and switches as one rack.']]},
+
+net2:{s:'Bottom-up: link and switch port, cable and optic, the right VLAN, DHCP reachable (with an ip helper if needed), PXE enabled and first in the boot order, then TFTP or HTTP and MAC registration.',
+sec:[['How it works','<p>PXE depends on every layer: a physical link, the right VLAN so DHCP broadcasts reach the server, a DHCP reply with the boot server and file, and a file transfer. Broadcasts do not cross routers, so when the DHCP server is on another subnet the router needs an <b>ip helper-address</b> to forward them.</p>'],
+['On the factory floor','<ol><li>Link light, ethtool and the switch port status.</li><li>Cable and transceiver.</li><li>The switch port in the right VLAN (the access VLAN, or the native VLAN on a trunk).</li><li>DHCP reachable, with an ip helper-address if needed.</li><li>PXE enabled in BIOS on the correct NIC, first in the boot order, with the boot mode matching the PXE server.</li><li>TFTP or HTTP server reachable.</li><li>The server\'s MAC registered in the test system, if required.</li></ol>'],
+['What goes wrong','<p>The native VLAN on a trunk is a common surprise: untagged PXE traffic lands in whatever VLAN is native. A boot mode mismatch gets an address but the wrong file. And PXE on the wrong NIC gets nothing at all.</p>']],
+k:[['Access port','A switch port that carries one untagged VLAN.'],['Trunk port','A switch port that carries several VLANs, with tags.'],['Native VLAN','The VLAN a trunk carries untagged.']]},
+
+net3:{s:'Copper RJ45 for 1 and 10G, DAC for short in-rack runs, AOC and fiber for longer ones; form factors run from SFP+ at 10G to QSFP-DD and OSFP at 400 and 800G.',
+sec:[['How it works','<ul><li><b>Copper RJ45:</b> Cat6 or 6A for 1G and 10GBASE-T.</li><li><b>DAC:</b> a copper cable with transceivers built in, for short runs inside a rack.</li><li><b>AOC:</b> a fiber cable with transceivers built in, for longer runs.</li><li><b>Fiber with separate optics</b> for the longest runs.</li></ul><p>Form factors: SFP+ (10G), SFP28 (25G), QSFP28 (100G), QSFP-DD or OSFP (400G and 800G).</p>'],
+['On the factory floor','<p>Rack cabling follows a cabling plan. You match cable type and length to each port, label both ends, and verify links come up at the right speed.</p>'],
+['What goes wrong','<p>Dirty fiber ends are the top cause of fiber problems, so clean with a proper cleaning tool every time. Respect the bend radius. And single-mode versus multimode must match the optic, or there is no link.</p>']],
+k:[['Single-mode fiber','Fiber with a tiny core for long distances, used with long-reach optics.'],['Multimode fiber','Fiber with a wider core for shorter distances, used with short-reach optics.'],['Bend radius','The tightest a cable may be bent without damage or signal loss.']]},
+
+net4:{s:'Every NIC and BMC MAC is recorded against the server serial so the customer can set up DHCP reservations and asset tracking, and the test system can find each unit.',
+sec:[['How it works','<p>A MAC address is the hardware address burned into each network port. The first half (the OUI) identifies the manufacturer. Recording it links the physical port to a specific server.</p>'],
+['On the factory floor','<p>The MACs of each NIC and the BMC are logged in the MES against the server\'s serial number. That lets the customer set up DHCP reservations and asset tracking when the rack arrives, and lets the test system identify each server on the network.</p>'],
+['What goes wrong','<p>A wrong or missing MAC record can mean a mislabeled or swapped NIC. After a NIC or board replacement, the new MACs must be recorded, or the customer\'s DHCP reservations will not match.</p>']],
+k:[['MAC address','The hardware address of a network port, like 3c:ec:ef:12:34:56.'],['DHCP reservation','A DHCP setting that always gives the same IP to one MAC address.'],['Asset tracking','Keeping a record of which hardware is where, by serial and MAC.']]},
+
+net5:{s:'A mismatch happens when one side autonegotiates and the other is hard-coded, or the cable cannot carry the speed. The link comes up but is slow, with errors and drops.',
+sec:[['How it works','<p>Autonegotiation lets both ends agree on speed and duplex. If one side is hard-coded, the auto side cannot learn duplex and falls back to half duplex. The two ends then disagree: one talks while the other also talks.</p>'],
+['On the factory floor','<p>Symptoms are a link that is up but slow, late collisions or CRC errors, and dropped packets. Check both ends with ethtool on the server and show interfaces on the switch. The fix is matching settings (usually auto and auto) and the right cable.</p>'],
+['What goes wrong','<p>Because the link is up, a mismatch passes a simple ping test. Only throughput and error counters reveal it, which is why tests run iperf3 and read counters.</p>']],
+k:[['Autonegotiation','Both ends of a link agreeing on speed and duplex automatically.'],['Half duplex','Sending and receiving in turn, not at the same time.'],['Late collision','A collision detected late in a frame, a sign of a duplex mismatch.']]},
+
+net6:{s:'Bonding combines NIC ports into one logical link for redundancy and bandwidth; LACP negotiates that bundle with the switch, which needs a matching port-channel.',
+sec:[['How it works','<p>Linux calls it bonding (or teaming); switches call it a port-channel or LAG. LACP (802.3ad) is the protocol both ends use to agree which links belong to the bundle and to detect failed members. Traffic is spread across members per flow, so one flow does not get more than one link\'s speed.</p>'],
+['On the factory floor','<p>In rack testing you might verify a bond survives pulling one cable: traffic continues on the remaining link, and the switch and the server both show the member down.</p>'],
+['What goes wrong','<p>LACP on the server but not on the switch (or the reverse) gives a bond that never forms or flaps. Members in different VLANs or at different speeds are rejected from the bundle.</p>']],
+k:[['Bond','Several network ports combined into one logical interface.'],['Port-channel','The switch-side name for a bundle of links.'],['Member link','One physical port inside a bond or port-channel.']]}
+});
+
+Object.assign(TEACH, {
+sec1:{s:'Treat every drive as holding customer data: sanitize it per NIST SP 800-88 (clear, purge or destroy), keep chain-of-custody records, and never take drives off the floor.',
+sec:[['How it works','<p>NIST SP 800-88 defines three levels:</p><ul><li><b>Clear:</b> overwrite with normal commands; protects against simple recovery.</li><li><b>Purge:</b> the drive\'s own sanitize or secure erase commands, or <b>cryptographic erase</b>, which destroys the encryption key so the data is unreadable. For NVMe: nvme format --ses=1 (secure erase) or --ses=2 (cryptographic erase).</li><li><b>Destroy:</b> shredding or crushing when required.</li></ul>'],
+['On the factory floor','<p>Follow the site procedure for which level applies. Record each drive\'s serial, what was done, by whom and when. That record is the chain of custody.</p>'],
+['What goes wrong','<p>A quick format is not sanitization; the data is still there. A drive that leaves the controlled area without a record is a security incident. And a drive that fails the erase must be destroyed, not reused.</p>']],
+k:[['Sanitize','Make data on media unrecoverable, using a defined method.'],['Cryptographic erase','Destroying a drive\'s encryption key so its data cannot be read.'],['Chain of custody','A record of who handled an item, when, and what was done to it.']]},
+
+sec2:{s:'Firmware runs below the OS, so tampered firmware can hide from security tools. Use only the released, signed image, verify its checksum, and record the version.',
+sec:[['How it works','<p>Firmware starts before the OS and has full control of the hardware, so malware there survives reinstalls and hides from antivirus. Vendors sign their images, and a <b>hardware root of trust</b> checks each signature at boot and refuses anything unsigned or altered.</p>'],
+['On the factory floor','<p>Use only the released image, verify its checksum (for example with sha256sum) against the published value, and record the version in the MES so every server is traceable.</p>'],
+['What goes wrong','<p>An image copied from an unofficial share might be the wrong version or tampered with. A version that is not recorded makes it impossible to prove what shipped. Customers audit this.</p>']],
+k:[['Root of trust','Hardware that verifies firmware signatures before anything else runs.'],['Signed image','Firmware carrying a cryptographic signature that proves who built it.'],['Hash','A fixed-length fingerprint of a file; any change alters it.']]},
+
+sec3:{s:'The BMC can control the whole server remotely, so it is a prime target: default passwords, old firmware and exposure on a production network are the main risks.',
+sec:[['How it works','<p>Whoever controls the BMC can power the server, flash its firmware and see its console. That makes it as sensitive as physical access.</p>'],
+['On the factory floor','<p>Best practice: a separate management network, strong unique credentials (most vendors now ship a unique password per unit, printed on a label), current firmware, and disabling unused services like IPMI over LAN when Redfish is used.</p>'],
+['What goes wrong','<p>Leaving the BMC on the production network, keeping a shared default password, or running old firmware with known vulnerabilities. Each has led to real breaches.</p>']],
+k:[['Attack surface','All the ways an attacker could reach a system.'],['Management network','A separate network used only for BMCs and switches\' management ports.'],['Default credentials','Factory-set usernames and passwords that must be changed.']]},
+
+sec4:{s:'Secure Boot lets only signed bootloaders and kernels run, which blocks bootkits; you confirm it is set exactly as the customer configuration says.',
+sec:[['How it works','<p>UEFI stores a set of trusted keys: the PK (platform key), the KEK (key exchange keys), the allowed signature database (db) and the revoked list (dbx). At boot each stage checks the next one\'s signature against them. Linux often adds a shim bootloader and MOK keys. The TPM can also measure each stage for attestation.</p>'],
+['On the factory floor','<p>Confirm Secure Boot is enabled or disabled according to the customer configuration, and that the diagnostic OS still boots with it on.</p>'],
+['What goes wrong','<p>An unsigned diagnostic image fails to boot with Secure Boot on. Clearing keys or changing mode without instruction breaks the customer\'s setup. Treat it as a controlled setting.</p>']],
+k:[['Bootkit','Malware that loads before the OS by replacing boot code.'],['Signature database (db)','The UEFI list of keys and hashes allowed to boot.'],['Revocation list (dbx)','The UEFI list of signatures that are blocked.']]},
+
+mfg1:{s:'FPY is the share of units that pass test the first time with no repair; a debug tech raises it by fixing root causes and feeding repeat failures back upstream.',
+sec:[['How it works','<p>FPY = units passing first time ÷ units tested. If 1,000 units are tested and 940 pass without repair, FPY is 94%. Across several stations, the yields multiply into RTY: three stations at 98% each give about 94%.</p>'],
+['On the factory floor','<p>A debug tech repairs units, but the bigger impact is finding real root causes and reporting patterns so assembly or suppliers fix them. That stops the failures happening at all.</p>'],
+['What goes wrong','<p>Swapping parts without a root cause keeps FPY low, because the same defect keeps arriving. Retesting until a unit passes hides real problems and inflates the number.</p>']],
+k:[['Yield','The share of units that pass.'],['Rolled throughput yield','The product of each station\'s first-pass yield.'],['Rework','Repair work on a unit that failed.']]},
+
+mfg2:{s:'NTF (or NFF) means a unit failed but the fault cannot be reproduced. It matters because the fault may ship, or the tester itself may be faulty.',
+sec:[['How it works','<p>A failure that disappears on retest is not a fixed failure. It is either intermittent in the unit or caused by the test station. Both are real problems, and neither is solved by shipping.</p>'],
+['On the factory floor','<p>Document the conditions of the original failure (station, time, temperature, error), check the tester, and follow the site rules for how many retests are allowed. High NTF rates get investigated.</p>'],
+['What goes wrong','<p>Calling it NTF after one passing retest is how intermittents reach customers. A bad station keeps failing good units until someone notices the pattern in the data.</p>']],
+k:[['No trouble found','A failure that could not be reproduced during debug.'],['Retest limit','The site rule for how many times a unit may be retested.'],['False failure','A good unit failed by a faulty tester.']]},
+
+mfg3:{s:'The MES tracks every unit by serial through every station; you record symptom, defect code, root cause, repair and part serials, then route the unit back to test.',
+sec:[['How it works','<p>The MES is the factory\'s system of record. Each unit is scanned in and out of every station, and it enforces the route: a unit cannot skip a station or ship without passing test.</p>'],
+['On the factory floor','<p>For every repair you record the failure symptom, the defect code, the root cause, the repair action, and the serials of parts removed and installed, then route the unit back to test.</p>'],
+['What goes wrong','<p>Vague entries ("replaced part, passed") make the data useless for engineering. Wrong defect codes send analysis in the wrong direction. Missing serials break traceability if the customer reports a problem.</p>']],
+k:[['Defect code','A standard code that classifies the type of failure.'],['Route','The ordered list of stations a unit must pass through.'],['System of record','The authoritative source of truth for production data.']]},
+
+mfg4:{s:'5 Whys digs to the process cause, a fishbone diagram sorts possible causes, a Pareto chart ranks them, and 8D is the full team process for serious problems.',
+sec:[['How it works','<ul><li><b>5 Whys:</b> keep asking why. The DIMM failed, because it was not seated, because the latch was not checked, because the work instruction did not include that check.</li><li><b>Fishbone (Ishikawa):</b> sort causes into people, machine, method, material, measurement and environment.</li><li><b>Pareto chart:</b> rank failure types by count; the top few usually cause most failures.</li><li><b>8D:</b> a structured team process with containment, root cause and prevention.</li></ul>'],
+['On the factory floor','<p>A tech usually supplies the data (accurate MES records) and the first "why". Engineers run the formal 8D.</p>'],
+['What goes wrong','<p>Stopping at the first why ("bad DIMM") fixes one unit, not the process. A Pareto chart built on bad defect codes points at the wrong problem.</p>']],
+k:[['Root cause','The underlying reason a failure happened, which if fixed stops it recurring.'],['Containment','Immediate action to stop more bad units reaching the customer.'],['Pareto principle','The idea that a few causes produce most of the problems.']]},
+
+mfg5:{s:'Burn-in runs the server under heavy load, often for hours and sometimes hot, to catch early-life failures in the factory instead of at the customer.',
+sec:[['How it works','<p>Failure rates follow a <b>bathtub curve</b>: high at the start (infant mortality), low and flat during normal life, rising again at wear-out. Burn-in pushes units through the start of the curve before they ship.</p>'],
+['On the factory floor','<p>Units run automated stress on CPU, memory, drives, network and GPUs, with sensors and logs watched throughout. Failures go to debug with the logs and SEL.</p>'],
+['What goes wrong','<p>A burn-in that is too short misses infant mortality. Poor airflow in the burn-in rack can cause failures that are not the unit\'s fault. Check the environment before blaming the unit.</p>']],
+k:[['Bathtub curve','The failure rate over a product\'s life: high early, low in the middle, rising at the end.'],['Infant mortality','Failures that happen early in a product\'s life.'],['Stress test','Running at high load to expose weak parts.']]},
+
+mfg6:{s:'RMA means return merchandise authorization: a failed part goes back to its supplier for credit and failure analysis.',
+sec:[['How it works','<p>The supplier issues an RMA number that authorizes the return. They analyze the part, credit or replace it, and use the data to find defects in their lots.</p>'],
+['On the factory floor','<p>The debug tech tags the failed part with the failure details and serial number, and it goes to the RMA or failure analysis area.</p>'],
+['What goes wrong','<p>Parts returned without a clear failure description often come back "no fault found". Mislabeled serials break the link between the failure and the lot, so the supplier cannot act.</p>']],
+k:[['Return authorization','Approval from a supplier to send a part back.'],['Lot','A batch of parts made together, tracked as a group.'],['Credit','The refund or replacement a supplier gives for a failed part.']]},
+
+mfg7:{s:'5S keeps the workplace organized, Lean removes waste, and Six Sigma reduces variation using data through DMAIC.',
+sec:[['How it works','<ul><li><b>5S:</b> sort, set in order, shine, standardize, sustain.</li><li><b>Lean:</b> remove waste like waiting, extra motion, rework and excess inventory.</li><li><b>Six Sigma:</b> reduce variation with data, using DMAIC (define, measure, analyze, improve, control).</li></ul>'],
+['On the factory floor','<p>At a debug bench, 5S means every tool and part has a place, so you do not waste time searching or pick up the wrong DIMM. Lean shows up as fewer handoffs; Six Sigma shows up in yield and defect data.</p>'],
+['What goes wrong','<p>Knowing the words without an example sounds hollow. Give one: "a shadow board for tools" or "grouping units by failure to cut setup time".</p>']],
+k:[['Waste (muda)','Any activity that uses time or resources without adding value.'],['Variation','Differences between units that should be identical.'],['Shadow board','A tool board with outlines showing where each tool belongs.']]},
+
+mfg8:{s:'A quality escape is a defect that gets past the factory to the customer, the worst outcome, which is why no test step is ever skipped.',
+sec:[['How it works','<p>Every test stage exists to catch defects before the next stage. An escape means every one of those gates missed it, and the customer finds it instead.</p>'],
+['On the factory floor','<p>Escapes trigger containment (checking other units from the same period), root cause analysis, and corrective action, often an 8D. Accurate MES records are what make containment possible.</p>'],
+['What goes wrong','<p>Skipped steps, undocumented repairs and "passed on retest" NTFs are the usual sources. That is why techs never skip steps and always document.</p>']],
+k:[['Escape','A defect that reached the customer.'],['Corrective action','A change that fixes the root cause so the defect cannot recur.'],['Test gate','A checkpoint a unit must pass before moving on.']]},
+
+bh1:{s:'A 60-second story in three parts: present (who you are now), past (what you have done), future (why this role).',
+sec:[['What they\'re really asking','<p>Can you communicate clearly and briefly, and does your background fit a hands-on hardware role? They also listen for enthusiasm for the work itself.</p>'],
+['How to answer','<p><b>Present:</b> "I\'m a hands-on hardware and networking person with CCNA and Security+." <b>Past:</b> one or two concrete examples (building and repairing PCs, lab networks, a job). <b>Future:</b> why this role: root-cause troubleshooting with hardware, networking and Linux, and growth toward test engineering.</p>'],
+['Mistakes to avoid','<p>Your life story, reading your résumé aloud, or going over two minutes. Keep it about work.</p>']],
+k:[['Present-past-future','A three-part structure for introducing yourself.'],['Elevator pitch','A short spoken summary of who you are and what you want.'],['Hook','One memorable detail that makes the interviewer want to ask more.']]},
+
+bh2:{s:'Connect the company to you: a leading manufacturer of cloud and data center infrastructure, and a role that matches your troubleshooting, hardware and networking skills.',
+sec:[['What they\'re really asking','<p>Did you research the company, and do you want this job specifically or just any job?</p>'],
+['How to answer','<p>Jabil is one of the world\'s largest manufacturing services companies and builds cloud and data center infrastructure for major customers, so you would learn on current technology at huge scale. Then connect it to you: you like root-cause problem solving, you want hands-on work with real server hardware and networks, and you see a path to lead tech or test engineer. Name the specific site.</p>'],
+['Mistakes to avoid','<p>Generic answers ("it\'s a big company"), talking only about pay, or not knowing what the site builds.</p>']],
+k:[['Contract manufacturer','A company that builds products designed by other companies.'],['Site research','Learning what the specific plant builds before the interview.'],['Career path','The roles you could grow into, such as lead tech or test engineer.']]},
+
+bh3:{s:'Tell one real story with STAR (situation, task, action, result), spending most of the time on the actions and your reasoning.',
+sec:[['What they\'re really asking','<p>How you think when something is broken: do you gather evidence, isolate, and verify, or guess?</p>'],
+['How to answer','<p><b>Situation:</b> what broke. <b>Task:</b> what you were responsible for. <b>Action:</b> the steps you took, what you ruled out, and the tools you used. <b>Result:</b> what fixed it, how you confirmed it, and what you learned. A CCNA lab problem, like a VLAN or routing issue you traced, is a valid story.</p>'],
+['Mistakes to avoid','<p>A story with no clear actions, a result you cannot measure, or saying "we" throughout so they cannot tell what you did.</p>']],
+k:[['Situation','The context: what was broken and where.'],['Action','The specific steps you took, the most important part of the story.'],['Result','The outcome and how you confirmed it.']]},
+
+bh4:{s:'Do not skip it. Explain the risk calmly, offer options to meet the deadline, and escalate for an approved deviation if one is possible.',
+sec:[['What they\'re really asking','<p>Your integrity under pressure. Will you protect quality when someone senior pushes you?</p>'],
+['How to answer','<p>Say you would not skip it, and explain that skipping the step risks a quality escape. Offer options: prioritize those units in the queue, get help from another tech, or escalate to the test engineer or quality team to see whether an approved deviation is possible. Only an authorized, documented deviation changes the process.</p>'],
+['Mistakes to avoid','<p>Agreeing to skip it, or refusing rudely with no alternatives. The best answer is firm on quality and helpful on the deadline.</p>']],
+k:[['Deviation','An approved, documented, temporary change to a process.'],['Escalation','Taking a decision to someone with the authority to make it.'],['Quality escape','A defect that reaches the customer.']]},
+
+bh5:{s:'Pick a real, smaller mistake, own it, show how you fixed it quickly, and focus on the change you made so it would not happen again.',
+sec:[['What they\'re really asking','<p>Self-awareness and accountability: do you own problems and learn from them?</p>'],
+['How to answer','<p>A real but contained mistake (a missed step, a wrong assumption). Own it without blaming anyone, explain how you fixed it fast, and spend most of the answer on what you changed: a checklist, double-checking, asking questions earlier.</p>'],
+['Mistakes to avoid','<p>Fake answers like "I work too hard", a disaster that raises concerns, or blaming someone else.</p>']],
+k:[['Accountability','Owning your actions and their results.'],['Prevention','The change you made so the mistake cannot repeat.'],['Lesson learned','The specific thing you do differently now.']]},
+
+bh6:{s:'Ask which orders ship first, group units with the same failure, clear quick fixes, give regular updates, and stay methodical.',
+sec:[['What they\'re really asking','<p>Can you stay organized and calm under pressure, and do you think about the business priority, not just the next unit?</p>'],
+['How to answer','<p>Check the schedule or ask the supervisor which orders ship first. Group units with the same failure, because one root cause may fix several. Knock out quick fixes first to get units back to test. Give regular status updates. Stay methodical, because rushing creates repeat failures.</p>'],
+['Mistakes to avoid','<p>First in, first out with no thought, working silently for hours, or promising everything today.</p>']],
+k:[['Triage','Sorting work by urgency and effort before starting.'],['Batching','Grouping similar units to fix a shared cause once.'],['Status update','A short report on progress and blockers.']]},
+
+bh7:{s:'Talk privately, listen, focus on data and the procedure rather than who is right, and bring in the lead if you still disagree.',
+sec:[['What they\'re really asking','<p>Can you work on a team without drama, and do you resolve disagreements with evidence?</p>'],
+['How to answer','<p>Talk privately, listen to their reasoning, and focus on the data and the procedure. If you still cannot agree, bring in the lead or engineer. Add a short real example if you have one.</p>'],
+['Mistakes to avoid','<p>Complaining about a past coworker, saying you never disagree, or going straight to a manager.</p>']],
+k:[['Data over opinion','Settling a disagreement with evidence rather than seniority.'],['Procedure','The documented way to do the task, a neutral reference point.'],['Escalate','Involve a lead when you cannot resolve it together.']]},
+
+bh8:{s:'Answer honestly: debug roles often mean off shifts or 12-hour rotations, standing, and lifting 30 to 60 lb servers with lift assists or a partner.',
+sec:[['What they\'re really asking','<p>Will you show up for the actual schedule and physical work, and stay?</p>'],
+['How to answer','<p>Be honest. Debug roles often run 2nd or 3rd shift or 12-hour rotations, involve standing at a bench, and include lifting servers. A 2U server often weighs 30 to 60 lb, and GPU servers much more, handled with lift assists or two people. If you are flexible on shifts, say so clearly.</p>'],
+['Mistakes to avoid','<p>Saying yes to everything and then quitting, or being vague. Flexibility is a real advantage, so state it plainly.</p>']],
+k:[['Rotation','A schedule that alternates days on and off, often in 12-hour shifts.'],['Lift assist','Equipment that helps lift heavy servers safely.'],['Two-person lift','A rule that heavy items are lifted by two people.']]},
+
+bh9:{s:'Give a concrete example of how you learn: documentation, hands-on labs, practice tests, and asking experienced people.',
+sec:[['What they\'re really asking','<p>This job changes with every new platform. Can you ramp up fast on your own?</p>'],
+['How to answer','<p>A concrete example, like how you studied for CCNA or Security+ with labs, notes and practice exams, or how you learned a tool on the job. Mention reading the documentation, asking experienced techs, and getting hands-on practice.</p>'],
+['Mistakes to avoid','<p>A generic "I\'m a fast learner" with no example.</p>']],
+k:[['Hands-on lab','Practicing on real or simulated equipment.'],['Documentation','Official guides and manuals for the system.'],['Ramp-up','The time it takes to become productive in a new role.']]},
+
+bh10:{s:'Always ask two or three questions about the work: common failures, training, how success is measured, the tools, and the path to test engineer.',
+sec:[['What they\'re really asking','<p>Your interest and how seriously you are thinking about the role.</p>'],
+['How to answer','<ul><li>"What are the most common failures you see on this line?"</li><li>"What does training look like in the first 90 days?"</li><li>"How is success measured in this role, for example repairs per shift or yield?"</li><li>"What tools and test software do the techs use?"</li><li>"Is there a path from debug technician to test engineer?"</li></ul>'],
+['Mistakes to avoid','<p>"No, I think you covered everything", or opening with pay and time off. Save those for HR.</p>']],
+k:[['Closing questions','Your questions at the end of an interview.'],['Success metric','How your performance will be measured.'],['First 90 days','The onboarding period when you learn the line and tools.']]}
+});
+
+/* ================= Learn: complete teaching for every interview question =================
+   Each topic has two parts. A · Explanation: a one-line summary, how it works, the factory floor,
+   what goes wrong, the interview answer, tools, abbreviations and key terms. B · Training: a worked
+   example stepped through on the same preconfigured unit the mission uses (every step runs for real
+   and shows what it proves), flashcards, a quick check, and a spoken answer you rate yourself. */
 class WalkLab extends MissionLab{
   build(){
     const d = this.def, M = d.M;
@@ -6119,25 +6892,100 @@ function quickCheck(q, onChange){
   function paint(){ const k = (mstate[q.id] || {}).oc;
     bs.forEach((b, j) => { b.classList.toggle('right', k != null && j === right); b.classList.toggle('wrong', k != null && j === k && k !== right); b.disabled = k != null; b.setAttribute('aria-pressed', String(j === k)); });
     whyEl.hidden = k == null; rt.hidden = k == null || k === right;
-    if (k != null) whyEl.innerHTML = (k === right ? '<span class="pill ok">Correct</span> ' : '<span class="pill bad">Not quite</span> The answer is ' + 'ABCD'[pos[right]] + '. ') + esc(why); }
+    if (k != null) whyEl.innerHTML = (k === right ? '<span class="pill ok">Correct</span> ' : '<span class="pill bad">Not quite</span> The answer is ' + 'ABCD'[pos[right]] + '. ') + esc(why); acroDom(whyEl, null, {expand:false}); }
   paint(); box.__paint = paint; return box;
 }
+const LEARN_MK = {};
+/* Flashcards: the topic's abbreviations and key terms. Tap to flip; flipping them all counts as done. */
+function flashcards(q, keys, onAll){
+  const T = TEACH[q.id] || {}; const cards = keys.slice(0, 12).map(k => ({f:k, tag:'Abbreviation', b1:ACRO[k][0], b2:ACRO[k][1]})).concat((T.k || []).map(([t, d]) => ({f:t, tag:'Key term', b1:'', b2:d})));
+  const box = document.createElement('div'); box.className = 'fc-wrap';
+  box.innerHTML = '<div class="fc-bar"><span class="fc-n"></span><button type="button" class="ibtn fc-rst">Flip all back</button></div><div class="fcards"></div>';
+  const grid = box.querySelector('.fcards'), seen = new Set();
+  const paint = () => setTxt(box.querySelector('.fc-n'), seen.size + ' of ' + cards.length + ' cards turned' + (seen.size === cards.length ? ' ✓' : ''));
+  cards.forEach((c, i) => {
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'fcard'; b.setAttribute('aria-pressed', 'false');
+    b.innerHTML = '<span class="fc-in"><span class="fc-face fc-front"><small></small><b></b><em>Tap to flip</em></span><span class="fc-face fc-back"><b></b><span></span></span></span>';
+    b.querySelector('.fc-front small').textContent = c.tag; b.querySelector('.fc-front b').textContent = c.f;
+    b.querySelector('.fc-back b').textContent = c.b1 || c.f; b.querySelector('.fc-back span').textContent = c.b2;
+    b.setAttribute('aria-label', c.tag + ': ' + c.f + '. Tap to show the meaning');
+    b.addEventListener('click', () => { const on = !b.classList.contains('flip'); b.classList.toggle('flip', on); b.setAttribute('aria-pressed', String(on));
+      b.setAttribute('aria-label', on ? c.f + ': ' + (c.b1 ? c.b1 + '. ' : '') + c.b2 : c.tag + ': ' + c.f + '. Tap to show the meaning');
+      if (on){ seen.add(i); paint(); if (seen.size === cards.length) onAll(); } });
+    grid.appendChild(b);
+  });
+  box.querySelector('.fc-rst').addEventListener('click', () => grid.querySelectorAll('.fcard').forEach(b => { b.classList.remove('flip'); b.setAttribute('aria-pressed', 'false'); }));
+  paint(); box.__n = cards.length; return box;
+}
 function topicEl(q, idx, m, api){
-  const M = MISSIONS[q.id], def = missionDef(q);
+  const M = MISSIONS[q.id], def = missionDef(q), T = TEACH[q.id] || {s:'', sec:[], k:[]};
   const el = document.createElement('article'); el.className = 'topic';
-  const kind = KIND_LABEL[M.con || 'diag'] || 'Console';
   el.innerHTML =
-    '<header class="topic-head"><p class="eyebrow">Topic ' + pad2(idx + 1) + ' of ' + pad2(m.qs.length) + '</p><h3>' + q.q + '</h3></header>' +
-    '<section class="tsec"><h4><span class="tnum">1</span>Learn it</h4><div class="learn-grid"><div class="learn-body">' + q.a + (q.tip ? '<p class="tip">' + q.tip + '</p>' : '') + '</div>' +
-      '<aside class="tools-card"><p class="eyebrow">Tools for this topic</p><ul class="tools"></ul><p class="muted">Where you use them: ' + esc(kind.toLowerCase()) + '.</p></aside></div></section>' +
-    '<section class="tsec"><h4><span class="tnum">2</span>Watch it worked, step by step</h4><div class="ticket"><div class="tk-meta"><span>Worked example</span>' + (M.meta || []).map(x => '<span>' + esc(x[0]) + ' <b>' + esc(x[1]) + '</b></span>').join('') + '</div><p>' + M.brief + '</p><p class="muted">Press <b>Run step</b> to go one step at a time. Each step runs on the unit, shows the real output, and marks the lines that prove something.</p></div><div class="walk-host"></div></section>' +
-    '<section class="tsec"><h4><span class="tnum">3</span>Check yourself</h4><div class="qc-host"></div></section>' +
+    '<header class="topic-head"><p class="eyebrow">Topic ' + pad2(idx + 1) + ' of ' + pad2(m.qs.length) + '</p><h3>' + q.q + '</h3>' +
+      '<div class="tparts" role="tablist" aria-label="Parts of this topic">' +
+        '<button type="button" role="tab" class="tpart" data-p="ex" id="tp-ex-' + q.id + '" aria-controls="tpp-ex-' + q.id + '"><span class="tp-n">A</span><span class="tp-t"><b>Explanation</b><small>Read how it works, with every abbreviation spelled out</small></span></button>' +
+        '<button type="button" role="tab" class="tpart" data-p="tr" id="tp-tr-' + q.id + '" aria-controls="tpp-tr-' + q.id + '"><span class="tp-n">B</span><span class="tp-t"><b>Training</b><small>Worked example, flashcards, quick check, spoken answer</small></span><span class="tp-prog"></span></button>' +
+      '</div></header>' +
+    '<section class="tpane tp-ex" data-p="ex" role="tabpanel" id="tpp-ex-' + q.id + '" aria-labelledby="tp-ex-' + q.id + '">' +
+      '<p class="t-sum"><span class="eyebrow">In one line</span><span class="t-sum-t">' + T.s + '</span></p>' +
+      '<div class="ex-grid"><div class="ex-main">' +
+        T.sec.map((x, i) => '<section class="exsec"><h4><span class="tnum">' + (i + 1) + '</span>' + x[0] + '</h4><div class="learn-body">' + x[1] + '</div></section>').join('') +
+        '<section class="exsec ex-ia"><h4><span class="tnum">' + (T.sec.length + 1) + '</span>How to say it in the interview</h4><div class="learn-body">' + q.a + (q.tip ? '<p class="tip">' + q.tip + '</p>' : '') + '</div></section>' +
+      '</div><aside class="ex-side">' +
+        '<div class="tools-card"><p class="eyebrow">How you check it</p><ul class="tools"></ul><p class="muted">Where you use them: ' + esc((KIND_LABEL[M.con || 'diag'] || 'Console').toLowerCase()) + '.</p></div>' +
+        '<div class="terms-card"><p class="eyebrow">Abbreviations in this topic</p><dl class="terms ac-terms"></dl><p class="eyebrow tk-h">Key terms</p><dl class="terms k-terms"></dl></div>' +
+      '</aside></div>' +
+      '<div class="ex-foot"><p class="muted">Read it? Now train it: watch it worked on a real unit, test your recall, and say the answer out loud.</p><button type="button" class="btn primary go-train">Start training</button></div>' +
+    '</section>' +
+    '<section class="tpane tp-tr" data-p="tr" role="tabpanel" id="tpp-tr-' + q.id + '" aria-labelledby="tp-tr-' + q.id + '" hidden>' +
+      '<ol class="tr-track" aria-label="Training progress"><li data-s="ex">Worked example</li><li data-s="fc">Flashcards</li><li data-s="oc">Quick check</li><li data-s="or">Spoken answer</li></ol>' +
+      '<section class="tsec"><h4><span class="tnum">1</span>Watch it worked, step by step</h4><div class="ticket"><div class="tk-meta"><span>Worked example</span>' + (M.meta || []).map(x => '<span>' + esc(x[0]) + ' <b>' + esc(x[1]) + '</b></span>').join('') + '</div><p>' + M.brief + '</p><p class="muted">Press <b>Run step</b> to go one step at a time. Each step runs on the unit, shows the real output, and marks the lines that prove something.</p></div><div class="walk-host"></div></section>' +
+      '<section class="tsec"><h4><span class="tnum">2</span>Flashcards: say it before you flip</h4><div class="fc-host"></div></section>' +
+      '<section class="tsec"><h4><span class="tnum">3</span>Quick check</h4><div class="qc-host"></div></section>' +
+      '<section class="tsec oral"><h4><span class="tnum">4</span>Answer it out loud</h4><p class="or-ask"></p><p class="muted">Say your answer as if the interviewer just asked, in about 30 to 60 seconds. Then reveal the model answer and rate yourself honestly.</p><button type="button" class="btn or-show">I\'ve said it: show the model answer</button><div class="or-body" hidden><div class="learn-body or-ans">' + q.a + (q.tip ? '<p class="tip">' + q.tip + '</p>' : '') + '</div><div class="or-rate"><span>How did your answer compare?</span></div></div></section>' +
+    '</section>' +
     '<footer class="topic-foot"><button type="button" class="btn tl-learn"></button><button type="button" class="btn primary tl-mission">Now solve it yourself: mission ' + esc(q.id.toUpperCase()) + '</button><span class="tf-nav"><button type="button" class="ibtn tl-prev">Previous topic</button><button type="button" class="ibtn tl-next">Next topic</button></span></footer>';
+  el.querySelector('.or-ask').textContent = '"' + plainQ(q.q) + '"';
   const ul = el.querySelector('.tools');
   def.ref.forEach(([c, w]) => { const li = document.createElement('li'); li.innerHTML = '<code></code><span></span>'; li.querySelector('code').textContent = c; li.querySelector('span').textContent = w || ''; ul.appendChild(li); });
   if (!def.ref.length) el.querySelector('.tools-card').hidden = true;
   const acts = (M.sol || []).filter(s => s.act).map(s => { const a = def.actions.find(x => x.id === s.act); return a ? a.label : s.act; });
   if (acts.length){ const li = document.createElement('li'); li.className = 'tbench'; li.innerHTML = ICON.tool + '<span></span>'; li.querySelector('span').textContent = 'Bench steps: ' + [...new Set(acts)].join('; '); ul.appendChild(li); }
+  /* Spell out abbreviations: the title only gets underlines; the explanation expands each one on first use */
+  acroDom(el.querySelector('.topic-head h3'), null, {expand:false});
+  const seen = new Set();
+  acroDom(el.querySelector('.t-sum'), seen); el.querySelectorAll('.ex-main .exsec').forEach(x => acroDom(x, seen));
+  const keys = [...seen];
+  const dl = el.querySelector('.ac-terms');
+  keys.forEach(k => { const dt = document.createElement('dt'); dt.className = 'no-acro'; dt.textContent = k; const dd = document.createElement('dd'); dd.innerHTML = '<b></b><span></span>'; dd.querySelector('b').textContent = ACRO[k][0]; dd.querySelector('span').textContent = ACRO[k][1]; dl.appendChild(dt); dl.appendChild(dd); });
+  if (!keys.length){ dl.hidden = true; el.querySelector('.terms-card > .eyebrow').hidden = true; }
+  const kl = el.querySelector('.k-terms');
+  (T.k || []).forEach(([t, d]) => { const dt = document.createElement('dt'); dt.textContent = t; const dd = document.createElement('dd'); dd.textContent = d; kl.appendChild(dt); kl.appendChild(dd); });
+  if (!(T.k || []).length){ kl.hidden = true; el.querySelector('.tk-h').hidden = true; }
+  acroDom(el.querySelector('.terms-card'), null, {expand:false}); acroDom(el.querySelector('.tools-card'), null, {expand:false});
+  const trSeen = new Set(keys); acroDom(el.querySelector('.tp-tr .ticket'), trSeen, {expand:false}); acroDom(el.querySelector('.or-ans'), null, {expand:false});
+  /* Parts A and B */
+  const tabs = [...el.querySelectorAll('.tpart')], panes = [...el.querySelectorAll('.tpane')];
+  let walk = null;
+  const mountWalk = () => { if (walk) return; try { walk = new WalkLab(walkDef(q)); walk.onDone = () => { autoLearn(); paintTrain(); api.changed(); }; LEARN_OBJ[q.id] = walk; el.querySelector('.walk-host').appendChild(walk.root); acroDom(walk.root.querySelector('.wsteps'), trSeen, {expand:false}); } catch (e) { console.error(e); el.querySelector('.walk-host').innerHTML = '<p class="note">This example failed to load.</p>'; } };
+  const part = (p, focus) => { tabs.forEach(t => { const on = t.dataset.p === p; t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1; t.classList.toggle('on', on); });
+    panes.forEach(x => { x.hidden = x.dataset.p !== p; }); el.__part = p; if (p === 'tr') mountWalk(); if (focus) tabs.find(t => t.dataset.p === p).focus(); };
+  tabs.forEach((t, i) => { t.addEventListener('click', () => part(t.dataset.p));
+    t.addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft'){ e.preventDefault(); part(tabs[(i + 1) % 2].dataset.p, true); } }); });
+  el.querySelector('.go-train').addEventListener('click', () => { part('tr'); el.querySelector('.tparts').scrollIntoView({behavior:reduceMotion ? 'auto' : 'smooth', block:'start'}); });
+  /* Training pieces */
+  const fc = flashcards(q, keys, () => { const st = mst(q.id); if (!st.fc){ st.fc = 1; saveMissions(); } paintTrain(); api.changed(); });
+  el.querySelector('.fc-host').appendChild(fc);
+  const orBody = el.querySelector('.or-body'), orShow = el.querySelector('.or-show');
+  const mk = markButtons(q); el.querySelector('.or-rate').appendChild(mk.wrap); LEARN_MK[q.id] = mk;
+  [mk.got, mk.rev].forEach(b => b.addEventListener('click', () => { paintTrain(); api.changed(); }));
+  orShow.addEventListener('click', () => { orBody.hidden = false; orShow.hidden = true; });
+  function trainState(){ const st = mstate[q.id] || {}; return {ex:!!st.ex, fc:!!st.fc, oc:st.oc === M.quiz[0][2], or:!!marks[q.id]}; }
+  function paintTrain(){ const s = trainState(), n = Object.values(s).filter(Boolean).length;
+    el.querySelectorAll('.tr-track li').forEach(li => li.classList.toggle('done', s[li.dataset.s]));
+    setTxt(el.querySelector('.tp-prog'), n + '/4'); el.querySelector('.tp-prog').classList.toggle('full', n === 4);
+    mk.got.setAttribute('aria-pressed', marks[q.id] === 'got'); mk.rev.setAttribute('aria-pressed', marks[q.id] === 'review');
+    if (marks[q.id]){ orBody.hidden = false; orShow.hidden = true; } }
   const learnBtn = el.querySelector('.tl-learn');
   const paintLearn = () => { const on = topicLearned(q); learnBtn.textContent = on ? 'Learned ✓' : 'Mark as learned'; learnBtn.classList.toggle('on', on); learnBtn.setAttribute('aria-pressed', String(on)); };
   const autoLearn = () => { const st = mstate[q.id] || {}; if (st.ex && st.oc === M.quiz[0][2] && !st.l){ setLearned(q, true); paintLearn(); api.changed(); } };
@@ -6146,19 +6994,19 @@ function topicEl(q, idx, m, api){
   el.querySelector('.tl-prev').disabled = idx === 0; el.querySelector('.tl-next').disabled = idx === m.qs.length - 1;
   el.querySelector('.tl-prev').addEventListener('click', () => api.show(idx - 1, true));
   el.querySelector('.tl-next').addEventListener('click', () => api.show(idx + 1, true));
-  const qc = quickCheck(q, () => { autoLearn(); api.changed(); }); el.querySelector('.qc-host').appendChild(qc);
-  let walk = null;
-  el.__mount = () => { if (walk) return; try { walk = new WalkLab(walkDef(q)); walk.onDone = () => { autoLearn(); api.changed(); }; LEARN_OBJ[q.id] = walk; el.querySelector('.walk-host').appendChild(walk.root); } catch (e) { console.error(e); el.querySelector('.walk-host').innerHTML = '<p class="note">This example failed to load.</p>'; } };
-  el.__paint = () => { paintLearn(); qc.__paint(); };
-  el.__reset = () => { if (walk) walk.reset(); el.__paint(); };
-  paintLearn();
+  const qc = quickCheck(q, () => { autoLearn(); paintTrain(); api.changed(); }); el.querySelector('.qc-host').appendChild(qc);
+  el.__mount = () => { if (el.__part === 'tr') mountWalk(); };
+  el.__part = 'ex'; el.__setPart = part;
+  el.__paint = () => { paintLearn(); qc.__paint(); paintTrain(); };
+  el.__reset = () => { if (walk) walk.reset(); orBody.hidden = true; orShow.hidden = false; el.__paint(); };
+  part('ex'); paintLearn(); paintTrain();
   return el;
 }
 function learnPane(m, onChange){
   const root = document.createElement('div'); root.className = 'learn';
-  root.innerHTML = '<div class="ov-intro"><div class="ov-fig"></div><aside class="wyl"><p class="eyebrow">What you will learn</p><h3>' + m.qs.length + ' topics, one per interview question</h3><div class="wyl-prog"><span class="bar"><i></i></span><span class="wyl-n"></span></div><ol class="wyl-list"></ol><button type="button" class="btn primary wyl-go"></button></aside></div>' +
+  root.innerHTML = '<div class="ov-intro"><div class="ov-fig"></div><aside class="wyl"><p class="eyebrow">What you will learn</p><h3>' + m.qs.length + ' topics, one per interview question</h3><p class="wyl-how">Each topic has two parts. <b>A · Explanation</b> teaches how it works, what you see on the factory floor, what goes wrong, and the interview answer, with every abbreviation spelled out. <b>B · Training</b> walks a worked example on a real unit, then flashcards, a quick check and a spoken answer.</p><div class="wyl-prog"><span class="bar"><i></i></span><span class="wyl-n"></span></div><ol class="wyl-list"></ol><button type="button" class="btn primary wyl-go"></button></aside></div>' +
     '<div class="topics" id="topics-' + m.id + '"><nav class="tstepper" aria-label="Topics"></nav><div class="topic-host"></div></div>' +
-    '<section class="ov-simwrap"><p class="eyebrow">Hands-on simulator</p><div class="ov-sim"></div></section>';
+    '<section class="ov-simwrap"><p class="eyebrow">Module training · hands-on simulator</p><div class="ov-sim"></div></section>';
   if (TOPOS[m.id]) root.querySelector('.ov-fig').appendChild(mountFigure(TOPOS[m.id]));
   if (SIMS[m.id]) root.querySelector('.ov-sim').appendChild(SIMS[m.id]()); else root.querySelector('.ov-simwrap').hidden = true;
   const els = {}, host = root.querySelector('.topic-host'), nav = root.querySelector('.tstepper'), list = root.querySelector('.wyl-list');
@@ -6431,7 +7279,7 @@ let practiceMarks = null;
 function setMark(q, v){
   if (marks[q.id] === v) delete marks[q.id]; else marks[q.id] = v;
   saveMarks();
-  [MARK_UI[q.id], practiceMarks && curQ === q ? practiceMarks : null].forEach(k => { if (!k) return; k.got.setAttribute('aria-pressed', marks[q.id] === 'got'); k.rev.setAttribute('aria-pressed', marks[q.id] === 'review'); });
+  [MARK_UI[q.id], LEARN_MK[q.id], practiceMarks && curQ === q ? practiceMarks : null].forEach(k => { if (!k) return; k.got.setAttribute('aria-pressed', marks[q.id] === 'got'); k.rev.setAttribute('aria-pressed', marks[q.id] === 'review'); });
   if (MI_CARD[q.id]) MI_CARD[q.id].__paint();
   renderBays();
 }
@@ -6461,7 +7309,7 @@ $('#btn-mission').addEventListener('click', () => { if (curQ) openMission(curQ.i
 btnModel.addEventListener('click', () => {
   if (!curQ) return;
   if (!modelBox.hidden){ modelBox.hidden = true; btnModel.textContent = 'Show model answer'; return; }
-  modelBox.innerHTML = '<h3>Model answer</h3>' + curQ.a + (curQ.tip ? '<p class="tip">' + curQ.tip + '</p>' : '');
+  modelBox.innerHTML = '<h3>Model answer</h3>' + curQ.a + (curQ.tip ? '<p class="tip">' + curQ.tip + '</p>' : ''); acroDom(modelBox);
   modelBox.hidden = false; btnModel.textContent = 'Hide model answer';
 });
 function updateFbAvail(){
