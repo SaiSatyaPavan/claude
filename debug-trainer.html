@@ -1,49 +1,29 @@
 <title>Debug technician interview trainer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#EDF0F2; --surface:#FFFFFF; --ink:#15212A; --muted:#55656E; --line:#D0D8DD; --soft:#E4E9EC;
-  --line-strong:#8E9DA6;
-  --uid:#1C5CCB; --uid-ink:#FFFFFF; --uid-wash:#DCE7FA; --ok:#1C8448; --warn:#9A5B00; --bad:#B8372A;
-  --ok-wash:#DDF1E5; --warn-wash:#F7ECD8; --bad-wash:#F8E0DC;
-  --led-ok:#2FCB78; --led-warn:#FFAA1F; --led-off:#353F46;
-  --bezel:#232B30; --bezel-2:#1A2025; --bezel-ink:#DCE3E7; --bezel-muted:#8F9CA4;
-  --code-bg:#E4EAEE;
-  --pcb:#D5E6DB; --pcb-edge:#7FA890; --chassis:#E9EDF0; --metal:#B9C4CB;
-  --air:#3A86D4; --pwr:#C27200; --pcie:#1C5CCB; --data2:#0F8A7C; --hot:#D14B2F;
-  --term-bg:#0D1317; --term-ink:#CFDCE3; --term-dim:#71838D; --term-green:#5CD68D; --term-red:#FF7F6E;
-  --term-amber:#F2B04A; --term-cyan:#6CCBEA; --term-blue:#8DB5FF; --term-line:#1E2A31;
-  color-scheme:light;
+  --bg:#05080F; --surface:#0B1120; --ink:#E7EDF6; --muted:#8B97AD; --line:#1A2436; --soft:#111A2C;
+  --line-strong:#2C3A55; --card-line:rgba(148,163,184,.14);
+  --uid:#5B8CFF; --uid-ink:#FFFFFF; --uid-wash:#12203E; --ok:#34D399; --warn:#FBBF24; --bad:#F87171;
+  --ok-wash:#0C2A20; --warn-wash:#2B2210; --bad-wash:#2E1219;
+  --cyan:#22D3EE; --violet:#8B5CF6; --grad:linear-gradient(135deg,#3B82F6 0%,#6366F1 52%,#8B5CF6 100%);
+  --led-ok:#34D399; --led-warn:#FBBF24; --led-off:#1F2A40;
+  --bezel:#070B15; --bezel-2:#0D1424; --bezel-ink:#E7EDF6; --bezel-muted:#7E8AA3;
+  --code-bg:#131D33;
+  --pcb:#0C2230; --pcb-edge:#2B6E86; --chassis:#0A1222; --metal:#27344D;
+  --air:#60A5FA; --pwr:#FBBF24; --pcie:#A78BFA; --data2:#22D3EE; --hot:#FB7185;
+  --term-bg:#03060C; --term-ink:#CFE0F5; --term-dim:#6B7A93; --term-green:#34D399; --term-red:#FB7185;
+  --term-amber:#FBBF24; --term-cyan:#22D3EE; --term-blue:#93B4FF; --term-line:#15203A;
+  color-scheme:dark;
   box-sizing:border-box;
   padding-top:env(safe-area-inset-top,0px);
   padding-bottom:env(safe-area-inset-bottom,0px);
   --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   --cond:"IBM Plex Sans Condensed","Arial Narrow","Roboto Condensed",system-ui,sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg:#10171C; --surface:#18222A; --ink:#E2E8EC; --muted:#98A6AF; --line:#2A3741; --soft:#1F2B33;
-    --line-strong:#5B6C77;
-    --uid:#72A6FF; --uid-ink:#0C1829; --uid-wash:#1B2B45; --ok:#57CB8C; --warn:#F2B04A; --bad:#FF7F6E;
-    --ok-wash:#173327; --warn-wash:#35291A; --bad-wash:#3A1F1C;
-    --bezel:#0C1216; --bezel-2:#070B0E; --code-bg:#23313B;
-    --pcb:#1B3327; --pcb-edge:#3F7A5C; --chassis:#141D23; --metal:#3C4A53;
-    --air:#6FB0F0; --pwr:#F2B04A; --pcie:#72A6FF; --data2:#45C7B5; --hot:#FF8A6B;
-    color-scheme:dark;
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#10171C; --surface:#18222A; --ink:#E2E8EC; --muted:#98A6AF; --line:#2A3741; --soft:#1F2B33;
-  --line-strong:#5B6C77;
-  --uid:#72A6FF; --uid-ink:#0C1829; --uid-wash:#1B2B45; --ok:#57CB8C; --warn:#F2B04A; --bad:#FF7F6E;
-  --ok-wash:#173327; --warn-wash:#35291A; --bad-wash:#3A1F1C;
-  --bezel:#0C1216; --bezel-2:#070B0E; --code-bg:#23313B;
-  --pcb:#1B3327; --pcb-edge:#3F7A5C; --chassis:#141D23; --metal:#3C4A53;
-  --air:#6FB0F0; --pwr:#F2B04A; --pcie:#72A6FF; --data2:#45C7B5; --hot:#FF8A6B;
-  color-scheme:dark;
+  --display:"Chakra Petch","IBM Plex Sans Condensed","Arial Narrow",system-ui,sans-serif;
 }
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *,*::before,*::after{box-sizing:border-box}
@@ -585,6 +565,150 @@ textarea{display:block;width:100%;min-height:150px;padding:12px;border-radius:10
   .cheat-grip{display:none}
 }
 
+
+/* ===== Premium dark theme: glass, gradients and glow ===== */
+body{background:radial-gradient(1100px 620px at 10% -10%,rgba(59,130,246,.17),transparent 60%),radial-gradient(900px 540px at 105% 6%,rgba(139,92,246,.14),transparent 60%),radial-gradient(900px 600px at 50% 115%,rgba(34,211,238,.07),transparent 60%),var(--bg);background-attachment:fixed}
+::selection{background:rgba(91,140,255,.38);color:#FFFFFF}
+*{scrollbar-color:#2C3A55 transparent}
+:focus-visible{outline-color:var(--cyan)}
+code{color:#CFE0FF}
+.live-dot{background:var(--cyan);box-shadow:0 0 8px var(--cyan)}
+.topbar{background:rgba(5,9,18,.95);-webkit-backdrop-filter:blur(14px) saturate(150%);backdrop-filter:blur(14px) saturate(150%);border-bottom:1px solid rgba(148,163,184,.12)}
+.tb-name,.hero h1,.view-head h2,.lesson-head h2,.topic-head h3,.howto h2,.plan h2{font-family:var(--display);letter-spacing:.01em}
+.tb-toggle,.cheat-btn{background:rgba(255,255,255,.04);border-color:rgba(148,163,184,.18)}
+.cheat-btn[aria-expanded="true"]{border-color:rgba(91,140,255,.7);box-shadow:0 0 0 1px rgba(91,140,255,.5),0 0 18px rgba(91,140,255,.35)}
+.stat{background:rgba(255,255,255,.04);border-color:rgba(148,163,184,.14)}
+.stat b{color:var(--cyan);text-shadow:0 0 12px rgba(34,211,238,.35)}
+.rail{background:linear-gradient(180deg,#070C19,#050913 70%);border-right:1px solid rgba(148,163,184,.1)}
+.rail-sec{color:#5F6D88}
+.ri:hover{background:rgba(255,255,255,.04)}
+.ri.on{background:linear-gradient(90deg,rgba(91,140,255,.18),rgba(139,92,246,.05));border-color:rgba(91,140,255,.34)}
+.ri-num{background:rgba(255,255,255,.04);border-color:rgba(148,163,184,.14)}
+.ri.on .ri-num{background:var(--grad);border-color:transparent;color:#FFFFFF;box-shadow:0 0 16px rgba(99,102,241,.55)}
+.ri-bar i{background:var(--grad)}
+.ri-subs a.on{background:rgba(91,140,255,.16);box-shadow:inset 2px 0 0 var(--uid)}
+.bezel{background:linear-gradient(135deg,#0B1533,#080E1E 62%);border:1px solid rgba(148,163,184,.14)}
+.bezel.hero{background:radial-gradient(620px 300px at 88% -10%,rgba(139,92,246,.38),transparent 62%),radial-gradient(520px 300px at -5% 110%,rgba(34,211,238,.2),transparent 60%),linear-gradient(135deg,#0B1533,#070C1B 64%);box-shadow:0 20px 50px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.06)}
+.bezel::before{width:62%;background-image:linear-gradient(rgba(148,163,184,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(148,163,184,.08) 1px,transparent 1px);background-size:26px 26px}
+.hero h1{max-width:20ch;font-size:clamp(1.9rem,1.3rem + 2vw,2.9rem);background:linear-gradient(92deg,#FFFFFF 10%,#C7D2FE 55%,#67E8F9);-webkit-background-clip:text;background-clip:text;color:transparent}
+.bay{background:rgba(255,255,255,.035);border:1px solid rgba(148,163,184,.14);border-radius:10px;transition:border-color .15s,box-shadow .15s,transform .15s}
+.bay:hover{border-color:rgba(91,140,255,.6);box-shadow:0 0 0 3px rgba(91,140,255,.12),0 8px 24px rgba(59,130,246,.18);color:#FFFFFF}
+.bay-p{color:var(--cyan)}
+.topo,.sim,.mission,.pcard,.next-card,.tsec,.wyl,.pitch,.howto{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.012)),var(--surface);border:1px solid var(--card-line);box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 14px 34px rgba(0,0,0,.34)}
+.howto{border-radius:14px;padding:18px}
+.topo,.sim,.pcard,.next-card{border-radius:14px}
+.topo-bar{border-bottom-color:var(--card-line)}
+.topo-info{border-top-color:var(--card-line)}
+.mission{border-radius:14px}
+.mission.open{border-color:rgba(91,140,255,.4);box-shadow:0 0 0 1px rgba(91,140,255,.18),0 18px 40px rgba(0,0,0,.4)}
+.mi-head:hover{background:rgba(255,255,255,.03)}
+.mi-num{background:var(--grad);color:#FFFFFF;box-shadow:0 0 14px rgba(99,102,241,.4)}
+.mi-body{border-top-color:var(--card-line)}
+.btn{background:rgba(255,255,255,.035);border-color:rgba(148,163,184,.2);border-radius:10px;color:var(--ink);transition:border-color .15s,box-shadow .15s,background .15s}
+.btn:hover:not(:disabled){border-color:rgba(91,140,255,.6);box-shadow:0 0 0 3px rgba(91,140,255,.13)}
+.btn.primary{background:var(--grad);border-color:transparent;color:#FFFFFF;box-shadow:0 8px 24px rgba(79,70,229,.38)}
+.btn.primary:hover:not(:disabled){box-shadow:0 0 0 3px rgba(139,92,246,.25),0 10px 28px rgba(79,70,229,.5)}
+.ibtn{background:rgba(255,255,255,.035);border-color:rgba(148,163,184,.2)}
+.chip{border-color:rgba(148,163,184,.2)}
+.chip[aria-pressed="true"]{background:var(--grad);border-color:transparent;color:#FFFFFF}
+.seg{border-color:rgba(148,163,184,.2)}
+.seg button[aria-pressed="true"]{background:var(--grad);color:#FFFFFF}
+.subtabs{background:rgba(5,8,15,.96);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom-color:var(--card-line)}
+.subtabs button[aria-selected="true"]{background:rgba(91,140,255,.14);color:#FFFFFF;box-shadow:inset 0 0 0 1px rgba(91,140,255,.5),0 0 18px rgba(91,140,255,.18)}
+.tcount{background:rgba(255,255,255,.06)}
+.ticket{background:rgba(255,255,255,.02);border-color:rgba(148,163,184,.26)}
+.term{border-color:#15203A;box-shadow:0 0 0 1px rgba(34,211,238,.06),0 12px 30px rgba(0,0,0,.45)}
+.choice{background:rgba(255,255,255,.03);border-color:rgba(148,163,184,.18)}
+.choice:hover:not(:disabled){border-color:rgba(91,140,255,.6)}
+.tip{border-left-color:var(--cyan);background:rgba(34,211,238,.06)}
+.hintbox{background:rgba(251,191,36,.08)}
+.answerbox{background:rgba(255,255,255,.025);border-color:var(--card-line)}
+.pill.idle{background:rgba(255,255,255,.06)}
+.pitch{border-left:3px solid var(--violet)}
+.cheat{background:rgba(9,14,27,.94);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-color:rgba(91,140,255,.35);box-shadow:0 24px 60px rgba(0,0,0,.6),0 0 0 1px rgba(91,140,255,.12)}
+.cheat-bar{background:linear-gradient(90deg,#0C1735,#0A1022)}
+.cheat-cat{background:#0A1020}
+.cheat-tools input,select,textarea{background:rgba(255,255,255,.035);border-color:rgba(148,163,184,.2)}
+.lesson-nav{border-top-color:var(--card-line)}
+
+/* ===== Learn: interactive Overview ===== */
+.learn{display:grid;gap:18px}
+.ov-intro{display:grid;gap:16px;grid-template-columns:minmax(0,1fr)}
+.ov-intro .topo{margin:0}
+.wyl{border-radius:14px;padding:16px;align-self:start}
+.wyl h3{font:600 1.12rem/1.3 var(--sans);margin:6px 0 10px}
+.wyl-prog{display:flex;align-items:center;gap:10px;margin:0 0 10px;font:500 .85rem var(--sans);color:var(--muted)}
+.wyl-prog .bar{flex:1;height:6px;border-radius:3px;background:rgba(255,255,255,.07);overflow:hidden}
+.wyl-prog .bar i{display:block;height:100%;width:0;background:var(--grad);transition:width .3s}
+.wyl-list{list-style:none;margin:0 0 14px;padding:0;display:grid;gap:3px;max-height:380px;overflow:auto}
+.wyl-list button{width:100%;display:flex;align-items:flex-start;gap:10px;padding:7px 8px;border:1px solid transparent;border-radius:9px;background:transparent;color:var(--ink);text-align:left;font-size:.9rem;line-height:1.35;cursor:pointer}
+.wyl-list button:hover{background:rgba(255,255,255,.04)}
+.wyl-list li.cur button{border-color:rgba(91,140,255,.45);background:rgba(91,140,255,.08)}
+.wyl-i{flex:none;width:28px;height:22px;display:grid;place-items:center;border-radius:6px;background:rgba(255,255,255,.05);font:600 .72rem var(--mono);color:var(--muted)}
+.wyl-list li.learned .wyl-i{background:rgba(52,211,153,.16);color:var(--ok)}
+.topics{scroll-margin-top:calc(env(safe-area-inset-top,0px) + var(--top-h) + 64px)}
+.tstepper{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+.tchip{min-width:42px;height:34px;padding:0 8px;border:1px solid rgba(148,163,184,.2);border-radius:9px;background:rgba(255,255,255,.03);color:var(--muted);font:600 .82rem var(--mono);cursor:pointer}
+.tchip:hover{border-color:rgba(91,140,255,.6);color:var(--ink)}
+.tchip.learned{color:var(--ok);border-color:rgba(52,211,153,.38)}
+.tchip.cur{background:var(--grad);border-color:transparent;color:#FFFFFF;box-shadow:0 0 18px rgba(99,102,241,.5)}
+.topic{display:grid;gap:14px}
+.topic-head h3{font:700 clamp(1.3rem,1.05rem + .8vw,1.75rem)/1.2 var(--display);margin:4px 0 0;text-wrap:balance}
+.tsec{border-radius:14px;padding:16px}
+.tsec>h4{display:flex;align-items:center;gap:10px;margin:0 0 12px;font:700 1.08rem var(--cond);letter-spacing:.02em}
+.tnum{flex:none;width:26px;height:26px;display:grid;place-items:center;border-radius:8px;background:var(--grad);color:#FFFFFF;font:700 .85rem var(--mono);box-shadow:0 0 12px rgba(99,102,241,.4)}
+.learn-grid{display:grid;gap:16px;grid-template-columns:minmax(0,1fr)}
+.learn-body{max-width:76ch;font-size:1rem}
+.learn-body p{margin:0 0 10px}
+.learn-body ul,.learn-body ol{margin:0 0 10px;padding-left:20px}
+.learn-body li{margin-bottom:6px}
+.learn-body strong,.learn-body b{color:#FFFFFF}
+.tools-card{align-self:start;padding:12px 14px;border:1px solid rgba(34,211,238,.2);border-radius:12px;background:rgba(34,211,238,.045)}
+.tools{list-style:none;margin:8px 0;padding:0;display:grid;gap:9px}
+.tools li{display:grid;gap:3px;font-size:.84rem;color:var(--muted)}
+.tools code{justify-self:start;font-size:.8rem}
+.tools .tbench{display:flex;align-items:flex-start;gap:6px;color:var(--ink)}
+.tools .tbench svg{flex:none;width:14px;height:14px;margin-top:2px;color:var(--cyan)}
+.tools-card .muted{margin:0;font-size:.8rem}
+.tsec .ticket{margin:0 0 12px}
+.tsec .ticket .muted{margin:6px 0 0;font-size:.88rem}
+.walk-grid{display:grid;gap:14px;grid-template-columns:minmax(0,1fr)}
+.walk-l,.walk-r{display:grid;gap:12px;align-content:start;min-width:0}
+.walk .topo,.walk .lab-cols{margin:0}
+.wsteps{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.wstep{display:flex;gap:10px;padding:10px;border:1px solid rgba(148,163,184,.16);border-radius:11px;background:rgba(255,255,255,.02);transition:border-color .2s,background .2s,box-shadow .2s}
+.wstep.now{border-color:rgba(91,140,255,.65);background:rgba(91,140,255,.08);box-shadow:0 0 0 3px rgba(91,140,255,.12)}
+.wstep.done{border-color:rgba(52,211,153,.3)}
+.wnum{flex:none;width:26px;height:26px;display:grid;place-items:center;border-radius:50%;border:1px solid var(--line-strong);font:600 .76rem var(--mono);color:var(--muted)}
+.wstep.now .wnum{background:var(--grad);border-color:transparent;color:#FFFFFF}
+.wstep.done .wnum{background:rgba(52,211,153,.16);border-color:rgba(52,211,153,.45);color:var(--ok)}
+.wbody{flex:1;min-width:0;display:grid;gap:6px}
+.wsay{margin:0;font-size:.93rem}
+.wline{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.wcmd{font-size:.84rem}
+.wdoc{font-size:.8rem;color:var(--muted)}
+.wout.term{margin:2px 0 0}
+.wout .term-out{height:auto;max-height:250px;padding:8px 10px 6px;font-size:12px}
+.term-out .ln.ev{box-shadow:inset 3px 0 0 var(--ok);padding-left:8px}
+.term-out .l.ev{display:inline-block;min-width:100%;margin-left:-10px;padding-left:10px;background:rgba(52,211,153,.15);box-shadow:inset 3px 0 0 var(--ok);color:#FFFFFF}
+.wproof{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.wproof li{position:relative;padding-left:20px;font-size:.85rem;color:var(--ok)}
+.wproof li::before{content:"✓";position:absolute;left:2px;top:0}
+.walk-ctl{display:flex;flex-wrap:wrap;gap:8px}
+.walk-done{margin:0;padding:10px 12px;border:1px solid rgba(52,211,153,.38);border-radius:10px;background:rgba(52,211,153,.08);font-size:.92rem}
+.qcheck .qz-q{font-weight:600}
+.qcheck .qretry{margin-top:8px}
+.topic-foot{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.tf-nav{display:flex;gap:6px;margin-left:auto}
+.btn.tl-learn.on{border-color:rgba(52,211,153,.55);background:rgba(52,211,153,.1);color:var(--ok)}
+.ov-simwrap .sim{margin:8px 0 0}
+@container stage (min-width:1040px){
+  .ov-intro{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);align-items:start}
+  .ov-intro .topo-scroll svg,.walk .topo-scroll svg{min-width:0}
+  .learn-grid{grid-template-columns:minmax(0,1fr) 310px}
+  .walk-grid{grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);align-items:start}
+}
+
 @media (prefers-reduced-motion: reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 <div class="app" id="app">
@@ -599,7 +723,7 @@ textarea{display:block;width:100%;min-height:150px;padding:12px;border-radius:10
   <div class="tb-stats" aria-label="Your progress">
     <span class="stat" title="Answers marked Got it"><b id="st-ans">0</b><span class="of">/72</span><span class="lbl">answers</span></span>
     <span class="stat" title="Missions solved"><b id="st-mis">0</b><span class="of">/72</span><span class="lbl">missions</span></span>
-    <span class="stat" title="Console labs solved"><b id="st-lab">0</b><span class="of">/9</span><span class="lbl">labs</span></span>
+    <span class="stat" title="Topics learned"><b id="st-learn">0</b><span class="of">/72</span><span class="lbl">learned</span></span>
   </div>
   <button class="cheat-btn" id="btn-cheat" type="button" aria-controls="cheat" aria-expanded="false">
     <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="3.5" width="15" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M6 8l2.5 2L6 12M10 12.5h4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -611,7 +735,7 @@ textarea{display:block;width:100%;min-height:150px;padding:12px;border-radius:10
   <nav class="rail" id="rail" aria-label="Lessons">
     <div class="rail-scroll" id="rail-list"></div>
     <div class="rail-foot">
-      <div class="rail-legend" aria-hidden="true"><span><i class="led ok"></i>ready</span><span><i class="led warn"></i>review</span><span><i class="lab-led ok"></i>lab</span></div>
+      <div class="rail-legend" aria-hidden="true"><span><i class="led ok"></i>ready</span><span><i class="led warn"></i>review</span></div>
       <button class="rail-collapse" id="rail-collapse" type="button" aria-controls="rail" aria-expanded="true">
         <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M12 5l-5 5 5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Collapse</span>
       </button>
@@ -623,7 +747,7 @@ textarea{display:block;width:100%;min-height:150px;padding:12px;border-radius:10
     <section class="view" id="view-home" hidden>
       <div class="bezel hero">
         <h1>Debug technician interview trainer</h1>
-        <p class="sub">For server manufacturing roles like the ones at Jabil. Every interview question is a hands-on mission on a preconfigured server, BMC, switch, bench or MES console, with a hint, a full answer and objective check questions.</p>
+        <p class="sub">For server manufacturing roles like the ones at Jabil. Every interview question is taught step by step in the lesson Overview, then practiced as a hands-on mission on a preconfigured server, BMC, switch, bench or MES console.</p>
         <div class="bays" id="bays" aria-label="Lessons"></div>
         <div class="readout">
           <strong id="ready">0 answers ready</strong>
@@ -631,7 +755,6 @@ textarea{display:block;width:100%;min-height:150px;padding:12px;border-radius:10
             <span><i class="led ok"></i>All ready</span>
             <span><i class="led part"></i>In progress</span>
             <span><i class="led warn"></i>Needs review</span>
-            <span><i class="lab-led"></i>Lab solved</span>
           </div>
         </div>
       </div>
@@ -639,9 +762,9 @@ textarea{display:block;width:100%;min-height:150px;padding:12px;border-radius:10
         <div class="howto">
           <h2>How each lesson works</h2>
           <ol class="howto-steps">
-            <li><b>Overview.</b> A live, animated diagram of the topic and a hands-on simulator. Tap parts to learn what they do.</li>
-            <li><b>Missions.</b> Every interview question is a ticket on a preconfigured unit. Work it with real commands. Stuck? <b>Step 1</b> gives a hint, <b>Step 2</b> the full answer and a solution you can watch run. Finish with the interview check.</li>
-            <li><b>Console lab.</b> One longer shop-floor scenario per lesson that ties the topic together.</li>
+            <li><b>Overview: learn it.</b> One topic per interview question. Read the explanation and the tools it uses, then step through a worked example on a real-looking unit: every step runs, shows its output and marks the lines that prove something. Finish with a quick check.</li>
+            <li><b>Missions: do it yourself.</b> The same unit, now yours to fix with real commands. Stuck? <b>Step 1</b> gives a hint, <b>Step 2</b> the full answer. End with the interview check questions.</li>
+            <li><b>Mock interview and plan.</b> Answer random questions out loud with AI feedback, and follow the 7-day plan.</li>
           </ol>
           <p class="note">Open the <b>Cheat sheet</b> from the top bar any time. It floats over the page, and <b>Use</b> types a command into the console you were working in.</p>
         </div>
@@ -680,12 +803,12 @@ textarea{display:block;width:100%;min-height:150px;padding:12px;border-radius:10
 
       <h2>7-day study plan</h2>
       <ol>
-        <li><strong>Day 1, hardware and ESD.</strong> Work the Server hardware and Tools lessons: tap every part in the server diagram, solve the missions, then the console labs.</li>
-        <li><strong>Day 2, boot and BMC.</strong> Solve the Boot, BIOS and BMC missions until you can narrate the power-on sequence without notes. Then the stuck-at-POST lab.</li>
+        <li><strong>Day 1, hardware and ESD.</strong> Work through every topic in the Server hardware and Tools Overviews, then solve their missions without looking back.</li>
+        <li><strong>Day 2, boot and BMC.</strong> Learn the Boot, BIOS and BMC topics, then solve the missions until you can narrate the power-on sequence without notes.</li>
         <li><strong>Day 3, Linux.</strong> Solve every Linux mission with the cheat sheet closed. Install Ubuntu in a free virtual machine and run the same commands for real with <code>sudo</code>.</li>
         <li><strong>Day 4, troubleshooting.</strong> This lesson matters most. Solve its missions twice, the second time narrating every step out loud, then do 10 scenario questions in Practice.</li>
         <li><strong>Day 5, networking and security.</strong> Solve the switch missions and the returned-unit missions so you can bring up your CCNA and Security+ naturally.</li>
-        <li><strong>Day 6, manufacturing and behavioral.</strong> Solve the MES and interview-room missions, keep the STAR story from the shift lab, and write 3 more STAR stories from your own life.</li>
+        <li><strong>Day 6, manufacturing and behavioral.</strong> Solve the MES and interview-room missions, then write 3 STAR stories from your own life and say them out loud.</li>
         <li><strong>Day 7, full mock.</strong> Do 15 random questions in Practice, rerun any mission you solved only with Step 2, then go back over everything marked Needs review.</li>
       </ol>
 
@@ -732,16 +855,6 @@ textarea{display:block;width:100%;min-height:150px;padding:12px;border-radius:10
       <div class="cheat-cats" id="cheat-cats" role="group" aria-label="Filter by category"></div>
     </div>
     <div class="cheat-list" id="cheat-list"></div>
-    <div class="cheat-ask" id="cheat-ask" hidden>
-      <label for="cheat-ask-q">Ask for a command</label>
-      <form class="cheat-ask-row" id="cheat-ask-form" autocomplete="off">
-        <input id="cheat-ask-q" type="text" placeholder="e.g. which DIMM is logging errors?" autocomplete="off">
-        <button class="btn primary" id="cheat-ask-go" type="submit">Ask</button>
-        <button class="btn" id="cheat-ask-stop" type="button" hidden>Stop</button>
-      </form>
-      <pre class="cheat-ask-out" id="cheat-ask-out" aria-live="polite" hidden></pre>
-      <p class="cheat-fine">Answered by Claude's fastest model on your own Claude account. Check any command before you run it on a real unit.</p>
-    </div>
     <p class="cheat-fine cheat-src">Drafted with Claude Haiku 4.5, then reviewed and corrected against the real tools. Replace placeholders like &lt;if&gt;, &lt;addr&gt; and &lt;ip&gt; with your values.</p>
   </div>
 </div>
@@ -4301,7 +4414,7 @@ class MissionLab extends Lab{
   mountWidget(kind){
     const box = this.root.querySelector('.mi-widget'); box.hidden = false;
     if (kind === 'torque'){
-      const w = buildTorque({sfx:'-' + this.def.q.id, onDone:r => { const S = this.S; S.torqued = r; if (r.ok && r.mode === 'install'){ S.hot = null; S.temps.cpu0 = 47; this.print('# bench: heatsink torqued to 0.9 N·m in sequence 1-2-3-4', 'bench'); }
+      const w = buildTorque({sfx:'-' + this.def.id, onDone:r => { const S = this.S; S.torqued = r; if (r.ok && r.mode === 'install'){ S.hot = null; S.temps.cpu0 = 47; this.print('# bench: heatsink torqued to 0.9 N·m in sequence 1-2-3-4', 'bench'); }
         else this.print('# bench: torque sequence ' + (r.ok ? 'finished in remove mode' : 'was out of order. Loosen and repeat 1-2-3-4'), 'bench'); missionCheck(this, 'act', {id:'torque'}); this.refresh(); },
         onWrong:v => { this.S.badSetting = v; } });
       w.querySelector('.sim-head .eyebrow').textContent = 'Bench tool';
@@ -5889,6 +6002,195 @@ TALK('bh10', {
   ]
 });
 
+/* ================= Learn: step-by-step teaching for every interview question =================
+   Each topic teaches one interview question: the explanation, the commands it uses,
+   a worked example you step through on the same preconfigured unit the mission uses
+   (every step runs for real and shows what it proves), and a quick check. */
+class WalkLab extends MissionLab{
+  build(){
+    const d = this.def, M = d.M;
+    const s = document.createElement('div'); s.className = 'walk';
+    s.innerHTML =
+      '<div class="walk-grid"><div class="walk-l">' +
+        '<figure class="topo"><div class="topo-bar"><span class="eyebrow"><i class="live-dot"></i>The unit in this example</span></div><div class="topo-scroll">' + d.topo.svg() + '</div><div class="topo-info" aria-live="polite"></div></figure>' +
+        '<div class="mi-widget" hidden></div>' +
+        '<div class="goals"><h4>What the example proves <span class="lab-prog"><span class="bar"><i></i></span><span class="pt"></span></span></h4><ol></ol></div>' +
+      '</div><div class="walk-r">' +
+        '<ol class="wsteps"></ol>' +
+        '<div class="walk-ctl"><button type="button" class="btn primary wnext"></button><button type="button" class="btn wall">Play the rest</button><button type="button" class="btn wrst">Start over</button></div>' +
+        '<p class="walk-done" hidden></p>' +
+      '</div></div>';
+    this.root = s;
+    this.sink = document.createElement('div'); this.out = this.sink;
+    this.input = document.createElement('input'); this.ps = document.createElement('span');
+    this.hintEl = document.createElement('div'); this.debEl = document.createElement('div'); this.flag = document.createElement('b');
+    this.goalsEl = s.querySelector('.goals ol'); this.info = s.querySelector('.topo-info');
+    this.svg = s.querySelector('.topo-scroll svg'); this.player = new Player(this.svg);
+    s.querySelector('.topo-bar').appendChild(playBtn(this.player));
+    if (d.topo.info) wireParts(this.svg, d.topo.info, this.info);
+    const label = id => { const a = d.actions.find(x => x.id === id); return a ? a.label : id; };
+    const part = id => { const i = d.topo.info && d.topo.info[id]; return i ? i[0] : id; };
+    const ol = s.querySelector('.wsteps');
+    this.steps = M.sol.map((st, i) => {
+      const li = document.createElement('li'); li.className = 'wstep';
+      li.innerHTML = '<span class="wnum">' + (i + 1) + '</span><div class="wbody">' +
+        (st.say ? '<p class="wsay"></p>' : '') +
+        (st.cmd ? '<div class="wline"><code class="wcmd"></code><span class="wdoc"></span></div>' : '') +
+        (st.act ? '<span class="bstep">' + ICON.tool + 'At the bench: ' + esc(label(st.act)) + '</span>' : '') +
+        (st.click ? '<span class="bstep">Look at the diagram: ' + esc(part(st.click)) + '</span>' : '') +
+        (st.show ? '<span class="bstep">' + ICON.tool + esc(st.show) + '</span>' : '') +
+        '<div class="term wout" hidden><div class="term-out"></div></div><ul class="wproof" hidden></ul></div>';
+      if (st.say) li.querySelector('.wsay').textContent = st.say;
+      if (st.cmd){ li.querySelector('.wcmd').textContent = st.cmd; li.querySelector('.wdoc').textContent = cmdDoc(st.cmd); }
+      ol.appendChild(li); return li;
+    });
+    this.nextBtn = s.querySelector('.wnext'); this.allBtn = s.querySelector('.wall');
+    this.nextBtn.addEventListener('click', () => this.stepOnce());
+    this.allBtn.addEventListener('click', () => this.playAll());
+    s.querySelector('.wrst').addEventListener('click', () => { this.tok = (this.tok || 0) + 1; this.reset(); });
+    if (M.widget) this.mountWidget(M.widget);
+  }
+  reset(){
+    this.tok = (this.tok || 0) + 1; this.i = 0; this.running = false; this.auto = false; this.out = this.sink;
+    super.reset();
+    (this.steps || []).forEach(li => { li.classList.remove('now', 'done'); const o = li.querySelector('.wout'); o.hidden = true; o.querySelector('.term-out').replaceChildren(); const p = li.querySelector('.wproof'); p.hidden = true; p.replaceChildren(); li.querySelectorAll('.ev').forEach(x => x.classList.remove('ev')); });
+    if (this.root){ const w = this.root.querySelector('.walk-done'); if (w) w.hidden = true; }
+    this.paintCtl();
+  }
+  paintCtl(){
+    if (!this.nextBtn) return; const n = this.def.M.sol.length, left = this.i < n;
+    this.nextBtn.disabled = this.running || !left; this.allBtn.disabled = this.running || !left;
+    this.nextBtn.textContent = this.running ? 'Running step ' + this.i + '…' : (left ? (this.i ? 'Run step ' + (this.i + 1) : 'Run step 1') : 'All steps done');
+  }
+  async runStep(i){
+    const st = this.def.M.sol[i], li = this.steps[i], tok = this.tok; if (!st) return;
+    this.steps.forEach(x => x.classList.toggle('now', x === li));
+    const box = li.querySelector('.wout'), out = box.querySelector('.term-out');
+    const before = new Set(this.done);
+    if (!reduceMotion) li.scrollIntoView({behavior:'smooth', block:'nearest'});
+    if (st.say) await sleep(st.sayWait || 1300);
+    if (tok !== this.tok) return;
+    this.out = out;
+    if (st.cmd){ box.hidden = false; await sleep(300 + st.cmd.length * 37); if (tok !== this.tok) return; await this.exec(st.cmd, true); if (tok !== this.tok) return; await sleep(st.wait || 1500); }
+    if (st.click){ svgFocus(this.svg, st.click, this.info, this.def.topo.info); missionCheck(this, 'click', {part:st.click}); await sleep(st.wait || 1100); }
+    if (st.fn){ try { await st.fn(this); } catch (e) { console.error(e); } await sleep(st.wait || 900); }
+    if (st.act){ box.hidden = false; await sleep(700); if (tok !== this.tok) return; this.act(st.act, true); await sleep(st.wait || 1700); }
+    if (tok !== this.tok) return;
+    this.out = this.sink;
+    const got = this.def.goals.filter(g => this.done.has(g.id) && !before.has(g.id));
+    got.forEach(g => { const re0 = g.spec.out; if (!re0) return; let re; try { re = new RegExp(re0.source, re0.flags.replace('g', '')); } catch (e) { return; }
+      out.querySelectorAll('.ln:not(.cmd):not(.win)').forEach(ln => { if (!re.test(ln.textContent)) return; wrapLines(ln); const ls = [...ln.querySelectorAll('.l')]; const hit = ls.filter(x => re.test(x.textContent)); if (hit.length) hit.forEach(x => x.classList.add('ev')); else ln.classList.add('ev'); }); });
+    const pr = li.querySelector('.wproof');
+    if (got.length){ pr.innerHTML = got.map(g => '<li>' + esc(g.text) + '</li>').join(''); pr.hidden = false; }
+    li.classList.remove('now'); li.classList.add('done');
+  }
+  async stepOnce(){ if (this.running) return; this.running = true; this.paintCtl(); const tok = this.tok; await this.runStep(this.i); if (tok !== this.tok) return; this.i++; this.running = false; this.paintCtl(); }
+  async playAll(){ if (this.running) return; const tok = this.tok; this.running = true; this.paintCtl();
+    while (this.i < this.def.M.sol.length){ await this.runStep(this.i); if (tok !== this.tok) return; this.i++; this.paintCtl(); }
+    this.running = false; this.paintCtl(); }
+  walkDone(){
+    const q = this.def.q, st = mst(q.id); if (!st.ex){ st.ex = 1; saveMissions(); }
+    const w = this.root.querySelector('.walk-done'); w.hidden = false;
+    w.innerHTML = '<b>Example complete.</b> Every objective is proved. Now open the mission and solve the same unit yourself, without looking back.';
+    if (this.onDone) this.onDone();
+  }
+}
+function wrapLines(ln){
+  if (ln.__wrapped) return; ln.__wrapped = true; const parts = ln.innerHTML.split('\n'); if (parts.length < 2) { ln.innerHTML = '<span class="l">' + ln.innerHTML + '</span>'; return; }
+  const bal = p => (p.match(/<span/g) || []).length === (p.match(/<\/span>/g) || []).length;
+  if (!parts.every(bal)) return; ln.innerHTML = parts.map(p => '<span class="l">' + p + '</span>').join('\n');
+}
+function walkDef(q){ const d = missionDef(q); d.id = 'wk-' + q.id; d.onComplete = L => L.walkDone(); d.onClick = () => {}; return d; }
+
+const LEARN_OBJ = {};
+function topicLearned(q){ return !!(mstate[q.id] || {}).l; }
+function setLearned(q, v){ const st = mst(q.id); if (v) st.l = 1; else delete st.l; saveMissions(); }
+function quickCheck(q, onChange){
+  const M = MISSIONS[q.id]; const [qq, opts, right, why] = M.quiz[0];
+  const box = document.createElement('div'); box.className = 'qz qcheck';
+  box.innerHTML = '<p class="qz-q"></p><div class="choices" role="group" aria-label="Quick check answers"></div><p class="qz-why" aria-live="polite" hidden></p><button type="button" class="ibtn qretry" hidden>Try again</button>';
+  box.querySelector('.qz-q').textContent = qq;
+  const ch = box.querySelector('.choices'), whyEl = box.querySelector('.qz-why'), rt = box.querySelector('.qretry');
+  const order = seedPerm(opts.length, q.id + ':oc'); const pos = []; order.forEach((k, p) => { pos[k] = p; });
+  const bs = [];
+  order.forEach((k, p) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'choice'; b.innerHTML = '<b>' + 'ABCD'[p] + '</b> ' + esc(opts[k]);
+    b.addEventListener('click', () => { const st = mst(q.id); if (st.oc != null) return; st.oc = k; saveMissions(); paint(); onChange(); }); ch.appendChild(b); bs[k] = b; });
+  rt.addEventListener('click', () => { const st = mst(q.id); delete st.oc; saveMissions(); paint(); onChange(); });
+  function paint(){ const k = (mstate[q.id] || {}).oc;
+    bs.forEach((b, j) => { b.classList.toggle('right', k != null && j === right); b.classList.toggle('wrong', k != null && j === k && k !== right); b.disabled = k != null; b.setAttribute('aria-pressed', String(j === k)); });
+    whyEl.hidden = k == null; rt.hidden = k == null || k === right;
+    if (k != null) whyEl.innerHTML = (k === right ? '<span class="pill ok">Correct</span> ' : '<span class="pill bad">Not quite</span> The answer is ' + 'ABCD'[pos[right]] + '. ') + esc(why); }
+  paint(); box.__paint = paint; return box;
+}
+function topicEl(q, idx, m, api){
+  const M = MISSIONS[q.id], def = missionDef(q);
+  const el = document.createElement('article'); el.className = 'topic';
+  const kind = KIND_LABEL[M.con || 'diag'] || 'Console';
+  el.innerHTML =
+    '<header class="topic-head"><p class="eyebrow">Topic ' + pad2(idx + 1) + ' of ' + pad2(m.qs.length) + '</p><h3>' + q.q + '</h3></header>' +
+    '<section class="tsec"><h4><span class="tnum">1</span>Learn it</h4><div class="learn-grid"><div class="learn-body">' + q.a + (q.tip ? '<p class="tip">' + q.tip + '</p>' : '') + '</div>' +
+      '<aside class="tools-card"><p class="eyebrow">Tools for this topic</p><ul class="tools"></ul><p class="muted">Where you use them: ' + esc(kind.toLowerCase()) + '.</p></aside></div></section>' +
+    '<section class="tsec"><h4><span class="tnum">2</span>Watch it worked, step by step</h4><div class="ticket"><div class="tk-meta"><span>Worked example</span>' + (M.meta || []).map(x => '<span>' + esc(x[0]) + ' <b>' + esc(x[1]) + '</b></span>').join('') + '</div><p>' + M.brief + '</p><p class="muted">Press <b>Run step</b> to go one step at a time. Each step runs on the unit, shows the real output, and marks the lines that prove something.</p></div><div class="walk-host"></div></section>' +
+    '<section class="tsec"><h4><span class="tnum">3</span>Check yourself</h4><div class="qc-host"></div></section>' +
+    '<footer class="topic-foot"><button type="button" class="btn tl-learn"></button><button type="button" class="btn primary tl-mission">Now solve it yourself: mission ' + esc(q.id.toUpperCase()) + '</button><span class="tf-nav"><button type="button" class="ibtn tl-prev">Previous topic</button><button type="button" class="ibtn tl-next">Next topic</button></span></footer>';
+  const ul = el.querySelector('.tools');
+  def.ref.forEach(([c, w]) => { const li = document.createElement('li'); li.innerHTML = '<code></code><span></span>'; li.querySelector('code').textContent = c; li.querySelector('span').textContent = w || ''; ul.appendChild(li); });
+  if (!def.ref.length) el.querySelector('.tools-card').hidden = true;
+  const acts = (M.sol || []).filter(s => s.act).map(s => { const a = def.actions.find(x => x.id === s.act); return a ? a.label : s.act; });
+  if (acts.length){ const li = document.createElement('li'); li.className = 'tbench'; li.innerHTML = ICON.tool + '<span></span>'; li.querySelector('span').textContent = 'Bench steps: ' + [...new Set(acts)].join('; '); ul.appendChild(li); }
+  const learnBtn = el.querySelector('.tl-learn');
+  const paintLearn = () => { const on = topicLearned(q); learnBtn.textContent = on ? 'Learned ✓' : 'Mark as learned'; learnBtn.classList.toggle('on', on); learnBtn.setAttribute('aria-pressed', String(on)); };
+  const autoLearn = () => { const st = mstate[q.id] || {}; if (st.ex && st.oc === M.quiz[0][2] && !st.l){ setLearned(q, true); paintLearn(); api.changed(); } };
+  learnBtn.addEventListener('click', () => { setLearned(q, !topicLearned(q)); paintLearn(); api.changed(); });
+  el.querySelector('.tl-mission').addEventListener('click', () => openMission(q.id));
+  el.querySelector('.tl-prev').disabled = idx === 0; el.querySelector('.tl-next').disabled = idx === m.qs.length - 1;
+  el.querySelector('.tl-prev').addEventListener('click', () => api.show(idx - 1, true));
+  el.querySelector('.tl-next').addEventListener('click', () => api.show(idx + 1, true));
+  const qc = quickCheck(q, () => { autoLearn(); api.changed(); }); el.querySelector('.qc-host').appendChild(qc);
+  let walk = null;
+  el.__mount = () => { if (walk) return; try { walk = new WalkLab(walkDef(q)); walk.onDone = () => { autoLearn(); api.changed(); }; LEARN_OBJ[q.id] = walk; el.querySelector('.walk-host').appendChild(walk.root); } catch (e) { console.error(e); el.querySelector('.walk-host').innerHTML = '<p class="note">This example failed to load.</p>'; } };
+  el.__paint = () => { paintLearn(); qc.__paint(); };
+  el.__reset = () => { if (walk) walk.reset(); el.__paint(); };
+  paintLearn();
+  return el;
+}
+function learnPane(m, onChange){
+  const root = document.createElement('div'); root.className = 'learn';
+  root.innerHTML = '<div class="ov-intro"><div class="ov-fig"></div><aside class="wyl"><p class="eyebrow">What you will learn</p><h3>' + m.qs.length + ' topics, one per interview question</h3><div class="wyl-prog"><span class="bar"><i></i></span><span class="wyl-n"></span></div><ol class="wyl-list"></ol><button type="button" class="btn primary wyl-go"></button></aside></div>' +
+    '<div class="topics" id="topics-' + m.id + '"><nav class="tstepper" aria-label="Topics"></nav><div class="topic-host"></div></div>' +
+    '<section class="ov-simwrap"><p class="eyebrow">Hands-on simulator</p><div class="ov-sim"></div></section>';
+  if (TOPOS[m.id]) root.querySelector('.ov-fig').appendChild(mountFigure(TOPOS[m.id]));
+  if (SIMS[m.id]) root.querySelector('.ov-sim').appendChild(SIMS[m.id]()); else root.querySelector('.ov-simwrap').hidden = true;
+  const els = {}, host = root.querySelector('.topic-host'), nav = root.querySelector('.tstepper'), list = root.querySelector('.wyl-list');
+  let cur = Math.min(ui.tp && ui.tp[m.id] != null ? ui.tp[m.id] : 0, m.qs.length - 1);
+  const api = {
+    show(i, scroll){ i = Math.max(0, Math.min(i, m.qs.length - 1)); cur = i; ui.tp = ui.tp || {}; ui.tp[m.id] = i; saveUi();
+      const q = m.qs[i]; if (!els[q.id]) els[q.id] = topicEl(q, i, m, api);
+      host.replaceChildren(els[q.id]); els[q.id].__mount(); els[q.id].__paint(); paint();
+      if (scroll) root.querySelector('.topics').scrollIntoView({behavior:reduceMotion ? 'auto' : 'smooth', block:'start'}); },
+    changed(){ paint(); onChange(); }
+  };
+  m.qs.forEach((q, i) => {
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'tchip'; b.dataset.i = i; b.innerHTML = '<span class="tchip-n">' + pad2(i + 1) + '</span>';
+    b.title = plainQ(q.q); b.addEventListener('click', () => api.show(i, true)); nav.appendChild(b);
+    const li = document.createElement('li'); const a = document.createElement('button'); a.type = 'button'; a.innerHTML = '<span class="wyl-i"></span><span class="wyl-t"></span>'; a.querySelector('.wyl-t').textContent = plainQ(q.q);
+    a.addEventListener('click', () => api.show(i, true)); li.appendChild(a); list.appendChild(li);
+  });
+  root.querySelector('.wyl-go').addEventListener('click', () => { const n = m.qs.findIndex(q => !topicLearned(q)); api.show(n < 0 ? 0 : n, true); });
+  function paint(){
+    const n = m.qs.filter(topicLearned).length;
+    root.querySelector('.wyl-prog i').style.width = Math.round(100 * n / m.qs.length) + '%';
+    setTxt(root.querySelector('.wyl-n'), n + ' of ' + m.qs.length + ' learned');
+    setTxt(root.querySelector('.wyl-go'), n === m.qs.length ? 'Review from topic 1' : (n ? 'Continue with the next topic' : 'Start topic 1'));
+    nav.querySelectorAll('.tchip').forEach((b, i) => { const q = m.qs[i]; b.classList.toggle('learned', topicLearned(q)); b.classList.toggle('cur', i === cur); b.setAttribute('aria-current', i === cur ? 'step' : 'false'); b.setAttribute('aria-label', 'Topic ' + (i + 1) + (topicLearned(q) ? ', learned' : '')); });
+    list.querySelectorAll('li').forEach((li, i) => { const q = m.qs[i]; li.classList.toggle('learned', topicLearned(q)); li.classList.toggle('cur', i === cur); li.querySelector('.wyl-i').textContent = topicLearned(q) ? '✓' : pad2(i + 1); });
+    Object.values(els).forEach(e => e.__paint());
+  }
+  api.show(cur, false);
+  root.__paint = paint; root.__show = api.show; root.__reset = () => { Object.values(els).forEach(e => e.__reset()); paint(); };
+  return root;
+}
+
 /* Command cheat sheet: drafted with Claude Haiku 4.5, then reviewed and corrected. [category, command, what it does, example output] */
 const CHEAT = [["Inventory", "lscpu", "CPU model, sockets, cores per socket, threads per core.", "Model name:            Intel(R) Xeon(R) Gold 6430\nSocket(s):             2\nCPU(s):                128"], ["Inventory", "nproc", "Number of logical CPUs the OS can use.", "128"], ["Inventory", "dmidecode -t system", "System manufacturer, product name, serial and UUID (SMBIOS type 1).", "Manufacturer: R2 Systems\nProduct Name: R2-GP 2U\nSerial Number: J7K2410700"], ["Inventory", "dmidecode -t baseboard", "Motherboard model and serial (SMBIOS type 2).", "Product Name: R2GP-MB\nSerial Number: BQ7K2410700"], ["Inventory", "dmidecode -t bios", "BIOS vendor, version and release date (SMBIOS type 0).", "Vendor: American Megatrends International, LLC.\nVersion: 2.14.1"], ["Inventory", "dmidecode -s system-serial-number", "Print only the system serial number.", "J7K2410700"], ["Inventory", "lshw -short", "All hardware in one compact list.", "H/W path       Device     Class      Description\n/0/100/1.1/0   ens1f0np0  network    MT2892 Family [ConnectX-6 Dx]"], ["Inventory", "ipmitool fru print 0", "Board and product FRU data from the BMC: serials, part numbers.", "Board Serial          : BQ7K2410700\nProduct Serial        : J7K2410700"], ["Inventory", "cat /proc/cpuinfo", "One block per logical CPU: model, physical id, core id, flags.", "processor\t: 0\nmodel name\t: Intel(R) Xeon(R) Gold 6430\nphysical id\t: 0"], ["Memory and ECC", "free -h", "Total, used and free memory as the OS sees it.", "               total        used        free\nMem:           1.0Ti       9.6Gi       1.0Ti"], ["Memory and ECC", "dmidecode -t memory", "Every DIMM slot: size, type, speed, locator, serial, part number.", "Size: 64 GB\nLocator: P1_DIMMA1\nType: DDR5\nType Detail: Synchronous Registered (Buffered)"], ["Memory and ECC", "dmidecode -t memory | grep -E \"Locator: P|Size|Part Number\"", "Slot names, sizes and part numbers only.", "Size: 64 GB\nLocator: P1_DIMMA1\nPart Number: M321R8GA0BB0-CQKZJ"], ["Memory and ECC", "ras-mc-ctl --error-count", "Corrected (CE) and uncorrected (UE) memory errors per DIMM label.", "Label               CE   UE\nP1_DIMMB2           1287 0"], ["Memory and ECC", "ras-mc-ctl --errors", "Recent memory error events with time, type and DIMM label.", "1 2026-09-26 06:02:19 -0500 1 Corrected error(s): memory read error ... label: P1_DIMMB2"], ["Memory and ECC", "edac-util -v", "Error counters for every memory controller and DIMM row.", "mc0: csrow3: P1_DIMMB2: 1287 Corrected Errors"], ["Memory and ECC", "dmesg -T | grep -iE 'edac|mce'", "Memory and machine-check errors in the kernel log.", "[Sat Sep 26 06:02:19 2026] EDAC MC0: 1 CE memory read error on P1_DIMMB2"], ["Memory and ECC", "memtester 1G 1", "Lock and test 1 GB of RAM from user space for 1 loop. Not destructive.", "Loop 1/1:\n  Stuck Address       : ok\n  Random Value        : ok"], ["Memory and ECC", "dmidecode -t memory | grep -c \"Size: [0-9]\"", "Count populated DIMM slots (empty slots say No Module Installed).", "16"], ["PCIe", "lspci", "Every PCIe device the bus enumerated, driver or not.", "41:00.0 Ethernet controller: Mellanox Technologies MT2892 Family [ConnectX-6 Dx]"], ["PCIe", "lspci -tv", "PCIe devices as a tree of root ports and bridges.", " +-[0000:40]---01.1-[41]--+-00.0  Mellanox Technologies MT2892 Family"], ["PCIe", "lspci -nn", "Devices with numeric class and vendor:device IDs.", "41:00.0 Ethernet controller [0200]: Mellanox Technologies MT2892 Family [15b3:101d]"], ["PCIe", "lspci -k", "Devices with the kernel driver in use.", "41:00.0 Ethernet controller: Mellanox ...\n\tKernel driver in use: mlx5_core"], ["PCIe", "lspci -s <addr> -vv | grep -E \"LnkCap|LnkSta\"", "Link capability versus negotiated speed and width for one device.", "LnkCap:\tPort #0, Speed 16GT/s, Width x16\nLnkSta:\tSpeed 16GT/s (ok), Width x8 (downgraded)"], ["PCIe", "cat /sys/bus/pci/devices/0000:<addr>/current_link_width", "Negotiated PCIe link width, from sysfs.", "8"], ["PCIe", "cat /sys/bus/pci/devices/0000:<addr>/current_link_speed", "Negotiated PCIe link speed, from sysfs.", "16.0 GT/s PCIe"], ["PCIe", "cat /sys/bus/pci/devices/0000:<addr>/max_link_width", "Maximum link width the device supports.", "16"], ["PCIe", "lspci -s <addr> -vv | grep -E \"UESta|CESta\"", "AER status bits: uncorrectable (UESta) and correctable (CESta) errors.", "CESta:\tRxErr+ BadTLP- BadDLLP- Rollover- Timeout- AdvNonFatalErr-"], ["Storage and RAID", "lsblk", "Block devices and partitions as a tree.", "NAME        MAJ:MIN RM   SIZE RO TYPE\nnvme0n1     259:0    0   3.5T  0 disk"], ["Storage and RAID", "lsblk -d -o NAME,TRAN,ROTA,SIZE,MODEL", "Each disk with its transport (sata, sas, nvme), rotational flag and model.", "NAME    TRAN ROTA  SIZE MODEL\nsda     sata    0 894.3G SAMSUNG MZ7L3960HCJR\nsdb     sas     1   2.2T ST2400MM0129"], ["Storage and RAID", "nvme list", "NVMe drives with serial, model, capacity and firmware.", "/dev/nvme0n1  S64HNE0T401187  SAMSUNG MZQL23T8HCLS-00A07  3.84 TB"], ["Storage and RAID", "nvme smart-log /dev/nvme0", "NVMe health log: critical_warning, temperature, wear, media errors.", "critical_warning      : 0\npercentage_used       : 1%\nmedia_errors          : 0"], ["Storage and RAID", "nvme id-ctrl -H /dev/nvme0", "Controller capabilities in readable form, such as crypto erase support.", "sn        : S64HNE0T401187\n  [2:2] : 0x1\tCrypto Erase Supported as part of Secure Erase"], ["Storage and RAID", "nvme format /dev/nvme0n1 --ses=2", "Cryptographic erase of a namespace (--ses=1 is a user data erase). Destroys all data.", "Success formatting namespace:1"], ["Storage and RAID", "smartctl -a /dev/sda", "Identity, overall health and SMART attributes of a drive.", "SMART overall-health self-assessment test result: PASSED\n  5 Reallocated_Sector_Ct ... 0"], ["Storage and RAID", "smartctl -H /dev/sda", "Quick health verdict: PASSED or FAILED.", "SMART overall-health self-assessment test result: PASSED"], ["Storage and RAID", "smartctl -i /dev/sda", "Drive identity: model, serial, firmware, capacity, interface.", "Device Model:     SAMSUNG MZ7L3960HCJR-00A07\nSATA Version is:  SATA 3.3, 6.0 Gb/s"], ["Storage and RAID", "storcli64 /c0 show", "RAID controller summary: model, firmware, virtual and physical drives.", "Controller = 0\nStatus = Success\nProduct Name = MegaRAID 9560-8i"], ["Storage and RAID", "storcli64 /c0/vall show", "Every virtual drive and its state (Optl, Dgrd, OfLn).", "DG/VD TYPE  State Access Consist Cache\n0/0   RAID5 Dgrd  RW     No      RWBD"], ["Storage and RAID", "storcli64 /c0/eall/sall show", "Every physical drive: slot, state (Onln, Rbld, UBad), size, model.", "EID:Slt DID State DG     Size Intf Med\n252:2   12  UBad  -  2.181 TB SAS  HDD"], ["Storage and RAID", "lsscsi", "SCSI, SATA and SAS devices with their addresses.", "[0:0:0:0]    disk    ATA      SAMSUNG MZ7L3960  U001  /dev/sda"], ["Storage and RAID", "smartctl -a /dev/sda | grep -iE 'temperature|power_on_hours|reallocated'", "Wear and heat attributes only.", "  5 Reallocated_Sector_Ct ... 0\n  9 Power_On_Hours ... 1841"], ["Storage and RAID", "storcli64 /c0/e252/s2 show rebuild", "Rebuild progress for one drive.", "/c0/e252/s2   62        In progress 12 Minutes"], ["Storage and RAID", "hexdump -C -n 512 /dev/nvme0n1", "Read the first sector back to confirm a wipe (all zeros).", "00000000  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|"], ["Linux networking", "ip -br addr", "Interfaces, state and IP addresses in one line each.", "eno1             UP             10.10.0.57/24"], ["Linux networking", "ip -br link", "Interfaces, state and MAC addresses.", "ens1f0np0        UP             b8:3f:d2:4a:11:70 <BROADCAST,MULTICAST,UP,LOWER_UP>"], ["Linux networking", "ip link set <if> up", "Bring an interface administratively up.", ""], ["Linux networking", "ethtool <if>", "Speed, duplex, autonegotiation and Link detected.", "Speed: 100000Mb/s\nDuplex: Full\nLink detected: yes"], ["Linux networking", "ethtool -i <if>", "Driver, driver version, NIC firmware and PCIe bus address.", "driver: mlx5_core\nfirmware-version: 22.39.1002 (MT_0000000359)\nbus-info: 0000:41:00.0"], ["Linux networking", "ethtool -S <if>", "NIC counters. Rising CRC or symbol errors mean a physical problem.", "rx_crc_errors_phy: 0\nrx_symbol_err_phy: 0"], ["Linux networking", "ethtool -m <if>", "Read the cable or optic EEPROM: type, vendor, part number, reach.", "Identifier  : 0x03 (SFP)\nTransceiver type : Ethernet: 25GBASE-SR\nVendor name : Intel Corp"], ["Linux networking", "ping -c 3 <ip>", "Three ICMP echoes to test reachability and latency.", "64 bytes from 10.20.0.170: icmp_seq=1 ttl=64 time=0.31 ms"], ["Linux networking", "iperf3 -s", "Start an iperf3 server on port 5201.", "Server listening on 5201"], ["Linux networking", "iperf3 -c <ip> -P 8 -t 30", "Throughput test with 8 parallel streams for 30 seconds (one stream rarely fills 100G).", "[SUM]   0.00-30.00  sec   329 GBytes  94.1 Gbits/sec   sender"], ["Linux networking", "cat /proc/net/bonding/bond0", "Bond mode, members, link state and LACP aggregator IDs.", "Bonding Mode: IEEE 802.3ad Dynamic link aggregation\nMII Status: up"], ["Linux networking", "ethtool -S <if> | grep -iE \"crc|symbol\"", "Just the physical-layer error counters. Run it twice and compare.", "rx_crc_errors_phy: 1832\nrx_symbol_err_phy: 610"], ["Logs", "dmesg -T", "Kernel log with readable timestamps.", "[Sat Sep 26 06:02:19 2026] mlx5_core 0000:41:00.0: ens1f0np0: Link up"], ["Logs", "dmesg -T | grep -iE '<pattern>'", "Filter the kernel log for a device or error type.", "[Sat Sep 26 06:02:21 2026] nvme nvme3: I/O 412 QID 18 timeout, aborting"], ["Logs", "journalctl -k", "Kernel messages from the systemd journal.", "Sep 26 06:02:19 diag kernel: EDAC MC0: 1 CE memory read error"], ["Logs", "journalctl -b -p err", "Errors and worse from the current boot only.", "Sep 26 06:02:21 diag kernel: blk_update_request: I/O error, dev nvme3n1"], ["Logs", "cat /var/log/messages", "System log on RHEL-style systems.", ""], ["Logs", "tail -f /var/log/syslog", "Follow the system log live (Debian and Ubuntu).", ""], ["Logs", "journalctl -xe", "Latest journal entries with extra explanation.", ""], ["IPMI and BMC", "ipmitool sel elist", "BMC event log with decoded sensor names, oldest first.", "   5 | 09/26/2026 | 06:02:19 | Memory P1_DIMMB2 | Correctable ECC | Asserted"], ["IPMI and BMC", "ipmitool sel elist | tail -20", "The 20 most recent events.", ""], ["IPMI and BMC", "ipmitool sel clear", "Clear the event log. Save it first.", "Clearing SEL.  Please allow a few seconds to erase."], ["IPMI and BMC", "ipmitool sel save <file>", "Save the event log to a file for the repair record.", "Saved 42 SEL entries to /tmp/J7K2410700_sel.txt"], ["IPMI and BMC", "ipmitool sensor", "Every sensor with value, units, status and thresholds.", "CPU0 Temp        | 47.000     | degrees C  | ok\nPSU2_VIN         | 0.000      | Volts      | lcr"], ["IPMI and BMC", "ipmitool sdr type \"Power Supply\"", "Power supply presence, AC lost and redundancy state.", "PS2 Status       | C9h | ok  | 10.2 | Presence detected, Power Supply AC lost\nPS Redundancy    | 77h | ok  |  7.1 | Redundancy Lost"], ["IPMI and BMC", "ipmitool sdr type Temperature", "Temperature sensors only.", "Inlet Temp       | 24.000     | degrees C  | ok"], ["IPMI and BMC", "ipmitool chassis status", "Host power state, last power event and fault flags.", "System Power         : on\nDrive Fault          : false\nCooling/Fan Fault    : false"], ["IPMI and BMC", "ipmitool chassis power on", "Power the host on.", "Chassis Power Control: Up/On"], ["IPMI and BMC", "ipmitool chassis power off", "Hard power off the host (use power soft for a clean OS shutdown).", "Chassis Power Control: Down/Off"], ["IPMI and BMC", "ipmitool chassis power cycle", "Power off, wait, power on.", "Chassis Power Control: Cycle"], ["IPMI and BMC", "ipmitool lan print 1", "BMC network settings on LAN channel 1: IP source, address, MAC, gateway.", "IP Address Source       : DHCP Address\nIP Address              : 10.20.0.170"], ["IPMI and BMC", "ipmitool lan set 1 ipsrc dhcp", "Set the BMC to get its address from DHCP.", ""], ["IPMI and BMC", "ipmitool mc info", "BMC firmware revision, IPMI version and device ID.", "Firmware Revision         : 7.10\nIPMI Version              : 2.0"], ["IPMI and BMC", "ipmitool mc reset cold", "Reboot the BMC. The host keeps running.", "Sent cold reset command to MC"], ["IPMI and BMC", "ipmitool user list 1", "BMC accounts on channel 1 with their privilege.", "ID  Name         Callin  Link Auth  IPMI Msg  Channel Priv Limit\n3   factory_tmp  true    false      true      ADMINISTRATOR"], ["IPMI and BMC", "ipmitool user disable <id>", "Disable one BMC account.", ""], ["IPMI and BMC", "ipmitool sol activate", "Serial-over-LAN console to the host. Type ~. to exit.", "[SOL Session operational.  Use ~? for help]"], ["IPMI and BMC", "ipmitool -I lanplus -H <ip> -U <user> -P <pass> chassis status", "Any ipmitool command over the network to a remote BMC (IPMI 2.0, RMCP+).", "System Power         : on"], ["IPMI and BMC", "ipmitool sdr type \"Drive Slot\"", "Which drive bays report a drive present or faulted.", "Drive 1          | 61h | ok  |  4.2 | Drive Present"], ["IPMI and BMC", "ipmitool chassis bootdev pxe", "Boot from the network on the next boot only.", "Set Boot Device to pxe"], ["IPMI and BMC", "ipmitool user summary 1", "How many BMC accounts are enabled.", "Enabled User Count  : 1"], ["IPMI and BMC", "ipmitool sdr type Processor", "CPU presence and faults per socket.", "CPU1 Status      | 91h | ok  |  3.2 | Presence detected"], ["Redfish", "curl -k -u <user>:<pass> https://<bmc>/redfish/v1/", "Redfish service root: links to Systems, Managers and Chassis. -k skips certificate checks on self-signed BMCs.", "\"Systems\": {\"@odata.id\": \"/redfish/v1/Systems\"}"], ["Redfish", "curl -k -u <user>:<pass> https://<bmc>/redfish/v1/Systems | jq .Members", "List the systems. The ID differs by vendor (1, system, System.Embedded.1).", "[{\"@odata.id\": \"/redfish/v1/Systems/system\"}]"], ["Redfish", "curl -k -u <user>:<pass> https://<bmc>/redfish/v1/Managers", "List the management controllers (the BMC).", "\"Members\": [{\"@odata.id\": \"/redfish/v1/Managers/bmc\"}]"], ["Redfish", "curl -k -u <user>:<pass> https://<bmc>/redfish/v1/Chassis", "List chassis resources: power, thermal, inventory.", "\"Members\": [{\"@odata.id\": \"/redfish/v1/Chassis/chassis\"}]"], ["Redfish", "curl -k -u <user>:<pass> https://<bmc>/redfish/v1/Systems/system | jq '{PowerState, Status}'", "Power state and health of the host.", "{\"PowerState\": \"On\", \"Status\": {\"State\": \"Enabled\", \"Health\": \"OK\"}}"], ["Redfish", "curl -k -u <user>:<pass> https://<bmc>/redfish/v1/Systems/system | jq .BootProgress", "Where the host is in boot: POST stages up to OSRunning.", "{\"LastState\": \"OSRunning\"}"], ["Redfish", "curl -k -u <user>:<pass> https://<bmc>/redfish/v1/Systems/system/Bios | jq .Attributes", "Current BIOS attributes. Changes are PATCHed to Bios/Settings and apply at next boot.", "{\"BootMode\": \"Uefi\", \"ProcVirtualization\": \"Enabled\"}"], ["Burn-in and stress", "stress-ng --cpu <n> --vm <m> -t 3600", "One hour of load: n CPU workers plus m memory workers.", "stress-ng: info:  [4312] dispatching hogs: 128 cpu, 64 vm"], ["Burn-in and stress", "fio --name=randread --filename=/dev/nvme0n1 --rw=randread --bs=4k --iodepth=32 --ioengine=libaio --runtime=60 --time_based", "4K random reads straight from one drive for 60 seconds. Reads are safe; never point a write test at a drive with data.", "read: IOPS=741k, BW=2894MiB/s"], ["Burn-in and stress", "nvidia-smi", "GPU list with temperature, power, memory and utilization.", "|   0  NVIDIA H100 PCIe     On  | 00000000:CA:00.0 Off |"], ["Burn-in and stress", "dcgmi diag -r 1", "NVIDIA DCGM quick GPU diagnostic (levels 1 to 4, longer each).", "Diagnostic ... Pass"], ["Burn-in and stress", "stress-ng --cpu 0 --timeout 1800s", "Load every CPU for 30 minutes (--cpu 0 means one worker per CPU).", "stress-ng: info:  [4312] successful run completed in 1800.00 secs"], ["Firmware and security", "sha256sum <file>", "SHA-256 of a file. Compare it with the release record before flashing.", "9c3e5b71a0d4...a17e93f5c  bios_2.14.1.bin"], ["Firmware and security", "mokutil --sb-state", "UEFI Secure Boot on or off, from Linux.", "SecureBoot enabled"], ["Firmware and security", "dmidecode -s bios-version", "Running BIOS version. Read it back after every flash.", "2.14.1"], ["Firmware and security", "fwupdmgr get-devices", "Devices whose firmware fwupd can read or update (where the vendor supports LVFS).", ""], ["Firmware and security", "tpm2_pcrread sha256:0,7", "TPM measurement registers 0 (firmware) and 7 (Secure Boot state).", "sha256:\n  0 : 0x5A3F1C0D9E2B...\n  7 : 0x9E17D3A04B6C..."], ["Firmware and security", "ls /dev/tpm*", "Is a TPM visible to Linux?", "/dev/tpm0  /dev/tpmrm0"], ["Firmware and security", "ethtool -i <if> | grep firmware", "NIC firmware version only.", "firmware-version: 22.39.1002 (MT_0000000359)"], ["Firmware and security", "nvme fw-log /dev/nvme0", "Firmware revisions stored in each NVMe firmware slot.", "afi  : 0x1\nfrs1 : GDC5902Q"], ["Firmware and security", "lscpu | grep -i virtualization", "Is VT-x or AMD-V exposed? It is a BIOS setting.", "Virtualization:         VT-x"], ["Cisco IOS switch", "enable", "Enter privileged EXEC mode.", "TOR-R14#"], ["Cisco IOS switch", "configure terminal", "Enter global configuration mode.", "TOR-R14(config)#"], ["Cisco IOS switch", "show interfaces status", "Every port: status, VLAN, duplex, speed and type.", "Gi1/0/17  U17-LOM1  connected  10  a-full  a-1000  10/100/1000BaseTX"], ["Cisco IOS switch", "show vlan brief", "VLANs with their names and access ports.", "10   TEST-PXE     active    Gi1/0/1, Gi1/0/2 ..."], ["Cisco IOS switch", "show interfaces <if> switchport", "Port mode, access VLAN and trunk settings.", "Administrative Mode: static access\nAccess Mode VLAN: 10 (TEST-PXE)"], ["Cisco IOS switch", "show running-config interface <if>", "The configuration applied to one port.", "interface GigabitEthernet1/0/17\n switchport access vlan 10\n spanning-tree portfast"], ["Cisco IOS switch", "show mac address-table interface <if>", "MAC addresses learned on one port.", "  10    b83f.d24a.1170    DYNAMIC     Gi1/0/17"], ["Cisco IOS switch", "show spanning-tree interface <if> detail", "STP role, state and PortFast for one port.", "Port 17 (GigabitEthernet1/0/17) of VLAN0010 is designated forwarding"], ["Cisco IOS switch", "show interfaces <if> transceiver", "Optic health (DOM): temperature, voltage, transmit and receive power.", "Port       Temperature  Voltage  Tx Power  Rx Power\nTe1/1/1    34.5         3.30     -2.1      -2.8"], ["Cisco IOS switch", "show etherchannel summary", "Port-channels and members. (P) means bundled.", "10     Po10(SU)        LACP      Gi1/0/21(P)     Gi1/0/22(P)"], ["Cisco IOS switch", "show logging", "Logging settings and the recent log buffer.", "%LINK-3-UPDOWN: Interface GigabitEthernet1/0/17, changed state to up"], ["Cisco IOS switch", "interface <if>", "Enter interface configuration mode.", "TOR-R14(config-if)#"], ["Cisco IOS switch", "switchport mode access", "Make the port a single-VLAN access port.", ""], ["Cisco IOS switch", "switchport access vlan <id>", "Put the access port in a VLAN.", ""], ["Cisco IOS switch", "spanning-tree portfast", "Edge port: skip STP listening and learning so PXE isn't delayed.", ""], ["Cisco IOS switch", "ip helper-address <ip>", "On the VLAN interface (SVI): relay DHCP broadcasts to a server in another subnet.", ""], ["Cisco IOS switch", "speed auto", "Autonegotiate speed. Set both ends the same way.", ""], ["Cisco IOS switch", "duplex auto", "Autonegotiate duplex. Forcing one end only causes a duplex mismatch.", ""], ["Cisco IOS switch", "channel-group <n> mode active", "Add the port to port-channel n with LACP active.", "Creating a port-channel interface Port-channel 10"], ["Cisco IOS switch", "shutdown", "Administratively disable the port.", ""], ["Cisco IOS switch", "no shutdown", "Enable the port.", ""], ["Cisco IOS switch", "write memory", "Save the running config to startup config.", "Building configuration...\n[OK]"], ["Cisco IOS switch", "show ip interface brief", "Every interface with IP address and up/down state.", "Vlan10    10.10.0.1    YES NVRAM  up    up"], ["Cisco IOS switch", "show interfaces <if>", "Port state, duplex, speed and error counters (CRC, runts, late collisions).", "Full-duplex, 1000Mb/s\n     0 input errors, 0 CRC, 0 frame"], ["Cisco IOS switch", "clear counters", "Zero the interface counters so new errors stand out.", "Clear \"show interface\" counters on all interfaces [confirm]"], ["Cisco IOS switch", "show spanning-tree interface <if> portfast", "Is PortFast on for this port?", "VLAN0010            enabled"]];
 
@@ -5919,7 +6221,8 @@ function modState(m){
 const STATE_WORDS = {ok:'all ready', part:'in progress', warn:'needs review', off:'not started'};
 const solvedIn = m => m.qs.filter(q => (mstate[q.id] || {}).s).length;
 const pad2 = n => String(n).padStart(2, '0');
-const SUBS = [['overview', 'Overview'], ['missions', 'Missions'], ['lab', 'Console lab'], ['sources', 'Sources']];
+const SUBS = [['overview', 'Overview'], ['missions', 'Missions'], ['sources', 'Sources']];
+const learnedIn = m => m.qs.filter(q => (mstate[q.id] || {}).l).length;
 const ICO = {
   home:'<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 9.5L10 3l7 6.5M5 8v8.5h10V8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>',
   practice:'<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 4.5h12v8H9l-4 3v-3H4z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>',
@@ -5941,10 +6244,9 @@ function renderRail(){
   railList.appendChild(railItem('home', ICO.home, 'Start here', '', '', 'Start here'));
   sec('Lessons');
   MODULES.forEach((m, i) => {
-    const st = modState(m), lab = !!labsDone[m.id], n = solvedIn(m);
-    const a = railItem(m.id, pad2(i + 1), m.title, n + '/' + m.qs.length + ' missions' + (lab ? ' · lab solved' : ''),
-      '<span class="ri-leds"><i class="led ' + st + '"></i><i class="lab-led' + (lab ? ' ok' : '') + '"></i></span>', m.title + ': ' + STATE_WORDS[st] + ', ' + n + ' of ' + m.qs.length + ' missions solved' + (lab ? ', lab solved' : ''));
-    a.querySelector('.ri-sub').insertAdjacentHTML('afterbegin', '<span class="ri-bar"><i style="width:' + Math.round(100 * n / m.qs.length) + '%"></i></span>');
+    const st = modState(m), n = solvedIn(m), l = learnedIn(m);
+    const a = railItem(m.id, pad2(i + 1), m.title, l + '/' + m.qs.length + ' learned · ' + n + '/' + m.qs.length + ' solved',
+      '<span class="ri-leds"><i class="led ' + st + '"></i></span>', m.title + ': ' + l + ' of ' + m.qs.length + ' topics learned, ' + n + ' missions solved, answers ' + STATE_WORDS[st]);
     railList.appendChild(a);
     const subs = document.createElement('div'); subs.className = 'ri-subs'; subs.dataset.for = m.id;
     SUBS.forEach(([k, l]) => { const s = document.createElement('a'); s.href = '#' + m.id + '-' + k; s.textContent = l + (k === 'missions' ? ' (' + m.qs.length + ')' : ''); s.dataset.sub = k;
@@ -5976,30 +6278,31 @@ window.matchMedia('(max-width: 899px)').addEventListener('change', () => { const
 
 /* ---- Stats and home ---- */
 function renderStats(){
-  const ready = ALLQ.filter(q => marks[q.id] === 'got').length, mis = ALLQ.filter(q => (mstate[q.id] || {}).s).length, labs = MODULES.filter(m => labsDone[m.id]).length;
-  setTxt($('#st-ans'), ready); setTxt($('#st-mis'), mis); setTxt($('#st-lab'), labs);
-  setTxt($('#ready'), ready + ' of ' + ALLQ.length + ' answers ready · ' + mis + ' of ' + ALLQ.length + ' missions solved · ' + labs + ' of ' + MODULES.length + ' labs solved');
+  const ready = ALLQ.filter(q => marks[q.id] === 'got').length, mis = ALLQ.filter(q => (mstate[q.id] || {}).s).length, lrn = ALLQ.filter(q => (mstate[q.id] || {}).l).length;
+  setTxt($('#st-ans'), ready); setTxt($('#st-mis'), mis); setTxt($('#st-learn'), lrn);
+  setTxt($('#ready'), lrn + ' of ' + ALLQ.length + ' topics learned · ' + mis + ' of ' + ALLQ.length + ' missions solved · ' + ready + ' of ' + ALLQ.length + ' answers ready');
 }
 function renderHome(){
   const wrap = $('#bays'); wrap.innerHTML = '';
   MODULES.forEach((m, i) => {
-    const st = modState(m), lab = !!labsDone[m.id];
+    const st = modState(m);
     const b = document.createElement('button'); b.type = 'button'; b.className = 'bay';
-    b.setAttribute('aria-label', m.title + ', ' + STATE_WORDS[st] + ', ' + solvedIn(m) + ' of ' + m.qs.length + ' missions solved' + (lab ? ', lab solved' : ''));
-    b.innerHTML = '<span class="leds"><span class="led ' + st + '"></span><span class="lab-led' + (lab ? ' ok' : '') + '"></span></span><span class="bay-n">' + pad2(i + 1) + '</span><span>' + esc(m.short) + '</span><span class="bay-p">' + solvedIn(m) + '/' + m.qs.length + '</span>';
+    b.setAttribute('aria-label', m.title + ', ' + learnedIn(m) + ' of ' + m.qs.length + ' topics learned, ' + solvedIn(m) + ' missions solved');
+    b.innerHTML = '<span class="leds"><span class="led ' + st + '"></span></span><span class="bay-n">' + pad2(i + 1) + '</span><span>' + esc(m.short) + '</span><span class="bay-p">' + learnedIn(m) + '/' + m.qs.length + '</span>';
     b.addEventListener('click', () => go(m.id));
     wrap.appendChild(b);
   });
-  const next = ALLQ.find(q => !(mstate[q.id] || {}).s);
+  const nextL = ALLQ.find(q => !(mstate[q.id] || {}).l), next = ALLQ.find(q => !(mstate[q.id] || {}).s);
   const nc = $('#next-card');
-  nc.innerHTML = next ? '<p class="eyebrow">Next mission</p><h3>' + next.q + '</h3><p class="muted">' + esc(next.mod.title) + ' · ' + esc(KIND_LABEL[(MISSIONS[next.id] || {}).con || 'diag'] || 'Console') + '</p><button class="btn primary" type="button">Start this mission</button>'
-    : '<p class="eyebrow">All missions solved</p><h3>Every mission is solved.</h3><p class="muted">Rerun the ones you solved with Step 2, or do a full mock interview.</p><button class="btn primary" type="button">Open mock interview</button>';
-  nc.querySelector('button').addEventListener('click', () => next ? openMission(next.id) : go('practice'));
+  nc.innerHTML = nextL ? '<p class="eyebrow">Next topic to learn</p><h3>' + nextL.q + '</h3><p class="muted">' + esc(nextL.mod.title) + ' · Topic ' + (nextL.mod.qs.indexOf(nextL) + 1) + ' of ' + nextL.mod.qs.length + '</p><button class="btn primary" type="button">Continue learning</button>'
+    : next ? '<p class="eyebrow">Next mission</p><h3>' + next.q + '</h3><p class="muted">Every topic is learned. Now prove it: ' + esc(next.mod.title) + '</p><button class="btn primary" type="button">Start this mission</button>'
+    : '<p class="eyebrow">Everything done</p><h3>Every topic learned and every mission solved.</h3><p class="muted">Do a full mock interview next.</p><button class="btn primary" type="button">Open mock interview</button>';
+  nc.querySelector('button').addEventListener('click', () => nextL ? openTopic(nextL.id) : next ? openMission(next.id) : go('practice'));
 }
 function renderBays(){ renderStats(); renderRail(); if (cur.view === 'home') renderHome(); MODULES.forEach(m => { const L = LESSON[m.id]; if (L) L.paint(); }); }
 
 /* ---- Lessons ---- */
-const LESSON = {}, MI_CARD = {}, LABOBJ = {};
+const LESSON = {}, MI_CARD = {};
 function sourcesEl(id){
   const list = SOURCES[id] || []; if (!list.length) return null;
   const d = document.createElement('div'); d.className = 'sources';
@@ -6013,20 +6316,12 @@ function buildLesson(m, idx){
     SUBS.map(([k]) => '<div class="pane" role="tabpanel" id="pane-' + m.id + '-' + k + '" aria-labelledby="tab-' + m.id + '-' + k + '" data-pane="' + k + '" hidden></div>').join('') +
     '<nav class="lesson-nav" aria-label="Other lessons"></nav>';
   const pane = k => root.querySelector('[data-pane="' + k + '"]');
-  const built = {};
+  const built = {}; let learnRoot = null;
   function build(k){
     if (built[k]) return; built[k] = true; const p = pane(k);
     try {
       if (k === 'overview'){
-        const g = document.createElement('div'); g.className = 'ov-grid';
-        const a = document.createElement('div'), b = document.createElement('div');
-        if (TOPOS[m.id]) a.appendChild(mountFigure(TOPOS[m.id]));
-        if (SIMS[m.id]) b.appendChild(SIMS[m.id]());
-        g.appendChild(a); g.appendChild(b); p.appendChild(g);
-        const cta = document.createElement('div'); cta.className = 'ov-cta';
-        cta.innerHTML = '<p>Ready? Each of the ' + m.qs.length + ' interview questions in this lesson is a hands-on mission.</p>';
-        const bt = document.createElement('button'); bt.type = 'button'; bt.className = 'btn primary'; bt.textContent = 'Go to the missions'; bt.addEventListener('click', () => go(m.id, 'missions'));
-        cta.appendChild(bt); p.appendChild(cta);
+        learnRoot = learnPane(m, () => { renderStats(); renderRail(); paint(); }); p.appendChild(learnRoot); return;
       } else if (k === 'missions'){
         const f = document.createElement('div'); f.className = 'filters'; f.setAttribute('role', 'group'); f.setAttribute('aria-label', 'Show missions');
         [['all', 'All'], ['todo', 'Not solved'], ['solved', 'Solved'], ['review', 'Needs review']].forEach(([v, l]) => { const c = document.createElement('button'); c.type = 'button'; c.className = 'chip'; c.dataset.filter = v; c.textContent = l;
@@ -6037,9 +6332,6 @@ function buildLesson(m, idx){
         p.appendChild(list);
         const empty = document.createElement('p'); empty.className = 'empty'; empty.hidden = true; p.appendChild(empty);
         filt();
-      } else if (k === 'lab'){
-        if (!LABOBJ[m.id]) LABOBJ[m.id] = new Lab(LABS[m.id]);
-        const L = LABOBJ[m.id]; splitLab(L.root); p.appendChild(L.root);
       } else if (k === 'sources'){
         const intro = document.createElement('p'); intro.className = 'primer'; intro.textContent = 'Verified references for this lesson: official manuals, standards and university career guides.';
         p.appendChild(intro); const s = sourcesEl(m.id); if (s) p.appendChild(s);
@@ -6071,22 +6363,15 @@ function buildLesson(m, idx){
   function paint(){
     const n = solvedIn(m), got = m.qs.filter(q => marks[q.id] === 'got').length;
     const qz = m.qs.reduce((a, q) => { const [r, t] = quizScore(q); return [a[0] + r, a[1] + t]; }, [0, 0]);
-    root.querySelector('.lesson-stats').innerHTML = '<span><b>' + n + '/' + m.qs.length + '</b> missions solved</span><span><b>' + qz[0] + '/' + qz[1] + '</b> check questions right</span><span><b>' + got + '/' + m.qs.length + '</b> answers ready</span><span><i class="lab-led' + (labsDone[m.id] ? ' ok' : '') + '"></i>' + (labsDone[m.id] ? 'Console lab solved' : 'Console lab not solved') + '</span>';
+    root.querySelector('.lesson-stats').innerHTML = '<span><b>' + learnedIn(m) + '/' + m.qs.length + '</b> topics learned</span><span><b>' + n + '/' + m.qs.length + '</b> missions solved</span><span><b>' + qz[0] + '/' + qz[1] + '</b> check questions right</span><span><b>' + got + '/' + m.qs.length + '</b> answers ready</span>';
+    if (learnRoot) learnRoot.__paint();
     const t = root.querySelector('[data-sub="missions"] .tcount'); if (t) t.textContent = n + '/' + m.qs.length;
     m.qs.forEach(q => { const c = MI_CARD[q.id]; if (c) c.__paint(); });
     filt();
   }
   paint();
-  return {root, show, paint, m};
+  return {root, show, paint, m, learn:() => learnRoot};
 }
-function splitLab(root){
-  if (root.querySelector('.lab-grid')) return;
-  const g = document.createElement('div'); g.className = 'lab-grid'; const l = document.createElement('div'); l.className = 'lab-l'; const r = document.createElement('div'); r.className = 'lab-r';
-  ['.ticket', '.topo', '.lab-cols'].forEach(s => { const e = root.querySelector(':scope > ' + s); if (e) l.appendChild(e); });
-  ['.term', '.hintbox', '.lab-tools', '.ref', '.debrief'].forEach(s => { const e = root.querySelector(':scope > ' + s); if (e) r.appendChild(e); });
-  g.appendChild(l); g.appendChild(r); root.querySelector('.lab-head').after(g);
-}
-
 /* ---- Router ---- */
 const cur = {view:'home', sub:null};
 const VIEWS = ['home', 'practice', 'plan'];
@@ -6119,11 +6404,15 @@ function openMission(id){
   if (!c.classList.contains('open')) c.__open(true);
   setTimeout(() => c.scrollIntoView({behavior:reduceMotion ? 'auto' : 'smooth', block:'start'}), 60);
 }
+function openTopic(id){
+  const q = QBY[id]; if (!q) return go('home');
+  go(q.mod.id, 'overview'); const L = LESSON[q.mod.id]; const lr = L && L.learn(); if (lr) lr.__show(q.mod.qs.indexOf(q), true);
+}
 function route(fromHash){
   let h = ''; try { h = decodeURIComponent((location.hash || '').slice(1)); } catch (e) {}
   if (/^mi-[a-z]+\d+$/.test(h) && QBY[h.slice(3)]) return openMission(h.slice(3));
   const mm = h.match(/^([a-z]+)(?:-(overview|missions|lab|sources))?$/);
-  if (mm && (MODULES.some(x => x.id === mm[1]) || VIEWS.includes(mm[1]))) return go(mm[1], mm[2], {fromHash});
+  if (mm && (MODULES.some(x => x.id === mm[1]) || VIEWS.includes(mm[1]))) return go(mm[1], mm[2] === 'lab' ? 'overview' : mm[2], {fromHash});
   go(ui.view || 'home', null, {fromHash:true});
 }
 window.addEventListener('hashchange', () => route(true));
@@ -6180,7 +6469,6 @@ function updateFbAvail(){
   btnFb.hidden = !ok;
   note.textContent = ok ? '' : 'AI feedback isn’t available here. Answer out loud, then check yourself against the model answer.';
   document.querySelectorAll('[data-star-fb]').forEach(b => { b.hidden = !ok; });
-  const ask = $('#cheat-ask'); if (ask) ask.hidden = !ok;
   updateFbButton();
 }
 function updateFbButton(){ btnFb.disabled = !curQ || !answerBox.value.trim() || !!ctl; }
@@ -6242,10 +6530,11 @@ function renderFeedback(r){
 (() => {
   const b = $('#btn-reset'), n = $('#reset-note'); let armed = 0;
   b.addEventListener('click', () => {
-    if (!armed){ b.textContent = 'Tap again to clear everything'; b.classList.add('danger-armed'); n.textContent = 'This clears every mark, mission result, check answer and solved lab.'; armed = setTimeout(() => { armed = 0; b.textContent = 'Reset my progress'; b.classList.remove('danger-armed'); n.textContent = ''; }, 4000); return; }
+    if (!armed){ b.textContent = 'Tap again to clear everything'; b.classList.add('danger-armed'); n.textContent = 'This clears every mark, learned topic, mission result and check answer.'; armed = setTimeout(() => { armed = 0; b.textContent = 'Reset my progress'; b.classList.remove('danger-armed'); n.textContent = ''; }, 4000); return; }
     clearTimeout(armed); armed = 0; b.textContent = 'Reset my progress'; b.classList.remove('danger-armed');
     marks = {}; saveMarks(); labsDone = {}; saveLabs(); Object.keys(mstate).forEach(k => delete mstate[k]); saveMissions();
     Object.values(MI_CARD).forEach(c => c.__reset && c.__reset());
+    MODULES.forEach(m => { const L = LESSON[m.id]; const lr = L && L.learn(); if (lr) lr.__reset(); });
     renderBays(); n.textContent = 'Progress cleared.';
   });
 })();
@@ -6331,26 +6620,6 @@ route(false);
   bar.addEventListener('dblclick', e => { if (!e.target.closest('button')) setMin(!st.min); });
   win.addEventListener('keydown', e => { if (e.key === 'Escape'){ e.stopPropagation(); close(); } });
   document.addEventListener('focusin', e => { if (!win.hidden && e.target.closest && e.target.closest('.term-in') ) render(); });
-
-  /* Ask the fastest model for a command */
-  const askForm = $('#cheat-ask-form'), askIn = $('#cheat-ask-q'), askOut = $('#cheat-ask-out'), askStop = $('#cheat-ask-stop'), askGo = $('#cheat-ask-go');
-  let actl = null;
-  askStop.addEventListener('click', () => { if (actl) actl.abort(); });
-  askForm.addEventListener('submit', async e => {
-    e.preventDefault(); const q = askIn.value.trim(); if (!q || !sample || actl) return;
-    actl = new AbortController(); askGo.disabled = true; askStop.hidden = false; askOut.hidden = false; askOut.textContent = 'Thinking…';
-    const prompt = 'You help a debug technician in a server factory find the right command. Answer with the Linux, ipmitool, Redfish (curl) or Cisco IOS command or commands for the question, one per line, each followed by " - " and a short plain-English note on what it shows. At most 5 lines. No markdown and no code fences. Use placeholders like <if> or <ip> where a value is needed. If the question is not about server hardware, Linux, BMC or network commands, say so in one line.\n\nQuestion: ' + q.slice(0, 500);
-    try {
-      const r = await sample(prompt, {modelTier:'quick', signal:actl.signal, onText:({text}) => { askOut.textContent = text; }});
-      askOut.textContent = r.text + (r.truncated ? '\n(cut short)' : '');
-    } catch (err) {
-      const code = err && err.code;
-      if (code === 'cancelled') askOut.textContent = err.text || '';
-      else if (OFF_CODES.includes(code)){ sampleOff = true; updateFbAvail(); }
-      else askOut.textContent = (err && err.text ? err.text + '\n\n' : '') + (ERR_COPY[code] || 'The answer didn’t come through. Ask again.');
-      if (!askOut.textContent) askOut.hidden = true;
-    } finally { actl = null; askGo.disabled = false; askStop.hidden = true; }
-  });
 
   render();
 })();
