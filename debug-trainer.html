@@ -679,6 +679,8 @@ select,textarea{background:rgba(255,255,255,.035);border-color:rgba(148,163,184,
 .t-sum .eyebrow{color:var(--cyan)}
 .t-an{margin:0;display:grid;gap:6px;padding:14px 16px;border:1px solid rgba(251,191,36,.3);border-radius:14px;background:linear-gradient(135deg,rgba(251,191,36,.08),rgba(139,92,246,.05));font-size:1rem;line-height:1.55}
 .t-an .eyebrow{color:var(--warn)}
+.con-intro{margin:0 0 12px;font-size:.9rem;max-width:80ch}
+.tr-con .mi-run .ticket{margin:0 0 12px}
 .ex-grid{display:grid;gap:14px;grid-template-columns:minmax(0,1fr)}
 .ex-main,.ex-side{display:grid;gap:12px;align-content:start;min-width:0}
 .exsec{border-radius:14px;padding:16px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.012)),var(--surface);border:1px solid var(--card-line);box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
@@ -851,7 +853,7 @@ abbr.ac:hover,abbr.ac:focus-visible{color:var(--cyan);background:rgba(34,211,238
     <section class="view" id="view-home" hidden>
       <div class="bezel hero">
         <h1>Debug technician interview trainer</h1>
-        <p class="sub">Only what you need to pass the assessment and the interview, in four steps: learn each topic in plain English, train on it, pass the practice test, then practise your answers out loud. Built for server factory jobs like the ones at Jabil.</p>
+        <p class="sub">Only what you need to pass the assessment and the interview, in four steps: learn each topic in plain English, train on it in a live console, pass the practice test, then practise your answers out loud. Built for server factory jobs like the ones at Jabil.</p>
         <div class="bays" id="bays" aria-label="Lessons"></div>
         <div class="readout">
           <strong id="ready"></strong>
@@ -905,7 +907,7 @@ abbr.ac:hover,abbr.ac:focus-visible{color:var(--cyan);background:rgba(34,211,238
       <p>Change any part that isn't true for you. Then say it out loud until it sounds natural, not memorized.</p>
 
       <h2>If the assessment has a hands-on part</h2>
-      <p>Some factories add a practical check: naming the parts of a server or motherboard, finding a planted fault (a loose DIMM, an unplugged fan or cable), reading a multimeter, or typing basic Linux commands. The real examples in each topic's Training show exactly this, one step at a time. Put on the ESD wrist strap first without being told, and say out loud what you're checking as you go.</p>
+      <p>Some factories add a practical check: naming the parts of a server or motherboard, finding a planted fault (a loose DIMM, an unplugged fan or cable), reading a multimeter, or typing basic Linux commands. Each topic's Training has a live console on a preconfigured unit where you practise exactly this: real commands, bench checks and a fault to find. Put on the ESD wrist strap first without being told, and say out loud what you're checking as you go.</p>
 
       <h2>On interview day</h2>
       <ul>
@@ -1539,7 +1541,7 @@ class Lab{
         }
       }
       if (!alive()) return;
-      if (once){ this.print('Solution finished. Reset the mission to try it yourself from the start.', 'note'); this.stopDemo(); return; }
+      if (once){ this.print('Solution finished. Press Reset console and try it yourself from the start.', 'note'); this.stopDemo(); return; }
       this.print('Demo finished. It restarts in 8 seconds. Type anything, or press Stop demo, to take over.', 'note');
       await sleep(8000);
     }
@@ -4331,7 +4333,7 @@ function cmdDoc(c){ let best = null; for (const [k, v] of CMD_DOC){ if (c.starts
 const CONSOLES = {
   diag(M){ return {
     console:'root@diag · factory diag image', prompt:S => '[root@' + S.host + ' ~]# ',
-    welcome:'Diag image 4.8.2 booted on this unit. Type help for this mission\'s commands, or open the cheat sheet.',
+    welcome:'Diag image 4.8.2 booted on this unit. Type help to see the commands, or tap one in the list under the console.',
     init(){ const S = vsNew(); if (M.setup) M.setup(S); return S; },
     topo:chassisLive(M.mode || 'air', M.focus), hl:DIAG_HL, cmds:DIAG_CMDS, actions:[]
   }; },
@@ -4404,19 +4406,19 @@ class MissionLab extends Lab{
     const d = this.def, q = d.q, M = d.M;
     const s = document.createElement('div'); s.className = 'mi-run';
     s.innerHTML =
-      '<div class="ticket"><div class="tk-meta"><span>Mission <b>' + esc(q.id.toUpperCase()) + '</b></span>' + d.meta.map(m => '<span>' + esc(m[0]) + ' <b>' + esc(m[1]) + '</b></span>').join('') + '</div>' + d.ticket + '</div>' +
+      '<div class="ticket"><div class="tk-meta"><span>Practice ticket <b>' + esc(q.id.toUpperCase()) + '</b></span>' + d.meta.map(m => '<span>' + esc(m[0]) + ' <b>' + esc(m[1]) + '</b></span>').join('') + '</div>' + d.ticket + '</div>' +
       '<div class="mi-grid"><div class="mi-left">' +
         '<figure class="topo"><div class="topo-bar"><span class="eyebrow"><i class="live-dot"></i>Preconfigured unit, live</span></div><div class="topo-scroll">' + d.topo.svg() + '</div><div class="topo-info" aria-live="polite"></div></figure>' +
         '<div class="mi-widget" hidden></div>' +
         '<div class="lab-cols"><div class="goals"><h4>Objectives <span class="lab-prog"><span class="bar"><i></i></span><span class="pt"></span></span></h4><ol></ol></div>' +
         (d.actions.length ? '<div class="benchbox"><h4>At the bench</h4><div class="acts"></div><p>Physical steps. Each one reports what you find, like a real bench.</p></div>' : '') + '</div>' +
       '</div><div class="mi-right">' + TERM_HTML(d.id) +
-        '<div class="mi-steps" role="group" aria-label="Help for this mission">' +
+        '<div class="mi-steps" role="group" aria-label="Help for this practice">' +
           '<button type="button" class="btn step s1"><b>Step 1</b><span>Hint</span></button>' +
           '<button type="button" class="btn step s2" disabled><b>Step 2</b><span>Full answer</span></button>' +
-          '<button type="button" class="btn rst">Reset mission</button></div>' +
+          '<button type="button" class="btn rst">Reset console</button></div>' +
         '<div class="hintbox" hidden></div><div class="answerbox" hidden></div>' +
-        '<details class="ref"><summary>Commands for this mission</summary><ul></ul></details>' +
+        '<details class="ref"><summary>Commands you can use here</summary><ul></ul></details>' +
       '</div></div><div class="debrief" hidden></div>';
     this.root = s;
     s.querySelector('.tb-name').textContent = d.console;
@@ -4458,8 +4460,8 @@ class MissionLab extends Lab{
     const st = mst(q.id); if (st.h || st.a) this.s2.disabled = false;
     const rb = s.querySelector('.rst'); let armed = 0;
     rb.addEventListener('click', () => {
-      if (!armed){ rb.textContent = 'Tap again to reset'; rb.classList.add('danger-armed'); armed = setTimeout(() => { armed = 0; rb.textContent = 'Reset mission'; rb.classList.remove('danger-armed'); }, 3500); return; }
-      clearTimeout(armed); armed = 0; rb.textContent = 'Reset mission'; rb.classList.remove('danger-armed'); this.stopDemo(); this.reset();
+      if (!armed){ rb.textContent = 'Tap again to reset'; rb.classList.add('danger-armed'); armed = setTimeout(() => { armed = 0; rb.textContent = 'Reset console'; rb.classList.remove('danger-armed'); }, 3500); return; }
+      clearTimeout(armed); armed = 0; rb.textContent = 'Reset console'; rb.classList.remove('danger-armed'); this.stopDemo(); this.reset();
     });
     if (M.widget) this.mountWidget(M.widget);
     acroDom(s.querySelector('.ticket'), null, {expand:false}); this.acSeen = new Set();
@@ -4504,12 +4506,12 @@ class MissionLab extends Lab{
   missionDone(){
     const q = this.def.q, st = mst(q.id);
     let msg;
-    if (this.demoOn){ msg = 'That was the guided solution. Press Reset mission and solve it yourself to count it as solved.'; st.w = 1; }
+    if (this.demoOn){ msg = 'That was the guided solution. Press Reset console and solve it yourself to count it as done.'; st.w = 1; }
     else { const lvl = st.a ? 3 : (st.h ? 2 : 1); st.s = st.s ? Math.min(st.s, lvl) : lvl; msg = ['', 'Solved on your own. That is exactly the method an interviewer wants to hear.', 'Solved with a hint. Reset and run it once more from memory.', 'Solved with the full answer. Come back tomorrow and solve it without help.'][lvl]; }
     saveMissions();
-    this.debEl.innerHTML = '<h4>Mission complete</h4><p>' + msg + '</p><p>Finish with the interview check below: objective questions on the same topic.</p>';
+    this.debEl.innerHTML = '<h4>Practice complete</h4><p>' + msg + '</p><p>Next: flip the flashcards and take the quick check below.</p>';
     this.debEl.hidden = false;
-    this.print('Mission complete. The interview check is below the console.', 'win');
+    this.print('Practice complete. Next: the flashcards and quick check below the console.', 'win');
     if (this.onDone) this.onDone();
   }
 }
@@ -6917,7 +6919,7 @@ class WalkLab extends MissionLab{
   walkDone(){
     const q = this.def.q, st = mst(q.id); if (!st.ex){ st.ex = 1; saveMissions(); }
     const w = this.root.querySelector('.walk-done'); w.hidden = false;
-    w.innerHTML = '<b>Example complete.</b> Every step is proved. Next, flip the flashcards and take the quick check below.';
+    w.innerHTML = '<b>Example complete.</b> Every step is proved. Now do it yourself in the live console below.';
     if (this.onDone) this.onDone();
   }
 }
@@ -6977,7 +6979,7 @@ function topicEl(q, idx, m, api){
     '<header class="topic-head"><p class="eyebrow">Topic ' + pad2(idx + 1) + ' of ' + pad2(m.qs.length) + '</p><h3>' + q.q + '</h3>' +
       '<div class="tparts" role="tablist" aria-label="Parts of this topic">' +
         '<button type="button" role="tab" class="tpart" data-p="ex" id="tp-ex-' + q.id + '" aria-controls="tpp-ex-' + q.id + '"><span class="tp-n">A</span><span class="tp-t"><b>Explanation</b><small>Learn it in plain English, every abbreviation spelled out</small></span></button>' +
-        '<button type="button" role="tab" class="tpart" data-p="tr" id="tp-tr-' + q.id + '" aria-controls="tpp-tr-' + q.id + '"><span class="tp-n">B</span><span class="tp-t"><b>Training</b><small>Watch an example, flashcards, a quick check, say your answer</small></span><span class="tp-prog"></span></button>' +
+        '<button type="button" role="tab" class="tpart" data-p="tr" id="tp-tr-' + q.id + '" aria-controls="tpp-tr-' + q.id + '"><span class="tp-n">B</span><span class="tp-t"><b>Training</b><small>Watch an example, practise in a live console, flashcards, quick check, say it</small></span><span class="tp-prog"></span></button>' +
       '</div></header>' +
     '<section class="tpane tp-ex" data-p="ex" role="tabpanel" id="tpp-ex-' + q.id + '" aria-labelledby="tp-ex-' + q.id + '">' +
       '<p class="t-sum"><span class="eyebrow">The short version</span><span class="t-sum-t">' + T.s + '</span></p>' +
@@ -6992,11 +6994,12 @@ function topicEl(q, idx, m, api){
       '<div class="ex-foot"><p class="muted">Got it? Now practise it: watch a real example, test yourself, and say the answer out loud.</p><button type="button" class="btn primary go-train">Start training</button></div>' +
     '</section>' +
     '<section class="tpane tp-tr" data-p="tr" role="tabpanel" id="tpp-tr-' + q.id + '" aria-labelledby="tp-tr-' + q.id + '" hidden>' +
-      '<ol class="tr-track" aria-label="Training progress"><li data-s="ex">Worked example</li><li data-s="fc">Flashcards</li><li data-s="oc">Quick check</li><li data-s="or">Spoken answer</li></ol>' +
+      '<ol class="tr-track" aria-label="Training progress"><li data-s="ex">Worked example</li><li data-s="con">Live console</li><li data-s="fc">Flashcards</li><li data-s="oc">Quick check</li><li data-s="or">Spoken answer</li></ol>' +
       '<section class="tsec"><h4><span class="tnum">1</span>Watch a real example, step by step</h4><div class="ticket"><div class="tk-meta"><span>Worked example</span>' + (M.meta || []).map(x => '<span>' + esc(x[0]) + ' <b>' + esc(x[1]) + '</b></span>').join('') + '</div><p>' + M.brief + '</p><p class="muted">Press <b>Run step</b> to go one step at a time. Each step runs on the unit, shows the real output, and marks the lines that prove something.</p></div><div class="walk-host"></div></section>' +
-      '<section class="tsec"><h4><span class="tnum">2</span>Flashcards: guess first, then flip</h4><div class="fc-host"></div></section>' +
-      '<section class="tsec"><h4><span class="tnum">3</span>Quick check</h4><div class="qc-host"></div></section>' +
-      '<section class="tsec oral"><h4><span class="tnum">4</span>Answer it out loud</h4><p class="or-ask"></p><p class="muted">Pretend the interviewer just asked you this. Say your answer out loud for 30 to 60 seconds. Then check it against the model answer and be honest with yourself.</p><button type="button" class="btn or-show">I\'ve said it: show the model answer</button><div class="or-body" hidden><div class="learn-body or-ans">' + q.a + (q.tip ? '<p class="tip">' + q.tip + '</p>' : '') + '</div><div class="or-rate"><span>How did your answer compare?</span></div></div></section>' +
+      '<section class="tsec tr-con"><h4><span class="tnum">2</span>Practice it yourself: live console</h4><p class="muted con-intro">The same kind of unit, already set up with the fault. Now it\'s your turn: type the real commands, press the bench buttons, and tick off every objective. Stuck? <b>Step 1</b> gives a hint and <b>Step 2</b> shows the full answer. Type <code>help</code> to see what the console understands.</p><div class="con-host"></div></section>' +
+      '<section class="tsec"><h4><span class="tnum">3</span>Flashcards: guess first, then flip</h4><div class="fc-host"></div></section>' +
+      '<section class="tsec"><h4><span class="tnum">4</span>Quick check</h4><div class="qc-host"></div></section>' +
+      '<section class="tsec oral"><h4><span class="tnum">5</span>Answer it out loud</h4><p class="or-ask"></p><p class="muted">Pretend the interviewer just asked you this. Say your answer out loud for 30 to 60 seconds. Then check it against the model answer and be honest with yourself.</p><button type="button" class="btn or-show">I\'ve said it: show the model answer</button><div class="or-body" hidden><div class="learn-body or-ans">' + q.a + (q.tip ? '<p class="tip">' + q.tip + '</p>' : '') + '</div><div class="or-rate"><span>How did your answer compare?</span></div></div></section>' +
     '</section>' +
     '<footer class="topic-foot"><button type="button" class="btn tl-learn"></button><span class="tf-nav"><button type="button" class="ibtn tl-prev">Previous topic</button><button type="button" class="ibtn tl-next">Next topic</button></span></footer>';
   el.querySelector('.or-ask').textContent = '"' + plainQ(q.q) + '"';
@@ -7020,8 +7023,9 @@ function topicEl(q, idx, m, api){
   const trSeen = new Set(keys); acroDom(el.querySelector('.tp-tr .ticket'), trSeen, {expand:false}); acroDom(el.querySelector('.or-ans'), null, {expand:false});
   /* Parts A and B */
   const tabs = [...el.querySelectorAll('.tpart')], panes = [...el.querySelectorAll('.tpane')];
-  let walk = null;
-  const mountWalk = () => { if (walk) return; try { walk = new WalkLab(walkDef(q)); walk.onDone = () => { autoLearn(); paintTrain(); api.changed(); }; LEARN_OBJ[q.id] = walk; el.querySelector('.walk-host').appendChild(walk.root); acroDom(walk.root.querySelector('.wsteps'), trSeen, {expand:false}); } catch (e) { console.error(e); el.querySelector('.walk-host').innerHTML = '<p class="note">This example failed to load.</p>'; } };
+  let walk = null, con = null;
+  const mountCon = () => { if (con) return; try { con = new MissionLab(missionDef(q)); con.onDone = () => { paintTrain(); api.changed(); }; MI_OBJ[q.id] = con; el.querySelector('.con-host').appendChild(con.root); } catch (e) { console.error(e); el.querySelector('.con-host').innerHTML = '<p class="note">This console failed to load.</p>'; } };
+  const mountWalk = () => { mountCon(); if (walk) return; try { walk = new WalkLab(walkDef(q)); walk.onDone = () => { autoLearn(); paintTrain(); api.changed(); }; LEARN_OBJ[q.id] = walk; el.querySelector('.walk-host').appendChild(walk.root); acroDom(walk.root.querySelector('.wsteps'), trSeen, {expand:false}); } catch (e) { console.error(e); el.querySelector('.walk-host').innerHTML = '<p class="note">This example failed to load.</p>'; } };
   const part = (p, focus) => { tabs.forEach(t => { const on = t.dataset.p === p; t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1; t.classList.toggle('on', on); });
     panes.forEach(x => { x.hidden = x.dataset.p !== p; }); el.__part = p; if (p === 'tr') mountWalk(); if (focus) tabs.find(t => t.dataset.p === p).focus(); };
   tabs.forEach((t, i) => { t.addEventListener('click', () => part(t.dataset.p));
@@ -7034,10 +7038,10 @@ function topicEl(q, idx, m, api){
   const mk = markButtons(q); el.querySelector('.or-rate').appendChild(mk.wrap); LEARN_MK[q.id] = mk;
   [mk.got, mk.rev].forEach(b => b.addEventListener('click', () => { paintTrain(); api.changed(); }));
   orShow.addEventListener('click', () => { orBody.hidden = false; orShow.hidden = true; });
-  function trainState(){ const st = mstate[q.id] || {}; return {ex:!!st.ex, fc:!!st.fc, oc:st.oc === M.quiz[0][2], or:!!marks[q.id]}; }
+  function trainState(){ const st = mstate[q.id] || {}; return {ex:!!st.ex, con:!!st.s, fc:!!st.fc, oc:st.oc === M.quiz[0][2], or:!!marks[q.id]}; }
   function paintTrain(){ const s = trainState(), n = Object.values(s).filter(Boolean).length;
     el.querySelectorAll('.tr-track li').forEach(li => li.classList.toggle('done', s[li.dataset.s]));
-    setTxt(el.querySelector('.tp-prog'), n + '/4'); el.querySelector('.tp-prog').classList.toggle('full', n === 4);
+    setTxt(el.querySelector('.tp-prog'), n + '/5'); el.querySelector('.tp-prog').classList.toggle('full', n === 5);
     mk.got.setAttribute('aria-pressed', marks[q.id] === 'got'); mk.rev.setAttribute('aria-pressed', marks[q.id] === 'review');
     if (marks[q.id]){ orBody.hidden = false; orShow.hidden = true; } }
   const learnBtn = el.querySelector('.tl-learn');
@@ -7051,7 +7055,7 @@ function topicEl(q, idx, m, api){
   el.__mount = () => { if (el.__part === 'tr') mountWalk(); };
   el.__part = 'ex'; el.__setPart = part;
   el.__paint = () => { paintLearn(); qc.__paint(); paintTrain(); };
-  el.__reset = () => { if (walk) walk.reset(); orBody.hidden = true; orShow.hidden = false; el.__paint(); };
+  el.__reset = () => { if (walk) walk.reset(); if (con){ con.stopDemo(); con.reset(); con.s2.disabled = true; con.ansEl.hidden = true; con.hintEl.hidden = true; } orBody.hidden = true; orShow.hidden = false; el.__paint(); };
   part('ex'); paintLearn(); paintTrain();
   return el;
 }
@@ -7238,8 +7242,8 @@ function modState(m){
   return got ? 'part' : 'off';
 }
 const STATE_WORDS = {ok:'all ready', part:'in progress', warn:'needs review', off:'not started'};
-/* A topic is trained when its worked example, flashcards and quick check are all done */
-const isTrained = q => { const st = mstate[q.id] || {}; return !!(st.ex && st.fc && MISSIONS[q.id] && st.oc === MISSIONS[q.id].quiz[0][2]); };
+/* A topic is trained when its worked example, live console, flashcards and quick check are all done */
+const isTrained = q => { const st = mstate[q.id] || {}; return !!(st.ex && st.s && st.fc && MISSIONS[q.id] && st.oc === MISSIONS[q.id].quiz[0][2]); };
 const solvedIn = m => m.qs.filter(isTrained).length;
 const pad2 = n => String(n).padStart(2, '0');
 const SUBS = [['overview', 'Overview']];
@@ -7320,14 +7324,14 @@ function renderHome(){
     b.addEventListener('click', () => go(m.id));
     wrap.appendChild(b);
   });
-  const N = ALLQ.length, lrn = ALLQ.filter(q => (mstate[q.id] || {}).l).length, ex = ALLQ.filter(q => (mstate[q.id] || {}).ex).length, mis = ALLQ.filter(isTrained).length;
+  const N = ALLQ.length, lrn = ALLQ.filter(q => (mstate[q.id] || {}).l).length, cons = ALLQ.filter(q => (mstate[q.id] || {}).s).length, mis = ALLQ.filter(isTrained).length;
   const best = assessBest(), runs = assessRuns(), ans = ALLQ.filter(q => marks[q.id] === 'got').length;
   const nextL = ALLQ.find(q => !(mstate[q.id] || {}).l), nextT = ALLQ.find(q => !isTrained(q));
   const testOk = best != null && best >= READY.test, ansOk = ans >= READY.answers;
   const stages = [
     {n:1, t:'Learn', d:'Read each topic\'s Explanation: what it is, what you do at work, what goes wrong, and what to say. Every abbreviation is spelled out.', v:lrn, of:N, unit:'topics learned', done:lrn === N,
       next:nextL ? 'Next: ' + plainQ(nextL.q) : 'Every topic learned.', btn:nextL ? 'Continue learning' : 'Review a topic', go:() => nextL ? openTopic(nextL.id) : go(MODULES[0].id)},
-    {n:2, t:'Train', d:'For each topic: watch the real example step by step, flip the flashcards, and get the quick check right.', v:mis, of:N, unit:'topics trained', extra:ex + '/' + N + ' examples watched', done:mis === N,
+    {n:2, t:'Train', d:'For each topic: watch the real example, practise it yourself in the live console, flip the flashcards, and get the quick check right.', v:mis, of:N, unit:'topics trained', extra:cons + '/' + N + ' consoles solved', done:mis === N,
       next:nextT ? 'Next: ' + plainQ(nextT.q) : 'Every topic trained.', btn:nextT ? 'Continue training' : 'Review a topic', go:() => nextT ? openTopic(nextT.id, 'tr') : go(MODULES[0].id)},
     {n:3, t:'Assessment', d:'Take the practice test: multiple-choice questions from every lesson, with a clock and no hints. Pass mark 80%.', v:best == null ? 0 : best, of:100, unit:best == null ? 'not taken yet' : '% best score', pct:true, extra:runs.length ? runs.length + ' test' + (runs.length > 1 ? 's' : '') + ' taken' : '', done:testOk,
       next:testOk ? 'Passed. Retake it now and then to stay sharp.' : best != null ? 'Review your mistakes, then try again.' : 'Best taken after you finish Train, but you can try it any time.', btn:best == null ? 'Take the test' : 'Take it again', go:() => go('assess')},
@@ -7417,7 +7421,8 @@ function go(view, sub, opts){
   if (!opts.fromHash) try { history.replaceState(null, '', '#' + (opts.hash || token)); } catch (e) {}
   if (!opts.keepScroll) window.scrollTo({top:0, behavior:'auto'});
 }
-function openMission(id){ openTopic(id, 'tr'); }
+/* Old mission links open the topic's live console */
+function openMission(id){ openTopic(id, 'tr'); const q = QBY[id]; const L = q && LESSON[q.mod.id]; const el = L && L.learn() && L.learn().querySelector('.topic'); const c = el && el.querySelector('.tr-con'); if (c) setTimeout(() => c.scrollIntoView({behavior:reduceMotion ? 'auto' : 'smooth', block:'start'}), 120); }
 function openTopic(id, part){
   const q = QBY[id]; if (!q) return go('home');
   go(q.mod.id, 'overview'); const L = LESSON[q.mod.id]; const lr = L && L.learn(); if (!lr) return;
@@ -7425,7 +7430,7 @@ function openTopic(id, part){
 }
 function route(fromHash){
   let h = ''; try { h = decodeURIComponent((location.hash || '').slice(1)); } catch (e) {}
-  if (/^mi-[a-z]+\d+$/.test(h) && QBY[h.slice(3)]) return openTopic(h.slice(3), 'tr');
+  if (/^mi-[a-z]+\d+$/.test(h) && QBY[h.slice(3)]) return openMission(h.slice(3));
   const mm = h.match(/^([a-z]+)(?:-(overview|missions|lab|sources))?$/);
   if (mm && mm[2] && mm[2] !== 'overview') mm[2] = 'overview';
   if (mm && mm[1] === 'plan') return go('practice', null, {fromHash});
