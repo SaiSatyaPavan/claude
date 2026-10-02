@@ -523,6 +523,21 @@ ol.paper-ans{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:
 .revrow .qn2{font-family:var(--f-display);font-size:1.5rem;color:var(--copper);width:34px;flex:none;line-height:1}
 details summary::marker{color:var(--ink-3)}
 @media (max-width:560px){.sheet{padding:16px}.sheetq{grid-template-columns:minmax(0,1fr)}}
+
+textarea.typebox{width:100%;min-height:240px;border:1px solid var(--line);border-radius:5px;background:var(--panel);color:var(--ink);font-family:var(--f-body);font-size:1rem;line-height:1.65;padding:12px 14px;resize:vertical;tab-size:2}
+textarea.typebox:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+textarea.typebox:disabled{background:var(--panel-2);color:var(--ink-3)}
+.coach{display:flex;flex-direction:column;gap:8px}
+.wbar{display:flex;align-items:center;gap:10px;font-size:.84rem;color:var(--ink-3);flex-wrap:wrap}
+.wtrack{position:relative;height:8px;flex:1;min-width:140px;max-width:320px;background:var(--panel-3);border-radius:4px;overflow:hidden}
+.wtrack b{position:absolute;top:0;bottom:0;background:var(--ok-wash);border-left:1px solid var(--ok);border-right:1px solid var(--ok)}
+.wtrack i{position:absolute;left:0;top:2px;bottom:2px;background:var(--ink-3);border-radius:3px;transition:width .2s}
+.wbar.ok i{background:var(--ok)}.wbar.ok span{color:var(--ok)}
+.wbar.over i{background:var(--warn)}.wbar.over span{color:var(--warn)}
+.crits{display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+.crit{font-size:.76rem;border:1px solid var(--line);border-radius:999px;padding:2px 9px;color:var(--ink-3);background:var(--panel)}
+.crit.on{border-color:var(--ok);background:var(--ok-wash);color:var(--ok)}
+.lint{display:flex;flex-direction:column;gap:3px;font-size:.84rem;color:var(--warn)}
 </style>
 
 <header class="top">
@@ -5647,6 +5662,58 @@ const COURSE_EXTRA = {
   11: {kind: 'command', keys: [K('grep', 'grep'), K('-i', '-\\w*i'), K('-n', '-\\w*n'), K('the log file', '/var/log')], paper: ['grep -in "timeout" /var/log/syslog   (or sudo grep -in "timeout" /var/log/messages on Red Hat)', '-i = ignore case; -n = show line numbers.']}
 };
 
+/* ---------- typing helpers ---------- */
+const WORDS = {define: [60, 110], read: [60, 110], compare: [70, 120], command: [25, 60], concept: [60, 110], scenario: [90, 160]};
+const LINT = [
+  [t => /journalctl\s+-b-1/i.test(t), 'Put a space before the 1: journalctl -b -1'],
+  [t => /journalctl\s+-b\s+1\b/i.test(t), 'The previous boot is -b -1 (minus one). -b 1 means the oldest boot the journal has.'],
+  [t => /\bdmesg\s+-t\b/.test(t), 'Readable timestamps use a capital T: dmesg -T'],
+  [t => /\/var\/logs\b/i.test(t), 'The log folder is /var/log (no s).'],
+  [t => /resolve\.conf/i.test(t), 'The DNS file is /etc/resolv.conf (no e after resolv).'],
+  [t => /nvidia\s+smi\b|nvidiasmi/i.test(t), 'The command is nvidia-smi, with a hyphen.'],
+  [t => /ethtool\s+-s\b/.test(t), 'Error counters need a capital S: ethtool -S (lower-case -s changes settings).'],
+  [t => /dmidecode\s+memory|dmidecode\s+-t\s*mem\b/i.test(t), 'Write it as: dmidecode -t memory'],
+  [t => /ipmitool\s+sel(?!\s+(e?list|clear|info))/i.test(t), 'Read the BMC event log with: ipmitool sel elist'],
+  [t => /ipmi\s+tool/i.test(t), 'ipmitool is one word.'],
+  [t => /\bifconfig\b/i.test(t), 'ifconfig works but is the older tool; the course uses ip a.'],
+  [t => /\bip\s+-a\b/i.test(t), 'It is ip a, with no dash.'],
+  [t => /\b(lnkcap|lnksta)\b/i.test(t) && /lspci\s+-vv/i.test(t) && !/sudo\s+lspci/i.test(t), 'LnkCap and LnkSta only appear when you run sudo lspci -vv.'],
+  [t => /^\s*(\d+[.)]\s*|[-*]\s*)?(Lspci|Dmesg|Grep|Journalctl|Ipmitool|Ethtool|Nvidia-smi|Lsblk|Lscpu|Dmidecode|Sudo|Nvme|Nslookup|Systemctl)\b/m.test(t), 'Linux is case-sensitive: commands are lower case. Autocorrect may have capitalised one at the start of a line.']
+];
+const lintText = t => LINT.filter(([f]) => f(t)).map(([, m]) => m);
+const wordCount = t => (t.match(/\S+/g) || []).length;
+function typingAids(ta, onSubmit) {
+  ta.setAttribute('autocapitalize', 'off'); ta.setAttribute('autocorrect', 'off');
+  ta.addEventListener('keydown', e => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') { e.preventDefault(); if (onSubmit) onSubmit(); return; }
+    if (e.key !== 'Enter' || e.shiftKey || e.altKey) return;
+    const v = ta.value, pos = ta.selectionStart; const ls = v.lastIndexOf('\n', pos - 1) + 1; const line = v.slice(ls, pos);
+    const num = line.match(/^(\s*)(\d+)([.)])\s+(.*)$/), bul = line.match(/^(\s*)([-*])\s+(.*)$/);
+    if (!num && !bul) return;
+    e.preventDefault();
+    const rest = num ? num[4] : bul[3];
+    if (!rest.trim()) { ta.value = v.slice(0, ls) + v.slice(ta.selectionEnd); ta.selectionStart = ta.selectionEnd = ls; }
+    else { const ins = '\n' + (num ? num[1] + (+num[2] + 1) + num[3] + ' ' : bul[1] + bul[2] + ' '); ta.value = v.slice(0, pos) + ins + v.slice(ta.selectionEnd); ta.selectionStart = ta.selectionEnd = pos + ins.length; }
+    ta.dispatchEvent(new Event('input'));
+  });
+}
+function wordBar(kindKey) {
+  const [lo, hi] = WORDS[kindKey]; const max = hi * 1.5;
+  const fill = h('i'); const band = h('b', {style: `left:${lo / max * 100}%;width:${(hi - lo) / max * 100}%`});
+  const txt = h('span', {class: 'tnum'});
+  const el = h('div', {class: 'wbar'}, h('div', {class: 'wtrack'}, band, fill), txt);
+  const update = t => { const n = wordCount(t); fill.style.width = Math.min(100, n / max * 100) + '%'; const st = n < lo ? 'under' : n > hi ? 'over' : 'ok'; el.className = 'wbar ' + st; txt.textContent = `${n} words · aim for ${lo}–${hi}${st === 'under' ? ' — keep going' : st === 'over' ? ' — tighten it up' : ' — good length'}`; };
+  return {el, update};
+}
+function coachEl(q, kindKey) {
+  const kind = KINDS[kindKey]; const wb = wordBar(kindKey);
+  const chips = kind.checks.map(c => h('span', {class: 'crit'}, c[0]));
+  const lint = h('div', {class: 'lint'});
+  const el = h('div', {class: 'coach'}, wb.el, h('div', {class: 'crits'}, h('span', {class: 'eyebrow', style: 'margin-right:4px'}, 'Live coach'), ...chips), lint);
+  const update = t => { wb.update(t); kind.checks.forEach((c, i) => chips[i].classList.toggle('on', !!c[1](t, q))); const L = lintText(t); lint.innerHTML = ''; L.forEach(m => lint.appendChild(h('div', {}, '⚠ ' + m))); };
+  return {el, update};
+}
+
 /* ---------- mark sheet: tick what your paper answer did ---------- */
 function markSheet(q, kindKey, text, opts = {}) {
   const S = App.state; const kind = KINDS[kindKey]; const id = q.id || ('c' + q.n);
@@ -5666,14 +5733,24 @@ function markSheet(q, kindKey, text, opts = {}) {
   };
   const drawScore = () => { const p = pct(); const s = sugg(p); scoreEl.innerHTML = `<span class="bigval tnum">${p}%</span><span>Key ideas ${ticksK.filter(Boolean).length}/${keys.length} · How you wrote it ${ticksM.filter(Boolean).length}/${kind.checks.length}<br><b>Suggested Review Map mark: ${{got: 'Got it', partly: 'Partly', missed: 'Missed'}[s]}</b> — you decide.</span>`; };
   const box = (label, on, onToggle) => { const b = h('button', {class: 'tick' + (on ? ' on' : ''), 'aria-pressed': on ? 'true' : 'false'}, h('span', {class: 'tb'}), h('span', {}, label)); b.addEventListener('click', () => { onToggle(); b.classList.toggle('on'); b.setAttribute('aria-pressed', b.classList.contains('on') ? 'true' : 'false'); save(); drawScore(); }); return b; };
-  const paper = h('div', {class: 'reveal hint'}, h('div', {class: 'rh'}, h('span', {class: 'eyebrow'}, 'What fits on paper'), h('b', {}, `A ${kind.mins}-minute answer`)), h('div', {class: 'rb', html: opts.paper ? `<ol class="paper-ans">${opts.paper.map(x => `<li>${esc(x)}</li>`).join('')}</ol>` : paperHtml(q.n)}));
+  const paper = h('div', {class: 'reveal hint'}, h('div', {class: 'rh'}, h('span', {class: 'eyebrow'}, text != null ? 'A complete answer' : 'What fits on paper'), h('b', {}, `About ${kind.mins} minutes' worth`)), h('div', {class: 'rb', html: opts.paper ? `<ol class="paper-ans">${opts.paper.map(x => `<li>${esc(x)}</li>`).join('')}</ol>` : paperHtml(q.n)}));
   const full = h('div', {class: 'prose hide', style: 'background:var(--ok-wash);border-radius:5px;padding:12px 16px', html: opts.full || q.answer || ''});
   save(); drawScore(); drawGrade();
+  if (opts.onScore) opts.onScore(pct());
+  let missedEl = null;
+  if (text != null) {
+    const lines = opts.paper || PAPER[q.n] || [];
+    const miss = keys.filter((k, i) => !ticksK[i]);
+    const L = lintText(text);
+    missedEl = h('div', {class: 'stack', style: 'gap:8px'},
+      miss.length ? h('div', {class: 'callout warn'}, h('b', {class: 'tag'}, `What you missed (${miss.length})`), h('ul', {style: 'margin:4px 0 0;padding-left:1.2em;display:flex;flex-direction:column;gap:6px'}, miss.map(k => { const hit = lines.find(l => new RegExp(k.re, 'i').test(l)); return h('li', {}, h('b', {}, k.label), hit ? h('div', {class: 'muted', style: 'font-size:.88rem'}, '→ ' + hit) : null); }))) : h('div', {class: 'callout ok'}, h('b', {class: 'tag'}, 'Key ideas'), 'You covered every key idea the course expects.'),
+      L.length ? h('div', {class: 'callout warn'}, h('b', {class: 'tag'}, 'Command check'), h('ul', {style: 'margin:4px 0 0;padding-left:1.2em'}, L.map(m => h('li', {}, m)))) : null);
+  }
   return h('div', {class: 'marksheet'},
     h('div', {class: 'eyebrow'}, text != null ? 'Your answer was checked automatically — adjust the ticks if the checker missed something' : 'Mark your paper: tick only what you actually wrote'),
     keys.length ? h('div', {class: 'stack', style: 'gap:6px'}, h('b', {style: 'font-size:.92rem'}, 'Key ideas the course expects'), h('div', {class: 'ticks'}, keys.map((k, i) => box(k.label, ticksK[i], () => { ticksK[i] = !ticksK[i]; })))) : null,
     h('div', {class: 'stack', style: 'gap:6px'}, h('b', {style: 'font-size:.92rem'}, `How you wrote it — ${kind.name.toLowerCase()} criteria`), h('div', {class: 'ticks'}, kind.checks.map((c, i) => box(c[0], ticksM[i], () => { ticksM[i] = !ticksM[i]; })))),
-    scoreEl, paper,
+    scoreEl, missedEl, paper,
     h('div', {class: 'row'}, opts.full !== false && (opts.full || q.answer) ? h('button', {class: 'btn sm ghost', onclick: () => full.classList.toggle('hide')}, 'Full model answer') : null, q.id ? h('a', {class: 'btn sm ghost', href: '#' + q.id}, 'Open the hands-on mission →') : null, ...(q.reread || []).map(id => { const m = MODULES.find(x => x.id === id); return h('a', {class: 'btn sm ghost', href: '#' + id}, 'Reread Module ' + m.n); })),
     full, q.id ? h('div', {class: 'stack', style: 'gap:6px'}, h('b', {style: 'font-size:.92rem'}, 'Review Map'), gradeRow) : null);
 }
@@ -5683,10 +5760,10 @@ function pageHowto() {
   const ex = (title, body) => h('div', {class: 'callout ex'}, h('b', {class: 'tag'}, title), h('div', {html: body}));
   const kindCard = (key, example) => { const k = KINDS[key]; return h('article', {class: 'lesson'}, h('div', {class: 'lhead'}, h('span', {class: 'num'}, `${k.mins} min · ${k.lines}`), h('h3', {}, k.name)), h('div', {class: 'lbody'}, h('ol', {class: 'steps'}, k.pattern.map(p => h('li', {}, h('div', {}, p)))), example, h('div', {class: 'muted', style: 'font-size:.86rem'}, 'Questions of this type: ' + MISSIONS.filter(q => QKIND[q.n] === key).map(q => q.n).join(', ')))); };
   return h('div', {class: 'page'},
-    h('header', {class: 'hero'}, h('div', {}, h('div', {class: 'eyebrow'}, 'Pen & paper exam prep'), h('h1', {}, 'How to write answers that score'), h('p', {class: 'lead'}, 'The assessment is 20 free-response questions, written by hand on paper, in person, in 60 minutes — no phone, computer, internet or AI. Graders look for a logical, ordered process, correct terms and commands, and your thinking step by step. Learn these six answer shapes and you will always know what to write.'))),
+    h('header', {class: 'hero'}, h('div', {}, h('div', {class: 'eyebrow'}, 'Exam answer prep'), h('h1', {}, 'How to write answers that score'), h('p', {class: 'lead'}, 'The assessment is 20 free-response questions in 60 minutes — no notes, no internet, no AI, and no topology or console in front of you. Graders look for a logical, ordered process, correct terms and commands, and your thinking step by step. Learn these six answer shapes and you will always know what to type.'))),
     h('section', {class: 'grid2'},
-      h('div', {class: 'panel pad stack'}, h('h3', {}, 'On the day'), h('ul', {class: 'prose', style: 'padding-left:1.2em'}, h('li', {}, 'Budget 3 minutes per question: about 2 for definitions, 4–5 for scenarios. Stuck? Move on and come back.'), h('li', {}, 'Answer every question. If unsure, write what you would check first and why — correct thinking earns credit.'), h('li', {}, 'Troubleshooting: numbered steps in the order you would really do them, naming specific tools and logs.'), h('li', {}, 'Forgot an exact command? Describe what you would check and why.'), h('li', {}, 'End scenarios with verification and documentation. Write clearly.'), h('li', {}, 'Need more room? Continue on the back of the page and label it with the question number.'))),
-      h('div', {class: 'panel pad stack'}, h('h3', {}, 'Writing by hand'), h('ul', {class: 'prose', style: 'padding-left:1.2em'}, h('li', {}, 'Most people hand-write about 20 words a minute: a 3-minute answer is roughly 60 words. Short lines beat long paragraphs.'), h('li', {}, 'One step per line, numbered. Leave a blank line between steps so it is easy to read.'), h('li', {}, 'Write commands exactly, in lower case: Linux is case-sensitive (Failure ≠ failure). Keep the spaces: <code>grep -in</code>, <code>journalctl -b -1</code>.'.replace(/<[^>]+>/g, '')), h('li', {}, 'Underline the key term in your first line (ECC, LnkSta, out-of-band) so the grader sees it.'), h('li', {}, 'Practise on real paper with a 60-minute timer and no notes; then mark yourself here.')))),
+      h('div', {class: 'panel pad stack'}, h('h3', {}, 'On the day'), h('ul', {class: 'prose', style: 'padding-left:1.2em'}, h('li', {}, 'Budget 3 minutes per question: about 2 for definitions, 4–5 for scenarios. Stuck? Move on and come back.'), h('li', {}, 'Answer every question. If unsure, write what you would check first and why — correct thinking earns credit.'), h('li', {}, 'Troubleshooting: numbered steps in the order you would really do them, naming specific tools and logs.'), h('li', {}, 'Forgot an exact command? Describe what you would check and why.'), h('li', {}, 'End scenarios with verification and documentation. Write clearly.'), h('li', {}, 'Skip a hard one and flag it; come back when the easy marks are banked.'))),
+      h('div', {class: 'panel pad stack'}, h('h3', {}, 'Typing your answers'), h('ul', {class: 'prose', style: 'padding-left:1.2em'}, h('li', {}, 'Most people type 35–45 words a minute, so 3 minutes is room for about 100 words. More words is not more marks: the right terms in the right order is. Each question shows a target word range.'), h('li', {}, 'One step per line, numbered. In this trainer, type "1. " and press Enter — the next number appears. Shift+Enter gives a plain new line.'), h('li', {}, 'Type commands exactly, in lower case, with the spaces: grep -in, journalctl -b -1, ipmitool sel elist. Linux is case-sensitive (Failure ≠ failure).'), h('li', {}, 'Watch autocorrect: it capitalises the first word of a line (Lspci) and "fixes" resolv.conf. The checker flags these.'), h('li', {}, 'Name the tool, then why: "ipmitool sel elist — to read the BMC event log before changing anything".'), h('li', {}, 'Leave the last few minutes to re-read every answer for typos in commands. Ctrl+Enter checks an answer in Answer practice.')))),
     h('section', {class: 'stack'}, h('div', {class: 'sec-title'}, h('span', {class: 'eyebrow'}, 'The six answer shapes'), h('h2', {}, 'Every question is one of these')),
       kindCard('define', ex('Example — "Explain ECC"', '<b>ECC</b> is memory that stores extra check bits with the data. <i>(what)</i> On every read the bits are checked: one flipped bit is corrected, two are detected but not fixed. <i>(how)</i> It prevents silent data corruption and keeps servers running; a rising corrected-error count warns a DIMM will fail. <i>(why)</i> e.g. SEL: "Correctable ECC logging limit reached, DIMM C1". <i>(example)</i>')),
       kindCard('scenario', ex('Weak vs strong — "fans run at full speed constantly"', '<b>Weak:</b> "Replace the fans." <br><b>Strong:</b> 1. Check BMC sensors and the event log first. 2. Look for physical causes: failed fan, missing air baffle, blocked airflow. 3. Check firmware. 4. Change one thing at a time and re-check sensors. 5. Verify fans and temperatures are normal. 6. Document.')),
@@ -5696,13 +5773,14 @@ function pageHowto() {
       kindCard('concept', ex('Example — "failure follows the part"', 'It proves the part is very likely bad. It does <b>not</b> prove the original system is healthy — a bad slot may have damaged the part. Next: tag and quarantine, restore and retest the good system, test the original with a known-good part, record both serials, start the RMA.'))),
     h('section', {class: 'stack'}, h('div', {class: 'sec-title'}, h('span', {class: 'eyebrow'}, 'Phrase bank'), h('h2', {}, 'Sentence starters for scenario answers')),
       h('div', {class: 'panel pad'}, h('ol', {class: 'steps'}, ['First I would gather information: the exact symptom, when it started, what changed, and whether I can reproduce it.', 'Before changing anything I would check the evidence: dmesg / journalctl, the BMC event log, sensors and LEDs, and what the BIOS and OS see.', 'Then the simple physical things: seating, latches, cables in the right ports, power, BIOS settings.', 'To isolate it I would swap the ___ with a known-good one, one change at a time. If the problem follows the part, the part is bad; if it stays with the slot, I suspect the slot, cable, riser or board.', 'I would fix it and verify by re-running the full test, enough times to trust the result.', 'Finally I would document the serials, steps, root cause and fix, and look at how to prevent it on other units.'].map(t => h('li', {}, h('div', {}, t)))))),
-    h('div', {class: 'row'}, h('a', {class: 'btn', href: '#written'}, 'Practise a question →'), h('a', {class: 'btn ghost', href: '#recall'}, 'Command recall'), h('a', {class: 'btn ghost', href: '#revise'}, 'Revision sheet'), h('a', {class: 'btn ghost', href: '#exam'}, 'Full 60-minute paper')));
+    h('div', {class: 'row'}, h('a', {class: 'btn', href: '#written'}, 'Practise a question →'), h('a', {class: 'btn ghost', href: '#recall'}, 'Command recall'), h('a', {class: 'btn ghost', href: '#revise'}, 'Revision sheet'), h('a', {class: 'btn ghost', href: '#exam'}, 'Full 60-minute exam')));
 }
 
 /* ---------- page: Written practice (one question at a time) ---------- */
 function pageWritten() {
-  const S = App.state; S.wr = S.wr || {mode: 'paper', set: 'A', idx: 0, struct: false, ans: {}, secs: {}};
-  const W = S.wr;
+  const S = App.state; S.wr = S.wr || {mode: 'type', set: 'A', idx: 0, struct: false, ans: {}, secs: {}};
+  const W = S.wr; W.hist = W.hist || {}; if (W.coach == null) W.coach = true;
+  if (!S.typedDefault) { S.typedDefault = 1; W.mode = 'type'; S.examMode = 'type'; App.save(); }
   if (App.pending && App.pending.written) { const n = App.pending.written; App.pending = null; W.set = n <= 20 ? 'A' : 'B'; W.idx = (n - 1) % 20; }
   const order = () => {
     if (W.set === 'A') return MISSIONS.filter(q => q.set === 'A');
@@ -5717,7 +5795,7 @@ function pageWritten() {
   const draw = () => {
     clearInterval(tick); host.innerHTML = '';
     const list = order();
-    if (!list.length) { host.appendChild(h('div', {class: 'callout ok'}, h('b', {class: 'tag'}, 'Nothing weak'), 'Every question is marked Got it. Try a mixed set or the full 60-minute paper.')); return; }
+    if (!list.length) { host.appendChild(h('div', {class: 'callout ok'}, h('b', {class: 'tag'}, 'Nothing weak'), 'Every question is marked Got it. Try a mixed set or the full 60-minute exam.')); return; }
     W.idx = Math.max(0, Math.min(W.idx, list.length - 1));
     const q = list[W.idx]; const kind = qKind(q);
     const nav = h('div', {class: 'qnav'}, list.map((x, i) => h('button', {class: (i === W.idx ? 'on ' : '') + (S.grades[x.id] || ''), title: `Question ${x.n}: ${x.topic}`, onclick: () => { W.idx = i; App.save(); draw(); }}, String(x.n))));
@@ -5731,16 +5809,21 @@ function pageWritten() {
     paint();
     const struct = h('div', {class: 'callout' + (W.struct ? '' : ' hide')}, h('b', {class: 'tag'}, 'Answer shape: ' + kind.name), h('ol', {style: 'margin:4px 0 0;padding-left:1.2em'}, kind.pattern.map(p => h('li', {}, p))));
     const result = h('div');
-    let ta = null;
+    let ta = null, coach = null;
+    const histEl = h('div', {class: 'muted tnum', style: 'font-size:.86rem'});
+    const drawHist = () => { const hs = W.hist[q.id] || []; histEl.textContent = hs.length ? 'Your checks on this question: ' + hs.map(x => x + '%').join(' → ') : ''; };
     if (W.mode === 'type') {
-      ta = h('textarea', {class: 'paper', id: 'wr-' + q.id, placeholder: 'Write your answer as you would on paper. Numbered steps for troubleshooting.'});
+      ta = h('textarea', {class: 'typebox', id: 'wr-' + q.id, placeholder: 'Type your answer. Troubleshooting: start a line with "1. " and press Enter — the next number appears. Ctrl+Enter checks it.'});
       ta.value = W.ans[q.id] || '';
-      const wc = h('span', {class: 'muted tnum', style: 'font-size:.84rem'});
-      const upd = () => { const n = (ta.value.match(/\S+/g) || []).length; wc.textContent = `${n} words · by hand ≈ ${Math.max(1, Math.round(n / 20))} min at 20 words/min`; };
+      coach = W.coach ? coachEl(q, QKIND[q.n]) : null;
+      const wb = W.coach ? null : wordBar(QKIND[q.n]);
+      const upd = () => { if (coach) coach.update(ta.value); if (wb) wb.update(ta.value); };
       ta.addEventListener('input', () => { W.ans[q.id] = ta.value; if (!running && ta.value) start(); upd(); App.save(); }); upd();
-      ta._wc = wc;
+      typingAids(ta, () => check());
+      ta._wc = coach ? coach.el : wb.el;
     }
-    const check = () => { pause(); result.innerHTML = ''; result.appendChild(markSheet(q, QKIND[q.n], W.mode === 'type' ? (ta.value || '') : null, {onGrade: () => drawNav()})); result.scrollIntoView({behavior: RM ? 'auto' : 'smooth', block: 'start'}); };
+    drawHist();
+    const check = () => { pause(); result.innerHTML = ''; result.appendChild(markSheet(q, QKIND[q.n], W.mode === 'type' ? (ta.value || '') : null, {onGrade: () => drawNav(), onScore: p => { if (W.mode === 'type') { (W.hist[q.id] = W.hist[q.id] || []).push(p); if (W.hist[q.id].length > 8) W.hist[q.id].shift(); App.save(); drawHist(); } }})); if (W.mode === 'type') result.appendChild(h('div', {class: 'row', style: 'margin-top:10px'}, h('button', {class: 'btn', onclick: () => { ta.focus(); ta.scrollIntoView({behavior: RM ? 'auto' : 'smooth', block: 'center'}); }}, 'Improve my answer and check again'), histEl)); result.scrollIntoView({behavior: RM ? 'auto' : 'smooth', block: 'start'}); };
     const drawNav = () => { [...nav.children].forEach((b, i) => { b.className = (i === W.idx ? 'on ' : '') + (S.grades[list[i].id] || ''); }); };
     host.append(
       h('div', {class: 'row', style: 'justify-content:space-between'}, h('span', {class: 'muted', style: 'font-size:.86rem'}, `${W.set === 'weak' ? 'Weak spots' : W.set === 'mix' ? 'Mixed order' : 'Set ' + W.set} · ${W.idx + 1} of ${list.length}`), nav),
@@ -5749,18 +5832,19 @@ function pageWritten() {
         h('div', {class: 'sheetq'}, h('span', {class: 'qn'}, q.n), h('div', {class: 'stack', style: 'gap:10px'}, h('p', {class: 'q'}, q.q), q.code ? h('pre', {class: 'out'}, q.code) : null)),
         struct,
         W.mode === 'type' ? h('div', {class: 'stack', style: 'gap:6px'}, ta, ta._wc) : h('div', {class: 'penbox'}, h('b', {}, 'Write your answer on paper now.'), h('span', {}, `Start the clock, write for about ${kind.mins} minutes (${kind.lines}), then mark yourself honestly against the checklist.`)),
-        h('div', {class: 'row', style: 'justify-content:space-between'}, h('div', {class: 'row'}, tEl, h('div', {style: 'width:160px'}, bar), startBtn), h('div', {class: 'row'}, h('button', {class: 'btn ok', onclick: check}, W.mode === 'type' ? 'Check my answer' : 'I\'ve finished writing — mark it'), h('button', {class: 'btn ghost sm', onclick: () => { W.secs[q.id] = 0; if (W.ans) W.ans[q.id] = ''; if (S.marks) delete S.marks[q.id]; App.save(); draw(); }}, 'Start over')))),
+        h('div', {class: 'row', style: 'justify-content:space-between'}, h('div', {class: 'row'}, tEl, h('div', {style: 'width:160px'}, bar), startBtn), h('div', {class: 'row'}, h('button', {class: 'btn ok', onclick: check, title: W.mode === 'type' ? 'Ctrl+Enter' : ''}, W.mode === 'type' ? 'Check my answer' : 'I\'ve finished writing — mark it'), h('button', {class: 'btn ghost sm', onclick: () => { W.secs[q.id] = 0; if (W.ans) W.ans[q.id] = ''; if (S.marks) delete S.marks[q.id]; App.save(); draw(); }}, 'Start over')))),
       result,
       h('div', {class: 'row', style: 'justify-content:space-between'}, h('button', {class: 'btn ghost', disabled: W.idx === 0 ? true : null, onclick: () => { W.idx--; App.save(); draw(); }}, '← Previous'), h('button', {class: 'btn', onclick: () => { W.idx = (W.idx + 1) % list.length; App.save(); draw(); window.scrollTo(0, 0); }}, 'Next question →')));
   };
   const setSeg = seg([['A', 'Set A'], ['B', 'Set B'], ['mix', 'Mixed 40'], ['weak', 'Weak spots first']], W.set, v => { W.set = v; W.idx = 0; if (v === 'mix') W.seed = 0; App.save(); draw(); });
-  const modeSeg = seg([['paper', 'Pen & paper'], ['type', 'Type it']], W.mode, v => { W.mode = v; App.save(); draw(); });
+  const modeSeg = seg([['type', 'Type it'], ['paper', 'Pen & paper']], W.mode, v => { W.mode = v; App.save(); draw(); coachTog.classList.toggle('hide', v !== 'type'); });
+  const coachTog = h('button', {class: 'tog' + (W.coach ? ' on' : '') + (W.mode === 'type' ? '' : ' hide'), title: 'Shows the grading criteria lighting up as you type (not the answers)', onclick: e => { W.coach = !W.coach; e.currentTarget.classList.toggle('on', W.coach); App.save(); draw(); }}, 'Live coach');
   const structTog = h('button', {class: 'tog' + (W.struct ? ' on' : ''), onclick: e => { W.struct = !W.struct; e.currentTarget.classList.toggle('on', W.struct); App.save(); draw(); }}, 'Show the answer shape');
   draw();
   return h('div', {class: 'page'},
-    h('header', {class: 'hero'}, h('div', {}, h('div', {class: 'eyebrow'}, 'Pen & paper exam prep'), h('h1', {}, 'Written practice'), h('p', {class: 'lead'}, 'Exactly what you get on the day: a question, a pen, a clock. No topology, no console, no hints. Write on paper (or type, if you must), then mark yourself against the course\'s grading criteria and compare with an answer that fits on paper.')),
-      h('div', {class: 'meta'}, h('a', {href: '#howto'}, 'How to write answers →'), h('a', {href: '#exam'}, 'Full 60-minute paper →'))),
-    h('div', {class: 'row', style: 'gap:14px'}, modeSeg, setSeg, structTog),
+    h('header', {class: 'hero'}, h('div', {}, h('div', {class: 'eyebrow'}, 'Exam answer prep'), h('h1', {}, 'Answer practice'), h('p', {class: 'lead'}, 'What the exam gives you: a question and a clock — no topology, no console, no hints. Type a complete answer, check it against the course\'s grading criteria, see exactly what you missed, improve it and check again until it scores.')),
+      h('div', {class: 'meta'}, h('a', {href: '#howto'}, 'How to write answers →'), h('a', {href: '#exam'}, 'Full 60-minute exam →'))),
+    h('div', {class: 'row', style: 'gap:14px'}, modeSeg, setSeg, coachTog, structTog),
     host);
 }
 
@@ -5837,7 +5921,7 @@ function pageRecall() {
   };
   draw();
   return h('div', {class: 'page'},
-    h('header', {class: 'hero'}, h('div', {}, h('div', {class: 'eyebrow'}, 'Pen & paper exam prep'), h('h1', {}, 'Command recall'), h('p', {class: 'lead'}, 'On paper there is no tab-completion and no man page. The readiness checklist asks you to write lspci, dmesg, journalctl -b -1, grep -in, ip a, ip route and ipmitool sel elist from memory — this drills those and the rest of the course\'s commands. sudo is optional here.'))),
+    h('header', {class: 'hero'}, h('div', {}, h('div', {class: 'eyebrow'}, 'Exam answer prep'), h('h1', {}, 'Command recall'), h('p', {class: 'lead'}, 'On paper there is no tab-completion and no man page. The readiness checklist asks you to write lspci, dmesg, journalctl -b -1, grep -in, ip a, ip route and ipmitool sel elist from memory — this drills those and the rest of the course\'s commands. sudo is optional here.'))),
     host);
 }
 
@@ -5848,7 +5932,7 @@ function pageRevise() {
   const which = S.revSet || 'all';
   const list = MISSIONS.filter(q => which === 'all' || (which === 'weak' ? S.grades[q.id] !== 'got' : q.set === which));
   return h('div', {class: 'page'},
-    h('header', {class: 'hero'}, h('div', {}, h('div', {class: 'eyebrow'}, 'Pen & paper exam prep'), h('h1', {}, 'Revision sheet'), h('p', {class: 'lead'}, 'Everything you must be able to write from memory, on one page. Read it the night before; then close it and test yourself in Written practice.'))),
+    h('header', {class: 'hero'}, h('div', {}, h('div', {class: 'eyebrow'}, 'Exam answer prep'), h('h1', {}, 'Revision sheet'), h('p', {class: 'lead'}, 'Everything you must be able to write from memory, on one page. Read it the night before; then close it and test yourself in Written practice.'))),
     h('section', {class: 'stack'}, h('div', {class: 'sec-title'}, h('span', {class: 'eyebrow'}, 'Must-know facts'), h('h2', {}, 'Numbers and lists graders expect')),
       h('div', {class: 'tblwrap'}, h('table', {class: 'tbl'}, facts.map(([a, b]) => h('tr', {}, h('td', {style: 'font-weight:700;white-space:nowrap'}, a), h('td', {}, b)))))),
     h('section', {class: 'stack'}, h('div', {class: 'sec-title'}, h('span', {class: 'eyebrow'}, 'All 40 questions'), h('h2', {}, 'What each answer must contain')),
@@ -5860,7 +5944,7 @@ function pageRevise() {
 function pagePaper() {
   const S = App.state;
   const which = S.examSet || 'A';
-  const mode = S.examMode || 'paper';
+  const mode = S.examMode || 'type';
   const items = which === 'course' ? COURSE_EXAM.map((x, i) => { const m = x.m ? MISSIONS[x.m - 1] : null; const ex = COURSE_EXTRA[i + 1]; return {n: i + 1, q: x.q, kindKey: ex ? ex.kind : (m ? QKIND[m.n] : 'scenario'), keys: ex ? ex.keys : (m ? m.keys : []), paper: ex ? ex.paper : (m ? PAPER[m.n] : null), full: x.a || (m ? m.answer : ''), m}; })
     : MISSIONS.filter(q => q.set === which).map(q => ({n: q.n, q: q.q, code: q.code, kindKey: QKIND[q.n], keys: q.keys, paper: PAPER[q.n], full: q.answer, m: q}));
   const key = which + ':' + mode;
@@ -5875,7 +5959,7 @@ function pagePaper() {
     const kind = KINDS[it.kindKey];
     const flag = h('button', {class: 'tog' + (E.flags[it.n] ? ' on' : ''), onclick: e => { E.flags[it.n] = !E.flags[it.n]; e.currentTarget.classList.toggle('on'); App.save(); }}, '⚑ come back');
     const blk = h('div', {class: 'examq'}, h('div', {class: 'q'}, h('b', {}, it.n), h('div', {class: 'stack', style: 'gap:8px;min-width:0'}, h('div', {}, it.q), it.code ? h('pre', {class: 'out'}, it.code) : null, h('div', {class: 'row'}, h('span', {class: 'kindtag'}, kind.name), h('span', {class: 'muted', style: 'font-size:.82rem'}, `~${kind.mins} min · ${kind.lines}`), E.done ? null : flag))));
-    if (mode === 'type' && !E.done) { const ta = h('textarea', {class: 'paper', id: `px-${key}-${it.n}`, style: 'min-height:150px', disabled: !E.start ? true : null, placeholder: E.start ? 'Write your answer…' : 'Press Start to begin the 60-minute timer'}); ta.value = E.ans[it.n] || ''; ta.addEventListener('input', () => { E.ans[it.n] = ta.value; App.save(); }); blk.appendChild(ta); }
+    if (mode === 'type' && !E.done) { const ta = h('textarea', {class: 'typebox', id: `px-${key}-${it.n}`, style: 'min-height:170px', disabled: !E.start ? true : null, placeholder: E.start ? 'Type your answer…' : 'Press Start to begin the 60-minute timer'}); ta.value = E.ans[it.n] || ''; const wb = wordBar(it.kindKey); ta.addEventListener('input', () => { E.ans[it.n] = ta.value; wb.update(ta.value); App.save(); }); typingAids(ta, null); wb.update(ta.value); blk.append(ta, wb.el); }
     if (mode === 'paper' && !E.done) blk.appendChild(h('div', {class: 'penbox'}, h('span', {}, 'Answer on paper, labelled ' + it.n + '.')));
     if (E.done) blk.appendChild(markSheet(it.m && which !== 'course' ? it.m : {n: it.n, id: it.m && which !== 'course' ? it.m.id : null, keys: it.keys, answer: it.full, reread: it.m ? it.m.reread : []}, it.kindKey, mode === 'type' ? (E.ans[it.n] || '') : null, {paper: it.paper, full: it.full}));
     return blk;
@@ -5883,7 +5967,7 @@ function pagePaper() {
   const render = () => {
     body.innerHTML = '';
     if (E.done) {
-      body.appendChild(h('div', {class: 'callout ok'}, h('b', {class: 'tag'}, 'Mark your paper'), mode === 'paper' ? 'Go question by question with your written answers next to you. Tick only what you actually wrote, then compare with the paper-length answer and set your Review Map mark.' : 'Your typed answers were checked automatically; adjust the ticks where the checker missed something.'));
+      body.appendChild(h('div', {class: 'callout ok'}, h('b', {class: 'tag'}, mode === 'type' ? 'Your results' : 'Mark your paper'), mode === 'paper' ? 'Go question by question with your written answers next to you. Tick only what you actually wrote, then compare with the paper-length answer and set your Review Map mark.' : 'Your typed answers were checked automatically; adjust the ticks where the checker missed something.'));
       items.forEach(it => body.appendChild(qBlock(it)));
       return;
     }
@@ -5895,12 +5979,12 @@ function pagePaper() {
   };
   render(); tick();
   const pick = seg([['A', 'Set A (1–20)'], ['B', 'Set B (21–40)'], ['course', 'Course practice exam (20)']], which, v => { S.examSet = v; App.save(); App.go('exam'); });
-  const modeSeg = seg([['paper', 'Pen & paper'], ['type', 'Type it']], mode, v => { S.examMode = v; App.save(); App.go('exam'); });
+  const modeSeg = seg([['type', 'Type it'], ['paper', 'Pen & paper']], mode, v => { S.examMode = v; App.save(); App.go('exam'); });
   return h('div', {class: 'page'},
-    h('header', {class: 'hero'}, h('div', {}, h('div', {class: 'eyebrow'}, 'Pen & paper exam prep'), h('h1', {}, 'The 60-minute paper'), h('p', {class: 'lead'}, 'Twenty questions, two to a page like the practice packet, one hour, no notes. In pen & paper mode the screen shows only the questions and the clock — write on real paper, label each answer with its number, then mark yourself question by question.')),
-      h('div', {class: 'meta'}, tEl, paceEl, h('div', {class: 'row'}, !E.start ? h('button', {class: 'btn', onclick: () => { E.start = Date.now(); E.done = false; App.save(); App.go('exam'); }}, 'Start the 60 minutes') : !E.done ? h('button', {class: 'btn warn', onclick: () => { E.done = true; App.save(); App.award('paper:' + key, 80, 'Finished a 60-minute paper'); App.go('exam'); window.scrollTo(0, 0); }}, 'Stop — mark my paper') : null, h('button', {class: 'btn ghost', onclick: () => { S.exam[key] = {ans: {}, start: null, done: false, flags: {}, page: 0}; App.save(); App.go('exam'); }}, 'Reset')))),
+    h('header', {class: 'hero'}, h('div', {}, h('div', {class: 'eyebrow'}, 'Exam answer prep'), h('h1', {}, 'The 60-minute exam'), h('p', {class: 'lead'}, 'Twenty questions, two to a page like the practice packet, one hour, no notes, no other tabs. Type each answer in its box — about 3 minutes each. When you stop, every answer is checked and you see what you missed. (Pen & paper mode is still there if you want handwriting practice.)')),
+      h('div', {class: 'meta'}, tEl, paceEl, h('div', {class: 'row'}, !E.start ? h('button', {class: 'btn', onclick: () => { E.start = Date.now(); E.done = false; App.save(); App.go('exam'); }}, 'Start the 60 minutes') : !E.done ? h('button', {class: 'btn warn', onclick: () => { E.done = true; App.save(); App.award('paper:' + key, 80, 'Finished a 60-minute exam'); App.go('exam'); window.scrollTo(0, 0); }}, mode === 'type' ? 'Stop — check my answers' : 'Stop — mark my paper') : null, h('button', {class: 'btn ghost', onclick: () => { S.exam[key] = {ans: {}, start: null, done: false, flags: {}, page: 0}; App.save(); App.go('exam'); }}, 'Reset')))),
     h('div', {class: 'row', style: 'gap:14px'}, modeSeg, pick),
-    !E.start && !E.done ? h('div', {class: 'callout'}, h('b', {class: 'tag'}, 'Before you start'), 'Set out paper and a pen, put your notes and phone away, and press Start. The practice packet\'s rules apply: about 3 minutes per question, skip and come back, numbered steps for troubleshooting, never leave a blank.') : null,
+    !E.start && !E.done ? h('div', {class: 'callout'}, h('b', {class: 'tag'}, 'Before you start'), mode === 'type' ? 'Close your notes and other tabs, put your phone away, and press Start. The rules from the practice packet apply: about 3 minutes per question, skip and come back (flag it), numbered steps for troubleshooting, never leave a blank. Leave the last few minutes to re-read and fix command typos.' : 'Set out paper and a pen, put your notes and phone away, and press Start. About 3 minutes per question, skip and come back, numbered steps for troubleshooting, never leave a blank.') : null,
     body);
 }
 const WRITTEN_ROUTES = {howto: pageHowto, written: pageWritten, recall: pageRecall, revise: pageRevise, exam: pagePaper};
@@ -5952,7 +6036,7 @@ const App = (() => {
     rail.append(
       h('h6', {}, 'Start'), a('start', '▸', 'How this works'),
       h('h6', {}, 'Learn — 12 modules'), ...MODULES.map(m => a(m.id, String(m.n).padStart(2, '0'), m.title, modDone(m) ? 'done' : S.seen[m.id] ? 'seen' : '')),
-      h('h6', {}, 'Pen & paper exam'), a('howto', '✎', 'How to write answers'), a('written', 'W', 'Written practice'), a('recall', '>_', 'Command recall'), a('revise', 'RV', 'Revision sheet'), a('exam', '60', 'The 60-minute paper'),
+      h('h6', {}, 'Exam answers'), a('howto', '✎', 'How to write answers'), a('written', 'W', 'Answer practice'), a('recall', '>_', 'Command recall'), a('revise', 'RV', 'Revision sheet'), a('exam', '60', 'The 60-minute exam'),
       h('h6', {}, 'Hands-on practice'), a('handson', 'VM', 'Hands-On Practice'), a('sandbox', 'SB', 'Sandbox server'), a('setA', 'A', `Missions 1–20 (${doneA}/20)`), a('setB', 'B', `Missions 21–40 (${doneB}/20)`),
       h('h6', {}, 'Reference'), a('ref', '$', 'Command quick reference'), a('ready', '✓', 'Are you ready?'));
   }
@@ -5994,7 +6078,7 @@ const App = (() => {
         h('div', {class: 'method'}, [['1', 'Gather information', 'Exact symptom? What changed? Reproduce?'], ['2', 'Check the evidence', 'dmesg, journalctl, BMC event log, sensors, LEDs'], ['3', 'Simple, physical first', 'Seating, cables, power, settings'], ['4', 'Isolate', 'Swap with known-good, one change at a time'], ['5', 'Fix and verify', 'Retest fully to prove it'], ['6', 'Document and prevent', 'Record it; stop it happening again']].map(([n, b, s]) => h('div', {class: 'mstep'}, h('i', {}, 'STEP ' + n), h('b', {}, b), h('span', {}, s)))),
         h('div', {class: 'callout'}, h('b', {class: 'tag'}, 'Weak vs strong'), 'A weak answer to "a server\'s fans run at full speed constantly" is "replace the fans." A strong answer checks BMC sensors and the event log first, looks for physical causes (failed fan, missing air baffle, blocked airflow), checks firmware, changes one thing at a time, and ends with documentation. Module 1\'s lab is exactly that case.')),
       h('section', {class: 'grid2'},
-        h('div', {class: 'panel pad stack'}, h('h3', {}, 'The assessment is pen and paper'), h('p', {}, '20 free-response questions, written by hand on paper, in person, in 60 minutes. No phone, computer, internet, or AI tool — and no topology or console in front of you. Troubleshooting answers must explain your thinking step by step.'), h('p', {class: 'muted'}, 'Learn with the labs, then train the real format: written practice (question + clock, mark yourself), command recall, the revision sheet, and the full 60-minute paper.'), h('div', {class: 'row'}, h('a', {class: 'btn sm', href: '#howto'}, 'How to write answers'), h('a', {class: 'btn sm ghost', href: '#written'}, 'Written practice'), h('a', {class: 'btn sm ghost', href: '#exam'}, '60-minute paper'))),
+        h('div', {class: 'panel pad stack'}, h('h3', {}, 'Practise the answers, not just the labs'), h('p', {}, '20 free-response questions in 60 minutes, from memory — no notes, no internet, no AI, and no topology or console in front of you. Troubleshooting answers must explain your thinking step by step.'), h('p', {class: 'muted'}, 'Learn with the labs, then train the exam: type complete answers against the clock, check them against the course\'s grading criteria, fix what you missed. Also: command recall, the revision sheet, and a full 60-minute exam. (Your recruiter\'s online practice exam is typed; a pen & paper mode is there too.)'), h('div', {class: 'row'}, h('a', {class: 'btn sm', href: '#written'}, 'Answer practice'), h('a', {class: 'btn sm ghost', href: '#howto'}, 'How to write answers'), h('a', {class: 'btn sm ghost', href: '#exam'}, '60-minute exam'))),
         h('div', {class: 'panel pad stack'}, h('h3', {}, 'Exam-day tips'), h('ul', {class: 'prose', style: 'padding-left:1.2em'}, h('li', {}, 'About 3 minutes per question: ~2 for definitions, 4–5 for scenarios. Stuck? Move on, come back.'), h('li', {}, '"What is X and why does it matter?" → what it is, how it works, why it matters in a data center, one example.'), h('li', {}, 'Numbered steps for troubleshooting; name specific tools and logs.'), h('li', {}, 'Forgot a command? Describe what you would check and why — correct thinking earns credit.'), h('li', {}, 'Never leave a blank; end scenarios with verification and documentation.')))),
       h('section', {class: 'stack'}, h('div', {class: 'sec-title'}, h('span', {class: 'eyebrow'}, 'Modules'), h('h2', {}, 'Plan 10 to 15 hours: one or two modules a day')),
         h('div', {class: 'modgrid'}, MODULES.map(m => h('a', {class: 'modcard', href: '#' + m.id}, h('span', {class: 'n'}, m.n), h('span', {}, h('b', {}, m.title), h('span', {}, m.tagline)))))),
@@ -6037,7 +6121,7 @@ const App = (() => {
     const counts = {got: 0, partly: 0, missed: 0}; list.forEach(q => { if (S.grades[q.id]) counts[S.grades[q.id]]++; });
     return h('div', {class: 'page'},
       h('header', {class: 'hero'}, h('div', {}, h('div', {class: 'eyebrow'}, `Practice exam · Set ${set}`), h('h1', {}, set === 'A' ? 'Missions 1–20' : 'Missions 21–40'), h('p', {class: 'lead'}, set === 'A' ? 'Set A follows the same mix as the real assessment: core concepts first, then troubleshooting and real-world scenarios. Each question is a mission with its own preconfigured fault.' : 'Set B covers different topics from Set A, so you need both to cover the whole course. Take it at least a day after Set A.')),
-        h('div', {class: 'meta'}, h('span', {}, `Got it ${counts.got} · Partly ${counts.partly} · Missed ${counts.missed}`), h('a', {href: '#exam', onclick: () => { S.examSet = set; save(); }}, 'Take this set as a 60-minute paper →'), h('a', {href: '#written', onclick: () => { S.wr = S.wr || {mode: 'paper', set, idx: 0, struct: false, ans: {}, secs: {}}; S.wr.set = set; S.wr.idx = 0; save(); }}, 'Practise these one at a time, pen & paper →'))),
+        h('div', {class: 'meta'}, h('span', {}, `Got it ${counts.got} · Partly ${counts.partly} · Missed ${counts.missed}`), h('a', {href: '#exam', onclick: () => { S.examSet = set; save(); }}, 'Take this set as a 60-minute exam →'), h('a', {href: '#written', onclick: () => { S.wr = S.wr || {mode: 'type', set, idx: 0, struct: false, ans: {}, secs: {}}; S.wr.set = set; S.wr.idx = 0; save(); }}, 'Practise typing these answers one at a time →'))),
       h('div', {class: 'callout'}, h('b', {class: 'tag'}, 'How a mission works'), 'Read the question → work the preconfigured lab → write your answer in the box → if you are stuck, open Step 1 (the steps to find it) → then Step 2 (the full answer) → mark yourself Got it / Partly / Missed, like the Review Map.'),
       h('div', {class: 'mgrid'}, list.map(missionCard)), foot());
   }
@@ -6071,7 +6155,7 @@ const App = (() => {
     return h('div', {class: 'page'},
       h('header', {class: 'hero'}, h('div', {class: 'qbox'}, h('div', {class: 'row', style: 'gap:14px;align-items:baseline'}, h('span', {class: 'qn'}, q.n), h('span', {class: 'eyebrow'}, `Set ${q.set} · ${q.topic}`)), h('p', {class: 'q', style: 'margin-top:8px'}, q.q), q.code ? h('pre', {class: 'out', style: 'margin-top:10px'}, q.code) : null),
         h('div', {class: 'meta'}, h('span', {}, 'Reread: ' + q.reread.map(id => MODULES.find(m => m.id === id)).map(m => `Module ${m.n}`).join(', ')), h('span', {class: 'row', style: 'gap:6px'}, ...q.reread.map(id => h('a', {href: '#' + id}, MODULES.find(m => m.id === id).title))))),
-      h('div', {class: 'callout warn'}, h('b', {class: 'tag'}, 'On the real exam'), h('span', {}, 'You will get only the question above — no topology, no console — and you answer with pen and paper in about ', String(qKind(q).mins), ' minutes. Use the lab to understand it, then '), h('button', {class: 'btn sm', style: 'margin-left:4px', onclick: () => { App.pending = {written: q.n}; App.go('written'); }}, 'practise it pen & paper →')),
+      h('div', {class: 'callout warn'}, h('b', {class: 'tag'}, 'On the real exam'), h('span', {}, 'You will get only the question above — no topology, no console — and about ', String(qKind(q).mins), ' minutes to type a complete answer. Use the lab to understand it, then '), h('button', {class: 'btn sm', style: 'margin-left:4px', onclick: () => { App.pending = {written: q.n}; App.go('written'); }}, 'practise typing the answer →')),
       h('section', {class: 'stack'}, h('div', {class: 'sec-title'}, h('span', {class: 'eyebrow'}, 'Mission lab'), h('h2', {}, 'Preconfigured: the fault is already in there')), labHost, widget),
       h('section', {class: 'stack'}, h('div', {class: 'sec-title'}, h('span', {class: 'eyebrow'}, 'Your answer'), h('h2', {}, 'Write it like the real assessment')), ta, keysEl),
       h('section', {class: 'stack'}, hintBox, ansBox),
