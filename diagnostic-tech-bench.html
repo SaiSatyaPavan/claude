@@ -447,13 +447,6 @@ input.inp,select.inp{border:1px solid var(--line);border-radius:5px;background:v
 .modcard b{display:block;line-height:1.2}
 .modcard span{font-size:.8rem;color:var(--ink-3)}
 
-/* exam */
-.timer{font-family:var(--f-mono);font-size:1.6rem;font-weight:700;font-variant-numeric:tabular-nums}
-.timer.low{color:var(--bad)}
-.examq{display:flex;flex-direction:column;gap:8px;padding:16px 0;border-bottom:1px solid var(--line-soft)}
-.examq .q{display:flex;gap:12px}
-.examq .q b{font-family:var(--f-display);font-size:1.5rem;color:var(--copper);line-height:1;width:34px;flex:none}
-
 .toasts{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:80;display:flex;flex-direction:column;gap:8px;pointer-events:none}
 .toast{background:var(--ink);color:var(--panel);padding:10px 14px;border-radius:6px;font-size:.88rem;box-shadow:var(--shadow);max-width:320px;animation:tin .25s ease-out}
 .toast b{color:var(--panel)}
@@ -491,53 +484,6 @@ input.inp,select.inp{border:1px solid var(--line);border-radius:5px;background:v
   .cout{font-size:.74rem}
   #themeBtn span{display:none}
 }
-
-/* ---------- pen & paper prep ---------- */
-.sheet{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:22px 26px;display:flex;flex-direction:column;gap:16px}
-.sheethead{display:flex;gap:14px;flex-wrap:wrap;align-items:center;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);border-bottom:1px solid var(--line);padding-bottom:10px}
-.sheetq{display:grid;grid-template-columns:52px minmax(0,1fr);gap:14px;align-items:start}
-.sheetq .qn{font-family:var(--f-display);font-size:2.4rem;line-height:1;color:var(--copper)}
-.sheetq p.q,.sheet p.q{font-size:1.15rem;line-height:1.55;max-width:72ch}
-.kindtag{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--violet);color:var(--violet);background:var(--violet-wash);border-radius:3px;padding:2px 7px}
-.penbox{border:2px dashed var(--line);border-radius:var(--r);padding:18px 20px;display:flex;flex-direction:column;gap:4px;background:var(--panel-2);color:var(--ink-2)}
-textarea.paper{width:100%;min-height:260px;border:1px solid var(--line);border-left:3px solid var(--bad-wash);border-radius:4px;background-color:var(--panel);background-image:repeating-linear-gradient(to bottom,transparent 0,transparent 31px,var(--line-soft) 31px,var(--line-soft) 32px);background-attachment:local;color:var(--ink);font-family:var(--f-body);font-size:1rem;line-height:32px;padding:0 14px;resize:vertical}
-.pace{height:8px;border-radius:4px;background:var(--panel-3);overflow:hidden}
-.pace i{display:block;height:100%;width:0;background:var(--ok);transition:width .4s}
-.pace.over i{background:var(--bad)}
-.qnav{display:flex;flex-wrap:wrap;gap:4px}
-.qnav button{min-width:30px;height:28px;padding:0 6px;border:1px solid var(--line);background:var(--panel);border-radius:4px;font-family:var(--f-mono);font-size:.74rem;cursor:pointer;color:var(--ink-2)}
-.qnav button.on{border-color:var(--accent);background:var(--accent);color:#fff}
-.qnav button.got{border-color:var(--ok);box-shadow:inset 0 -3px 0 var(--ok)}
-.qnav button.partly{border-color:var(--warn);box-shadow:inset 0 -3px 0 var(--warn)}
-.qnav button.missed{border-color:var(--bad);box-shadow:inset 0 -3px 0 var(--bad)}
-.marksheet{border:1px solid var(--ok);border-radius:var(--r);background:var(--panel);padding:18px 20px;display:flex;flex-direction:column;gap:14px;margin-top:6px}
-.ticks{display:flex;flex-wrap:wrap;gap:6px}
-.tick{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--panel-2);border-radius:5px;padding:6px 10px;font-size:.86rem;cursor:pointer;text-align:left;color:var(--ink-2)}
-.tick .tb{width:16px;height:16px;border:1.5px solid var(--ink-3);border-radius:3px;flex:none;display:flex;align-items:center;justify-content:center}
-.tick.on{border-color:var(--ok);background:var(--ok-wash);color:var(--ink)}
-.tick.on .tb{background:var(--ok);border-color:var(--ok)}
-.tick.on .tb::after{content:"";width:8px;height:4px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg) translate(1px,-1px)}
-.markscore{display:flex;gap:16px;align-items:center;flex-wrap:wrap;font-size:.92rem}
-ol.paper-ans{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:6px;max-width:80ch}
-.revrow{border-bottom:1px solid var(--line-soft);padding:14px 4px}
-.revrow .qn2{font-family:var(--f-display);font-size:1.5rem;color:var(--copper);width:34px;flex:none;line-height:1}
-details summary::marker{color:var(--ink-3)}
-@media (max-width:560px){.sheet{padding:16px}.sheetq{grid-template-columns:minmax(0,1fr)}}
-
-textarea.typebox{width:100%;min-height:240px;border:1px solid var(--line);border-radius:5px;background:var(--panel);color:var(--ink);font-family:var(--f-body);font-size:1rem;line-height:1.65;padding:12px 14px;resize:vertical;tab-size:2}
-textarea.typebox:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
-textarea.typebox:disabled{background:var(--panel-2);color:var(--ink-3)}
-.coach{display:flex;flex-direction:column;gap:8px}
-.wbar{display:flex;align-items:center;gap:10px;font-size:.84rem;color:var(--ink-3);flex-wrap:wrap}
-.wtrack{position:relative;height:8px;flex:1;min-width:140px;max-width:320px;background:var(--panel-3);border-radius:4px;overflow:hidden}
-.wtrack b{position:absolute;top:0;bottom:0;background:var(--ok-wash);border-left:1px solid var(--ok);border-right:1px solid var(--ok)}
-.wtrack i{position:absolute;left:0;top:2px;bottom:2px;background:var(--ink-3);border-radius:3px;transition:width .2s}
-.wbar.ok i{background:var(--ok)}.wbar.ok span{color:var(--ok)}
-.wbar.over i{background:var(--warn)}.wbar.over span{color:var(--warn)}
-.crits{display:flex;flex-wrap:wrap;gap:5px;align-items:center}
-.crit{font-size:.76rem;border:1px solid var(--line);border-radius:999px;padding:2px 9px;color:var(--ink-3);background:var(--panel)}
-.crit.on{border-color:var(--ok);background:var(--ok-wash);color:var(--ok)}
-.lint{display:flex;flex-direction:column;gap:3px;font-size:.84rem;color:var(--warn)}
 </style>
 
 <header class="top">
@@ -5552,442 +5498,6 @@ M({n: 40, set: 'B', topic: 'Random reboots', reread: ['m11', 'm8'],
   answer: `<p>"Nothing in the OS logs" is itself a clue: if the journal just <b>stops</b> with no shutdown messages, the reboot came from <b>below the OS</b> — power, a hardware reset, a watchdog.</p><p><b>Check:</b></p><ol><li><code>journalctl --list-boots</code> for the time each boot ended, and <code>journalctl -b -1</code> for the last messages before each reboot (make sure the journal is persistent).</li><li>The <b>BMC SEL</b> for <b>power</b>, <b>thermal</b>, or <b>uncorrectable memory</b> events at those exact times; any <b>watchdog</b> events.</li><li><b>PSUs</b>: status and redundancy in BMC sensors, LEDs, cords, outlets/PDU. <b>Temperatures</b> and fans.</li></ol><p><b>Catching the cause:</b> line up the timestamps (here every reboot matched "PS2 AC lost" — and PS1 had failed 9 days earlier, so there was no redundancy); keep logs persistent and log the console through SOL; record sensors; reproduce if possible (burn-in); change <b>one thing at a time</b> (reseat the cord, replace the failed PSU with a matching one); <b>verify redundancy is restored</b> and run long enough to trust it; <b>document</b>.</p>`,
   keys: [K('journalctl -b -1', '-b -1|journalctl'), K('list-boots / timestamps', 'list-boots|timestamp|time'), K('abrupt end = below OS', 'abrupt|stop|below|no shutdown'), K('SEL', 'SEL|event log'), K('power events / PSU', 'power|PSU'), K('thermal', 'thermal|temp'), K('uncorrectable memory', 'uncorrect|memory'), K('watchdog', 'watchdog'), K('cords / PDU / outlet', 'cord|PDU|outlet'), K('redundancy', 'redundan'), K('correlate', 'correlat|line up|match'), K('one change / verify / document', 'one (change|thing)|verif|document')]
 });
-
-/* ---------- Course practice exam (20) — linked to missions or own answers ---------- */
-const COURSE_EXAM = [
-  {q: 'What is Linux, and give four reasons it is used on data center servers.', m: 1},
-  {q: 'Which command shows the IP addresses on a Linux server? List five other things the same command shows.', a: '<code>ip a</code>. Besides IP addresses it shows: interface names; flags such as UP (enabled) and LOWER_UP (link) or NO-CARRIER; the MTU (9000 = jumbo frames); the MAC address (link/ether); the subnet prefix and broadcast address (brd); and whether the address is dynamic (DHCP, with lease time) or static ("forever"). It does not show the gateway (<code>ip route</code>), DNS (<code>/etc/resolv.conf</code>) or link speed (<code>ethtool</code>).', see: 2},
-  {q: 'A server can reach 10.4.2.15 but not db01, which should be that address. What do you check, and why?', m: 32, a: 'The IP works, so the network is fine and the problem is name resolution. Check /etc/hosts (checked first, may hold a wrong entry), /etc/resolv.conf (right DNS server?), whether that DNS server is reachable, <code>nslookup db01</code> / <code>dig db01</code>, and whether the full name (FQDN) is needed.'},
-  {q: 'Describe each step of DHCP, and list what DHCP gives a client.', m: 4},
-  {q: 'A Gen 5 x16 card trained at Gen 4 x8. Explain what that means, what bandwidth was lost, and what you would check.', a: 'LnkCap Gen 5 x16, LnkSta Gen 4 x8: the link is downtrained in both speed and width. Gen 5 x16 ≈ 64 GB/s each direction; Gen 4 x8 = 16 GT/s × 8 ÷ 8 ≈ 16 GB/s. About 48 GB/s per direction — three quarters of the bandwidth — is lost. Check: is the slot Gen 4 or wired x8 (weakest part of the path); seating, dirty connector, riser, cable or retimer; BIOS link-speed and bifurcation settings; AER errors on the port. Change one thing, re-check LnkSta.', see: 25},
-  {q: 'What is a retimer, how is it different from a redriver, and how could a failed one show up?', m: 24},
-  {q: 'How would you use lspci -tv and a topology diagram to tell one failed device from a failed riser or switch?', m: 22},
-  {q: 'Explain ECC memory, including what it can and cannot fix, and why it matters in servers.', m: 6},
-  {q: 'List six things the BMC lets you do when the operating system is down.', m: 23},
-  {q: 'Give two situations for SSH and two where only SOL will work, and explain why.', a: 'SSH (in-band, needs the OS, network and sshd): daily work on a healthy server — running tests, copying logs. SOL (out-of-band through the BMC, no OS needed): a server that will not boot or is frozen/panicked (you see BIOS/POST, GRUB, kernel messages), a server that has lost its network, and changing BIOS settings. SSH talks to the OS; SOL talks to the console through the BMC.', see: 3},
-  {q: 'Write a command to find every line containing "timeout" in a log, ignoring case, with line numbers.', a: '<code>grep -in "timeout" /var/log/syslog</code> (or <code>/var/log/messages</code> on Red Hat, with sudo). -i ignores case, -n shows line numbers.', see: 7},
-  {q: 'A Linux server stopped answering ping and SSH after it was moved. Walk through your troubleshooting.', m: 8},
-  {q: 'A newly installed PCIe card is not in lspci. What do you check before calling it defective?', m: 9},
-  {q: 'A test fails about once in every ten runs. How do you investigate?', m: 10},
-  {q: 'A server keeps logging memory errors on one DIMM slot. How do you find out whether the DIMM or the system is at fault?', m: 11},
-  {q: 'A server powers on, fans run, but it never reaches the operating system. Describe your approach.', m: 15},
-  {q: 'A network card is detected, but the server cannot reach its gateway. Describe your process.', m: 16},
-  {q: 'An NVMe drive drops out under load and returns after reboot. What do you investigate, and why?', m: 17},
-  {q: 'You move a suspect part into a known-good system and the failure follows it. What does this tell you, and what do you do next?', m: 19},
-  {q: 'Three servers fail the same way because a cable was plugged into the wrong port during assembly. What do you do beyond fixing them?', m: 20}
-];
-</script>
-<script>
-/* =====================================================================
-   PEN & PAPER EXAM PREP
-   The real assessment: 20 free-response questions, handwritten, 60 min,
-   no notes. These pages train that format: question only, timer, mark
-   yourself against the course's grading criteria, paper-length answers.
-   ===================================================================== */
-const QKIND = {1: 'define', 2: 'read', 3: 'compare', 4: 'define', 5: 'define', 6: 'define', 7: 'command', 8: 'scenario', 9: 'scenario', 10: 'scenario', 11: 'scenario', 12: 'concept', 13: 'concept', 14: 'concept', 15: 'scenario', 16: 'scenario', 17: 'scenario', 18: 'scenario', 19: 'concept', 20: 'scenario', 21: 'define', 22: 'compare', 23: 'define', 24: 'compare', 25: 'define', 26: 'compare', 27: 'define', 28: 'concept', 29: 'scenario', 30: 'scenario', 31: 'scenario', 32: 'compare', 33: 'scenario', 34: 'scenario', 35: 'read', 36: 'scenario', 37: 'scenario', 38: 'scenario', 39: 'scenario', 40: 'scenario'};
-const countRe = (t, re) => (t.match(new RegExp(re, 'gim')) || []).length;
-const keyCov = (q, t) => q.keys && q.keys.length ? q.keys.filter(k => new RegExp(k.re, 'i').test(t)).length / q.keys.length : 0;
-const KINDS = {
-  define: {name: 'Explain it', mins: 2.5, lines: '5–8 lines',
-    pattern: ['What it is — one plain sentence', 'How it works', 'Why it matters in a data center', 'One example (a command, a log line, a real case)'],
-    checks: [['Says what it is in the first sentence', t => /\b(is|are|means)\b/i.test(t.slice(0, 200))], ['Explains how it works', t => /work|by |uses|stores|sends|checks|reads|when |first|then/i.test(t)], ['Says why it matters (in a data center)', t => /matter|important|because|so that|prevent|data cent|server|keep/i.test(t)], ['Gives an example, a command or a real case', t => /example|e\.g|for instance|such as|lspci|ip a|grep|ipmitool|dmesg|journalctl|nvme|ethtool|nslookup|dig /i.test(t)], ['Uses the course\'s terms (half the key ideas or more)', (t, q) => keyCov(q, t) >= 0.5]]},
-  read: {name: 'Read the output', mins: 3, lines: '8–12 short lines',
-    pattern: ['Go left to right, line by line', 'Name each field AND say what it means', 'What it does NOT show, and where to find it', 'Your conclusion or next check, if asked'],
-    checks: [['Names most of the fields (60%+ of key ideas)', (t, q) => keyCov(q, t) >= 0.6], ['Says what each field means, not just copies it', t => countRe(t, '(means|=|tells|shows|is the|so )') >= 3], ['Names what is NOT shown and where it lives', t => /not (show|in)|doesn.?t show|ip route|resolv|ethtool/i.test(t)], ['States the conclusion / next step where asked', t => /likely|next|check|so the|therefore|means the/i.test(t)]]},
-  compare: {name: 'Compare two things', mins: 3, lines: '6–10 lines or a small table',
-    pattern: ['The key difference in one line', 'How each one works / what it shows', 'What each one depends on', 'When you would use each — one real situation'],
-    checks: [['States the key difference up front', t => /whereas|while|but|unlike|instead|versus| vs|differ|not the same/i.test(t)], ['Covers BOTH sides', (t, q) => keyCov(q, t) >= 0.4], ['Says what each depends on or shows', t => /depend|need|requir|show|reads|cleared|keeps/i.test(t)], ['Gives a situation / when to use each', t => /when|situation|if |use (it|them)? ?for|only/i.test(t)], ['Uses the course\'s terms (half the key ideas or more)', (t, q) => keyCov(q, t) >= 0.5]]},
-  command: {name: 'Write the command', mins: 2, lines: '1 command + 3–4 lines',
-    pattern: ['The exact command, written carefully (Linux is case-sensitive)', 'What each option does', 'The variant they asked for (e.g. how to count)', 'sudo where the file needs it'],
-    checks: [['Writes the full command', t => /grep\s+-|grep\s+["']?\w/i.test(t)], ['Explains each option', t => countRe(t, '-(r|i|n|c)\\b') >= 3], ['Gives the counting variant', t => /-\w*c\b|wc -l|count/i.test(t)], ['Mentions sudo where needed', t => /sudo/i.test(t)]]},
-  concept: {name: 'Explain and reason', mins: 3, lines: '5–8 lines',
-    pattern: ['Answer the question directly in the first line', 'The reasons (what it proves / why)', 'What could go wrong, or the limits', 'What you do next — end with an action'],
-    checks: [['Answers directly in the first line', t => t.trim().length > 0 && t.trim().split(/\n/)[0].length > 12], ['Gives reasons', t => /because|so |prove|means|reason|therefore|which is why/i.test(t)], ['Covers risks, limits or what could go wrong', t => /later|risk|could|might|not prove|doesn.?t|limit|come back/i.test(t)], ['Ends with a practical action (verify, document, prevent)', t => /document|verif|prevent|RMA|CAPA|retest|record/i.test(t)], ['Uses the course\'s terms (half the key ideas or more)', (t, q) => keyCov(q, t) >= 0.5]]},
-  scenario: {name: 'Troubleshooting scenario', mins: 4.5, lines: '6–10 numbered steps',
-    pattern: ['1. Gather information: exact symptom, what changed, can I reproduce it?', '2. Check the evidence: logs (dmesg, journalctl, BMC SEL), sensors, LEDs, what BIOS and OS see', '3. Simple, physical things first: seating, cables, power, settings', '4. Isolate: swap with known-good, one change at a time — follows the part or stays?', '5. Fix and verify: retest fully', '6. Document and prevent'],
-    checks: [['Numbered steps in a logical order', t => countRe(t, '^\\s*(\\d+[.):]|step\\s*\\d|first|then|next|finally)') >= 3], ['Gathers evidence BEFORE changing anything', t => { const ev = t.search(/log|dmesg|journal|SEL|event|sensor|evidence|lspci|ip a|smart|console|symptom|what changed/i); const ch = t.search(/replac|reseat|swap|fix|update|rma/i); return ev >= 0 && (ch < 0 || ev < ch); }], ['Names specific tools, commands and logs', t => countRe(t, '(lspci|dmesg|journalctl|ipmitool|SEL|ip a|ip route|ethtool|nvidia-smi|smart-log|dmidecode|grep|ping|BMC|nvme|lscpu|free -h|traceroute|nslookup)') >= 2], ['Simple physical checks early (seating, cables, power, settings)', t => /seat|cable|power|latch|LED|connector|plug|BIOS/i.test(t)], ['Isolates by swapping with a known-good part', t => /swap|known.?good|another (slot|bay|port|system)|follow|stays|isolat|half/i.test(t)], ['Changes one thing at a time', t => /one (change|thing|variable)|one at a time/i.test(t)], ['Verifies the fix', t => /verif|retest|re-test|confirm|test again|run .*test|enough cycles/i.test(t)], ['Ends with documentation (and prevention)', t => /document|record|write.?up|ticket|prevent/i.test(t)]]}
-};
-
-/* Paper-length answers: what fits in the time on paper. From the course text. */
-const PAPER = {
-  1: ['Linux is an operating system; strictly the kernel that talks to the hardware, packaged with tools into distributions. Open source.', 'Server distributions: RHEL and Ubuntu Server (also Rocky Linux, SUSE).', 'Reasons: 1) stable — months without a reboot; 2) low cost — many are free; 3) built for remote work — command line and scripts over the network, one person runs hundreds of servers; 4) transparent about hardware — lspci, dmesg; 5) secure, efficient, supported — AI and cloud software built for Linux first.'],
-  2: ['2 = index; ens1f0 = interface name (Ethernet, slot 1, port 0).', 'UP = enabled; LOWER_UP = physical link detected; state UP.', 'mtu 9000 = jumbo frames, must match the switch.', 'link/ether 3c:ec:ef:12:34:56 = MAC address.', 'inet 10.20.5.14/22 = IPv4 address and subnet (255.255.252.0); brd 10.20.7.255 = broadcast; scope global.', 'dynamic = address came from DHCP (a lease).', 'Not shown: default gateway → ip route; DNS servers → /etc/resolv.conf; link speed → ethtool ens1f0.'],
-  3: ['They are different paths to different things.', 'SSH: in-band, inside the OS over the normal network. Needs the OS running, a working network and sshd. Gives a shell after boot.', 'SOL: out-of-band, through the BMC on the management network (standby power). Shows the serial console — BIOS/POST, GRUB, kernel messages, panics. Needs no OS.', 'Only SOL helps: the kernel has panicked, the server will not boot, it has lost its network, or you need BIOS settings.'],
-  4: ['1) Discover — the new server (client) broadcasts "I need an address".', '2) Offer — a DHCP server offers an address and settings.', '3) Request — the client broadcasts that it wants that offer.', '4) Acknowledge — the server confirms; the client configures itself.', 'Broadcasts: Discover and Request (the client has no address yet).', 'Ends up with: IP address, subnet mask, default gateway, DNS servers, lease time.', 'No answer: no address or a self-assigned 169.254.x.x. Check link/VLAN, the DHCP server, a DHCP relay for other subnets.'],
-  5: ['Factors: 1) generation (GT/s per lane) and width (lanes); 2) encoding overhead (~1.5% Gen 3–5); 3) the weakest part of the path; 4) what it actually trained to (LnkSta) and how the slot is wired; 5) shared links behind a PCIe switch.', 'Gen 4 x8: 16 GT/s × 8 lanes ÷ 8 = 16 GB/s in each direction (about 15.75 GB/s after encoding).'],
-  6: ['ECC stores extra check bits with the data and checks them on every read.', 'Can fix: single-bit errors — corrected automatically, logged, the server keeps running.', 'Cannot fix: double-bit errors — detected; the server stops or crashes rather than use bad data.', 'Why servers: prevents silent data corruption and keeps them running.', 'The corrected-error log matters: a DIMM with a rising count is likely to fail — replace it before it causes an outage (BMC SEL, ras-mc-ctl, dmesg | grep -i edac).'],
-  7: ['sudo grep -rin "nvme" /var/log/', '-r = search the folder and all subfolders; -i = ignore case (nvme, NVMe); -n = show line numbers.', 'Count instead: grep -ric "nvme" /var/log/ (count per file) or grep -ri "nvme" /var/log/ | wc -l (one total).'],
-  8: ['First: is the server alive? Check through the BMC — power status, SEL, console (SOL/KVM). You cannot SSH into a crashed server.', '1) Physical: link LEDs, cable, transceiver, switch port; ethtool "Link detected"; try a known-good cable/port.', '2) NIC detected, driver loaded: lspci, lspci -k, dmesg.', '3) IP: ip a — missing, 169.254, wrong subnet.', '4) Gateway: ip route, ping it, traceroute.', '5) DNS: test by IP and by name.', '6) Service: systemctl status sshd, ss -tulpn, firewall.', '7) What changed — new port or VLAN after the move? Verify, document.'],
-  9: ['lspci shows devices even without a driver, so this is the hardware path or a setting.', '1) Confirm expected (build sheet) vs lspci.', '2) Does BIOS/BMC inventory see it? No → physical or firmware.', '3) Power off, ESD strap: seated, latch, right slot, riser, power cables, bent pins.', '4) BIOS: slot enabled, bifurcation, link speed, Above 4G; firmware.', '5) lspci -tv vs topology diagram: missing branch → upstream (riser, cable, root port, BIOS).', '6) Swap into a known-good slot or system — only if it follows the card is it dead. Verify, document.'],
-  10: ['Gather: exact errors, timestamps and frequency, which tests pass/fail, temperature and load at the time, logs (dmesg, journal, SEL), serials, firmware and driver versions, other units.', 'Reproduce: 1) look for a pattern — load, heat, one slot; 2) loop or stress test on purpose (for i in $(seq 1 50); do ./test.sh >> results.txt; done); 3) check seating and cables, corrected errors; 4) change one variable at a time; 5) run enough cycles to trust it; 6) compare with a golden unit; document.'],
-  11: ['1) Record: slot, error type and count, DIMM serial (dmidecode), timestamps.', '2) Simple checks: seated, both latches, right part and slot, current BIOS.', '3) Swap: suspect DIMM to a slot on a different channel, known-good DIMM into the suspect slot; clear logs; memory test.', '4) Errors follow the DIMM → DIMM bad. Stay in the slot → slot, board or CPU.', '5) Pattern: many DIMMs on one channel/CPU → memory controller, CPU seating, bent pins.', '6) Stress test after each change, one at a time; document.'],
-  12: ['Three changes at once: when it works, you don\'t know which fixed it — no root cause.', 'One at a time tells you the real cause, avoids new problems, keeps results repeatable, avoids replacing good parts.', 'Later: it comes back and you repeat all three; the firmware change may add bugs or be unapproved; a good part gets scrapped or RMA\'d; other units aren\'t contained; the record misleads the next tech.'],
-  13: ['"GPU not detected" is what was observed — a symptom. A root cause says why it happened; fixing only the symptom lets it come back.', '5 Whys: not detected → its power cable wasn\'t connected → the cable was routed where it couldn\'t reach → the work instruction showed an old layout → it wasn\'t updated after a design change.', 'Root cause: the outdated work instruction (process). Fix: update the WI, check other units.'],
-  14: ['Document: unit serial, symptom, steps and results, parts changed with serials (old and new), firmware versions, root cause, fix, verification.', 'Matters to others: traceability; patterns across units and batches; faster future repairs and shift handoffs; RMA and warranty claims; quality and audit.'],
-  15: ['Fans and green LED only prove power. Watch the console (KVM/SOL) and note where it stops; check the BMC SEL.', '1) Power/BMC: health, sensors, SEL.', '2) POST: stuck code, memory errors — be patient during memory training; reseat; minimum config.', '3) BIOS: "no bootable device" — drive seen? boot order, UEFI/Legacy, Secure Boot, cables, RAID.', '4) GRUB: grub rescue — boot partition, drive.', '5) Kernel: panic, can\'t mount root — storage driver, drive.', '6) Startup: emergency mode — /etc/fstab, failing disk.', 'Ask what changed; verify; document.'],
-  16: ['1) Confirm lspci -k driver and ip link interface.', '2) Link: LOWER_UP vs NO-CARRIER, ethtool "Link detected", LEDs both ends — cable, transceiver, dirty fiber, switch port.', '3) Interface up? ip link set ... up.', '4) IP: none, 169.254, wrong subnet, old interface name in config.', '5) Local network: VLAN, ARP (ip neigh), MTU mismatch.', '6) ip route, ping the gateway, firewall.', '7) ethtool -i / -S; compare with a working port; document.'],
-  17: ['Evidence: dmesg saved before reboot, or journalctl -b -1 -k | grep -i nvme ("I/O timeout, aborting", "controller is down; will reset", "Removing after probe failure"); BMC SEL at the same time; nvme smart-log (temperature, media errors, warnings, unsafe shutdowns); LnkSta vs LnkCap and AER on the port above; firmware (drive, backplane, BIOS).', 'Causes: seating or worn backplane connector, bad/misrouted cable, overheating, power saving not waking, firmware bug, PCIe signal, failing drive.', 'Then: move it to another bay (follows/stays); reproduce under load with fio, watching dmesg -w and temperature; document.'],
-  18: ['Empty port = the device did not link. Causes: the GPU, its aux power cable, seating, the slot, or a retimer.', '1) Count each layer (nvidia-smi, lspci, BMC inventory); map the slot on the diagram.', '2) Logs: dmesg Xid/PCIe, SEL power/temperature, PSU status.', '3) BIOS: slot enabled, Above 4G, Resizable BAR.', '4) Power off, ESD: aux cable, reseat, latch.', '5) Swap GPU 6 with a working slot: follows → GPU; stays → slot/retimer/power.', '6) Verify 8 GPUs + full GPU test; document.'],
-  19: ['Proves: the GPU is very likely bad — the failure followed it.', 'Does not prove: Server A is healthy — a bad slot or power problem there may have damaged the GPU.', 'Next: tag and quarantine the GPU; return Server B to its original state and retest it; inspect A\'s slot and test A with a known-good GPU; document both serials; start the RMA.'],
-  20: ['1) Verify the units fully pass and nothing was damaged.', '2) Document unit, cable, wrong vs correct port, results (photos).', '3) Notify lead, quality, assembly.', '4) Contain: check other units from the same line, shift or batch, including ones waiting to ship.', '5) Prevent: update the work instruction with pictures; labels/colour coding; mistake-proofing (keyed connectors, cable lengths); an inspection step; track in CAPA.', 'Focus on the process, not blame.'],
-  21: ['1) /etc/hosts is checked first — a local list of names and IPs.', '2) Then /etc/resolv.conf gives the DNS server (nameserver) and search domain, so db01 becomes db01.lab.local (FQDN).', '3) The DNS server answers from its records — an A record maps a name to an IPv4 address — or asks other servers.', '4) The answer is cached (for its TTL) so the next lookup is fast. Tools: nslookup db01, dig db01.'],
-  22: ['Diagram (service guide) = the expected wiring: which CPU and root port each slot uses; switches, risers, retimers, cables; expected widths; slot-to-bus mapping; shared paths.', 'Tree = what Linux actually found: lspci -tv.', 'Compare: port present but empty → the device (device, power cable, seating, slot, retimer); whole branch missing → upstream (riser, cable, switch, retimer, root port, BIOS slot); everything under one switch missing → the switch or its upstream link.'],
-  23: ['BMC = Baseboard Management Controller: a small separate computer on the motherboard with its own processor, firmware and network port. Runs on standby power and doesn\'t use the OS — out-of-band — so it works when the OS has crashed or the server is off.', 'Can: 1) read the SEL; 2) read sensors (temps, fans, PSUs, power); 3) inventory and firmware versions, serials; 4) virtual console (KVM) and SOL; 5) power on/off/reset/cycle, NMI for a crash dump; 6) boot order and virtual media (ISO).'],
-  24: ['Retimer: recovers the data and re-transmits a clean signal, resetting the loss budget; takes part in link training; invisible to the OS (not in lspci).', 'Redriver: an amplifier — boosts the signal and its noise; no link training.', 'Gen 5: signals lose strength fast over traces, connectors, risers and cables, so long paths need retimers.', 'Failed retimer: devices behind it disappear, downtrained links, a stream of corrected (AER) errors; check BMC health and firmware.'],
-  25: ['LnkCap = what the device can do (max speed GT/s and width). LnkSta = what the link actually trained to at power-on (sudo lspci -vv).', 'Lower LnkSta = downtrained: it works, but slower ("downgraded").', 'Causes: poor seating, dirty connector, bad riser/cable/retimer, a BIOS speed setting; also a slower slot or narrower wiring (weakest part of the path).'],
-  26: ['journalctl -b -1 shows it.', 'dmesg = the kernel ring buffer since the current boot; cleared on reboot, so the crash messages are gone.', 'journalctl -b -1 = the previous boot from the systemd journal (if it is persistent).', 'Save before rebooting: dmesg > file.txt, the journal/logs, BMC SEL and sensors, a screenshot of the console (panic).'],
-  27: ['1) Physical: installed, seated, powered, seen by BIOS/BMC — look, LEDs, inventory.', '2) Bus: does the OS see it — lspci, lsblk, nvme list.', '3) Driver: is one attached — lspci -k "Kernel driver in use", dmesg.', '4) Function: configured and working — ip a, nvidia-smi, a functional test.', 'Example: a NIC in lspci with no driver in use passes the bus layer and fails the driver layer — don\'t replace the card.'],
-  28: ['Swap: put the suspect part into a known-good location (or a known-good part into the suspect location), change only that, retest.', 'Follows the part → the part is bad. Stays with the slot → slot, cable, riser or board.', 'Risks: a bad slot can damage the known-good part; it doesn\'t prove the original system healthy; ESD/handling; mixing up parts (label, record serials); the "known-good" part must really be good; an intermittent fault may not show — run enough cycles; restore and retest the golden unit.'],
-  29: ['Stay calm, don\'t guess.', '1) Write down the exact message (save it to a file), timestamps, how often.', '2) Gather logs (dmesg, journal, SEL), serials, firmware/driver versions.', '3) Read the service guide; search the exact error message.', '4) Break it into layers; test one theory at a time.', '5) Escalate when stuck, when the fix needs approval, or other units are affected — with your data: message, logs, what you checked and ruled out.', '6) Document what you learned.'],
-  30: ['Capture through the BMC first: the console screen (SOL/KVM — panic? hung task?) as a screenshot; the SEL; sensors (temps, fans, PSUs); health and power state; save logs to files; optionally an NMI for a crash dump.', 'Then power cycle and read journalctl -b -1 after boot.', 'Worth it: a reset wipes the screen and the ring buffer — no evidence means no root cause, it happens again, and escalation/RMA has nothing to go on.'],
-  31: ['Downtrained: Gen 4 x4 (~8 GB/s) → Gen 3 x2 (~2 GB/s), a quarter of the bandwidth.', '1) Confirm with sudo lspci -vv; record serial/firmware (nvme list).', '2) AER errors on the port above (dmesg); SEL.', '3) nvme smart-log health.', '4) Firmware (drive, backplane, BIOS); BIOS link settings.', '5) Reseat; check connector/cable.', '6) Move to another bay: follows the drive → drive; stays → bay/backplane/cable.', '7) Verify LnkSta = LnkCap under load; document.'],
-  32: ['(a) IP works, name fails → network is fine; problem is name resolution. Check /etc/resolv.conf, the DNS server is reachable, nslookup/dig db01, /etc/hosts, the full name (FQDN).', '(b) Name resolves, no reply → DNS is fine; problem is reaching the host. Check ip route and ping the gateway, traceroute db01, is db01 up, a firewall blocking ping, the service/port, test from another machine.'],
-  33: ['Each slot belongs to one CPU, so suspect the shared part — CPU 2 — not each device.', 'Causes: CPU 2 seating, bent socket pins, overheating, a failed CPU; a BIOS setting; shared risers/cables.', 'Narrow: 1) is CPU 2 seen? lscpu sockets, BMC inventory, SEL; 2) is its memory there? free -h, dmidecode; 3) lspci -tv vs diagram; 4) power off, ESD: CPU 2 seating, heatsink torque, pins; 5) swap CPUs or minimum config; verify, document.'],
-  34: ['~64 GB missing = one DIMM.', '1) sudo dmidecode -t memory: find the slot showing "No Module Installed" vs the build sheet.', '2) BIOS: is a DIMM disabled?', '3) SEL: memory or configuration errors.', '4) Physical: seated, both latches, right part; population rules.', '5) Swap test if needed.', '6) Verify free -h shows 1 TB; memory test; document.'],
-  35: ['ens2f1 is UP (enabled) and LOWER_UP (link OK); mtu 9000 (jumbo, must match the switch); MAC b8:ce:f6:4a:10:22.', '169.254.88.4/16, scope link = self-assigned: it asked DHCP and got no answer.', 'Most likely: DHCP failed. Next: ip route (no gateway); is the DHCP server up and reachable; switch port VLAN; a DHCP relay for this subnet; should it be static/reserved; renew (dhclient); MTU matches; document.'],
-  36: ['Suspect an MTU mismatch: the port at 9000 (jumbo), the switch at 1500 — small packets fit, big ones are dropped.', 'Confirm: ip a shows mtu 9000 on that port and 1500 on the working one; ping -M do -s 8972 to the gateway fails, -s 1472 works; check the switch port MTU.', 'Fix: match both ends (ip link set ... mtu 1500, or jumbo on the switch); retest a transfer; document.'],
-  37: ['Collect: Xid 79 and timestamps, time into the test, GPU temperature and power at failure, SEL thermal/power, PSU status, AER before it fell, serial/VBIOS/driver/firmware, other units or slots.', 'Hypotheses in order: 1) thermal (airflow parts, fans, heatsink); 2) power (aux cable, PSU); 3) signal (seating, riser, retimer); 4) the GPU itself.', 'Prove: reproduce under stress while logging temperature; change one thing; run enough clean cycles; swap the GPU to another slot (follows/stays); compare a golden unit; document.'],
-  38: ['What changed: the adapter. Watch the console — it stops at the UEFI/BIOS stage.', 'Is the drive seen in BIOS? No → seating (power off, ESD), cables, slot enabled, bifurcation the new card needs, firmware. Yes → boot order (old entry), UEFI vs Legacy, Secure Boot, RAID controller.', 'One change at a time; verify it boots to login and the network; document and feed back to whoever swapped it.'],
-  39: ['BMC: power status, sensors, SEL → is the hardware on and healthy? What changed?', 'Console (SOL/KVM): POST/boot error/panic, or a login prompt → is the OS running?', 'If the OS is up, from the console: link (ip a, ethtool), NIC in lspci, driver bound (lspci -k, dmesg), IP, gateway, sshd → the network.', 'Compare firmware before/after with the approved list; roll back or install approved (never power off mid-update); retest; document.'],
-  40: ['OS logs that just stop point below the OS — power, hardware, a watchdog.', 'Check: journalctl --list-boots and journalctl -b -1 (persistent journal); BMC SEL for power, thermal, uncorrectable memory events and watchdog at those times; PSUs (status, redundancy, cords, PDU); temperatures and fans.', 'Catch it: correlate timestamps; keep logs persistent, log the console via SOL, record sensors; reproduce (burn-in); one change at a time; verify redundancy; document.']
-};
-const paperHtml = n => `<ol class="paper-ans">${(PAPER[n] || []).map(x => `<li>${esc(x)}</li>`).join('')}</ol>`;
-const qKind = q => KINDS[QKIND[q.n] || 'scenario'];
-
-/* course practice exam items without a mission: give them a kind, keys and a paper answer */
-const COURSE_EXTRA = {
-  2: {kind: 'read', keys: [K('ip a', 'ip a'), K('interface names', 'name|interface'), K('UP / LOWER_UP / NO-CARRIER', 'LOWER.?UP|NO.?CARRIER|\\bUP\\b'), K('MTU', 'mtu'), K('MAC', 'MAC|link/ether'), K('prefix / broadcast', 'prefix|/24|brd|broadcast'), K('dynamic vs static', 'dynamic|static|forever|DHCP')], paper: ['ip a', 'Also shows: interface names; UP and LOWER_UP (or NO-CARRIER); MTU; MAC (link/ether); subnet prefix and broadcast; dynamic (DHCP, lease time) or static ("forever").']},
-  5: {kind: 'define', keys: [K('downtrained', 'downtrain|downgrad'), K('LnkCap / LnkSta', 'LnkCap|LnkSta'), K('Gen5 x16 ≈ 64 GB/s', '64'), K('Gen4 x8 ≈ 16 GB/s', '16 ?GB'), K('48 GB/s / 75% lost', '48|75|three quarters'), K('weakest part / slot', 'weakest|slot|wired'), K('seating / riser / cable / retimer', 'seat|riser|cable|retimer'), K('BIOS setting', 'BIOS')], paper: ['Downtrained in speed and width: capable Gen 5 x16 (≈64 GB/s each way), trained Gen 4 x8 (16 × 8 ÷ 8 ≈ 16 GB/s).', 'Lost ≈ 48 GB/s per direction — three quarters.', 'Check: slot gen/wiring (weakest part); seating, connector, riser, cable, retimer; BIOS link speed/bifurcation; AER errors. Change one thing, re-check LnkSta.']},
-  10: {kind: 'compare', keys: [K('in-band / out-of-band', 'in.?band|out.?of.?band'), K('SSH needs OS + network + sshd', 'sshd|OS|network'), K('SOL through BMC', 'BMC'), K('healthy server work', 'test|log|daily|copy'), K('won\'t boot / frozen', 'boot|frozen|panic|crash'), K('lost network / BIOS settings', 'network|BIOS')], paper: ['SSH (in-band; needs the OS, network, sshd): daily work on a healthy server — running tests, copying logs.', 'Only SOL (out-of-band through the BMC): a server that won\'t boot or has panicked; one that lost its network; changing BIOS settings.', 'Why: SSH talks to the OS; SOL talks to the console through the BMC.']},
-  11: {kind: 'command', keys: [K('grep', 'grep'), K('-i', '-\\w*i'), K('-n', '-\\w*n'), K('the log file', '/var/log')], paper: ['grep -in "timeout" /var/log/syslog   (or sudo grep -in "timeout" /var/log/messages on Red Hat)', '-i = ignore case; -n = show line numbers.']}
-};
-
-/* ---------- typing helpers ---------- */
-const WORDS = {define: [60, 110], read: [60, 110], compare: [70, 120], command: [25, 60], concept: [60, 110], scenario: [90, 160]};
-const LINT = [
-  [t => /journalctl\s+-b-1/i.test(t), 'Put a space before the 1: journalctl -b -1'],
-  [t => /journalctl\s+-b\s+1\b/i.test(t), 'The previous boot is -b -1 (minus one). -b 1 means the oldest boot the journal has.'],
-  [t => /\bdmesg\s+-t\b/.test(t), 'Readable timestamps use a capital T: dmesg -T'],
-  [t => /\/var\/logs\b/i.test(t), 'The log folder is /var/log (no s).'],
-  [t => /resolve\.conf/i.test(t), 'The DNS file is /etc/resolv.conf (no e after resolv).'],
-  [t => /nvidia\s+smi\b|nvidiasmi/i.test(t), 'The command is nvidia-smi, with a hyphen.'],
-  [t => /ethtool\s+-s\b/.test(t), 'Error counters need a capital S: ethtool -S (lower-case -s changes settings).'],
-  [t => /dmidecode\s+memory|dmidecode\s+-t\s*mem\b/i.test(t), 'Write it as: dmidecode -t memory'],
-  [t => /ipmitool\s+sel(?!\s+(e?list|clear|info))/i.test(t), 'Read the BMC event log with: ipmitool sel elist'],
-  [t => /ipmi\s+tool/i.test(t), 'ipmitool is one word.'],
-  [t => /\bifconfig\b/i.test(t), 'ifconfig works but is the older tool; the course uses ip a.'],
-  [t => /\bip\s+-a\b/i.test(t), 'It is ip a, with no dash.'],
-  [t => /\b(lnkcap|lnksta)\b/i.test(t) && /lspci\s+-vv/i.test(t) && !/sudo\s+lspci/i.test(t), 'LnkCap and LnkSta only appear when you run sudo lspci -vv.'],
-  [t => /^\s*(\d+[.)]\s*|[-*]\s*)?(Lspci|Dmesg|Grep|Journalctl|Ipmitool|Ethtool|Nvidia-smi|Lsblk|Lscpu|Dmidecode|Sudo|Nvme|Nslookup|Systemctl)\b/m.test(t), 'Linux is case-sensitive: commands are lower case. Autocorrect may have capitalised one at the start of a line.']
-];
-const lintText = t => LINT.filter(([f]) => f(t)).map(([, m]) => m);
-const wordCount = t => (t.match(/\S+/g) || []).length;
-function typingAids(ta, onSubmit) {
-  ta.setAttribute('autocapitalize', 'off'); ta.setAttribute('autocorrect', 'off');
-  ta.addEventListener('keydown', e => {
-    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') { e.preventDefault(); if (onSubmit) onSubmit(); return; }
-    if (e.key !== 'Enter' || e.shiftKey || e.altKey) return;
-    const v = ta.value, pos = ta.selectionStart; const ls = v.lastIndexOf('\n', pos - 1) + 1; const line = v.slice(ls, pos);
-    const num = line.match(/^(\s*)(\d+)([.)])\s+(.*)$/), bul = line.match(/^(\s*)([-*])\s+(.*)$/);
-    if (!num && !bul) return;
-    e.preventDefault();
-    const rest = num ? num[4] : bul[3];
-    if (!rest.trim()) { ta.value = v.slice(0, ls) + v.slice(ta.selectionEnd); ta.selectionStart = ta.selectionEnd = ls; }
-    else { const ins = '\n' + (num ? num[1] + (+num[2] + 1) + num[3] + ' ' : bul[1] + bul[2] + ' '); ta.value = v.slice(0, pos) + ins + v.slice(ta.selectionEnd); ta.selectionStart = ta.selectionEnd = pos + ins.length; }
-    ta.dispatchEvent(new Event('input'));
-  });
-}
-function wordBar(kindKey) {
-  const [lo, hi] = WORDS[kindKey]; const max = hi * 1.5;
-  const fill = h('i'); const band = h('b', {style: `left:${lo / max * 100}%;width:${(hi - lo) / max * 100}%`});
-  const txt = h('span', {class: 'tnum'});
-  const el = h('div', {class: 'wbar'}, h('div', {class: 'wtrack'}, band, fill), txt);
-  const update = t => { const n = wordCount(t); fill.style.width = Math.min(100, n / max * 100) + '%'; const st = n < lo ? 'under' : n > hi ? 'over' : 'ok'; el.className = 'wbar ' + st; txt.textContent = `${n} words · aim for ${lo}–${hi}${st === 'under' ? ' — keep going' : st === 'over' ? ' — tighten it up' : ' — good length'}`; };
-  return {el, update};
-}
-function coachEl(q, kindKey) {
-  const kind = KINDS[kindKey]; const wb = wordBar(kindKey);
-  const chips = kind.checks.map(c => h('span', {class: 'crit'}, c[0]));
-  const lint = h('div', {class: 'lint'});
-  const el = h('div', {class: 'coach'}, wb.el, h('div', {class: 'crits'}, h('span', {class: 'eyebrow', style: 'margin-right:4px'}, 'Live coach'), ...chips), lint);
-  const update = t => { wb.update(t); kind.checks.forEach((c, i) => chips[i].classList.toggle('on', !!c[1](t, q))); const L = lintText(t); lint.innerHTML = ''; L.forEach(m => lint.appendChild(h('div', {}, '⚠ ' + m))); };
-  return {el, update};
-}
-
-/* ---------- mark sheet: tick what your paper answer did ---------- */
-function markSheet(q, kindKey, text, opts = {}) {
-  const S = App.state; const kind = KINDS[kindKey]; const id = q.id || ('c' + q.n);
-  const keys = q.keys || [];
-  const prev = (S.marks && S.marks[id]) || null;
-  const ticksK = keys.map((k, i) => prev && !text ? !!prev.k[i] : (text ? new RegExp(k.re, 'i').test(text) : false));
-  const ticksM = kind.checks.map((c, i) => prev && !text ? !!prev.m[i] : (text ? !!c[1](text, q) : false));
-  const scoreEl = h('div', {class: 'markscore'});
-  const save = () => { S.marks = S.marks || {}; S.marks[id] = {k: ticksK, m: ticksM, at: Date.now()}; App.save(); };
-  const pct = () => { const k = keys.length ? ticksK.filter(Boolean).length / keys.length : 1; const m = ticksM.filter(Boolean).length / kind.checks.length; return Math.round((k * 0.6 + m * 0.4) * 100); };
-  const sugg = p => p >= 70 ? 'got' : p >= 40 ? 'partly' : 'missed';
-  const gradeRow = h('div', {class: 'grade'});
-  const drawGrade = () => {
-    gradeRow.innerHTML = '';
-    if (!q.id) return;
-    [['got', 'Got it'], ['partly', 'Partly'], ['missed', 'Missed']].forEach(([k, l]) => gradeRow.appendChild(h('button', {'data-g': k, class: S.grades[q.id] === k ? 'on' : '', onclick: () => { S.grades[q.id] = k; App.save(); drawGrade(); App.refresh(); if (k === 'got') App.award(q.id + ':paper', 25, `Question ${q.n} marked Got it`); if (opts.onGrade) opts.onGrade(k); }}, l)));
-  };
-  const drawScore = () => { const p = pct(); const s = sugg(p); scoreEl.innerHTML = `<span class="bigval tnum">${p}%</span><span>Key ideas ${ticksK.filter(Boolean).length}/${keys.length} · How you wrote it ${ticksM.filter(Boolean).length}/${kind.checks.length}<br><b>Suggested Review Map mark: ${{got: 'Got it', partly: 'Partly', missed: 'Missed'}[s]}</b> — you decide.</span>`; };
-  const box = (label, on, onToggle) => { const b = h('button', {class: 'tick' + (on ? ' on' : ''), 'aria-pressed': on ? 'true' : 'false'}, h('span', {class: 'tb'}), h('span', {}, label)); b.addEventListener('click', () => { onToggle(); b.classList.toggle('on'); b.setAttribute('aria-pressed', b.classList.contains('on') ? 'true' : 'false'); save(); drawScore(); }); return b; };
-  const paper = h('div', {class: 'reveal hint'}, h('div', {class: 'rh'}, h('span', {class: 'eyebrow'}, text != null ? 'A complete answer' : 'What fits on paper'), h('b', {}, `About ${kind.mins} minutes' worth`)), h('div', {class: 'rb', html: opts.paper ? `<ol class="paper-ans">${opts.paper.map(x => `<li>${esc(x)}</li>`).join('')}</ol>` : paperHtml(q.n)}));
-  const full = h('div', {class: 'prose hide', style: 'background:var(--ok-wash);border-radius:5px;padding:12px 16px', html: opts.full || q.answer || ''});
-  save(); drawScore(); drawGrade();
-  if (opts.onScore) opts.onScore(pct());
-  let missedEl = null;
-  if (text != null) {
-    const lines = opts.paper || PAPER[q.n] || [];
-    const miss = keys.filter((k, i) => !ticksK[i]);
-    const L = lintText(text);
-    missedEl = h('div', {class: 'stack', style: 'gap:8px'},
-      miss.length ? h('div', {class: 'callout warn'}, h('b', {class: 'tag'}, `What you missed (${miss.length})`), h('ul', {style: 'margin:4px 0 0;padding-left:1.2em;display:flex;flex-direction:column;gap:6px'}, miss.map(k => { const hit = lines.find(l => new RegExp(k.re, 'i').test(l)); return h('li', {}, h('b', {}, k.label), hit ? h('div', {class: 'muted', style: 'font-size:.88rem'}, '→ ' + hit) : null); }))) : h('div', {class: 'callout ok'}, h('b', {class: 'tag'}, 'Key ideas'), 'You covered every key idea the course expects.'),
-      L.length ? h('div', {class: 'callout warn'}, h('b', {class: 'tag'}, 'Command check'), h('ul', {style: 'margin:4px 0 0;padding-left:1.2em'}, L.map(m => h('li', {}, m)))) : null);
-  }
-  return h('div', {class: 'marksheet'},
-    h('div', {class: 'eyebrow'}, text != null ? 'Your answer was checked automatically — adjust the ticks if the checker missed something' : 'Mark your paper: tick only what you actually wrote'),
-    keys.length ? h('div', {class: 'stack', style: 'gap:6px'}, h('b', {style: 'font-size:.92rem'}, 'Key ideas the course expects'), h('div', {class: 'ticks'}, keys.map((k, i) => box(k.label, ticksK[i], () => { ticksK[i] = !ticksK[i]; })))) : null,
-    h('div', {class: 'stack', style: 'gap:6px'}, h('b', {style: 'font-size:.92rem'}, `How you wrote it — ${kind.name.toLowerCase()} criteria`), h('div', {class: 'ticks'}, kind.checks.map((c, i) => box(c[0], ticksM[i], () => { ticksM[i] = !ticksM[i]; })))),
-    scoreEl, missedEl, paper,
-    h('div', {class: 'row'}, opts.full !== false && (opts.full || q.answer) ? h('button', {class: 'btn sm ghost', onclick: () => full.classList.toggle('hide')}, 'Full model answer') : null, q.id ? h('a', {class: 'btn sm ghost', href: '#' + q.id}, 'Open the hands-on mission →') : null, ...(q.reread || []).map(id => { const m = MODULES.find(x => x.id === id); return h('a', {class: 'btn sm ghost', href: '#' + id}, 'Reread Module ' + m.n); })),
-    full, q.id ? h('div', {class: 'stack', style: 'gap:6px'}, h('b', {style: 'font-size:.92rem'}, 'Review Map'), gradeRow) : null);
-}
-
-/* ---------- page: How to write answers ---------- */
-function pageHowto() {
-  const ex = (title, body) => h('div', {class: 'callout ex'}, h('b', {class: 'tag'}, title), h('div', {html: body}));
-  const kindCard = (key, example) => { const k = KINDS[key]; return h('article', {class: 'lesson'}, h('div', {class: 'lhead'}, h('span', {class: 'num'}, `${k.mins} min · ${k.lines}`), h('h3', {}, k.name)), h('div', {class: 'lbody'}, h('ol', {class: 'steps'}, k.pattern.map(p => h('li', {}, h('div', {}, p)))), example, h('div', {class: 'muted', style: 'font-size:.86rem'}, 'Questions of this type: ' + MISSIONS.filter(q => QKIND[q.n] === key).map(q => q.n).join(', ')))); };
-  return h('div', {class: 'page'},
-    h('header', {class: 'hero'}, h('div', {}, h('div', {class: 'eyebrow'}, 'Exam answer prep'), h('h1', {}, 'How to write answers that score'), h('p', {class: 'lead'}, 'The assessment is 20 free-response questions in 60 minutes — no notes, no internet, no AI, and no topology or console in front of you. Graders look for a logical, ordered process, correct terms and commands, and your thinking step by step. Learn these six answer shapes and you will always know what to type.'))),
-    h('section', {class: 'grid2'},
-      h('div', {class: 'panel pad stack'}, h('h3', {}, 'On the day'), h('ul', {class: 'prose', style: 'padding-left:1.2em'}, h('li', {}, 'Budget 3 minutes per question: about 2 for definitions, 4–5 for scenarios. Stuck? Move on and come back.'), h('li', {}, 'Answer every question. If unsure, write what you would check first and why — correct thinking earns credit.'), h('li', {}, 'Troubleshooting: numbered steps in the order you would really do them, naming specific tools and logs.'), h('li', {}, 'Forgot an exact command? Describe what you would check and why.'), h('li', {}, 'End scenarios with verification and documentation. Write clearly.'), h('li', {}, 'Skip a hard one and flag it; come back when the easy marks are banked.'))),
-      h('div', {class: 'panel pad stack'}, h('h3', {}, 'Typing your answers'), h('ul', {class: 'prose', style: 'padding-left:1.2em'}, h('li', {}, 'Most people type 35–45 words a minute, so 3 minutes is room for about 100 words. More words is not more marks: the right terms in the right order is. Each question shows a target word range.'), h('li', {}, 'One step per line, numbered. In this trainer, type "1. " and press Enter — the next number appears. Shift+Enter gives a plain new line.'), h('li', {}, 'Type commands exactly, in lower case, with the spaces: grep -in, journalctl -b -1, ipmitool sel elist. Linux is case-sensitive (Failure ≠ failure).'), h('li', {}, 'Watch autocorrect: it capitalises the first word of a line (Lspci) and "fixes" resolv.conf. The checker flags these.'), h('li', {}, 'Name the tool, then why: "ipmitool sel elist — to read the BMC event log before changing anything".'), h('li', {}, 'Leave the last few minutes to re-read every answer for typos in commands. Ctrl+Enter checks an answer in Answer practice.')))),
-    h('section', {class: 'stack'}, h('div', {class: 'sec-title'}, h('span', {class: 'eyebrow'}, 'The six answer shapes'), h('h2', {}, 'Every question is one of these')),
-      kindCard('define', ex('Example — "Explain ECC"', '<b>ECC</b> is memory that stores extra check bits with the data. <i>(what)</i> On every read the bits are checked: one flipped bit is corrected, two are detected but not fixed. <i>(how)</i> It prevents silent data corruption and keeps servers running; a rising corrected-error count warns a DIMM will fail. <i>(why)</i> e.g. SEL: "Correctable ECC logging limit reached, DIMM C1". <i>(example)</i>')),
-      kindCard('scenario', ex('Weak vs strong — "fans run at full speed constantly"', '<b>Weak:</b> "Replace the fans." <br><b>Strong:</b> 1. Check BMC sensors and the event log first. 2. Look for physical causes: failed fan, missing air baffle, blocked airflow. 3. Check firmware. 4. Change one thing at a time and re-check sensors. 5. Verify fans and temperatures are normal. 6. Document.')),
-      kindCard('compare', ex('Example — SSH vs SOL in a small table', '<table class="tbl" style="margin-top:6px"><tr><th></th><th>SSH</th><th>SOL</th></tr><tr><td>Path</td><td>in-band, OS + normal network</td><td>out-of-band, BMC + mgmt network</td></tr><tr><td>Needs</td><td>OS running, network, sshd</td><td>no OS</td></tr><tr><td>Shows</td><td>a shell after boot</td><td>BIOS/POST, GRUB, kernel, panics</td></tr><tr><td>Use</td><td>daily work</td><td>won\'t boot, frozen, lost network, BIOS</td></tr></table>')),
-      kindCard('read', ex('Example — one line of ip a', '<code>mtu 9000</code> → jumbo frames, must match the switch. <code>dynamic</code> → the address came from DHCP. Always finish with what is <b>not</b> shown: gateway (<code>ip route</code>), DNS (<code>/etc/resolv.conf</code>), speed (<code>ethtool</code>).')),
-      kindCard('command', ex('Example', '<code>sudo grep -rin "nvme" /var/log/</code> — -r folder and subfolders, -i ignore case, -n line numbers. Count: <code>grep -ric</code> or <code>| wc -l</code>.')),
-      kindCard('concept', ex('Example — "failure follows the part"', 'It proves the part is very likely bad. It does <b>not</b> prove the original system is healthy — a bad slot may have damaged the part. Next: tag and quarantine, restore and retest the good system, test the original with a known-good part, record both serials, start the RMA.'))),
-    h('section', {class: 'stack'}, h('div', {class: 'sec-title'}, h('span', {class: 'eyebrow'}, 'Phrase bank'), h('h2', {}, 'Sentence starters for scenario answers')),
-      h('div', {class: 'panel pad'}, h('ol', {class: 'steps'}, ['First I would gather information: the exact symptom, when it started, what changed, and whether I can reproduce it.', 'Before changing anything I would check the evidence: dmesg / journalctl, the BMC event log, sensors and LEDs, and what the BIOS and OS see.', 'Then the simple physical things: seating, latches, cables in the right ports, power, BIOS settings.', 'To isolate it I would swap the ___ with a known-good one, one change at a time. If the problem follows the part, the part is bad; if it stays with the slot, I suspect the slot, cable, riser or board.', 'I would fix it and verify by re-running the full test, enough times to trust the result.', 'Finally I would document the serials, steps, root cause and fix, and look at how to prevent it on other units.'].map(t => h('li', {}, h('div', {}, t)))))),
-    h('div', {class: 'row'}, h('a', {class: 'btn', href: '#written'}, 'Practise a question →'), h('a', {class: 'btn ghost', href: '#recall'}, 'Command recall'), h('a', {class: 'btn ghost', href: '#revise'}, 'Revision sheet'), h('a', {class: 'btn ghost', href: '#exam'}, 'Full 60-minute exam')));
-}
-
-/* ---------- page: Written practice (one question at a time) ---------- */
-function pageWritten() {
-  const S = App.state; S.wr = S.wr || {mode: 'type', set: 'A', idx: 0, struct: false, ans: {}, secs: {}};
-  const W = S.wr; W.hist = W.hist || {}; if (W.coach == null) W.coach = true;
-  if (!S.typedDefault) { S.typedDefault = 1; W.mode = 'type'; S.examMode = 'type'; App.save(); }
-  if (App.pending && App.pending.written) { const n = App.pending.written; App.pending = null; W.set = n <= 20 ? 'A' : 'B'; W.idx = (n - 1) % 20; }
-  const order = () => {
-    if (W.set === 'A') return MISSIONS.filter(q => q.set === 'A');
-    if (W.set === 'B') return MISSIONS.filter(q => q.set === 'B');
-    if (W.set === 'weak') { const rank = q => ({missed: 0, partly: 1}[S.grades[q.id]] ?? (S.grades[q.id] === 'got' ? 9 : 2)); return MISSIONS.filter(q => S.grades[q.id] !== 'got').sort((a, b) => rank(a) - rank(b) || a.n - b.n); }
-    const seed = W.seed || (W.seed = 7 + Math.floor(Math.random() * 1000)); const arr = MISSIONS.slice(); let x = seed;
-    for (let i = arr.length - 1; i > 0; i--) { x = (x * 9301 + 49297) % 233280; const j = Math.floor(x / 233280 * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; }
-    return arr;
-  };
-  const host = h('div', {class: 'stack'});
-  let tick = null; App.track({destroy: () => clearInterval(tick)});
-  const draw = () => {
-    clearInterval(tick); host.innerHTML = '';
-    const list = order();
-    if (!list.length) { host.appendChild(h('div', {class: 'callout ok'}, h('b', {class: 'tag'}, 'Nothing weak'), 'Every question is marked Got it. Try a mixed set or the full 60-minute exam.')); return; }
-    W.idx = Math.max(0, Math.min(W.idx, list.length - 1));
-    const q = list[W.idx]; const kind = qKind(q);
-    const nav = h('div', {class: 'qnav'}, list.map((x, i) => h('button', {class: (i === W.idx ? 'on ' : '') + (S.grades[x.id] || ''), title: `Question ${x.n}: ${x.topic}`, onclick: () => { W.idx = i; App.save(); draw(); }}, String(x.n))));
-    const secs = () => W.secs[q.id] || 0;
-    const tEl = h('span', {class: 'timer tnum'}); const bar = h('div', {class: 'pace'}, h('i'));
-    let running = false;
-    const paint = () => { const s = secs(); tEl.textContent = `${p2(Math.floor(s / 60))}:${p2(s % 60)}`; const f = s / (kind.mins * 60); bar.firstChild.style.width = Math.min(100, f * 100) + '%'; bar.classList.toggle('over', f > 1); tEl.classList.toggle('low', f > 1); };
-    const start = () => { if (running) return; running = true; tick = setInterval(() => { W.secs[q.id] = secs() + 1; paint(); if (secs() % 10 === 0) App.save(); }, 1000); startBtn.textContent = 'Pause'; };
-    const pause = () => { running = false; clearInterval(tick); App.save(); startBtn.textContent = secs() ? 'Resume' : 'Start the clock'; };
-    const startBtn = h('button', {class: 'btn sm', onclick: () => running ? pause() : start()}, secs() ? 'Resume' : 'Start the clock');
-    paint();
-    const struct = h('div', {class: 'callout' + (W.struct ? '' : ' hide')}, h('b', {class: 'tag'}, 'Answer shape: ' + kind.name), h('ol', {style: 'margin:4px 0 0;padding-left:1.2em'}, kind.pattern.map(p => h('li', {}, p))));
-    const result = h('div');
-    let ta = null, coach = null;
-    const histEl = h('div', {class: 'muted tnum', style: 'font-size:.86rem'});
-    const drawHist = () => { const hs = W.hist[q.id] || []; histEl.textContent = hs.length ? 'Your checks on this question: ' + hs.map(x => x + '%').join(' → ') : ''; };
-    if (W.mode === 'type') {
-      ta = h('textarea', {class: 'typebox', id: 'wr-' + q.id, placeholder: 'Type your answer. Troubleshooting: start a line with "1. " and press Enter — the next number appears. Ctrl+Enter checks it.'});
-      ta.value = W.ans[q.id] || '';
-      coach = W.coach ? coachEl(q, QKIND[q.n]) : null;
-      const wb = W.coach ? null : wordBar(QKIND[q.n]);
-      const upd = () => { if (coach) coach.update(ta.value); if (wb) wb.update(ta.value); };
-      ta.addEventListener('input', () => { W.ans[q.id] = ta.value; if (!running && ta.value) start(); upd(); App.save(); }); upd();
-      typingAids(ta, () => check());
-      ta._wc = coach ? coach.el : wb.el;
-    }
-    drawHist();
-    const check = () => { pause(); result.innerHTML = ''; result.appendChild(markSheet(q, QKIND[q.n], W.mode === 'type' ? (ta.value || '') : null, {onGrade: () => drawNav(), onScore: p => { if (W.mode === 'type') { (W.hist[q.id] = W.hist[q.id] || []).push(p); if (W.hist[q.id].length > 8) W.hist[q.id].shift(); App.save(); drawHist(); } }})); if (W.mode === 'type') result.appendChild(h('div', {class: 'row', style: 'margin-top:10px'}, h('button', {class: 'btn', onclick: () => { ta.focus(); ta.scrollIntoView({behavior: RM ? 'auto' : 'smooth', block: 'center'}); }}, 'Improve my answer and check again'), histEl)); result.scrollIntoView({behavior: RM ? 'auto' : 'smooth', block: 'start'}); };
-    const drawNav = () => { [...nav.children].forEach((b, i) => { b.className = (i === W.idx ? 'on ' : '') + (S.grades[list[i].id] || ''); }); };
-    host.append(
-      h('div', {class: 'row', style: 'justify-content:space-between'}, h('span', {class: 'muted', style: 'font-size:.86rem'}, `${W.set === 'weak' ? 'Weak spots' : W.set === 'mix' ? 'Mixed order' : 'Set ' + W.set} · ${W.idx + 1} of ${list.length}`), nav),
-      h('article', {class: 'sheet'},
-        h('div', {class: 'sheethead'}, h('span', {}, `SET ${q.set}`), h('span', {}, `Question ${q.n}`), h('span', {class: 'kindtag'}, kind.name), h('span', {class: 'muted'}, `aim for ~${kind.mins} min · ${kind.lines}`)),
-        h('div', {class: 'sheetq'}, h('span', {class: 'qn'}, q.n), h('div', {class: 'stack', style: 'gap:10px'}, h('p', {class: 'q'}, q.q), q.code ? h('pre', {class: 'out'}, q.code) : null)),
-        struct,
-        W.mode === 'type' ? h('div', {class: 'stack', style: 'gap:6px'}, ta, ta._wc) : h('div', {class: 'penbox'}, h('b', {}, 'Write your answer on paper now.'), h('span', {}, `Start the clock, write for about ${kind.mins} minutes (${kind.lines}), then mark yourself honestly against the checklist.`)),
-        h('div', {class: 'row', style: 'justify-content:space-between'}, h('div', {class: 'row'}, tEl, h('div', {style: 'width:160px'}, bar), startBtn), h('div', {class: 'row'}, h('button', {class: 'btn ok', onclick: check, title: W.mode === 'type' ? 'Ctrl+Enter' : ''}, W.mode === 'type' ? 'Check my answer' : 'I\'ve finished writing — mark it'), h('button', {class: 'btn ghost sm', onclick: () => { W.secs[q.id] = 0; if (W.ans) W.ans[q.id] = ''; if (S.marks) delete S.marks[q.id]; App.save(); draw(); }}, 'Start over')))),
-      result,
-      h('div', {class: 'row', style: 'justify-content:space-between'}, h('button', {class: 'btn ghost', disabled: W.idx === 0 ? true : null, onclick: () => { W.idx--; App.save(); draw(); }}, '← Previous'), h('button', {class: 'btn', onclick: () => { W.idx = (W.idx + 1) % list.length; App.save(); draw(); window.scrollTo(0, 0); }}, 'Next question →')));
-  };
-  const setSeg = seg([['A', 'Set A'], ['B', 'Set B'], ['mix', 'Mixed 40'], ['weak', 'Weak spots first']], W.set, v => { W.set = v; W.idx = 0; if (v === 'mix') W.seed = 0; App.save(); draw(); });
-  const modeSeg = seg([['type', 'Type it'], ['paper', 'Pen & paper']], W.mode, v => { W.mode = v; App.save(); draw(); coachTog.classList.toggle('hide', v !== 'type'); });
-  const coachTog = h('button', {class: 'tog' + (W.coach ? ' on' : '') + (W.mode === 'type' ? '' : ' hide'), title: 'Shows the grading criteria lighting up as you type (not the answers)', onclick: e => { W.coach = !W.coach; e.currentTarget.classList.toggle('on', W.coach); App.save(); draw(); }}, 'Live coach');
-  const structTog = h('button', {class: 'tog' + (W.struct ? ' on' : ''), onclick: e => { W.struct = !W.struct; e.currentTarget.classList.toggle('on', W.struct); App.save(); draw(); }}, 'Show the answer shape');
-  draw();
-  return h('div', {class: 'page'},
-    h('header', {class: 'hero'}, h('div', {}, h('div', {class: 'eyebrow'}, 'Exam answer prep'), h('h1', {}, 'Answer practice'), h('p', {class: 'lead'}, 'What the exam gives you: a question and a clock — no topology, no console, no hints. Type a complete answer, check it against the course\'s grading criteria, see exactly what you missed, improve it and check again until it scores.')),
-      h('div', {class: 'meta'}, h('a', {href: '#howto'}, 'How to write answers →'), h('a', {href: '#exam'}, 'Full 60-minute exam →'))),
-    h('div', {class: 'row', style: 'gap:14px'}, modeSeg, setSeg, coachTog, structTog),
-    host);
-}
-
-/* ---------- page: Command recall ---------- */
-const RECALL = [
-  ['List every PCIe device', ['lspci'], 'lspci lists every device on the bus, driver or not.'],
-  ['Show which kernel driver each PCIe device uses', ['lspci -k'], '"Kernel driver in use" — the driver layer.'],
-  ['Show the PCIe tree (to compare with the topology diagram)', ['lspci -tv', 'lspci -vt'], '-t tree, -v names.'],
-  ['Show link capability and status (LnkCap / LnkSta)', ['lspci -vv', 'lspci -vv -s \\S+'], 'Needs sudo to see the capabilities.'],
-  ['Count the NVIDIA devices on the PCIe bus', ['lspci \\| grep -i nvidia \\| wc -l', 'lspci \\| grep -ic nvidia'], 'Pipe into grep, then count lines.'],
-  ['Kernel messages with readable timestamps', ['dmesg -T'], '-T human-readable times.'],
-  ['Only kernel errors and warnings', ['dmesg --level=err,warn', 'dmesg -l err,warn', 'dmesg --level=warn,err'], ''],
-  ['Follow kernel messages live', ['dmesg -w'], ''],
-  ['Read the previous boot from the journal', ['journalctl -b -1'], 'After a crash: what happened before it.'],
-  ['Kernel messages only, from the previous boot', ['journalctl -k -b -1', 'journalctl -b -1 -k'], ''],
-  ['Only errors from the journal for this boot', ['journalctl -b -p err', 'journalctl -p err -b', 'journalctl -p err'], '-p err = errors and worse.'],
-  ['Find "timeout" in /var/log/messages, ignoring case, with line numbers', ['grep -in "?timeout"? /var/log/messages', 'grep -ni "?timeout"? /var/log/messages', 'grep -i -n "?timeout"? /var/log/messages'], '-i ignore case, -n line numbers.'],
-  ['Search every file under /var/log (and subfolders) for nvme, ignoring case', ['grep -ri "?nvme"? /var/log/?', 'grep -ir "?nvme"? /var/log/?', 'grep -rin "?nvme"? /var/log/?', 'grep -rni "?nvme"? /var/log/?'], '-r recursive.'],
-  ['Save the kernel messages to a file before rebooting', ['dmesg > \\S+'], 'Redirect with > — evidence survives the reboot.'],
-  ['Show total memory in human units', ['free -h'], ''],
-  ['Show each DIMM slot: size, part and serial', ['dmidecode -t memory', 'dmidecode --type memory'], 'Needs sudo.'],
-  ['Summary of memory (EDAC) errors', ['ras-mc-ctl --summary'], ''],
-  ['List NVMe drives with serial and firmware', ['nvme list'], ''],
-  ['NVMe health: temperature, media errors', ['nvme smart-log /dev/nvme\\d'], ''],
-  ['GPUs the NVIDIA driver can see', ['nvidia-smi'], ''],
-  ['How GPUs connect to each other and to NICs', ['nvidia-smi topo -m'], 'The software version of the topology diagram.'],
-  ['IP addresses on every interface', ['ip a', 'ip addr', 'ip address', 'ip addr show'], ''],
-  ['Show the default gateway', ['ip route', 'ip r', 'ip route show'], ''],
-  ['Link speed and "Link detected" for eth0', ['ethtool eth0'], ''],
-  ['NIC driver and firmware version for eth0', ['ethtool -i eth0'], ''],
-  ['NIC error counters for eth0', ['ethtool -S eth0'], ''],
-  ['Transceiver details for eth0', ['ethtool -m eth0'], ''],
-  ['Bring interface ens1f0 up', ['ip link set ens1f0 up', 'ip link set dev ens1f0 up'], 'Needs sudo.'],
-  ['ARP table: has the server learned the gateway\'s MAC?', ['ip neigh', 'ip neighbor', 'ip neighbour', 'ip n'], ''],
-  ['Look up the name db01 in DNS', ['nslookup db01', 'dig db01', 'host db01'], ''],
-  ['Which file lists the DNS servers?', ['(cat )?/etc/resolv\\.conf'], ''],
-  ['Which file is checked before DNS?', ['(cat )?/etc/hosts'], ''],
-  ['Listening ports and the programs behind them', ['ss -tulpn', 'ss -tlnp', 'ss -tulnp', 'netstat -tulpn'], ''],
-  ['Is the SSH service running?', ['systemctl status sshd', 'systemctl status ssh'], ''],
-  ['BMC System Event Log', ['ipmitool sel elist', 'ipmitool sel list'], ''],
-  ['BMC sensors: temperatures, fans, PSUs', ['ipmitool sensor', 'ipmitool sdr'], ''],
-  ['Power cycle the server through the BMC', ['ipmitool power cycle', 'ipmitool chassis power cycle'], ''],
-  ['Open the serial console through the BMC', ['ipmitool sol activate'], 'Leave with ~.'],
-  ['Serial numbers through the BMC', ['ipmitool fru print', 'ipmitool fru'], ''],
-  ['Run ./test.sh 20 times and append results to results.txt', ['for i in \\$\\(seq 1 20\\); do ./test\\.sh >> results\\.txt; done'], 'The course\'s loop for intermittent failures.']
-];
-function pageRecall() {
-  const S = App.state; S.rc = S.rc || {seen: {}, right: {}, idx: 0};
-  const R = S.rc;
-  const norm = s => s.trim().replace(/\s+/g, ' ').replace(/^sudo /, '').replace(/[“”]/g, '"');
-  const host = h('div', {class: 'stack'});
-  const draw = () => {
-    host.innerHTML = '';
-    const total = RECALL.length; const right = Object.keys(R.right).length;
-    const i = R.idx % total; const [task, pats, note] = RECALL[i];
-    const inp = h('input', {class: 'inp', id: 'rc-in', style: 'width:100%;font-size:1rem;padding:10px 12px', placeholder: 'type the command from memory, then Enter', autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false'});
-    const fb = h('div');
-    const go = () => {
-      const v = norm(inp.value); if (!v) return;
-      const ok = pats.some(p => new RegExp('^' + p + '$', 'i').test(v));
-      R.seen[i] = (R.seen[i] || 0) + 1; if (ok) R.right[i] = 1; else delete R.right[i]; App.save();
-      const shown = pats[0].replace(/\\\|/g, '|').replace(/\\\$/g, '$').replace(/\\\(/g, '(').replace(/\\\)/g, ')').replace(/\\\./g, '.').replace(/\\S\+/g, 'file.txt').replace(/\\d/g, '0').replace(/"\?/g, '"').replace(/\/\?/g, '/').replace(/\(cat \)\?/g, 'cat ');
-      fb.innerHTML = ''; fb.appendChild(h('div', {class: 'callout ' + (ok ? 'ok' : 'warn')}, h('b', {class: 'tag'}, ok ? 'Correct' : 'Not quite'), h('span', {}, ok ? '' : 'Expected: '), h('code', {}, shown), note ? h('span', {}, ' — ' + note) : null));
-      if (ok) App.award('rc:' + i, 3, null);
-      setTimeout(() => { if (ok) { R.idx = (R.idx + 1) % total; App.save(); draw(); } }, ok ? 1100 : 0);
-    };
-    inp.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); go(); } });
-    host.append(
-      h('div', {class: 'row', style: 'justify-content:space-between'}, h('span', {class: 'muted'}, `Prompt ${i + 1} of ${total} · remembered ${right}/${total}`), h('div', {class: 'meter', style: 'width:220px'}, h('i', {style: `width:${right / total * 100}%;background:var(--ok)`}))),
-      h('div', {class: 'sheet'}, h('div', {class: 'sheethead'}, h('span', {}, 'COMMAND RECALL'), h('span', {class: 'kindtag'}, 'write it from memory')), h('p', {class: 'q', style: 'font-size:1.25rem'}, task), inp, h('div', {class: 'row'}, h('button', {class: 'btn', onclick: go}, 'Check'), h('button', {class: 'btn ghost sm', onclick: () => { R.idx = (R.idx + 1) % total; App.save(); draw(); }}, 'Skip'), h('button', {class: 'btn ghost sm', onclick: () => { const miss = RECALL.findIndex((x, k) => !R.right[k] && k !== i); if (miss >= 0) { R.idx = miss; App.save(); draw(); } }}, 'Next one I haven\'t got')), fb),
-      h('details', {}, h('summary', {style: 'cursor:pointer;font-weight:700'}, 'Show the full list (for review, not during practice)'), h('div', {class: 'tblwrap', style: 'margin-top:10px'}, h('table', {class: 'tbl'}, h('tr', {}, h('th', {}, 'Task'), h('th', {}, 'Command'), h('th', {}, '')), RECALL.map(([t, p], k) => h('tr', {}, h('td', {}, t), h('td', {}, h('code', {}, p[0].replace(/\\\|/g, '|').replace(/\\\$/g, '$').replace(/\\\(/g, '(').replace(/\\\)/g, ')').replace(/\\\./g, '.').replace(/\\S\+/g, 'file.txt').replace(/\\d/g, '0').replace(/"\?/g, '"').replace(/\/\?/g, '/').replace(/\(cat \)\?/g, 'cat '))), h('td', {}, R.right[k] ? '✓' : ''))))))
-    );
-    setTimeout(() => inp.focus({preventScroll: true}), 50);
-  };
-  draw();
-  return h('div', {class: 'page'},
-    h('header', {class: 'hero'}, h('div', {}, h('div', {class: 'eyebrow'}, 'Exam answer prep'), h('h1', {}, 'Command recall'), h('p', {class: 'lead'}, 'On paper there is no tab-completion and no man page. The readiness checklist asks you to write lspci, dmesg, journalctl -b -1, grep -in, ip a, ip route and ipmitool sel elist from memory — this drills those and the rest of the course\'s commands. sudo is optional here.'))),
-    host);
-}
-
-/* ---------- page: Revision sheet ---------- */
-function pageRevise() {
-  const S = App.state;
-  const facts = [['1U', '1.75 inches of rack height'], ['PCIe per lane, each direction', 'Gen 3 ≈ 1 GB/s · Gen 4 ≈ 2 · Gen 5 ≈ 4 · Gen 6 ≈ 8; x16 = ×16'], ['Quick PCIe math', 'GT/s × lanes ÷ 8 ≈ GB/s; Gen 5 x8 = Gen 4 x16 ≈ 32 GB/s'], ['Encoding loss', 'Gen 3–5 ≈ 1.5%; Gen 1–2 = 20%'], ['ECC', '1 bit: corrected (CE) · 2 bits: detected, not fixed (UE)'], ['169.254.x.x', 'self-assigned: DHCP did not answer'], ['127.0.0.1', 'the machine itself'], ['/24', '255.255.255.0 · 254 usable addresses'], ['SSH', 'TCP port 22 · in-band'], ['DHCP', 'Discover → Offer → Request → Acknowledge (DORA)'], ['DNS order', '/etc/hosts first, then the nameserver in /etc/resolv.conf · A record = name → IPv4'], ['dmesg vs journal', 'dmesg cleared on reboot · journalctl -b -1 = previous boot'], ['Logs live in', '/var/log/ — syslog (Ubuntu) or messages (Red Hat); configs in /etc/'], ['Xid 79', '"GPU has fallen off the bus" — power, heat or signal'], ['RAID', '1 mirrors · 5 survives 1 drive · 6 survives 2 · degraded = working, unprotected'], ['Boot chain', 'Power/BMC → POST → UEFI/BIOS → GRUB → kernel → system startup'], ['Four layers', 'Physical → Bus → Driver → Function'], ['Six steps', 'Gather → Evidence → Simple/physical → Isolate → Fix & verify → Document']];
-  const which = S.revSet || 'all';
-  const list = MISSIONS.filter(q => which === 'all' || (which === 'weak' ? S.grades[q.id] !== 'got' : q.set === which));
-  return h('div', {class: 'page'},
-    h('header', {class: 'hero'}, h('div', {}, h('div', {class: 'eyebrow'}, 'Exam answer prep'), h('h1', {}, 'Revision sheet'), h('p', {class: 'lead'}, 'Everything you must be able to write from memory, on one page. Read it the night before; then close it and test yourself in Written practice.'))),
-    h('section', {class: 'stack'}, h('div', {class: 'sec-title'}, h('span', {class: 'eyebrow'}, 'Must-know facts'), h('h2', {}, 'Numbers and lists graders expect')),
-      h('div', {class: 'tblwrap'}, h('table', {class: 'tbl'}, facts.map(([a, b]) => h('tr', {}, h('td', {style: 'font-weight:700;white-space:nowrap'}, a), h('td', {}, b)))))),
-    h('section', {class: 'stack'}, h('div', {class: 'sec-title'}, h('span', {class: 'eyebrow'}, 'All 40 questions'), h('h2', {}, 'What each answer must contain')),
-      seg([['all', 'All 40'], ['A', 'Set A'], ['B', 'Set B'], ['weak', 'Not yet Got it']], which, v => { S.revSet = v; App.save(); App.go('revise'); }),
-      ...list.map(q => { const det = h('div', {class: 'hide', html: paperHtml(q.n)}); return h('div', {class: 'revrow'}, h('div', {class: 'row', style: 'gap:10px;align-items:baseline;flex-wrap:nowrap'}, h('b', {class: 'qn2'}, q.n), h('div', {class: 'stack', style: 'gap:6px;min-width:0'}, h('div', {}, h('b', {}, q.topic), h('span', {class: 'muted'}, ' · ' + qKind(q).name), S.grades[q.id] ? h('span', {class: 'pill ' + S.grades[q.id], style: 'margin-left:8px'}, {got: 'Got it', partly: 'Partly', missed: 'Missed'}[S.grades[q.id]]) : null), h('div', {class: 'muted', style: 'font-size:.9rem'}, q.q), h('div', {class: 'keys'}, q.keys.map(k => h('span', {class: 'key'}, k.label))), h('div', {class: 'row'}, h('button', {class: 'btn sm ghost', onclick: () => det.classList.toggle('hide')}, 'Paper answer'), h('button', {class: 'btn sm ghost', onclick: () => { App.pending = {written: q.n}; App.go('written'); }}, 'Practise it written')), det))); })));
-}
-
-/* ---------- page: the full paper (replaces the old exam room) ---------- */
-function pagePaper() {
-  const S = App.state;
-  const which = S.examSet || 'A';
-  const mode = S.examMode || 'type';
-  const items = which === 'course' ? COURSE_EXAM.map((x, i) => { const m = x.m ? MISSIONS[x.m - 1] : null; const ex = COURSE_EXTRA[i + 1]; return {n: i + 1, q: x.q, kindKey: ex ? ex.kind : (m ? QKIND[m.n] : 'scenario'), keys: ex ? ex.keys : (m ? m.keys : []), paper: ex ? ex.paper : (m ? PAPER[m.n] : null), full: x.a || (m ? m.answer : ''), m}; })
-    : MISSIONS.filter(q => q.set === which).map(q => ({n: q.n, q: q.q, code: q.code, kindKey: QKIND[q.n], keys: q.keys, paper: PAPER[q.n], full: q.answer, m: q}));
-  const key = which + ':' + mode;
-  S.exam = S.exam || {}; const E = S.exam[key] = S.exam[key] || {ans: {}, start: null, done: false, flags: {}, page: 0};
-  const tEl = h('span', {class: 'timer tnum'}, '60:00');
-  const paceEl = h('span', {class: 'muted', style: 'font-size:.84rem'});
-  let iv = null; App.track({destroy: () => clearInterval(iv)});
-  const tick = () => { if (!E.start || E.done) { tEl.textContent = E.done ? 'finished' : '60:00'; paceEl.textContent = ''; return; } const used = Math.floor((Date.now() - E.start) / 1000); const left = Math.max(0, 3600 - used); tEl.textContent = `${p2(Math.floor(left / 60))}:${p2(left % 60)}`; tEl.classList.toggle('low', left < 300); paceEl.textContent = `On pace you'd be near question ${Math.min(20, Math.floor(used / 180) + 1)} of 20`; if (!left) { E.done = true; App.save(); App.go('exam'); } };
-  iv = setInterval(tick, 1000);
-  const body = h('div', {class: 'stack'});
-  const qBlock = it => {
-    const kind = KINDS[it.kindKey];
-    const flag = h('button', {class: 'tog' + (E.flags[it.n] ? ' on' : ''), onclick: e => { E.flags[it.n] = !E.flags[it.n]; e.currentTarget.classList.toggle('on'); App.save(); }}, '⚑ come back');
-    const blk = h('div', {class: 'examq'}, h('div', {class: 'q'}, h('b', {}, it.n), h('div', {class: 'stack', style: 'gap:8px;min-width:0'}, h('div', {}, it.q), it.code ? h('pre', {class: 'out'}, it.code) : null, h('div', {class: 'row'}, h('span', {class: 'kindtag'}, kind.name), h('span', {class: 'muted', style: 'font-size:.82rem'}, `~${kind.mins} min · ${kind.lines}`), E.done ? null : flag))));
-    if (mode === 'type' && !E.done) { const ta = h('textarea', {class: 'typebox', id: `px-${key}-${it.n}`, style: 'min-height:170px', disabled: !E.start ? true : null, placeholder: E.start ? 'Type your answer…' : 'Press Start to begin the 60-minute timer'}); ta.value = E.ans[it.n] || ''; const wb = wordBar(it.kindKey); ta.addEventListener('input', () => { E.ans[it.n] = ta.value; wb.update(ta.value); App.save(); }); typingAids(ta, null); wb.update(ta.value); blk.append(ta, wb.el); }
-    if (mode === 'paper' && !E.done) blk.appendChild(h('div', {class: 'penbox'}, h('span', {}, 'Answer on paper, labelled ' + it.n + '.')));
-    if (E.done) blk.appendChild(markSheet(it.m && which !== 'course' ? it.m : {n: it.n, id: it.m && which !== 'course' ? it.m.id : null, keys: it.keys, answer: it.full, reread: it.m ? it.m.reread : []}, it.kindKey, mode === 'type' ? (E.ans[it.n] || '') : null, {paper: it.paper, full: it.full}));
-    return blk;
-  };
-  const render = () => {
-    body.innerHTML = '';
-    if (E.done) {
-      body.appendChild(h('div', {class: 'callout ok'}, h('b', {class: 'tag'}, mode === 'type' ? 'Your results' : 'Mark your paper'), mode === 'paper' ? 'Go question by question with your written answers next to you. Tick only what you actually wrote, then compare with the paper-length answer and set your Review Map mark.' : 'Your typed answers were checked automatically; adjust the ticks where the checker missed something.'));
-      items.forEach(it => body.appendChild(qBlock(it)));
-      return;
-    }
-    const pages = []; for (let i = 0; i < items.length; i += 2) pages.push(items.slice(i, i + 2));
-    E.page = Math.min(E.page || 0, pages.length - 1);
-    const pg = pages[E.page];
-    const pager = h('div', {class: 'row', style: 'justify-content:space-between'}, h('button', {class: 'btn ghost sm', disabled: E.page === 0 ? true : null, onclick: () => { E.page--; App.save(); render(); }}, '← Previous page'), h('div', {class: 'qnav'}, pages.map((p, i) => h('button', {class: (i === E.page ? 'on ' : '') + (p.some(x => E.flags[x.n]) ? 'partly' : ''), title: `Questions ${p.map(x => x.n).join(' and ')}`, onclick: () => { E.page = i; App.save(); render(); }}, p.map(x => x.n).join('·')))), h('button', {class: 'btn ghost sm', disabled: E.page === pages.length - 1 ? true : null, onclick: () => { E.page++; App.save(); render(); }}, 'Next page →'));
-    body.append(pager, h('article', {class: 'sheet'}, h('div', {class: 'sheethead'}, h('span', {}, which === 'course' ? 'COURSE PRACTICE EXAM' : 'SET ' + which), h('span', {}, `Questions ${pg.map(x => x.n).join(' and ')}`), h('span', {class: 'muted'}, `Page ${E.page + 1} of ${pages.length}`)), ...pg.map(qBlock)));
-  };
-  render(); tick();
-  const pick = seg([['A', 'Set A (1–20)'], ['B', 'Set B (21–40)'], ['course', 'Course practice exam (20)']], which, v => { S.examSet = v; App.save(); App.go('exam'); });
-  const modeSeg = seg([['type', 'Type it'], ['paper', 'Pen & paper']], mode, v => { S.examMode = v; App.save(); App.go('exam'); });
-  return h('div', {class: 'page'},
-    h('header', {class: 'hero'}, h('div', {}, h('div', {class: 'eyebrow'}, 'Exam answer prep'), h('h1', {}, 'The 60-minute exam'), h('p', {class: 'lead'}, 'Twenty questions, two to a page like the practice packet, one hour, no notes, no other tabs. Type each answer in its box — about 3 minutes each. When you stop, every answer is checked and you see what you missed. (Pen & paper mode is still there if you want handwriting practice.)')),
-      h('div', {class: 'meta'}, tEl, paceEl, h('div', {class: 'row'}, !E.start ? h('button', {class: 'btn', onclick: () => { E.start = Date.now(); E.done = false; App.save(); App.go('exam'); }}, 'Start the 60 minutes') : !E.done ? h('button', {class: 'btn warn', onclick: () => { E.done = true; App.save(); App.award('paper:' + key, 80, 'Finished a 60-minute exam'); App.go('exam'); window.scrollTo(0, 0); }}, mode === 'type' ? 'Stop — check my answers' : 'Stop — mark my paper') : null, h('button', {class: 'btn ghost', onclick: () => { S.exam[key] = {ans: {}, start: null, done: false, flags: {}, page: 0}; App.save(); App.go('exam'); }}, 'Reset')))),
-    h('div', {class: 'row', style: 'gap:14px'}, modeSeg, pick),
-    !E.start && !E.done ? h('div', {class: 'callout'}, h('b', {class: 'tag'}, 'Before you start'), mode === 'type' ? 'Close your notes and other tabs, put your phone away, and press Start. The rules from the practice packet apply: about 3 minutes per question, skip and come back (flag it), numbered steps for troubleshooting, never leave a blank. Leave the last few minutes to re-read and fix command typos.' : 'Set out paper and a pen, put your notes and phone away, and press Start. About 3 minutes per question, skip and come back, numbered steps for troubleshooting, never leave a blank.') : null,
-    body);
-}
-const WRITTEN_ROUTES = {howto: pageHowto, written: pageWritten, recall: pageRecall, revise: pageRevise, exam: pagePaper};
 </script>
 <script>
 /* =====================================================================
@@ -5995,7 +5505,7 @@ const WRITTEN_ROUTES = {howto: pageHowto, written: pageWritten, recall: pageReca
    ===================================================================== */
 const App = (() => {
   const KEY = 'dtb-v1';
-  let S = {xp: 0, awarded: {}, seen: {}, grades: {}, answers: {}, hints: {}, ready: {}, exam: {}, notes: ''};
+  let S = {xp: 0, awarded: {}, seen: {}, grades: {}, answers: {}, hints: {}, ready: {}, notes: ''};
   try { const raw = localStorage.getItem(KEY); if (raw) S = Object.assign(S, JSON.parse(raw)); } catch (e) {}
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} };
   const RANKS = [[0, 'Bench Trainee'], [150, 'Cable Runner'], [400, 'Bench Tech'], [800, 'Diagnostic Tech'], [1300, 'Senior Diag Tech'], [2000, 'Lead Tech']];
@@ -6036,8 +5546,7 @@ const App = (() => {
     rail.append(
       h('h6', {}, 'Start'), a('start', '▸', 'How this works'),
       h('h6', {}, 'Learn — 12 modules'), ...MODULES.map(m => a(m.id, String(m.n).padStart(2, '0'), m.title, modDone(m) ? 'done' : S.seen[m.id] ? 'seen' : '')),
-      h('h6', {}, 'Exam answers'), a('howto', '✎', 'How to write answers'), a('written', 'W', 'Answer practice'), a('recall', '>_', 'Command recall'), a('revise', 'RV', 'Revision sheet'), a('exam', '60', 'The 60-minute exam'),
-      h('h6', {}, 'Hands-on practice'), a('handson', 'VM', 'Hands-On Practice'), a('sandbox', 'SB', 'Sandbox server'), a('setA', 'A', `Missions 1–20 (${doneA}/20)`), a('setB', 'B', `Missions 21–40 (${doneB}/20)`),
+      h('h6', {}, 'Practice'), a('handson', 'VM', 'Hands-On Practice'), a('sandbox', 'SB', 'Sandbox server'), a('setA', 'A', `Missions 1–20 (${doneA}/20)`), a('setB', 'B', `Missions 21–40 (${doneB}/20)`),
       h('h6', {}, 'Reference'), a('ref', '$', 'Command quick reference'), a('ready', '✓', 'Are you ready?'));
   }
   function cleanup() { live.forEach(x => { try { x.destroy(); } catch (e) {} }); live = []; (Topo.all || []).forEach(t => { try { t.destroy(); } catch (e) {} }); Topo.all = []; }
@@ -6070,7 +5579,7 @@ const App = (() => {
             h('div', {class: 'stat'}, h('b', {class: 'tnum'}, `${graded}/40`), h('span', {}, 'missions self-graded')),
             h('div', {class: 'stat'}, h('b', {class: 'tnum'}, String(S.xp)), h('span', {}, 'XP')),
             h('div', {class: 'stat'}, h('b', {}, rank().r[1]), h('span', {}, 'rank'))),
-          h('div', {class: 'row'}, h('a', {class: 'btn', href: '#' + (MODULES.find(m => !modDone(m)) || MODULES[0]).id}, 'Continue learning'), h('a', {class: 'btn ghost', href: '#setA'}, 'Go to missions'), h('a', {class: 'btn ghost', href: '#exam'}, 'Timed exam'))),
+          h('div', {class: 'row'}, h('a', {class: 'btn', href: '#' + (MODULES.find(m => !modDone(m)) || MODULES[0]).id}, 'Continue learning'), h('a', {class: 'btn ghost', href: '#setA'}, 'Go to missions'))),
         h('div', {class: 'stack', style: 'gap:10px'}, h('div', {class: 'eyebrow'}, 'How every lesson looks'), h('div', {class: 'panel pad stack', style: 'gap:10px'}, h('span', {class: 'envtag'}, h('b', {class: 'gui'}, 'Interactive'), 'an animated topology for each topic — tap parts, press Play'), h('span', {class: 'envtag'}, h('b', {class: 'cli'}, 'CLI'), 'a console that names its OS and shell: bash on Rocky Linux 9.4, bash on your Ubuntu laptop, or SOL via the BMC'), h('span', {class: 'envtag'}, h('b', {class: 'phy'}, 'Physical'), 'hardware work done on the drawing: inspect, reseat, swap, recable'), h('span', {class: 'envtag'}, h('b', {class: 'gui'}, 'GUI'), 'BMC web page, BIOS screens, test station, repair record')))),
       h('section', {class: 'stack'}, h('div', {class: 'sec-title'}, h('span', {class: 'eyebrow'}, 'Animated'), h('h2', {}, 'The troubleshooting method, running')), t.el),
       h('section', {class: 'stack'},
@@ -6078,7 +5587,7 @@ const App = (() => {
         h('div', {class: 'method'}, [['1', 'Gather information', 'Exact symptom? What changed? Reproduce?'], ['2', 'Check the evidence', 'dmesg, journalctl, BMC event log, sensors, LEDs'], ['3', 'Simple, physical first', 'Seating, cables, power, settings'], ['4', 'Isolate', 'Swap with known-good, one change at a time'], ['5', 'Fix and verify', 'Retest fully to prove it'], ['6', 'Document and prevent', 'Record it; stop it happening again']].map(([n, b, s]) => h('div', {class: 'mstep'}, h('i', {}, 'STEP ' + n), h('b', {}, b), h('span', {}, s)))),
         h('div', {class: 'callout'}, h('b', {class: 'tag'}, 'Weak vs strong'), 'A weak answer to "a server\'s fans run at full speed constantly" is "replace the fans." A strong answer checks BMC sensors and the event log first, looks for physical causes (failed fan, missing air baffle, blocked airflow), checks firmware, changes one thing at a time, and ends with documentation. Module 1\'s lab is exactly that case.')),
       h('section', {class: 'grid2'},
-        h('div', {class: 'panel pad stack'}, h('h3', {}, 'Practise the answers, not just the labs'), h('p', {}, '20 free-response questions in 60 minutes, from memory — no notes, no internet, no AI, and no topology or console in front of you. Troubleshooting answers must explain your thinking step by step.'), h('p', {class: 'muted'}, 'Learn with the labs, then train the exam: type complete answers against the clock, check them against the course\'s grading criteria, fix what you missed. Also: command recall, the revision sheet, and a full 60-minute exam. (Your recruiter\'s online practice exam is typed; a pen & paper mode is there too.)'), h('div', {class: 'row'}, h('a', {class: 'btn sm', href: '#written'}, 'Answer practice'), h('a', {class: 'btn sm ghost', href: '#howto'}, 'How to write answers'), h('a', {class: 'btn sm ghost', href: '#exam'}, '60-minute exam'))),
+        h('div', {class: 'panel pad stack'}, h('h3', {}, 'The assessment'), h('p', {}, '20 free-response questions in 60 minutes, from memory: no notes, internet or AI tools. Troubleshooting answers must explain your thinking step by step.'), h('p', {class: 'muted'}, 'So: in each mission, write your own answer in the answer box before you open the hint.')),
         h('div', {class: 'panel pad stack'}, h('h3', {}, 'Exam-day tips'), h('ul', {class: 'prose', style: 'padding-left:1.2em'}, h('li', {}, 'About 3 minutes per question: ~2 for definitions, 4–5 for scenarios. Stuck? Move on, come back.'), h('li', {}, '"What is X and why does it matter?" → what it is, how it works, why it matters in a data center, one example.'), h('li', {}, 'Numbered steps for troubleshooting; name specific tools and logs.'), h('li', {}, 'Forgot a command? Describe what you would check and why — correct thinking earns credit.'), h('li', {}, 'Never leave a blank; end scenarios with verification and documentation.')))),
       h('section', {class: 'stack'}, h('div', {class: 'sec-title'}, h('span', {class: 'eyebrow'}, 'Modules'), h('h2', {}, 'Plan 10 to 15 hours: one or two modules a day')),
         h('div', {class: 'modgrid'}, MODULES.map(m => h('a', {class: 'modcard', href: '#' + m.id}, h('span', {class: 'n'}, m.n), h('span', {}, h('b', {}, m.title), h('span', {}, m.tagline)))))),
@@ -6121,7 +5630,7 @@ const App = (() => {
     const counts = {got: 0, partly: 0, missed: 0}; list.forEach(q => { if (S.grades[q.id]) counts[S.grades[q.id]]++; });
     return h('div', {class: 'page'},
       h('header', {class: 'hero'}, h('div', {}, h('div', {class: 'eyebrow'}, `Practice exam · Set ${set}`), h('h1', {}, set === 'A' ? 'Missions 1–20' : 'Missions 21–40'), h('p', {class: 'lead'}, set === 'A' ? 'Set A follows the same mix as the real assessment: core concepts first, then troubleshooting and real-world scenarios. Each question is a mission with its own preconfigured fault.' : 'Set B covers different topics from Set A, so you need both to cover the whole course. Take it at least a day after Set A.')),
-        h('div', {class: 'meta'}, h('span', {}, `Got it ${counts.got} · Partly ${counts.partly} · Missed ${counts.missed}`), h('a', {href: '#exam', onclick: () => { S.examSet = set; save(); }}, 'Take this set as a 60-minute exam →'), h('a', {href: '#written', onclick: () => { S.wr = S.wr || {mode: 'type', set, idx: 0, struct: false, ans: {}, secs: {}}; S.wr.set = set; S.wr.idx = 0; save(); }}, 'Practise typing these answers one at a time →'))),
+        h('div', {class: 'meta'}, h('span', {}, `Got it ${counts.got} · Partly ${counts.partly} · Missed ${counts.missed}`))),
       h('div', {class: 'callout'}, h('b', {class: 'tag'}, 'How a mission works'), 'Read the question → work the preconfigured lab → write your answer in the box → if you are stuck, open Step 1 (the steps to find it) → then Step 2 (the full answer) → mark yourself Got it / Partly / Missed, like the Review Map.'),
       h('div', {class: 'mgrid'}, list.map(missionCard)), foot());
   }
@@ -6155,7 +5664,6 @@ const App = (() => {
     return h('div', {class: 'page'},
       h('header', {class: 'hero'}, h('div', {class: 'qbox'}, h('div', {class: 'row', style: 'gap:14px;align-items:baseline'}, h('span', {class: 'qn'}, q.n), h('span', {class: 'eyebrow'}, `Set ${q.set} · ${q.topic}`)), h('p', {class: 'q', style: 'margin-top:8px'}, q.q), q.code ? h('pre', {class: 'out', style: 'margin-top:10px'}, q.code) : null),
         h('div', {class: 'meta'}, h('span', {}, 'Reread: ' + q.reread.map(id => MODULES.find(m => m.id === id)).map(m => `Module ${m.n}`).join(', ')), h('span', {class: 'row', style: 'gap:6px'}, ...q.reread.map(id => h('a', {href: '#' + id}, MODULES.find(m => m.id === id).title))))),
-      h('div', {class: 'callout warn'}, h('b', {class: 'tag'}, 'On the real exam'), h('span', {}, 'You will get only the question above — no topology, no console — and about ', String(qKind(q).mins), ' minutes to type a complete answer. Use the lab to understand it, then '), h('button', {class: 'btn sm', style: 'margin-left:4px', onclick: () => { App.pending = {written: q.n}; App.go('written'); }}, 'practise typing the answer →')),
       h('section', {class: 'stack'}, h('div', {class: 'sec-title'}, h('span', {class: 'eyebrow'}, 'Mission lab'), h('h2', {}, 'Preconfigured: the fault is already in there')), labHost, widget),
       h('section', {class: 'stack'}, h('div', {class: 'sec-title'}, h('span', {class: 'eyebrow'}, 'Your answer'), h('h2', {}, 'Write it like the real assessment')), ta, keysEl),
       h('section', {class: 'stack'}, hintBox, ansBox),
@@ -6208,39 +5716,6 @@ const App = (() => {
       h('div', {class: 'callout'}, h('b', {class: 'tag'}, 'grep options'), '-i ignore case · -n line numbers · -c count · -r folder and subfolders · -v lines that do NOT match · -C 3 three lines of context. Combine: grep -rin "error" /var/log/'),
       foot());
   }
-  let timer = null;
-  function pageExam() {
-    const which = S.examSet || 'course';
-    const sets = {course: COURSE_EXAM.map((x, i) => ({n: i + 1, q: x.q, m: x.m ? MISSIONS[x.m - 1] : null, a: x.a, see: x.see})), A: MISSIONS.filter(q => q.set === 'A').map(q => ({n: q.n, q: q.q, m: q})), B: MISSIONS.filter(q => q.set === 'B').map(q => ({n: q.n, q: q.q, m: q}))};
-    const E = S.exam[which] = S.exam[which] || {ans: {}, start: null, done: false};
-    const list = sets[which];
-    const tEl = h('span', {class: 'timer'}, '60:00');
-    const tick = () => { if (!E.start || E.done) { tEl.textContent = E.done ? 'finished' : '60:00'; return; } const left = Math.max(0, 3600 - Math.floor((Date.now() - E.start) / 1000)); tEl.textContent = `${p2(Math.floor(left / 60))}:${p2(left % 60)}`; tEl.classList.toggle('low', left < 300); if (!left) { E.done = true; save(); render(); } };
-    clearInterval(timer); timer = setInterval(tick, 1000);
-    const body = h('div');
-    const render = () => {
-      body.innerHTML = '';
-      list.forEach(it => {
-        const ta = h('textarea', {class: 'ansbox', id: `ex-${which}-${it.n}`, style: 'min-height:110px', disabled: !E.start || E.done ? true : null, placeholder: E.start ? 'Write your answer…' : 'Press Start to begin the 60-minute timer'});
-        ta.value = E.ans[it.n] || ''; ta.addEventListener('input', () => { E.ans[it.n] = ta.value; save(); });
-        const out = h('div', {class: 'examq'}, h('div', {class: 'q'}, h('b', {}, it.n), h('div', {}, it.q)), ta);
-        if (E.done) {
-          const keys = it.m ? it.m.keys : null;
-          if (keys) { const v = ta.value; const hit = keys.filter(k => new RegExp(k.re, 'i').test(v)); out.appendChild(h('div', {class: 'keys'}, h('span', {class: 'muted', style: 'font-size:.8rem'}, `Key ideas: ${hit.length}/${keys.length}`), ...keys.map(k => h('span', {class: 'key' + (hit.includes(k) ? ' hit' : '')}, k.label)))); }
-          const ans = h('div', {class: 'prose hide', style: 'background:var(--ok-wash);border-radius:5px;padding:10px 14px', html: it.a || (it.m ? it.m.answer : '')});
-          out.appendChild(h('div', {class: 'row'}, h('button', {class: 'btn sm ghost', onclick: () => ans.classList.toggle('hide')}, 'Model answer'), it.m || it.see ? h('a', {class: 'btn sm ghost', href: '#q' + (it.m ? it.m.n : it.see)}, 'Open the mission lab →') : null));
-          out.appendChild(ans);
-        }
-        body.appendChild(out);
-      });
-    };
-    render(); tick();
-    const pick = h('div', {class: 'seg'}); [['course', 'Course practice exam (20)'], ['A', 'Set A (1–20)'], ['B', 'Set B (21–40)']].forEach(([k, l]) => pick.appendChild(h('button', {class: which === k ? 'on' : '', onclick: () => { S.examSet = k; save(); route(); }}, l)));
-    return h('div', {class: 'page'},
-      h('header', {class: 'hero'}, h('div', {}, h('div', {class: 'eyebrow'}, 'Exam room'), h('h1', {}, '20 questions · 60 minutes · no notes'), h('p', {class: 'lead'}, 'Exactly like the real assessment: closed book, about 3 minutes per question, numbered steps for troubleshooting. Better still, answer on paper by hand and use this page for the timer and the model answers.')),
-        h('div', {class: 'meta'}, tEl, h('div', {class: 'row'}, !E.start ? h('button', {class: 'btn', onclick: () => { E.start = Date.now(); E.done = false; save(); route(); }}, 'Start timer') : !E.done ? h('button', {class: 'btn warn', onclick: () => { E.done = true; save(); award('exam:' + which, 80, 'Timed exam finished'); route(); }}, 'Stop and check') : null, h('button', {class: 'btn ghost', onclick: () => { S.exam[which] = {ans: {}, start: null, done: false}; save(); route(); }}, 'Reset')))),
-      pick, body, foot());
-  }
   function pageReady() {
     const items = ['I finished each set within 60 minutes, by hand, with no notes, search, or AI.', 'I marked most questions Got it on both Review Maps.', 'Without notes, I can explain DHCP, DNS, ECC, the BMC, SSH versus SOL, and how PCIe links train.', 'I can read ip a and lspci -vv output and say what each part means.', 'I can write these commands from memory and say what each shows: lspci, dmesg, journalctl -b -1, grep -in, ip a, ip route, ipmitool sel elist.', 'For any troubleshooting scenario, I write my steps in order: gather evidence, simple checks first, isolate, change one thing at a time, fix, verify, document.', 'I reread every course section I marked Partly or Missed.'];
     const weak = MISSIONS.filter(q => S.grades[q.id] && S.grades[q.id] !== 'got');
@@ -6256,20 +5731,18 @@ const App = (() => {
 
   /* ---------- router ---------- */
   function route() {
-    cleanup(); clearInterval(timer);
+    cleanup();
     const id = (location.hash || '#start').slice(1) || 'start';
     let page;
     try {
       const mod = MODULES.find(m => m.id === id); const mis = MISSIONS.find(q => q.id === id);
       if (mod) page = pageModule(mod);
       else if (mis) page = pageMission(mis);
-      else if (WRITTEN_ROUTES[id]) page = WRITTEN_ROUTES[id]();
       else if (id === 'setA') page = pageSet('A');
       else if (id === 'setB') page = pageSet('B');
       else if (id === 'handson') page = pageHandson();
       else if (id === 'sandbox') page = pageSandbox();
       else if (id === 'ref') page = pageRef();
-      else if (id === 'exam') page = pageExam();
       else if (id === 'ready') page = pageReady();
       else page = pageStart();
     } catch (e) { console.error(e); page = h('div', {class: 'page'}, h('h2', {}, 'This page failed to load'), h('pre', {class: 'out'}, String(e && e.stack || e))); }
@@ -6290,9 +5763,8 @@ const App = (() => {
     window.addEventListener('hashchange', route);
     updRank(); route();
   }
-  const go = id => { if ((location.hash || '#start') === '#' + id) route(); else location.hash = id; };
   const refreshUi = () => { drawRail(); drawBezel(); };
-  return {init, award, toast, track, save, refresh: refreshUi, go, pending: null, get state() { return S; }};
+  return {init, award, toast, track, save, refresh: refreshUi, pending: null, get state() { return S; }};
 })();
 window.App = App;
 App.init();
