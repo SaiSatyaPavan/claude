@@ -72,7 +72,7 @@ button{font:inherit;color:inherit}
 
 /* ---------- top bar ---------- */
 .top{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:var(--panel);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:16px;padding:8px 18px;min-height:58px}
-.menu-btn{display:none;background:none;border:1px solid var(--line);border-radius:var(--r);width:40px;height:38px;cursor:pointer;align-items:center;justify-content:center}
+.menu-btn{display:inline-flex;background:none;border:1px solid var(--line);border-radius:var(--r);width:40px;height:38px;cursor:pointer;align-items:center;justify-content:center}
 .menu-btn svg{width:18px;height:18px;stroke:var(--ink);stroke-width:2;fill:none}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);min-width:0}
 .brand svg{flex:none}
@@ -95,8 +95,8 @@ button{font:inherit;color:inherit}
 .icon-btn svg{width:16px;height:16px;stroke:var(--ink-2);fill:none;stroke-width:1.8}
 
 /* ---------- frame ---------- */
-.wrap{display:grid;grid-template-columns:262px minmax(0,1fr);min-height:calc(100% - 58px)}
-.rail{border-right:1px solid var(--line);background:var(--panel-2);padding:14px 10px 40px;position:sticky;top:calc(58px + env(safe-area-inset-top,0px));height:calc(100vh - 58px);overflow-y:auto}
+.wrap{display:grid;grid-template-columns:262px minmax(0,1fr);min-height:calc(100% - 58px);transition:grid-template-columns .22s ease}
+.rail{border-right:1px solid var(--line);background:var(--panel-2);padding:14px 10px 40px;min-width:0;position:sticky;top:calc(58px + env(safe-area-inset-top,0px));height:calc(100vh - 58px);overflow-y:auto}
 .rail h6{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin:16px 10px 6px;font-weight:500}
 .rail h6:first-child{margin-top:4px}
 .rail a{display:flex;align-items:center;gap:9px;padding:6px 10px;border-radius:5px;color:var(--ink-2);text-decoration:none;font-size:.92rem;line-height:1.25}
@@ -107,6 +107,23 @@ button{font:inherit;color:inherit}
 .rail a .led.seen{background:var(--warn)}
 .rail a .led.done{background:var(--ok)}
 .scrim{display:none}
+.rail-toggle{display:flex;align-items:center;gap:8px;width:100%;background:none;border:1px solid var(--line);border-radius:5px;padding:6px 10px;margin-bottom:6px;cursor:pointer;color:var(--ink-3);font-family:var(--f-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase}
+.rail-toggle:hover{color:var(--ink);border-color:var(--accent)}
+.rail-toggle svg{width:14px;height:14px;stroke:currentColor;stroke-width:2;fill:none;flex:none;transition:transform .22s}
+.rail a .lbl{min-width:0}
+@media (min-width:861px){
+  .wrap.rail-min{grid-template-columns:62px minmax(0,1fr)}
+  .wrap.rail-min .rail{padding:12px 6px 40px;overflow-x:hidden}
+  .wrap.rail-min .rail-toggle{justify-content:center;padding:6px 0}
+  .wrap.rail-min .rail-toggle span{display:none}
+  .wrap.rail-min .rail-toggle svg{transform:rotate(180deg)}
+  .wrap.rail-min .rail h6{font-size:0;height:1px;background:var(--line);margin:10px 6px;padding:0}
+  .wrap.rail-min .rail h6:first-of-type{margin-top:6px}
+  .wrap.rail-min .rail a{justify-content:center;padding:8px 0;position:relative;gap:0}
+  .wrap.rail-min .rail a .n{width:auto;font-size:.76rem;color:inherit}
+  .wrap.rail-min .rail a .lbl{display:none}
+  .wrap.rail-min .rail a .led{position:absolute;top:5px;right:6px;width:6px;height:6px;margin:0}
+}
 main{min-width:0;padding-inline:clamp(16px,3vw,40px);padding-block:26px 90px}
 .page{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:26px}
 
@@ -455,6 +472,7 @@ input.inp,select.inp{border:1px solid var(--line);border-radius:5px;background:v
   .menu-btn{display:inline-flex}
   .rail{position:fixed;left:0;top:calc(58px + env(safe-area-inset-top,0px));bottom:0;height:auto;width:280px;max-width:86vw;z-index:50;transform:translateX(-105%);transition:transform .25s;box-shadow:var(--shadow)}
   .rail.open{transform:none}
+  .rail-toggle{display:none}
   .scrim.open{display:block;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:45}
   .bezel .bay:nth-child(n+7){display:none}
   .lesson{grid-template-columns:minmax(0,1fr);gap:10px;padding:18px}
@@ -476,7 +494,7 @@ input.inp,select.inp{border:1px solid var(--line);border-radius:5px;background:v
 </style>
 
 <header class="top">
-  <button class="menu-btn" id="menuBtn" aria-label="Open the course menu"><svg viewBox="0 0 20 20"><path d="M3 5h14M3 10h14M3 15h14"/></svg></button>
+  <button class="menu-btn" id="menuBtn" aria-label="Show or hide the course menu" aria-controls="rail" title="Show or hide the menu ( [ )"><svg viewBox="0 0 20 20"><path d="M3 5h14M3 10h14M3 15h14"/></svg></button>
   <a class="brand" href="#start" aria-label="Diagnostic Tech Bench home">
     <svg width="38" height="30" viewBox="0 0 38 30" aria-hidden="true">
       <rect x="1" y="3" width="36" height="24" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/>
@@ -5549,8 +5567,12 @@ const App = (() => {
   }
   function drawRail() {
     const cur = (location.hash || '#start').slice(1);
-    const a = (id, n, label, led) => h('a', {href: '#' + id, class: cur === id ? 'on' : ''}, h('span', {class: 'n'}, n), label, led != null ? h('span', {class: 'led ' + led}) : null);
+    const a = (id, n, label, led) => h('a', {href: '#' + id, class: cur === id ? 'on' : '', title: label, 'aria-label': label}, h('span', {class: 'n', 'aria-hidden': 'true'}, n), h('span', {class: 'lbl'}, label), led != null ? h('span', {class: 'led ' + led}) : null);
     rail.innerHTML = '';
+    const min = !!S.railMin;
+    rail.append(h('button', {class: 'rail-toggle', type: 'button', 'aria-expanded': min ? 'false' : 'true', title: min ? 'Expand the menu ( [ )' : 'Collapse the menu ( [ )', onclick: () => toggleRail()},
+      sv('svg', {viewBox: '0 0 16 16'}), h('span', {}, min ? 'Expand menu' : 'Collapse menu')));
+    rail.lastChild.firstChild.innerHTML = '<path d="M10 3 5 8l5 5"/>';
     const doneA = MISSIONS.filter(m => m.set === 'A' && S.grades[m.id]).length, doneB = MISSIONS.filter(m => m.set === 'B' && S.grades[m.id]).length;
     rail.append(
       h('h6', {}, 'Start'), a('start', '▸', 'How this works'),
@@ -5561,6 +5583,16 @@ const App = (() => {
   function cleanup() { live.forEach(x => { try { x.destroy(); } catch (e) {} }); live = []; (Topo.all || []).forEach(t => { try { t.destroy(); } catch (e) {} }); Topo.all = []; }
   const track = t => { live.push(t); return t; };
   function closeRail() { rail.classList.remove('open'); document.getElementById('scrim').classList.remove('open'); }
+  const isPhone = () => window.matchMedia('(max-width: 860px)').matches;
+  function applyRail() {
+    const wrap = document.querySelector('.wrap');
+    wrap.classList.toggle('rail-min', !!S.railMin);
+    document.getElementById('menuBtn').setAttribute('aria-expanded', isPhone() ? String(rail.classList.contains('open')) : String(!S.railMin));
+  }
+  function toggleRail() {
+    if (isPhone()) { rail.classList.toggle('open'); document.getElementById('scrim').classList.toggle('open'); applyRail(); return; }
+    S.railMin = !S.railMin; save(); applyRail(); drawRail();
+  }
 
   /* ---------- pages ---------- */
   function foot() { return h('div', {class: 'foot'}, 'Built from your Diagnostic Technician Prep Course (v2.1) and Practice Exam (v1.0). The simulator prints the same formats as the real tools; serials, addresses and timings are examples. Progress is saved in this browser only.'); }
@@ -5788,7 +5820,10 @@ const App = (() => {
     const applyTheme = () => { const t = themes[ti]; if (t === 'system') document.documentElement.removeAttribute('data-theme'); else document.documentElement.setAttribute('data-theme', t); document.getElementById('themeLbl').textContent = {system: 'Auto', dark: 'Dark', light: 'Light'}[t]; };
     applyTheme();
     document.getElementById('themeBtn').addEventListener('click', () => { ti = (ti + 1) % 3; S.theme = themes[ti]; save(); applyTheme(); });
-    document.getElementById('menuBtn').addEventListener('click', () => { rail.classList.toggle('open'); document.getElementById('scrim').classList.toggle('open'); });
+    document.getElementById('menuBtn').addEventListener('click', toggleRail);
+    document.addEventListener('keydown', e => { if (e.key === '[' && !e.ctrlKey && !e.metaKey && !e.altKey && !/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName) && !e.target.isContentEditable) { e.preventDefault(); toggleRail(); } });
+    window.addEventListener('resize', applyRail);
+    applyRail();
     document.getElementById('scrim').addEventListener('click', closeRail);
     window.addEventListener('hashchange', route);
     updRank(); route();
