@@ -9,7 +9,7 @@ from reportlab.platypus import (BaseDocTemplate, PageTemplate, Frame, Paragraph,
                                 KeepTogether, CondPageBreak, Flowable)
 from reportlab.platypus.tableofcontents import TableOfContents
 import diag_lib  # registers fonts
-from content_b import E
+from content_v23 import E
 
 OUT = sys.argv[1]
 H = colors.HexColor
@@ -175,7 +175,7 @@ def question(n, e):
 
 def cover():
     s = [Spacer(1, 30), Paragraph('Practice Exam: Answers Explained', S['h1']),
-         Paragraph('Diagnostic Technician practice exam, Sets A and B (40 questions). Simple answers to memorize, with explanations, topology diagrams and example command output.', S['sub'])]
+         Paragraph('Diagnostic Technician practice exam, Sets A and B (40 questions). Simple answers to memorize, with explanations, topology diagrams and example command output. Checked against Prep Course v2.3.', S['sub'])]
     how = [Paragraph('<b>How each question is laid out</b>', S['intro'])]
     for b, t in [('Answer', 'in simple words, the way to write it on the exam (numbered steps for troubleshooting).'),
                  ('Remember it', 'a short memory hook or mnemonic.'),

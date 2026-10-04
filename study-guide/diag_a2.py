@@ -109,11 +109,11 @@ def esd():
     # 1 instant
     d.rect(0, 18, 296, 62, 'bad', r=5)
     d.rect(14, 32, 34, 34, 'dark', r=2); bolt(d, 26, 30, 1.25)
-    d.text(58, 36, '1  Instant damage', 9, KIND['bad'][2], 'start', 'Sans-B')
-    d.lines(58, 48, ['The zap burns through the chip. The part is dead now:', 'not detected, will not power on, fails its first test.'], 7.2, MUTED)
+    d.text(58, 36, '1  Immediate failure', 9, KIND['bad'][2], 'start', 'Sans-B')
+    d.lines(58, 48, ['Dead or erratic right away: not detected,', 'will not power on, or fails its first test.'], 7.2, MUTED)
     # 2 latent
     d.rect(0, 86, 296, 70, 'warn', r=5)
-    d.text(14, 102, '2  Latent damage (shows up weeks later)', 9, KIND['warn'][2], 'start', 'Sans-B')
+    d.text(14, 102, '2  Latent damage: weeks later (most costly)', 9, KIND['warn'][2], 'start', 'Sans-B')
     marks = [('Day 1', 'PASS', 'ok'), ('Week 1', 'PASS', 'ok'), ('Week 3', 'PASS', 'ok'), ('Week 6', 'FAIL', 'bad')]
     for i, (a, b, k) in enumerate(marks):
         x = 22 + i * 68
@@ -123,8 +123,8 @@ def esd():
     d.text(250, 132, 'weakened,', 6.8, MUTED, 'middle'); d.text(250, 141, 'not dead', 6.8, MUTED, 'middle')
     # 3 intermittent
     d.rect(0, 162, 296, 66, 'warn', r=5)
-    d.text(14, 178, '3  Intermittent errors', 9, KIND['warn'][2], 'start', 'Sans-B')
-    d.lines(14, 191, ['It works, but now and then: corrected memory errors,', 'a link that drops, a random reboot. Very hard to trace.'], 7.2, MUTED)
+    d.text(14, 178, '3  Wasted time', 9, KIND['warn'][2], 'start', 'Sans-B')
+    d.lines(14, 191, ['A damaged part gives confusing symptoms (random errors,', 'a link that drops) that send troubleshooting the wrong way.'], 7.2, MUTED)
     pts = [(14 + i * 3, 220 - (10 if i in (17, 41, 62) else 0)) for i in range(90)]
     d.curve(pts, color=C['warn'], sw=1.1)
     # prevention
@@ -135,11 +135,11 @@ def esd():
     d.curve([(353, 62), (365, 58), (372, 66), (380, 58), (388, 66), (396, 62), (410, 62)], color=INK, sw=1)
     d.rect(410, 56, 26, 12, 'n', r=2); ground(d, 423, 68)
     d.text(342, 86, 'strap', 6.4, MUTED, 'middle'); d.text(423, 96, 'chassis / mat', 6.4, MUTED, 'middle')
-    tips = ['Wear a grounded wrist strap', 'Work on an ESD mat', 'Keep parts in anti-static bags', 'Hold parts by the edges', 'Never touch pins or gold fingers', 'Power off and unplug first']
+    tips = ['Wear AND test a wrist strap', 'Work on a grounded mat', 'Hold parts by the edges', 'Never touch contacts or chips', 'Shielding bags (silver)', 'Power off before handling']
     for i, t in enumerate(tips):
         d.tick(326, 112 + i * 17, 3.6, sw=1.6); d.text(334, 115 + i * 17, t, 7.2, INK)
     d.text(397, 220, 'You feel ~3,000 V. Chips can die from < 100 V.', 6.3, KIND['ok'][2], 'middle', 'Sans-B')
-    return d.d, 'ESD can kill a part at once, weaken it so it fails weeks later, or leave it working with random errors. You cannot feel a zap that is big enough to damage a chip.'
+    return d.d, 'ESD can kill a part at once, weaken it so it fails weeks later (the most costly kind), and waste hours with confusing symptoms. You cannot feel a zap that is big enough to damage a chip.'
 
 
 def post_timeline():
@@ -160,9 +160,9 @@ def post_timeline():
     d.text(482, 31, 'logo / boot', 7.4, C['ok'], 'end', 'Sans-B')
     d.rect(0, 124, 482, 84, 'bad', r=6)
     d.text(12, 140, 'If you skipped these checks...', 9, KIND['bad'][2], 'start', 'Sans-B')
-    risks = ['Memory not trained or tested: random errors, data corruption, crashes later in the OS.',
-             'A bad DIMM, CPU or card is not caught: the server boots and fails at the customer instead.',
-             'PCIe links not trained: cards missing or slow (downtrained).',
+    risks = ['Hardware faults would reach the OS: crashes and corrupted data instead of a clear POST code.',
+             'Devices would not start in a known state: memory and PCIe links untrained, cards missing or slow.',
+             'You would lose your first clue: the POST code or BMC message that names the failing part.',
              'Be patient: on a server with lots of memory, minutes of blank screen is normal. Watch the POST code / BMC.']
     for i, r in enumerate(risks):
         d.text(14, 156 + i * 13, '•  ' + r, 7.4, INK if i < 3 else C['acc'], 'start', 'Sans' if i < 3 else 'Sans-B')
@@ -224,11 +224,11 @@ def no_power():
     d.text(342, 92, 'BMC is dead too:', 7, INK, 'start', 'Sans-B')
     d.lines(342, 102, ['no standby power at all. Look at the', 'outlet, breaker, cords and PSUs.'], 6.8, MUTED)
     d.title(0, 196, 'Follow the power, one link at a time')
-    chain = [('PDU outlet', 'on? breaker?'), ('Power cords', 'seated both ends'), ('PSU 1 + 2', 'AC LED? reseat'), ('Standby + BMC', 'BMC reachable?'),
-             ('Power button', 'front panel cable'), ('Main power', 'PSU DC output'), ('Board', 'min. config')]
+    chain = [('1 Power source', 'outlet, breaker'), ('2 Cords + PSUs', 'clips, latched, LEDs'), ('3 The BMC', 'answers? power on'), ('4 Interlocks', 'lid, intrusion'),
+             ('5 Shorted part', 'minimum config'), ('6 Motherboard', 'last')]
     for i, (t, s) in enumerate(chain):
-        x = i * 69
-        d.box(x, 204, 62, 26, t, s, 'oob' if i == 3 else 'n', fs=7, sfs=5.9)
+        x = i * 81
+        d.box(x, 204, 74, 26, t, s, 'oob' if i == 2 else 'n', fs=7, sfs=5.9)
         if i: d.arrow([(x - 7, 217), (x, 217)], 'n', sw=1)
     return d.d, 'The server above works on the same PDU, so the PDU has power. Check this server\'s outlet, cords and PSUs, and use the BMC to see whether standby power arrives.'
 
@@ -291,8 +291,8 @@ def nvme_half():
         d.rect(384, y, v * 13, 22, k, r=2, fill=C[k])
         d.text(384 + v * 13 + 4, y + 15, f'{v} GB/s', 7.4, INK, 'start', 'Sans-B')
     d.title(0, 194, 'Possible causes (check each)')
-    causes = [('link x2 / Gen 3', 'warn'), ('shared switch uplink', 'acc'), ('hot bay: throttling', 'bad'), ('different firmware', 'cu'),
-              ('drive full / formatted differently', 'p'), ('test not identical', 'p'), ('failing drive', 'bad')]
+    causes = [('link x2 / Gen 3', 'warn'), ('bay wired for fewer lanes', 'warn'), ('shared switch / other CPU', 'acc'), ('hot: throttling', 'bad'),
+              ('wear / firmware', 'cu'), ('drive full or busy', 'p'), ('test not like the rating', 'p')]
     x = 0; y = 202
     for t, k in causes:
         w = d.pill(x, y, t, k, fs=6.6)
